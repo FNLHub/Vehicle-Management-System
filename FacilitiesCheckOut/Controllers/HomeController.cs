@@ -26,5 +26,19 @@ namespace FacilitiesCheckOut.Controllers
 
             return View();
         }
+
+        public ActionResult SignOut()
+        {
+            ViewBag.Message = "Your SignOut page.";
+
+            return View();
+        }
+
+        public ActionResult SignIn()
+        {
+            ViewBag.Message = "Your SignIn Page.";
+
+            return View();
+        }
     }
 }
