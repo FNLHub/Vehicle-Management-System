@@ -13,20 +13,6 @@ namespace FacilitiesCheckOut.Controllers
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
         public ActionResult SignOut()
         {
             ViewBag.Message = "Your SignOut page.";
@@ -37,6 +23,13 @@ namespace FacilitiesCheckOut.Controllers
         public ActionResult SignIn()
         {
             ViewBag.Message = "Your SignIn Page.";
+
+            return View();
+        }
+
+        public ActionResult Reports()
+        {
+            ViewBag.Message = "Your application reports page.";
 
             return View();
         }
