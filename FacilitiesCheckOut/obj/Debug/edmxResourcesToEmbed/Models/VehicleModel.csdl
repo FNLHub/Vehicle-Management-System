@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FacilitiesDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="FacilitiesDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Departments" EntityType="FacilitiesDBModel.Department" />
+    <EntitySet Name="Keys" EntityType="FacilitiesDBModel.Key" />
+    <EntitySet Name="Users" EntityType="FacilitiesDBModel.User" />
+    <EntitySet Name="Vehicles" EntityType="FacilitiesDBModel.Vehicle" />
+    <EntitySet Name="VehicleStatuses" EntityType="FacilitiesDBModel.VehicleStatus" />
+    <EntitySet Name="VehicleLogs" EntityType="FacilitiesDBModel.VehicleLog" />
+  </EntityContainer>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="DepartmentKey" />
+    </Key>
+    <Property Name="DepartmentKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmentId" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Key">
+    <Key>
+      <PropertyRef Name="KeyId" />
+    </Key>
+    <Property Name="KeyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KeyName" Type="String" Nullable="false" MaxLength="255" FixedLength="true" Unicode="true" />
+    <Property Name="KeyVehicleId" Type="Int32" Nullable="false" />
+    <Property Name="KeyCheckedOut" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserFirstName" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="UserLastName" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="UserDMV" Type="Boolean" Nullable="false" />
+    <Property Name="UserActivityDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Vehicle">
+    <Key>
+      <PropertyRef Name="VehicleId" />
+    </Key>
+    <Property Name="VehicleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VehicleName" Type="String" Nullable="false" MaxLength="255" FixedLength="true" Unicode="true" />
+    <Property Name="VehicleCheckedOut" Type="Boolean" Nullable="false" />
+    <Property Name="VehicleStatus" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VehicleStatus">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StatusDesc" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VehicleLog">
+    <Key>
+      <PropertyRef Name="VehicleLogId" />
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="DeptId" />
+      <PropertyRef Name="Destination" />
+      <PropertyRef Name="VehId" />
+      <PropertyRef Name="KeyId" />
+      <PropertyRef Name="StaffId" />
+    </Key>
+    <Property Name="VehicleLogId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="DeptId" Type="Int32" Nullable="false" />
+    <Property Name="Destination" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="VehId" Type="Int32" Nullable="false" />
+    <Property Name="KeyId" Type="Int32" Nullable="false" />
+    <Property Name="StaffId" Type="Int32" Nullable="false" />
+    <Property Name="CheckOutDate" Type="DateTime" Precision="3" />
+    <Property Name="CheckInDate" Type="DateTime" Precision="3" />
+    <Property Name="ActivityDate" Type="DateTime" Precision="3" />
+  </EntityType>
+</Schema>

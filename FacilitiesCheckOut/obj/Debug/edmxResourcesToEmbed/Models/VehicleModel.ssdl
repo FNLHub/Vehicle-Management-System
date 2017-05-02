@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FacilitiesDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Departments">
+    <Key>
+      <PropertyRef Name="DepartmentKey" />
+    </Key>
+    <Property Name="DepartmentKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmentId" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="DepartmentName" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Keys">
+    <Key>
+      <PropertyRef Name="KeyId" />
+    </Key>
+    <Property Name="KeyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KeyName" Type="nchar" MaxLength="255" Nullable="false" />
+    <Property Name="KeyVehicleId" Type="int" Nullable="false" />
+    <Property Name="KeyCheckedOut" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserFirstName" Type="nchar" MaxLength="60" Nullable="false" />
+    <Property Name="UserLastName" Type="nchar" MaxLength="60" Nullable="false" />
+    <Property Name="UserDMV" Type="bit" Nullable="false" />
+    <Property Name="UserActivityDate" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FacilitiesDB.dbo.VehicleLogs' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VehicleLogs">
+    <Key>
+      <PropertyRef Name="VehicleLogId" />
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="DeptId" />
+      <PropertyRef Name="Destination" />
+      <PropertyRef Name="VehId" />
+      <PropertyRef Name="KeyId" />
+      <PropertyRef Name="StaffId" />
+    </Key>
+    <Property Name="VehicleLogId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="DeptId" Type="int" Nullable="false" />
+    <Property Name="Destination" Type="nchar" MaxLength="60" Nullable="false" />
+    <Property Name="VehId" Type="int" Nullable="false" />
+    <Property Name="KeyId" Type="int" Nullable="false" />
+    <Property Name="StaffId" Type="int" Nullable="false" />
+    <Property Name="CheckOutDate" Type="datetime" />
+    <Property Name="CheckInDate" Type="datetime" />
+    <Property Name="ActivityDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Vehicles">
+    <Key>
+      <PropertyRef Name="VehicleId" />
+    </Key>
+    <Property Name="VehicleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VehicleName" Type="nchar" MaxLength="255" Nullable="false" />
+    <Property Name="VehicleCheckedOut" Type="bit" Nullable="false" />
+    <Property Name="VehicleStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VehicleStatuses">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatusDesc" Type="nchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="FacilitiesDBModelStoreContainer">
+    <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Keys" EntityType="Self.Keys" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vehicles" EntityType="Self.Vehicles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VehicleStatuses" EntityType="Self.VehicleStatuses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VehicleLogs" EntityType="Self.VehicleLogs" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VehicleLogs].[VehicleLogId] AS [VehicleLogId], 
+    [VehicleLogs].[UserId] AS [UserId], 
+    [VehicleLogs].[DeptId] AS [DeptId], 
+    [VehicleLogs].[Destination] AS [Destination], 
+    [VehicleLogs].[VehId] AS [VehId], 
+    [VehicleLogs].[KeyId] AS [KeyId], 
+    [VehicleLogs].[StaffId] AS [StaffId], 
+    [VehicleLogs].[CheckOutDate] AS [CheckOutDate], 
+    [VehicleLogs].[CheckInDate] AS [CheckInDate], 
+    [VehicleLogs].[ActivityDate] AS [ActivityDate]
+    FROM [dbo].[VehicleLogs] AS [VehicleLogs]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

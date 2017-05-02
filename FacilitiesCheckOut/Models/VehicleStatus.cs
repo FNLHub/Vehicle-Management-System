@@ -12,11 +12,9 @@ namespace FacilitiesCheckOut.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Key
+    public partial class VehicleStatus
     {
-        public int KeyId { get; set; }
-        public string KeyName { get; set; }
-        public int KeyVehicleId { get; set; }
-        public bool KeyCheckedOut { get; set; }
+        public int StatusId { get; set; }
+        public string StatusDesc { get; set; }
     }
 }

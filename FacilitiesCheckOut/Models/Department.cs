@@ -14,8 +14,8 @@ namespace FacilitiesCheckOut.Models
     
     public partial class Department
     {
-        public int Department_Key { get; set; }
-        public string DEPARTMENTID { get; set; }
-        public string DEPARTMENT1 { get; set; }
+        public int DepartmentKey { get; set; }
+        public string DepartmentId { get; set; }
+        public string DepartmentName { get; set; }
     }
 }

@@ -33,5 +33,19 @@ namespace FacilitiesCheckOut.Controllers
 
             return View();
         }
+        
+        public ActionResult Vehicles()//Vehicles Page
+        {
+            ViewBag.Message = "Your Vehicles Page.";
+
+            return View();
+        }
+
+        public ActionResult GasCards()//Gas Cards Page
+        {
+            ViewBag.Message = "Your Gas Cards Page.";
+
+            return View();
+        }
     }
 }

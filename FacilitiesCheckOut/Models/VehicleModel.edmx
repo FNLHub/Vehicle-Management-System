@@ -5,130 +5,91 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="FacilitiesDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'FacilitiesDB.dbo.Departments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Departments">
           <Key>
-            <PropertyRef Name="Department Key" />
-            <PropertyRef Name="DEPARTMENTID" />
-            <PropertyRef Name="DEPARTMENT" />
+            <PropertyRef Name="DepartmentKey" />
           </Key>
-          <Property Name="Department Key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DEPARTMENTID" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="DEPARTMENT" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="DepartmentKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentId" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'FacilitiesDB.dbo.Keys' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Keys">
           <Key>
-            <PropertyRef Name="Key ID" />
-            <PropertyRef Name="Key Name" />
-            <PropertyRef Name="Vehicle ID" />
-            <PropertyRef Name="Key Checked Out" />
+            <PropertyRef Name="KeyId" />
           </Key>
-          <Property Name="Key ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Key Name" Type="nchar" MaxLength="255" Nullable="false" />
-          <Property Name="Vehicle ID" Type="int" Nullable="false" />
-          <Property Name="Key Checked Out" Type="bit" Nullable="false" />
+          <Property Name="KeyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KeyName" Type="nchar" MaxLength="255" Nullable="false" />
+          <Property Name="KeyVehicleId" Type="int" Nullable="false" />
+          <Property Name="KeyCheckedOut" Type="bit" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'FacilitiesDB.dbo.Users' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Users">
           <Key>
-            <PropertyRef Name="User ID" />
-            <PropertyRef Name="First Name" />
-            <PropertyRef Name="Last Name" />
-            <PropertyRef Name="DMV" />
+            <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="User ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="First Name" Type="nchar" MaxLength="60" Nullable="false" />
-          <Property Name="Last Name" Type="nchar" MaxLength="60" Nullable="false" />
-          <Property Name="DMV" Type="bit" Nullable="false" />
-          <Property Name="Activity Date" Type="datetime" />
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserFirstName" Type="nchar" MaxLength="60" Nullable="false" />
+          <Property Name="UserLastName" Type="nchar" MaxLength="60" Nullable="false" />
+          <Property Name="UserDMV" Type="bit" Nullable="false" />
+          <Property Name="UserActivityDate" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'FacilitiesDB.dbo.VehicleLogs' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VehicleLogs">
           <Key>
-            <PropertyRef Name="VehicleLogID" />
-            <PropertyRef Name="UserID" />
-            <PropertyRef Name="DeptID" />
+            <PropertyRef Name="VehicleLogId" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="DeptId" />
             <PropertyRef Name="Destination" />
-            <PropertyRef Name="VehID" />
-            <PropertyRef Name="KeyID" />
-            <PropertyRef Name="StaffID" />
+            <PropertyRef Name="VehId" />
+            <PropertyRef Name="KeyId" />
+            <PropertyRef Name="StaffId" />
           </Key>
-          <Property Name="VehicleLogID" Type="int" Nullable="false" />
-          <Property Name="UserID" Type="int" Nullable="false" />
-          <Property Name="DeptID" Type="int" Nullable="false" />
+          <Property Name="VehicleLogId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="DeptId" Type="int" Nullable="false" />
           <Property Name="Destination" Type="nchar" MaxLength="60" Nullable="false" />
-          <Property Name="VehID" Type="int" Nullable="false" />
-          <Property Name="KeyID" Type="int" Nullable="false" />
-          <Property Name="StaffID" Type="int" Nullable="false" />
+          <Property Name="VehId" Type="int" Nullable="false" />
+          <Property Name="KeyId" Type="int" Nullable="false" />
+          <Property Name="StaffId" Type="int" Nullable="false" />
           <Property Name="CheckOutDate" Type="datetime" />
           <Property Name="CheckInDate" Type="datetime" />
           <Property Name="ActivityDate" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'FacilitiesDB.dbo.Vehicles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Vehicles">
           <Key>
-            <PropertyRef Name="Vehicle ID" />
-            <PropertyRef Name="Vehicle Name" />
-            <PropertyRef Name="VehicleCheckedOut" />
-            <PropertyRef Name="VehicleStatus" />
+            <PropertyRef Name="VehicleId" />
           </Key>
-          <Property Name="Vehicle ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Vehicle Name" Type="nchar" MaxLength="255" Nullable="false" />
+          <Property Name="VehicleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VehicleName" Type="nchar" MaxLength="255" Nullable="false" />
           <Property Name="VehicleCheckedOut" Type="bit" Nullable="false" />
           <Property Name="VehicleStatus" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="VehicleStatuses">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusDesc" Type="nchar" MaxLength="30" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="FacilitiesDBModelStoreContainer">
-          <EntitySet Name="Departments" EntityType="Self.Departments" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Departments].[Department Key] AS [Department Key], 
-    [Departments].[DEPARTMENTID] AS [DEPARTMENTID], 
-    [Departments].[DEPARTMENT] AS [DEPARTMENT]
-    FROM [dbo].[Departments] AS [Departments]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Keys" EntityType="Self.Keys" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Keys].[Key ID] AS [Key ID], 
-    [Keys].[Key Name] AS [Key Name], 
-    [Keys].[Vehicle ID] AS [Vehicle ID], 
-    [Keys].[Key Checked Out] AS [Key Checked Out]
-    FROM [dbo].[Keys] AS [Keys]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Users" EntityType="Self.Users" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Users].[User ID] AS [User ID], 
-    [Users].[First Name] AS [First Name], 
-    [Users].[Last Name] AS [Last Name], 
-    [Users].[DMV] AS [DMV], 
-    [Users].[Activity Date] AS [Activity Date]
-    FROM [dbo].[Users] AS [Users]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Keys" EntityType="Self.Keys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vehicles" EntityType="Self.Vehicles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehicleStatuses" EntityType="Self.VehicleStatuses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VehicleLogs" EntityType="Self.VehicleLogs" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [VehicleLogs].[VehicleLogID] AS [VehicleLogID], 
-    [VehicleLogs].[UserID] AS [UserID], 
-    [VehicleLogs].[DeptID] AS [DeptID], 
+    [VehicleLogs].[VehicleLogId] AS [VehicleLogId], 
+    [VehicleLogs].[UserId] AS [UserId], 
+    [VehicleLogs].[DeptId] AS [DeptId], 
     [VehicleLogs].[Destination] AS [Destination], 
-    [VehicleLogs].[VehID] AS [VehID], 
-    [VehicleLogs].[KeyID] AS [KeyID], 
-    [VehicleLogs].[StaffID] AS [StaffID], 
+    [VehicleLogs].[VehId] AS [VehId], 
+    [VehicleLogs].[KeyId] AS [KeyId], 
+    [VehicleLogs].[StaffId] AS [StaffId], 
     [VehicleLogs].[CheckOutDate] AS [CheckOutDate], 
     [VehicleLogs].[CheckInDate] AS [CheckInDate], 
     [VehicleLogs].[ActivityDate] AS [ActivityDate]
     FROM [dbo].[VehicleLogs] AS [VehicleLogs]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Vehicles" EntityType="Self.Vehicles" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Vehicles].[Vehicle ID] AS [Vehicle ID], 
-    [Vehicles].[Vehicle Name] AS [Vehicle Name], 
-    [Vehicles].[VehicleCheckedOut] AS [VehicleCheckedOut], 
-    [Vehicles].[VehicleStatus] AS [VehicleStatus]
-    FROM [dbo].[Vehicles] AS [Vehicles]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -139,76 +100,73 @@ warning 6002: The table/view 'FacilitiesDB.dbo.Vehicles' does not have a primary
           <EntitySet Name="Departments" EntityType="FacilitiesDBModel.Department" />
           <EntitySet Name="Keys" EntityType="FacilitiesDBModel.Key" />
           <EntitySet Name="Users" EntityType="FacilitiesDBModel.User" />
-          <EntitySet Name="VehicleLogs" EntityType="FacilitiesDBModel.VehicleLog" />
           <EntitySet Name="Vehicles" EntityType="FacilitiesDBModel.Vehicle" />
+          <EntitySet Name="VehicleStatuses" EntityType="FacilitiesDBModel.VehicleStatus" />
+          <EntitySet Name="VehicleLogs" EntityType="FacilitiesDBModel.VehicleLog" />
         </EntityContainer>
         <EntityType Name="Department">
           <Key>
-            <PropertyRef Name="Department_Key" />
-            <PropertyRef Name="DEPARTMENTID" />
-            <PropertyRef Name="DEPARTMENT1" />
+            <PropertyRef Name="DepartmentKey" />
           </Key>
-          <Property Name="Department_Key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DEPARTMENTID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="DEPARTMENT1" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentId" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Key">
           <Key>
-            <PropertyRef Name="Key_ID" />
-            <PropertyRef Name="Key_Name" />
-            <PropertyRef Name="Vehicle_ID" />
-            <PropertyRef Name="Key_Checked_Out" />
+            <PropertyRef Name="KeyId" />
           </Key>
-          <Property Name="Key_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Key_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="true" Unicode="true" />
-          <Property Name="Vehicle_ID" Type="Int32" Nullable="false" />
-          <Property Name="Key_Checked_Out" Type="Boolean" Nullable="false" />
+          <Property Name="KeyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KeyName" Type="String" Nullable="false" MaxLength="255" FixedLength="true" Unicode="true" />
+          <Property Name="KeyVehicleId" Type="Int32" Nullable="false" />
+          <Property Name="KeyCheckedOut" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
-            <PropertyRef Name="User_ID" />
-            <PropertyRef Name="First_Name" />
-            <PropertyRef Name="Last_Name" />
-            <PropertyRef Name="DMV" />
+            <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="First_Name" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
-          <Property Name="Last_Name" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
-          <Property Name="DMV" Type="Boolean" Nullable="false" />
-          <Property Name="Activity_Date" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="VehicleLog">
-          <Key>
-            <PropertyRef Name="VehicleLogID" />
-            <PropertyRef Name="UserID" />
-            <PropertyRef Name="DeptID" />
-            <PropertyRef Name="Destination" />
-            <PropertyRef Name="VehID" />
-            <PropertyRef Name="KeyID" />
-            <PropertyRef Name="StaffID" />
-          </Key>
-          <Property Name="VehicleLogID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="DeptID" Type="Int32" Nullable="false" />
-          <Property Name="Destination" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
-          <Property Name="VehID" Type="Int32" Nullable="false" />
-          <Property Name="KeyID" Type="Int32" Nullable="false" />
-          <Property Name="StaffID" Type="Int32" Nullable="false" />
-          <Property Name="CheckOutDate" Type="DateTime" Precision="3" />
-          <Property Name="CheckInDate" Type="DateTime" Precision="3" />
-          <Property Name="ActivityDate" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserFirstName" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
+          <Property Name="UserLastName" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
+          <Property Name="UserDMV" Type="Boolean" Nullable="false" />
+          <Property Name="UserActivityDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Vehicle">
           <Key>
-            <PropertyRef Name="Vehicle_ID" />
-            <PropertyRef Name="Vehicle_Name" />
-            <PropertyRef Name="VehicleCheckedOut" />
-            <PropertyRef Name="VehicleStatus" />
+            <PropertyRef Name="VehicleId" />
           </Key>
-          <Property Name="Vehicle_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Vehicle_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="true" Unicode="true" />
+          <Property Name="VehicleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VehicleName" Type="String" Nullable="false" MaxLength="255" FixedLength="true" Unicode="true" />
           <Property Name="VehicleCheckedOut" Type="Boolean" Nullable="false" />
           <Property Name="VehicleStatus" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VehicleStatus">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusDesc" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="VehicleLog">
+          <Key>
+            <PropertyRef Name="VehicleLogId" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="DeptId" />
+            <PropertyRef Name="Destination" />
+            <PropertyRef Name="VehId" />
+            <PropertyRef Name="KeyId" />
+            <PropertyRef Name="StaffId" />
+          </Key>
+          <Property Name="VehicleLogId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="DeptId" Type="Int32" Nullable="false" />
+          <Property Name="Destination" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
+          <Property Name="VehId" Type="Int32" Nullable="false" />
+          <Property Name="KeyId" Type="Int32" Nullable="false" />
+          <Property Name="StaffId" Type="Int32" Nullable="false" />
+          <Property Name="CheckOutDate" Type="DateTime" Precision="3" />
+          <Property Name="CheckInDate" Type="DateTime" Precision="3" />
+          <Property Name="ActivityDate" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -219,30 +177,48 @@ warning 6002: The table/view 'FacilitiesDB.dbo.Vehicles' does not have a primary
           <EntitySetMapping Name="Departments">
             <EntityTypeMapping TypeName="FacilitiesDBModel.Department">
               <MappingFragment StoreEntitySet="Departments">
-                <ScalarProperty Name="DEPARTMENT1" ColumnName="DEPARTMENT" />
-                <ScalarProperty Name="DEPARTMENTID" ColumnName="DEPARTMENTID" />
-                <ScalarProperty Name="Department_Key" ColumnName="Department Key" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="DepartmentKey" ColumnName="DepartmentKey" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Keys">
             <EntityTypeMapping TypeName="FacilitiesDBModel.Key">
               <MappingFragment StoreEntitySet="Keys">
-                <ScalarProperty Name="Key_Checked_Out" ColumnName="Key Checked Out" />
-                <ScalarProperty Name="Vehicle_ID" ColumnName="Vehicle ID" />
-                <ScalarProperty Name="Key_Name" ColumnName="Key Name" />
-                <ScalarProperty Name="Key_ID" ColumnName="Key ID" />
+                <ScalarProperty Name="KeyCheckedOut" ColumnName="KeyCheckedOut" />
+                <ScalarProperty Name="KeyVehicleId" ColumnName="KeyVehicleId" />
+                <ScalarProperty Name="KeyName" ColumnName="KeyName" />
+                <ScalarProperty Name="KeyId" ColumnName="KeyId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="FacilitiesDBModel.User">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="Activity_Date" ColumnName="Activity Date" />
-                <ScalarProperty Name="DMV" ColumnName="DMV" />
-                <ScalarProperty Name="Last_Name" ColumnName="Last Name" />
-                <ScalarProperty Name="First_Name" ColumnName="First Name" />
-                <ScalarProperty Name="User_ID" ColumnName="User ID" />
+                <ScalarProperty Name="UserActivityDate" ColumnName="UserActivityDate" />
+                <ScalarProperty Name="UserDMV" ColumnName="UserDMV" />
+                <ScalarProperty Name="UserLastName" ColumnName="UserLastName" />
+                <ScalarProperty Name="UserFirstName" ColumnName="UserFirstName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehicles">
+            <EntityTypeMapping TypeName="FacilitiesDBModel.Vehicle">
+              <MappingFragment StoreEntitySet="Vehicles">
+                <ScalarProperty Name="VehicleStatus" ColumnName="VehicleStatus" />
+                <ScalarProperty Name="VehicleCheckedOut" ColumnName="VehicleCheckedOut" />
+                <ScalarProperty Name="VehicleName" ColumnName="VehicleName" />
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleStatuses">
+            <EntityTypeMapping TypeName="FacilitiesDBModel.VehicleStatus">
+              <MappingFragment StoreEntitySet="VehicleStatuses">
+                <ScalarProperty Name="StatusDesc" ColumnName="StatusDesc" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -252,23 +228,13 @@ warning 6002: The table/view 'FacilitiesDB.dbo.Vehicles' does not have a primary
                 <ScalarProperty Name="ActivityDate" ColumnName="ActivityDate" />
                 <ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
                 <ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
-                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
-                <ScalarProperty Name="KeyID" ColumnName="KeyID" />
-                <ScalarProperty Name="VehID" ColumnName="VehID" />
+                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+                <ScalarProperty Name="KeyId" ColumnName="KeyId" />
+                <ScalarProperty Name="VehId" ColumnName="VehId" />
                 <ScalarProperty Name="Destination" ColumnName="Destination" />
-                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="VehicleLogID" ColumnName="VehicleLogID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Vehicles">
-            <EntityTypeMapping TypeName="FacilitiesDBModel.Vehicle">
-              <MappingFragment StoreEntitySet="Vehicles">
-                <ScalarProperty Name="VehicleStatus" ColumnName="VehicleStatus" />
-                <ScalarProperty Name="VehicleCheckedOut" ColumnName="VehicleCheckedOut" />
-                <ScalarProperty Name="Vehicle_Name" ColumnName="Vehicle Name" />
-                <ScalarProperty Name="Vehicle_ID" ColumnName="Vehicle ID" />
+                <ScalarProperty Name="DeptId" ColumnName="DeptId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="VehicleLogId" ColumnName="VehicleLogId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

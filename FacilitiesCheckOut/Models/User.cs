@@ -14,10 +14,10 @@ namespace FacilitiesCheckOut.Models
     
     public partial class User
     {
-        public int User_ID { get; set; }
-        public string First_Name { get; set; }
-        public string Last_Name { get; set; }
-        public bool DMV { get; set; }
-        public Nullable<System.DateTime> Activity_Date { get; set; }
+        public int UserId { get; set; }
+        public string UserFirstName { get; set; }
+        public string UserLastName { get; set; }
+        public bool UserDMV { get; set; }
+        public Nullable<System.DateTime> UserActivityDate { get; set; }
     }
 }

@@ -14,8 +14,8 @@ namespace FacilitiesCheckOut.Models
     
     public partial class Vehicle
     {
-        public int Vehicle_ID { get; set; }
-        public string Vehicle_Name { get; set; }
+        public int VehicleId { get; set; }
+        public string VehicleName { get; set; }
         public bool VehicleCheckedOut { get; set; }
         public int VehicleStatus { get; set; }
     }

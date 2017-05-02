@@ -5,11 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4a386f4866e74fb480308b4d4bbd9c9b" Name="Diagram1" >
-        <EntityTypeShape EntityType="FacilitiesDBModel.Department" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="FacilitiesDBModel.Key" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="FacilitiesDBModel.User" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="FacilitiesDBModel.VehicleLog" Width="1.5" PointX="2.75" PointY="3.75" />
-        <EntityTypeShape EntityType="FacilitiesDBModel.Vehicle" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.Department" Width="1.5" PointX="3.125" PointY="1.125" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.Key" Width="1.5" PointX="0.5" PointY="3.375" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.User" Width="1.5" PointX="0.5" PointY="0.75" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.Vehicle" Width="1.5" PointX="2.375" PointY="3.5" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.VehicleStatus" Width="1.5" PointX="4.25" PointY="3.75" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.VehicleLog" Width="1.5" PointX="6.25" PointY="1.25" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -28,7 +28,8 @@ namespace FacilitiesCheckOut.Models
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Key> Keys { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<VehicleLog> VehicleLogs { get; set; }
         public virtual DbSet<Vehicle> Vehicles { get; set; }
+        public virtual DbSet<VehicleStatus> VehicleStatuses { get; set; }
+        public virtual DbSet<VehicleLog> VehicleLogs { get; set; }
     }
 }

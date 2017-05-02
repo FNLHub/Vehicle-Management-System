@@ -14,13 +14,13 @@ namespace FacilitiesCheckOut.Models
     
     public partial class VehicleLog
     {
-        public int VehicleLogID { get; set; }
-        public int UserID { get; set; }
-        public int DeptID { get; set; }
+        public int VehicleLogId { get; set; }
+        public int UserId { get; set; }
+        public int DeptId { get; set; }
         public string Destination { get; set; }
-        public int VehID { get; set; }
-        public int KeyID { get; set; }
-        public int StaffID { get; set; }
+        public int VehId { get; set; }
+        public int KeyId { get; set; }
+        public int StaffId { get; set; }
         public Nullable<System.DateTime> CheckOutDate { get; set; }
         public Nullable<System.DateTime> CheckInDate { get; set; }
         public Nullable<System.DateTime> ActivityDate { get; set; }
