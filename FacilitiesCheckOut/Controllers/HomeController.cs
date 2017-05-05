@@ -27,16 +27,16 @@ namespace FacilitiesCheckOut.Controllers
             return View();
         }
 
-        public ActionResult VehicleSignOut()
+        public ActionResult VehicleCheckout()
         {
-            ViewBag.Message = "Your Vehicle Sign Out page.";
+            ViewBag.Message = "Your Vehicle Checkout page.";
 
             return View();
         }
 
-        public ActionResult VehicleSignIn()
+        public ActionResult VehicleReturn()
         {
-            ViewBag.Message = "Your Vehicle Sign In Page.";
+            ViewBag.Message = "Your Vehicle Return Page.";
 
             return View();
         }

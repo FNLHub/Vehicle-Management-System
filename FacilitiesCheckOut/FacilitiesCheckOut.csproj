@@ -317,8 +317,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\VehicleSignOut.cshtml" />
-    <Content Include="Views\Home\VehicleSignIn.cshtml" />
+    <Content Include="Views\Home\VehicleCheckout.cshtml" />
+    <Content Include="Views\Home\VehicleReturn.cshtml" />
     <Content Include="Views\Home\GasCardInOutChoose.cshtml" />
     <Content Include="Views\Home\GasCardReturn.cshtml" />
     <Content Include="Views\Home\GasCardCheckout.cshtml" />
