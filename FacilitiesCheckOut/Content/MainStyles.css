@@ -1,20 +1,16 @@
 ﻿.glyphicon{
-
     font-size: 20em;
-    color: black;
-
 }
 
 .ButtonContainer{
     
    margin-top: 5em;
    text-align: center;
-
+   margin-bottom:5em;
 }
 
-body{
+body, h1{
 
     background-color: white;
-
-
+    font-family: 'Source Code Pro', sans-serif;
 }

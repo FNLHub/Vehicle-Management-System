@@ -245,8 +245,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\IndexStyles.css" />
-    <Content Include="Content\VehiclesStyles.css" />
+    <Content Include="Content\MainStyles.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -320,8 +319,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\SignOut.cshtml" />
     <Content Include="Views\Home\SignIn.cshtml" />
-    <Content Include="Views\Home\Vehicles.cshtml" />
-    <Content Include="Views\Home\GasCards.cshtml" />
+    <Content Include="Views\Home\CheckInOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

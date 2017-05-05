@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title|Voyager</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -24,8 +24,6 @@
                     <li>@Html.ActionLink("SignOut", "SignOut", "Home")</li>
                     <li>@Html.ActionLink("SignIn", "SignIn", "Home")</li>
                     <li>@Html.ActionLink("Reports","Reports","Home")</li>
-                    <li>@Html.ActionLink("Vehicles", "Vehicles", "Home")</li>
-                    <li>@Html.ActionLink("Gas Cards", "GasCards", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
