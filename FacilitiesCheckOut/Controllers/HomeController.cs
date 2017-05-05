@@ -48,16 +48,16 @@ namespace FacilitiesCheckOut.Controllers
             return View();
         }
 
-        public ActionResult GasCardSignOut()
+        public ActionResult GasCardCheckout()
         {
-            ViewBag.Message = "Your Gas Card Sign In Page.";
+            ViewBag.Message = "Your Gas Card Checkout Page.";
 
             return View();
         }
 
-        public ActionResult GasCardSignIn()
+        public ActionResult GasCardReturn()
         {
-            ViewBag.Message = "Your Gas Card Sign In Page.";
+            ViewBag.Message = "Your Gas Card Return Page.";
 
             return View();
         }

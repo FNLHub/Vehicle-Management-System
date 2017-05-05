@@ -320,8 +320,8 @@
     <Content Include="Views\Home\VehicleSignOut.cshtml" />
     <Content Include="Views\Home\VehicleSignIn.cshtml" />
     <Content Include="Views\Home\GasCardInOutChoose.cshtml" />
-    <Content Include="Views\Home\GasCardSignIn.cshtml" />
-    <Content Include="Views\Home\GasCardSignOut.cshtml" />
+    <Content Include="Views\Home\GasCardReturn.cshtml" />
+    <Content Include="Views\Home\GasCardCheckout.cshtml" />
     <Content Include="Views\Home\VehicleInOutChoose.cshtml" />
   </ItemGroup>
   <ItemGroup>
