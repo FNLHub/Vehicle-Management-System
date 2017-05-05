@@ -317,9 +317,12 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\SignOut.cshtml" />
-    <Content Include="Views\Home\SignIn.cshtml" />
-    <Content Include="Views\Home\CheckInOut.cshtml" />
+    <Content Include="Views\Home\VehicleSignOut.cshtml" />
+    <Content Include="Views\Home\VehicleSignIn.cshtml" />
+    <Content Include="Views\Home\GasCardInOutChoose.cshtml" />
+    <Content Include="Views\Home\GasCardSignIn.cshtml" />
+    <Content Include="Views\Home\GasCardSignOut.cshtml" />
+    <Content Include="Views\Home\VehicleInOutChoose.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

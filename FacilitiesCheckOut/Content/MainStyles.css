@@ -1,5 +1,8 @@
-﻿.glyphicon{
+﻿.JumboText{
     font-size: 20em;
+}
+.MediumText{
+    font-size: 3em;
 }
 
 .ButtonContainer{
@@ -13,4 +16,5 @@ body, h1{
 
     background-color: white;
     font-family: 'Source Code Pro', sans-serif;
+ 
 }

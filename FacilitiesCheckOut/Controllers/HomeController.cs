@@ -13,20 +13,6 @@ namespace FacilitiesCheckOut.Controllers
             return View();
         }
 
-        public ActionResult SignOut()
-        {
-            ViewBag.Message = "Your SignOut page.";
-
-            return View();
-        }
-
-        public ActionResult SignIn()
-        {
-            ViewBag.Message = "Your SignIn Page.";
-
-            return View();
-        }
-
         public ActionResult Reports()
         {
             ViewBag.Message = "Your application reports page.";
@@ -34,12 +20,48 @@ namespace FacilitiesCheckOut.Controllers
             return View();
         }
 
-        public ActionResult CheckInOut()
+        public ActionResult VehicleInOutChoose()//-vvvvvv-Vehicle Pages-vvvvvv-\\
         {
-            ViewBag.Message = "Your application Check In/Out page.";
+            ViewBag.Message = "Your application Vehicle Sign In/Out page.";
 
             return View();
         }
+
+        public ActionResult VehicleSignOut()
+        {
+            ViewBag.Message = "Your Vehicle Sign Out page.";
+
+            return View();
+        }
+
+        public ActionResult VehicleSignIn()
+        {
+            ViewBag.Message = "Your Vehicle Sign In Page.";
+
+            return View();
+        }
+
+        public ActionResult GasCardInOutChoose()//-vvvvvv-Gas Card Pages-vvvvvv-\\
+        {
+            ViewBag.Message = "Your application Gas Card Sign In/Out page.";
+
+            return View();
+        }
+
+        public ActionResult GasCardSignOut()
+        {
+            ViewBag.Message = "Your Gas Card Sign In Page.";
+
+            return View();
+        }
+
+        public ActionResult GasCardSignIn()
+        {
+            ViewBag.Message = "Your Gas Card Sign In Page.";
+
+            return View();
+        }
+
 
     }
 }
