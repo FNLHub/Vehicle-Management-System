@@ -7,10 +7,10 @@
     <Schema Namespace="FacilitiesDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Departments">
           <Key>
-            <PropertyRef Name="DepartmentKey" />
+            <PropertyRef Name="DepartmentId" />
           </Key>
-          <Property Name="DepartmentKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DepartmentId" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="DepartmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentCode" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="DepartmentName" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="Keys">
@@ -32,23 +32,15 @@
           <Property Name="UserDMV" Type="bit" Nullable="false" />
           <Property Name="UserActivityDate" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'FacilitiesDB.dbo.VehicleLogs' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VehicleLogs">
           <Key>
             <PropertyRef Name="VehicleLogId" />
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="DeptId" />
-            <PropertyRef Name="Destination" />
-            <PropertyRef Name="VehId" />
-            <PropertyRef Name="KeyId" />
-            <PropertyRef Name="StaffId" />
           </Key>
-          <Property Name="VehicleLogId" Type="int" Nullable="false" />
+          <Property Name="VehicleLogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="DeptId" Type="int" Nullable="false" />
+          <Property Name="DepartmentId" Type="int" Nullable="false" />
           <Property Name="Destination" Type="nchar" MaxLength="60" Nullable="false" />
-          <Property Name="VehId" Type="int" Nullable="false" />
+          <Property Name="VehicleId" Type="int" Nullable="false" />
           <Property Name="KeyId" Type="int" Nullable="false" />
           <Property Name="StaffId" Type="int" Nullable="false" />
           <Property Name="CheckOutDate" Type="datetime" />
@@ -71,26 +63,77 @@ warning 6002: The table/view 'FacilitiesDB.dbo.VehicleLogs' does not have a prim
           <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StatusDesc" Type="nchar" MaxLength="30" Nullable="false" />
         </EntityType>
+        <Association Name="FK_VehicleLogs_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="VehicleLogs" Type="Self.VehicleLogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="VehicleLogs">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VehicleLogs_Keys">
+          <End Role="Keys" Type="Self.Keys" Multiplicity="1" />
+          <End Role="VehicleLogs" Type="Self.VehicleLogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Keys">
+              <PropertyRef Name="KeyId" />
+            </Principal>
+            <Dependent Role="VehicleLogs">
+              <PropertyRef Name="KeyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VehicleLogs_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="VehicleLogs" Type="Self.VehicleLogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="VehicleLogs">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VehicleLogs_Vehicles">
+          <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="1" />
+          <End Role="VehicleLogs" Type="Self.VehicleLogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicles">
+              <PropertyRef Name="VehicleId" />
+            </Principal>
+            <Dependent Role="VehicleLogs">
+              <PropertyRef Name="VehicleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="FacilitiesDBModelStoreContainer">
           <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Keys" EntityType="Self.Keys" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehicleLogs" EntityType="Self.VehicleLogs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vehicles" EntityType="Self.Vehicles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VehicleStatuses" EntityType="Self.VehicleStatuses" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="VehicleLogs" EntityType="Self.VehicleLogs" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [VehicleLogs].[VehicleLogId] AS [VehicleLogId], 
-    [VehicleLogs].[UserId] AS [UserId], 
-    [VehicleLogs].[DeptId] AS [DeptId], 
-    [VehicleLogs].[Destination] AS [Destination], 
-    [VehicleLogs].[VehId] AS [VehId], 
-    [VehicleLogs].[KeyId] AS [KeyId], 
-    [VehicleLogs].[StaffId] AS [StaffId], 
-    [VehicleLogs].[CheckOutDate] AS [CheckOutDate], 
-    [VehicleLogs].[CheckInDate] AS [CheckInDate], 
-    [VehicleLogs].[ActivityDate] AS [ActivityDate]
-    FROM [dbo].[VehicleLogs] AS [VehicleLogs]</DefiningQuery>
-          </EntitySet>
+          <AssociationSet Name="FK_VehicleLogs_Departments" Association="Self.FK_VehicleLogs_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="VehicleLogs" EntitySet="VehicleLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleLogs_Keys" Association="Self.FK_VehicleLogs_Keys">
+            <End Role="Keys" EntitySet="Keys" />
+            <End Role="VehicleLogs" EntitySet="VehicleLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleLogs_Users" Association="Self.FK_VehicleLogs_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="VehicleLogs" EntitySet="VehicleLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleLogs_Vehicles" Association="Self.FK_VehicleLogs_Vehicles">
+            <End Role="Vehicles" EntitySet="Vehicles" />
+            <End Role="VehicleLogs" EntitySet="VehicleLogs" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -103,14 +146,32 @@ warning 6002: The table/view 'FacilitiesDB.dbo.VehicleLogs' does not have a prim
           <EntitySet Name="Vehicles" EntityType="FacilitiesDBModel.Vehicle" />
           <EntitySet Name="VehicleStatuses" EntityType="FacilitiesDBModel.VehicleStatus" />
           <EntitySet Name="VehicleLogs" EntityType="FacilitiesDBModel.VehicleLog" />
+          <AssociationSet Name="FK_VehicleLogs_Departments" Association="FacilitiesDBModel.FK_VehicleLogs_Departments">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="VehicleLog" EntitySet="VehicleLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleLogs_Keys" Association="FacilitiesDBModel.FK_VehicleLogs_Keys">
+            <End Role="Key" EntitySet="Keys" />
+            <End Role="VehicleLog" EntitySet="VehicleLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleLogs_Users" Association="FacilitiesDBModel.FK_VehicleLogs_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="VehicleLog" EntitySet="VehicleLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleLogs_Vehicles" Association="FacilitiesDBModel.FK_VehicleLogs_Vehicles">
+            <End Role="Vehicle" EntitySet="Vehicles" />
+            <End Role="VehicleLog" EntitySet="VehicleLogs" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Department">
           <Key>
             <PropertyRef Name="DepartmentKey" />
           </Key>
           <Property Name="DepartmentKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DepartmentId" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentId" Type="String" Nullable="false" />
           <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentCode" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="VehicleLogs" Relationship="FacilitiesDBModel.FK_VehicleLogs_Departments" FromRole="Department" ToRole="VehicleLog" />
         </EntityType>
         <EntityType Name="Key">
           <Key>
@@ -120,6 +181,7 @@ warning 6002: The table/view 'FacilitiesDB.dbo.VehicleLogs' does not have a prim
           <Property Name="KeyName" Type="String" Nullable="false" MaxLength="255" FixedLength="true" Unicode="true" />
           <Property Name="KeyVehicleId" Type="Int32" Nullable="false" />
           <Property Name="KeyCheckedOut" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="VehicleLogs" Relationship="FacilitiesDBModel.FK_VehicleLogs_Keys" FromRole="Key" ToRole="VehicleLog" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -130,6 +192,7 @@ warning 6002: The table/view 'FacilitiesDB.dbo.VehicleLogs' does not have a prim
           <Property Name="UserLastName" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
           <Property Name="UserDMV" Type="Boolean" Nullable="false" />
           <Property Name="UserActivityDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="VehicleLogs" Relationship="FacilitiesDBModel.FK_VehicleLogs_Users" FromRole="User" ToRole="VehicleLog" />
         </EntityType>
         <EntityType Name="Vehicle">
           <Key>
@@ -139,6 +202,7 @@ warning 6002: The table/view 'FacilitiesDB.dbo.VehicleLogs' does not have a prim
           <Property Name="VehicleName" Type="String" Nullable="false" MaxLength="255" FixedLength="true" Unicode="true" />
           <Property Name="VehicleCheckedOut" Type="Boolean" Nullable="false" />
           <Property Name="VehicleStatus" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="VehicleLogs" Relationship="FacilitiesDBModel.FK_VehicleLogs_Vehicles" FromRole="Vehicle" ToRole="VehicleLog" />
         </EntityType>
         <EntityType Name="VehicleStatus">
           <Key>
@@ -167,7 +231,61 @@ warning 6002: The table/view 'FacilitiesDB.dbo.VehicleLogs' does not have a prim
           <Property Name="CheckOutDate" Type="DateTime" Precision="3" />
           <Property Name="CheckInDate" Type="DateTime" Precision="3" />
           <Property Name="ActivityDate" Type="DateTime" Precision="3" />
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+          <Property Name="VehicleId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Department" Relationship="FacilitiesDBModel.FK_VehicleLogs_Departments" FromRole="VehicleLog" ToRole="Department" />
+          <NavigationProperty Name="Key" Relationship="FacilitiesDBModel.FK_VehicleLogs_Keys" FromRole="VehicleLog" ToRole="Key" />
+          <NavigationProperty Name="User" Relationship="FacilitiesDBModel.FK_VehicleLogs_Users" FromRole="VehicleLog" ToRole="User" />
+          <NavigationProperty Name="Vehicle" Relationship="FacilitiesDBModel.FK_VehicleLogs_Vehicles" FromRole="VehicleLog" ToRole="Vehicle" />
         </EntityType>
+        <Association Name="FK_VehicleLogs_Departments">
+          <End Type="FacilitiesDBModel.Department" Role="Department" Multiplicity="1" />
+          <End Type="FacilitiesDBModel.VehicleLog" Role="VehicleLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="VehicleLog">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VehicleLogs_Keys">
+          <End Type="FacilitiesDBModel.Key" Role="Key" Multiplicity="1" />
+          <End Type="FacilitiesDBModel.VehicleLog" Role="VehicleLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Key">
+              <PropertyRef Name="KeyId" />
+            </Principal>
+            <Dependent Role="VehicleLog">
+              <PropertyRef Name="KeyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VehicleLogs_Users">
+          <End Type="FacilitiesDBModel.User" Role="User" Multiplicity="1" />
+          <End Type="FacilitiesDBModel.VehicleLog" Role="VehicleLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="VehicleLog">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VehicleLogs_Vehicles">
+          <End Type="FacilitiesDBModel.Vehicle" Role="Vehicle" Multiplicity="1" />
+          <End Type="FacilitiesDBModel.VehicleLog" Role="VehicleLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="VehicleId" />
+            </Principal>
+            <Dependent Role="VehicleLog">
+              <PropertyRef Name="VehicleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -177,9 +295,9 @@ warning 6002: The table/view 'FacilitiesDB.dbo.VehicleLogs' does not have a prim
           <EntitySetMapping Name="Departments">
             <EntityTypeMapping TypeName="FacilitiesDBModel.Department">
               <MappingFragment StoreEntitySet="Departments">
+                <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
                 <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
                 <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
-                <ScalarProperty Name="DepartmentKey" ColumnName="DepartmentKey" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -225,14 +343,14 @@ warning 6002: The table/view 'FacilitiesDB.dbo.VehicleLogs' does not have a prim
           <EntitySetMapping Name="VehicleLogs">
             <EntityTypeMapping TypeName="FacilitiesDBModel.VehicleLog">
               <MappingFragment StoreEntitySet="VehicleLogs">
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
                 <ScalarProperty Name="ActivityDate" ColumnName="ActivityDate" />
                 <ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
                 <ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
                 <ScalarProperty Name="StaffId" ColumnName="StaffId" />
                 <ScalarProperty Name="KeyId" ColumnName="KeyId" />
-                <ScalarProperty Name="VehId" ColumnName="VehId" />
                 <ScalarProperty Name="Destination" ColumnName="Destination" />
-                <ScalarProperty Name="DeptId" ColumnName="DeptId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="VehicleLogId" ColumnName="VehicleLogId" />
               </MappingFragment>

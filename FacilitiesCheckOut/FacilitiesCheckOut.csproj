@@ -204,23 +204,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Department.cs">
-      <DependentUpon>VehicleModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Key.cs">
-      <DependentUpon>VehicleModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\User.cs">
-      <DependentUpon>VehicleModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Vehicle.cs">
-      <DependentUpon>VehicleModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\VehicleLog.cs">
-      <DependentUpon>VehicleModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\VehicleModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -235,9 +220,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>VehicleModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\VehicleStatus.cs">
-      <DependentUpon>VehicleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
