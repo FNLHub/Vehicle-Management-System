@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Gas Card Choose";
+    ViewBag.Title = "Choose";
 }
 
 <!--Google Fonts-->
@@ -9,14 +9,14 @@
 
 <div class="ButtonContainer row">
 
-    <h1>Gas Card</h1>
+    <h1>@ViewBag.Title</h1>
     <br />
     <div class="col-md-6">
-        <a href="/Home/GasCardCheckout"><span class="glyphicon glyphicon-open LargeIcon"></span></a>
+        <a href="/Home/Checkout"><span class="glyphicon glyphicon-open LargeIcon"></span></a>
         <h1>Checkout</h1>
     </div>
     <div class="col-md-6">
-        <a href="/Home/GasCardReturn"><span class="glyphicon glyphicon-save LargeIcon"></span></a>
+        <a href="/Home/Return"><span class="glyphicon glyphicon-save LargeIcon"></span></a>
         <h1>Return</h1>
     </div>
 </div>
