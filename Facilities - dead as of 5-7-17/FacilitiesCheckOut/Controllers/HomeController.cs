@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Diagnostics;
 
 namespace FacilitiesCheckOut.Controllers
 {
@@ -23,45 +24,49 @@ namespace FacilitiesCheckOut.Controllers
         public ActionResult VehicleInOutChoose()//-vvvvvv-Vehicle Pages-vvvvvv-\\
         {
             ViewBag.Message = "Your application Vehicle Sign In/Out page.";
+            ViewBag.Title = "Checkout or Return Vehicle";
+            ViewBag.Choice = "Vehicle";
 
-            return View();
-        }
-
-        public ActionResult VehicleCheckout()
-        {
-            ViewBag.Message = "Your Vehicle Checkout page.";
-
-            return View();
-        }
-
-        public ActionResult VehicleReturn()
-        {
-            ViewBag.Message = "Your Vehicle Return Page.";
-
-            return View();
+            return View("CheckoutReturnChoose");
         }
 
         public ActionResult GasCardInOutChoose()//-vvvvvv-Gas Card Pages-vvvvvv-\\
         {
             ViewBag.Message = "Your application Gas Card Sign In/Out page.";
+            ViewBag.Title = "Checkout or Return Gas Card";
+            ViewBag.Choice = "Gas Card";
 
-            return View();
+            return View("CheckoutReturnChoose");
         }
 
-        public ActionResult GasCardCheckout()
+        public ActionResult Checkout()
         {
-            ViewBag.Message = "Your Gas Card Checkout Page.";
+            switch ((string)Session["type"])
+            {
+                case "Vehicle":
+                    ViewBag.Message = "Checkout a Vehicle";
+                    break;
+                case "Gas Card":
+                    ViewBag.Message = "Checkout a Gas Card";
+                    break;
+            }
 
-            return View();
+            return View("Reports");
         }
 
-        public ActionResult GasCardReturn()
+        public ActionResult Return()
         {
-            ViewBag.Message = "Your Gas Card Return Page.";
+            switch ((string)Session["type"])
+            {
+                case "Vehicle":
+                    ViewBag.Message = "Return a Vehicle";
+                    break;
+                case "Gas Card":
+                    ViewBag.Message = "Return a Gas Card";
+                    break;
+            }
 
-            return View();
+            return View("Reports");
         }
-
-
     }
 }
