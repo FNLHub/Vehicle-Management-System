@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="929fccd808304438839a3860044324d4" Name="Diagram1" ZoomLevel="87">
+        <EntityTypeShape EntityType="TransportationModel.SignOut" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="TransportationModel.Transportation_View" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="TransportationModel.Campus" Width="1.5" PointX="4.875" PointY="5" />
+        <EntityTypeShape EntityType="TransportationModel.Department" Width="1.5" PointX="0.625" PointY="11.125" />
+        <EntityTypeShape EntityType="TransportationModel.GasCard" Width="1.5" PointX="0.625" PointY="14" />
+        <EntityTypeShape EntityType="TransportationModel.GasCardStatus" Width="1.5" PointX="0.625" PointY="17.25" />
+        <EntityTypeShape EntityType="TransportationModel.Key" Width="1.5" PointX="0.625" PointY="5.5" />
+        <EntityTypeShape EntityType="TransportationModel.Vehicle" Width="1.5" PointX="7.125" PointY="0.75" />
+        <EntityTypeShape EntityType="TransportationModel.VehicleStatus" Width="1.5" PointX="5.25" PointY="0.875" />
+        <AssociationConnector Association="TransportationModel.FK_Vehicles_Campuses" />
+        <AssociationConnector Association="TransportationModel.FK_GasCards_GasCardStatuses" />
+        <AssociationConnector Association="TransportationModel.FK_SignOut_GasCards" />
+        <AssociationConnector Association="TransportationModel.FK_SignOut_Keys" />
+        <AssociationConnector Association="TransportationModel.FK_Vehicles_VehicleStatuses" />
+        <EntityTypeShape EntityType="TransportationModel.User" Width="1.5" PointX="2.875" PointY="11" />
+        <AssociationConnector Association="TransportationModel.FK_Users_Departments" />
+        <EntityTypeShape EntityType="TransportationModel.sysdiagram" Width="1.5" PointX="3.375" PointY="7.75" />
+        <AssociationConnector Association="TransportationModel.FK_SignOut_Users" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

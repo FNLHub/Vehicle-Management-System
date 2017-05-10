@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TransportationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="TransportationEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="SignOuts" EntityType="TransportationModel.SignOut" />
+    <EntitySet Name="Transportation_View" EntityType="TransportationModel.Transportation_View" />
+    <EntitySet Name="Campuses" EntityType="TransportationModel.Campus" />
+    <EntitySet Name="Departments" EntityType="TransportationModel.Department" />
+    <EntitySet Name="GasCards" EntityType="TransportationModel.GasCard" />
+    <EntitySet Name="GasCardStatuses" EntityType="TransportationModel.GasCardStatus" />
+    <EntitySet Name="Keys" EntityType="TransportationModel.Key" />
+    <EntitySet Name="Vehicles" EntityType="TransportationModel.Vehicle" />
+    <EntitySet Name="VehicleStatuses" EntityType="TransportationModel.VehicleStatus" />
+    <AssociationSet Name="FK_Vehicles_Campuses" Association="TransportationModel.FK_Vehicles_Campuses">
+      <End Role="Campus" EntitySet="Campuses" />
+      <End Role="Vehicle" EntitySet="Vehicles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GasCards_GasCardStatuses" Association="TransportationModel.FK_GasCards_GasCardStatuses">
+      <End Role="GasCardStatus" EntitySet="GasCardStatuses" />
+      <End Role="GasCard" EntitySet="GasCards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SignOut_GasCards" Association="TransportationModel.FK_SignOut_GasCards">
+      <End Role="GasCard" EntitySet="GasCards" />
+      <End Role="SignOut" EntitySet="SignOuts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SignOut_Keys" Association="TransportationModel.FK_SignOut_Keys">
+      <End Role="Key" EntitySet="Keys" />
+      <End Role="SignOut" EntitySet="SignOuts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vehicles_VehicleStatuses" Association="TransportationModel.FK_Vehicles_VehicleStatuses">
+      <End Role="VehicleStatus" EntitySet="VehicleStatuses" />
+      <End Role="Vehicle" EntitySet="Vehicles" />
+    </AssociationSet>
+    <EntitySet Name="Users" EntityType="TransportationModel.User" />
+    <AssociationSet Name="FK_Users_Departments" Association="TransportationModel.FK_Users_Departments">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="TransportationModel.sysdiagram" />
+    <AssociationSet Name="FK_SignOut_SignOut" Association="TransportationModel.FK_SignOut_SignOut">
+      <End Role="SignOut" EntitySet="SignOuts" />
+      <End Role="SignOut1" EntitySet="SignOuts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SignOut_Users" Association="TransportationModel.FK_SignOut_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="SignOut" EntitySet="SignOuts" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="SignOut">
+    <Key>
+      <PropertyRef Name="SignOutId" />
+    </Key>
+    <Property Name="SignOutId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Destination" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="VehicleId" Type="Int32" Nullable="false" />
+    <Property Name="GasCardId" Type="Int32" Nullable="false" />
+    <Property Name="CheckOutTime" Type="DateTime" Precision="3" />
+    <Property Name="CheckInTime" Type="DateTime" Precision="3" />
+    <Property Name="ActivityTime" Type="DateTime" Precision="3" />
+    <Property Name="KeyId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="GasCard" Relationship="TransportationModel.FK_SignOut_GasCards" FromRole="SignOut" ToRole="GasCard" />
+    <NavigationProperty Name="Key" Relationship="TransportationModel.FK_SignOut_Keys" FromRole="SignOut" ToRole="Key" />
+    <NavigationProperty Name="SignOut1" Relationship="TransportationModel.FK_SignOut_SignOut" FromRole="SignOut" ToRole="SignOut1" />
+    <NavigationProperty Name="SignOut2" Relationship="TransportationModel.FK_SignOut_SignOut" FromRole="SignOut1" ToRole="SignOut" />
+    <NavigationProperty Name="User" Relationship="TransportationModel.FK_SignOut_Users" FromRole="SignOut" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Transportation_View">
+    <Key>
+      <PropertyRef Name="VId" />
+    </Key>
+    <Property Name="VId" Type="Int64" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="BannerId" Type="String" MaxLength="8" FixedLength="true" Unicode="true" />
+    <Property Name="DepartmentName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="VehicleName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="KeyName" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+    <Property Name="GasCardName" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="Destination" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="CheckOutTime" Type="DateTime" Precision="3" />
+    <Property Name="CheckInTime" Type="DateTime" Precision="3" />
+    <Property Name="ActivityTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Campus">
+    <Key>
+      <PropertyRef Name="CampusId" />
+    </Key>
+    <Property Name="CampusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CampusCode" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+    <Property Name="CampusAddress" Type="String" Nullable="false" MaxLength="255" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Vehicles" Relationship="TransportationModel.FK_Vehicles_Campuses" FromRole="Campus" ToRole="Vehicle" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="DepartmentId" />
+    </Key>
+    <Property Name="DepartmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmentCode" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="true" />
+    <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="TransportationModel.FK_Users_Departments" FromRole="Department" ToRole="User" />
+  </EntityType>
+  <EntityType Name="GasCard">
+    <Key>
+      <PropertyRef Name="GasCardId" />
+    </Key>
+    <Property Name="GasCardId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GasCardName" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="GasCardNum" Type="String" Nullable="false" MaxLength="16" FixedLength="true" Unicode="true" />
+    <Property Name="GasCardPin" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="true" />
+    <Property Name="StatusId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="GasCardStatus" Relationship="TransportationModel.FK_GasCards_GasCardStatuses" FromRole="GasCard" ToRole="GasCardStatus" />
+    <NavigationProperty Name="SignOuts" Relationship="TransportationModel.FK_SignOut_GasCards" FromRole="GasCard" ToRole="SignOut" />
+  </EntityType>
+  <EntityType Name="GasCardStatus">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StatusCode" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="true" />
+    <Property Name="StatusName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="GasCards" Relationship="TransportationModel.FK_GasCards_GasCardStatuses" FromRole="GasCardStatus" ToRole="GasCard" />
+  </EntityType>
+  <EntityType Name="Key">
+    <Key>
+      <PropertyRef Name="KeyId" />
+    </Key>
+    <Property Name="KeyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KeyName" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="SignOuts" Relationship="TransportationModel.FK_SignOut_Keys" FromRole="Key" ToRole="SignOut" />
+  </EntityType>
+  <EntityType Name="Vehicle">
+    <Key>
+      <PropertyRef Name="VehicleId" />
+    </Key>
+    <Property Name="VehicleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VehiclePlate" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="VehicleName" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="StatusId" Type="Int32" Nullable="false" />
+    <Property Name="CampusId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Campus" Relationship="TransportationModel.FK_Vehicles_Campuses" FromRole="Vehicle" ToRole="Campus" />
+    <NavigationProperty Name="VehicleStatus" Relationship="TransportationModel.FK_Vehicles_VehicleStatuses" FromRole="Vehicle" ToRole="VehicleStatus" />
+  </EntityType>
+  <EntityType Name="VehicleStatus">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StatusCode" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="true" />
+    <Property Name="StatusName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Vehicles" Relationship="TransportationModel.FK_Vehicles_VehicleStatuses" FromRole="VehicleStatus" ToRole="Vehicle" />
+  </EntityType>
+  <Association Name="FK_Vehicles_Campuses">
+    <End Type="TransportationModel.Campus" Role="Campus" Multiplicity="1" />
+    <End Type="TransportationModel.Vehicle" Role="Vehicle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Campus">
+        <PropertyRef Name="CampusId" />
+      </Principal>
+      <Dependent Role="Vehicle">
+        <PropertyRef Name="CampusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GasCards_GasCardStatuses">
+    <End Type="TransportationModel.GasCardStatus" Role="GasCardStatus" Multiplicity="1" />
+    <End Type="TransportationModel.GasCard" Role="GasCard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GasCardStatus">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="GasCard">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SignOut_GasCards">
+    <End Type="TransportationModel.GasCard" Role="GasCard" Multiplicity="1" />
+    <End Type="TransportationModel.SignOut" Role="SignOut" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GasCard">
+        <PropertyRef Name="GasCardId" />
+      </Principal>
+      <Dependent Role="SignOut">
+        <PropertyRef Name="GasCardId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SignOut_Keys">
+    <End Type="TransportationModel.Key" Role="Key" Multiplicity="1" />
+    <End Type="TransportationModel.SignOut" Role="SignOut" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Key">
+        <PropertyRef Name="KeyId" />
+      </Principal>
+      <Dependent Role="SignOut">
+        <PropertyRef Name="KeyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vehicles_VehicleStatuses">
+    <End Type="TransportationModel.VehicleStatus" Role="VehicleStatus" Multiplicity="1" />
+    <End Type="TransportationModel.Vehicle" Role="Vehicle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleStatus">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="Vehicle">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="BannerId" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Department" Relationship="TransportationModel.FK_Users_Departments" FromRole="User" ToRole="Department" />
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="SignOuts" Relationship="TransportationModel.FK_SignOut_Users" FromRole="User" ToRole="SignOut" />
+  </EntityType>
+  <Association Name="FK_Users_Departments">
+    <End Type="TransportationModel.Department" Role="Department" Multiplicity="1" />
+    <End Type="TransportationModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="DepartmentId" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_SignOut_SignOut">
+    <End Type="TransportationModel.SignOut" Role="SignOut" Multiplicity="1" />
+    <End Type="TransportationModel.SignOut" Role="SignOut1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="SignOut">
+        <PropertyRef Name="SignOutId" />
+      </Principal>
+      <Dependent Role="SignOut1">
+        <PropertyRef Name="SignOutId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SignOut_Users">
+    <End Type="TransportationModel.User" Role="User" Multiplicity="1" />
+    <End Type="TransportationModel.SignOut" Role="SignOut" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="SignOut">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
