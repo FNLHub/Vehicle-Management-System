@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Transportation.Transportation_SignedOutView>
+﻿@model IEnumerable<Transportation.Transportation_View>
 
 @{
     ViewBag.Title = "Index";
@@ -39,6 +39,9 @@
             @Html.DisplayNameFor(model => model.CheckOutTime)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.CheckInTime)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.ActivityTime)
         </th>
         <th></th>
@@ -74,10 +77,13 @@
             @Html.DisplayFor(modelItem => item.CheckOutTime)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.CheckInTime)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.ActivityTime)
         </td>
         <td>
-            <a class="btn btn-success" onclick="location.href='@Url.Action("SignIn", "Transportation", new { id=item.SignOutId })'">Sign In</a>
+            <a class="btn btn-success" onclick="location.href='@Url.Action("SignIn", "Transportation", new { id=item.VId })'">Sign In</a>
         </td>
     </tr>
 }

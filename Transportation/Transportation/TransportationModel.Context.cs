@@ -36,5 +36,7 @@ namespace Transportation
         public virtual DbSet<Vehicle> Vehicles { get; set; }
         public virtual DbSet<VehicleStatus> VehicleStatuses { get; set; }
         public virtual DbSet<Transportation_View> Transportation_View { get; set; }
+        public virtual DbSet<Transportation_SignedOutView> Transportation_SignedOutView { get; set; }
+        public virtual DbSet<Transportation_ViewAll> Transportation_ViewAll { get; set; }
     }
 }

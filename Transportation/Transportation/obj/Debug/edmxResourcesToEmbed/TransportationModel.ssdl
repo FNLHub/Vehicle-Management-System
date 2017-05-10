@@ -94,8 +94,47 @@
     <Property Name="StatusName" Type="nchar" MaxLength="20" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_SignedOutView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Transportation_SignedOutView">
+    <Key>
+      <PropertyRef Name="VId" />
+    </Key>
+    <Property Name="VId" Type="bigint" Nullable="false" />
+    <Property Name="SignOutId" Type="int" />
+    <Property Name="FirstName" Type="nchar" MaxLength="60" />
+    <Property Name="LastName" Type="nchar" MaxLength="60" />
+    <Property Name="BannerId" Type="nchar" MaxLength="8" />
+    <Property Name="DepartmentName" Type="nchar" MaxLength="20" />
+    <Property Name="VehicleName" Type="nchar" MaxLength="10" />
+    <Property Name="KeyName" Type="nchar" MaxLength="5" />
+    <Property Name="GasCardName" Type="nchar" MaxLength="60" />
+    <Property Name="Destination" Type="nchar" MaxLength="60" />
+    <Property Name="CheckOutTime" Type="datetime" />
+    <Property Name="CheckInTime" Type="datetime" />
+    <Property Name="ActivityTime" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Transportation_View">
+    <Key>
+      <PropertyRef Name="VId" />
+    </Key>
+    <Property Name="VId" Type="bigint" Nullable="false" />
+    <Property Name="FirstName" Type="nchar" MaxLength="60" />
+    <Property Name="LastName" Type="nchar" MaxLength="60" />
+    <Property Name="BannerId" Type="nchar" MaxLength="8" />
+    <Property Name="DepartmentName" Type="nchar" MaxLength="20" />
+    <Property Name="VehicleName" Type="nchar" MaxLength="10" />
+    <Property Name="KeyName" Type="nchar" MaxLength="5" />
+    <Property Name="GasCardName" Type="nchar" MaxLength="60" />
+    <Property Name="Destination" Type="nchar" MaxLength="60" />
+    <Property Name="CheckOutTime" Type="datetime" />
+    <Property Name="CheckInTime" Type="datetime" />
+    <Property Name="ActivityTime" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_ViewAll' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Transportation_ViewAll">
     <Key>
       <PropertyRef Name="VId" />
     </Key>
@@ -219,6 +258,23 @@ warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_View' does not hav
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Vehicles" EntityType="Self.Vehicles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VehicleStatuses" EntityType="Self.VehicleStatuses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Transportation_SignedOutView" EntityType="Self.Transportation_SignedOutView" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Transportation_SignedOutView].[VId] AS [VId], 
+    [Transportation_SignedOutView].[SignOutId] AS [SignOutId], 
+    [Transportation_SignedOutView].[FirstName] AS [FirstName], 
+    [Transportation_SignedOutView].[LastName] AS [LastName], 
+    [Transportation_SignedOutView].[BannerId] AS [BannerId], 
+    [Transportation_SignedOutView].[DepartmentName] AS [DepartmentName], 
+    [Transportation_SignedOutView].[VehicleName] AS [VehicleName], 
+    [Transportation_SignedOutView].[KeyName] AS [KeyName], 
+    [Transportation_SignedOutView].[GasCardName] AS [GasCardName], 
+    [Transportation_SignedOutView].[Destination] AS [Destination], 
+    [Transportation_SignedOutView].[CheckOutTime] AS [CheckOutTime], 
+    [Transportation_SignedOutView].[CheckInTime] AS [CheckInTime], 
+    [Transportation_SignedOutView].[ActivityTime] AS [ActivityTime]
+    FROM [dbo].[Transportation_SignedOutView] AS [Transportation_SignedOutView]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="Transportation_View" EntityType="Self.Transportation_View" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [Transportation_View].[VId] AS [VId], 
@@ -234,6 +290,22 @@ warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_View' does not hav
     [Transportation_View].[CheckInTime] AS [CheckInTime], 
     [Transportation_View].[ActivityTime] AS [ActivityTime]
     FROM [dbo].[Transportation_View] AS [Transportation_View]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Transportation_ViewAll" EntityType="Self.Transportation_ViewAll" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Transportation_ViewAll].[VId] AS [VId], 
+    [Transportation_ViewAll].[FirstName] AS [FirstName], 
+    [Transportation_ViewAll].[LastName] AS [LastName], 
+    [Transportation_ViewAll].[BannerId] AS [BannerId], 
+    [Transportation_ViewAll].[DepartmentName] AS [DepartmentName], 
+    [Transportation_ViewAll].[VehicleName] AS [VehicleName], 
+    [Transportation_ViewAll].[KeyName] AS [KeyName], 
+    [Transportation_ViewAll].[GasCardName] AS [GasCardName], 
+    [Transportation_ViewAll].[Destination] AS [Destination], 
+    [Transportation_ViewAll].[CheckOutTime] AS [CheckOutTime], 
+    [Transportation_ViewAll].[CheckInTime] AS [CheckInTime], 
+    [Transportation_ViewAll].[ActivityTime] AS [ActivityTime]
+    FROM [dbo].[Transportation_ViewAll] AS [Transportation_ViewAll]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK_GasCards_GasCardStatuses" Association="Self.FK_GasCards_GasCardStatuses">
       <End Role="GasCardStatuses" EntitySet="GasCardStatuses" />

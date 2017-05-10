@@ -14,7 +14,7 @@ namespace Transportation.Controllers
         [HttpGet] // GET: Transportation
         public ActionResult Index()
         {
-            return View(transportationContext.Transportation_View.ToList());
+            return View(transportationContext.Transportation_SignedOutView.ToList());
         }
 
         [HttpGet]
@@ -57,7 +57,6 @@ namespace Transportation.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    trans.CheckOutTime = trans.CheckOutTime;
                     trans.CheckInTime = DateTime.Now;
                     trans.ActivityTime = DateTime.Now;
                     transportationContext.Entry(trans).State = System.Data.Entity.EntityState.Modified;

@@ -266,5 +266,42 @@
       <End Role="VehicleStatuses" EntitySet="VehicleStatuses" />
       <End Role="Vehicles" EntitySet="Vehicles" />
     </AssociationSet>
+    <EntitySet Name="Transportation_SignedOutView" EntityType="FacilitiesDBModel.Transportation_SignedOutView" />
+    <EntitySet Name="Transportation_ViewAll" EntityType="FacilitiesDBModel.Transportation_ViewAll" />
   </EntityContainer>
+  <EntityType Name="Transportation_SignedOutView">
+    <Key>
+      <PropertyRef Name="VId" />
+    </Key>
+    <Property Name="VId" Type="Int64" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="BannerId" Type="String" MaxLength="8" FixedLength="true" Unicode="true" />
+    <Property Name="DepartmentName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="VehicleName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="KeyName" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+    <Property Name="GasCardName" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="Destination" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="CheckOutTime" Type="DateTime" Precision="3" />
+    <Property Name="CheckInTime" Type="DateTime" Precision="3" />
+    <Property Name="ActivityTime" Type="DateTime" Precision="3" />
+    <Property Name="SignOutId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Transportation_ViewAll">
+    <Key>
+      <PropertyRef Name="VId" />
+    </Key>
+    <Property Name="VId" Type="Int64" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="BannerId" Type="String" MaxLength="8" FixedLength="true" Unicode="true" />
+    <Property Name="DepartmentName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="VehicleName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="KeyName" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+    <Property Name="GasCardName" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="Destination" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="CheckOutTime" Type="DateTime" Precision="3" />
+    <Property Name="CheckInTime" Type="DateTime" Precision="3" />
+    <Property Name="ActivityTime" Type="DateTime" Precision="3" />
+  </EntityType>
 </Schema>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FacilitiesDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FacilitiesDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Campuses">
           <Key>
             <PropertyRef Name="CampusId" />
@@ -99,8 +99,47 @@
           <Property Name="StatusName" Type="nchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_SignedOutView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Transportation_SignedOutView">
+          <Key>
+            <PropertyRef Name="VId" />
+          </Key>
+          <Property Name="VId" Type="bigint" Nullable="false" />
+          <Property Name="SignOutId" Type="int" />
+          <Property Name="FirstName" Type="nchar" MaxLength="60" />
+          <Property Name="LastName" Type="nchar" MaxLength="60" />
+          <Property Name="BannerId" Type="nchar" MaxLength="8" />
+          <Property Name="DepartmentName" Type="nchar" MaxLength="20" />
+          <Property Name="VehicleName" Type="nchar" MaxLength="10" />
+          <Property Name="KeyName" Type="nchar" MaxLength="5" />
+          <Property Name="GasCardName" Type="nchar" MaxLength="60" />
+          <Property Name="Destination" Type="nchar" MaxLength="60" />
+          <Property Name="CheckOutTime" Type="datetime" />
+          <Property Name="CheckInTime" Type="datetime" />
+          <Property Name="ActivityTime" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Transportation_View">
+          <Key>
+            <PropertyRef Name="VId" />
+          </Key>
+          <Property Name="VId" Type="bigint" Nullable="false" />
+          <Property Name="FirstName" Type="nchar" MaxLength="60" />
+          <Property Name="LastName" Type="nchar" MaxLength="60" />
+          <Property Name="BannerId" Type="nchar" MaxLength="8" />
+          <Property Name="DepartmentName" Type="nchar" MaxLength="20" />
+          <Property Name="VehicleName" Type="nchar" MaxLength="10" />
+          <Property Name="KeyName" Type="nchar" MaxLength="5" />
+          <Property Name="GasCardName" Type="nchar" MaxLength="60" />
+          <Property Name="Destination" Type="nchar" MaxLength="60" />
+          <Property Name="CheckOutTime" Type="datetime" />
+          <Property Name="CheckInTime" Type="datetime" />
+          <Property Name="ActivityTime" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_ViewAll' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Transportation_ViewAll">
           <Key>
             <PropertyRef Name="VId" />
           </Key>
@@ -224,6 +263,23 @@ warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_View' does not hav
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vehicles" EntityType="Self.Vehicles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VehicleStatuses" EntityType="Self.VehicleStatuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transportation_SignedOutView" EntityType="Self.Transportation_SignedOutView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Transportation_SignedOutView].[VId] AS [VId], 
+    [Transportation_SignedOutView].[SignOutId] AS [SignOutId], 
+    [Transportation_SignedOutView].[FirstName] AS [FirstName], 
+    [Transportation_SignedOutView].[LastName] AS [LastName], 
+    [Transportation_SignedOutView].[BannerId] AS [BannerId], 
+    [Transportation_SignedOutView].[DepartmentName] AS [DepartmentName], 
+    [Transportation_SignedOutView].[VehicleName] AS [VehicleName], 
+    [Transportation_SignedOutView].[KeyName] AS [KeyName], 
+    [Transportation_SignedOutView].[GasCardName] AS [GasCardName], 
+    [Transportation_SignedOutView].[Destination] AS [Destination], 
+    [Transportation_SignedOutView].[CheckOutTime] AS [CheckOutTime], 
+    [Transportation_SignedOutView].[CheckInTime] AS [CheckInTime], 
+    [Transportation_SignedOutView].[ActivityTime] AS [ActivityTime]
+    FROM [dbo].[Transportation_SignedOutView] AS [Transportation_SignedOutView]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="Transportation_View" EntityType="Self.Transportation_View" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Transportation_View].[VId] AS [VId], 
@@ -239,6 +295,22 @@ warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_View' does not hav
     [Transportation_View].[CheckInTime] AS [CheckInTime], 
     [Transportation_View].[ActivityTime] AS [ActivityTime]
     FROM [dbo].[Transportation_View] AS [Transportation_View]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Transportation_ViewAll" EntityType="Self.Transportation_ViewAll" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Transportation_ViewAll].[VId] AS [VId], 
+    [Transportation_ViewAll].[FirstName] AS [FirstName], 
+    [Transportation_ViewAll].[LastName] AS [LastName], 
+    [Transportation_ViewAll].[BannerId] AS [BannerId], 
+    [Transportation_ViewAll].[DepartmentName] AS [DepartmentName], 
+    [Transportation_ViewAll].[VehicleName] AS [VehicleName], 
+    [Transportation_ViewAll].[KeyName] AS [KeyName], 
+    [Transportation_ViewAll].[GasCardName] AS [GasCardName], 
+    [Transportation_ViewAll].[Destination] AS [Destination], 
+    [Transportation_ViewAll].[CheckOutTime] AS [CheckOutTime], 
+    [Transportation_ViewAll].[CheckInTime] AS [CheckInTime], 
+    [Transportation_ViewAll].[ActivityTime] AS [ActivityTime]
+    FROM [dbo].[Transportation_ViewAll] AS [Transportation_ViewAll]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_GasCards_GasCardStatuses" Association="Self.FK_GasCards_GasCardStatuses">
             <End Role="GasCardStatuses" EntitySet="GasCardStatuses" />
@@ -273,8 +345,7 @@ warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_View' does not hav
             <End Role="Vehicles" EntitySet="Vehicles" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FacilitiesDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -544,7 +615,44 @@ warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_View' does not hav
             <End Role="VehicleStatuses" EntitySet="VehicleStatuses" />
             <End Role="Vehicles" EntitySet="Vehicles" />
           </AssociationSet>
+          <EntitySet Name="Transportation_SignedOutView" EntityType="FacilitiesDBModel.Transportation_SignedOutView" />
+          <EntitySet Name="Transportation_ViewAll" EntityType="FacilitiesDBModel.Transportation_ViewAll" />
         </EntityContainer>
+        <EntityType Name="Transportation_SignedOutView">
+          <Key>
+            <PropertyRef Name="VId" />
+          </Key>
+          <Property Name="VId" Type="Int64" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+          <Property Name="BannerId" Type="String" MaxLength="8" FixedLength="true" Unicode="true" />
+          <Property Name="DepartmentName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="VehicleName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="KeyName" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+          <Property Name="GasCardName" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+          <Property Name="Destination" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+          <Property Name="CheckOutTime" Type="DateTime" Precision="3" />
+          <Property Name="CheckInTime" Type="DateTime" Precision="3" />
+          <Property Name="ActivityTime" Type="DateTime" Precision="3" />
+          <Property Name="SignOutId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Transportation_ViewAll">
+          <Key>
+            <PropertyRef Name="VId" />
+          </Key>
+          <Property Name="VId" Type="Int64" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+          <Property Name="BannerId" Type="String" MaxLength="8" FixedLength="true" Unicode="true" />
+          <Property Name="DepartmentName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="VehicleName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="KeyName" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+          <Property Name="GasCardName" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+          <Property Name="Destination" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+          <Property Name="CheckOutTime" Type="DateTime" Precision="3" />
+          <Property Name="CheckInTime" Type="DateTime" Precision="3" />
+          <Property Name="ActivityTime" Type="DateTime" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -669,6 +777,43 @@ warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_View' does not hav
                 <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
                 <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
                 <ScalarProperty Name="ActivityTime" ColumnName="ActivityTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transportation_SignedOutView">
+            <EntityTypeMapping TypeName="FacilitiesDBModel.Transportation_SignedOutView">
+              <MappingFragment StoreEntitySet="Transportation_SignedOutView">
+                <ScalarProperty Name="SignOutId" ColumnName="SignOutId" />
+                <ScalarProperty Name="ActivityTime" ColumnName="ActivityTime" />
+                <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
+                <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="GasCardName" ColumnName="GasCardName" />
+                <ScalarProperty Name="KeyName" ColumnName="KeyName" />
+                <ScalarProperty Name="VehicleName" ColumnName="VehicleName" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="BannerId" ColumnName="BannerId" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="VId" ColumnName="VId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transportation_ViewAll">
+            <EntityTypeMapping TypeName="FacilitiesDBModel.Transportation_ViewAll">
+              <MappingFragment StoreEntitySet="Transportation_ViewAll">
+                <ScalarProperty Name="ActivityTime" ColumnName="ActivityTime" />
+                <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
+                <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="GasCardName" ColumnName="GasCardName" />
+                <ScalarProperty Name="KeyName" ColumnName="KeyName" />
+                <ScalarProperty Name="VehicleName" ColumnName="VehicleName" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="BannerId" ColumnName="BannerId" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="VId" ColumnName="VId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

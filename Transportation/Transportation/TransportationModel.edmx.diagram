@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b57fa2dbc04549b9ad5ea10767255f5d" Name="Diagram1">
+      <Diagram DiagramId="b57fa2dbc04549b9ad5ea10767255f5d" Name="Diagram1" ZoomLevel="85">
         <EntityTypeShape EntityType="FacilitiesDBModel.Campus" Width="1.5" PointX="5.75" PointY="6.25" IsExpanded="true" />
         <EntityTypeShape EntityType="FacilitiesDBModel.Department" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="FacilitiesDBModel.GasCard" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
@@ -24,6 +24,8 @@
         <AssociationConnector Association="FacilitiesDBModel.FK_SignOut_SignOut" ManuallyRouted="false" />
         <AssociationConnector Association="FacilitiesDBModel.FK_SignOut_Users" ManuallyRouted="false" />
         <AssociationConnector Association="FacilitiesDBModel.FK_Vehicles_VehicleStatuses" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.Transportation_SignedOutView" Width="1.5" PointX="8.75" PointY="9.75" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.Transportation_ViewAll" Width="1.5" PointX="0.75" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

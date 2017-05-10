@@ -192,7 +192,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TransportationModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Transportation_SignedOutView.cs">
+      <DependentUpon>TransportationModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Transportation_View.cs">
+      <DependentUpon>TransportationModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transportation_ViewAll.cs">
       <DependentUpon>TransportationModel.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
@@ -236,7 +242,6 @@
     <Content Include="TransportationModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TransportationModel.edmx</DependentUpon>
-      <LastGenOutput>TransportationModel.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -254,7 +259,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Transportation\Details.cshtml" />
     <Content Include="Views\Transportation\Delete.cshtml" />
-    <Content Include="Views\Transportation\Index.cshtml" />
+    <Content Include="Views\Transportation\IndexOLD.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\CreateDepartment.cshtml" />
     <Content Include="Views\Admin\CreateVehicle.cshtml" />
@@ -273,6 +278,7 @@
     <Content Include="TransportationModel.edmx.diagram">
       <DependentUpon>TransportationModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Views\Transportation\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
