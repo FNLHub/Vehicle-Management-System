@@ -18,11 +18,11 @@ namespace Transportation
         public int UserId { get; set; }
         public string Destination { get; set; }
         public int VehicleId { get; set; }
+        public int KeyId { get; set; }
         public int GasCardId { get; set; }
         public Nullable<System.DateTime> CheckOutTime { get; set; }
         public Nullable<System.DateTime> CheckInTime { get; set; }
         public Nullable<System.DateTime> ActivityTime { get; set; }
-        public int KeyId { get; set; }
     
         public virtual GasCard GasCard { get; set; }
         public virtual Key Key { get; set; }

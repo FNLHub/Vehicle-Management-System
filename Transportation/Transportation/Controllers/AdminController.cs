@@ -8,7 +8,7 @@ namespace Transportation.Controllers
 {
     public class AdminController : Controller
     {
-        TransportationEntities transportationContext = new TransportationEntities();
+        FacilitiesDBEntities transportationContext = new FacilitiesDBEntities();
 
         [HttpGet]
         public ActionResult Index()
@@ -27,9 +27,16 @@ namespace Transportation.Controllers
         {
             if (ModelState.IsValid)
             {
-                transportationContext.Users.Add(user);
-                transportationContext.SaveChanges();
-                return RedirectToAction("index");
+                try
+                {
+                    transportationContext.Users.Add(user);
+                    transportationContext.SaveChanges();
+                    return RedirectToAction("index");
+                }
+                catch
+                {
+                    return RedirectToAction("index");
+                }
             }
             return View();
         }

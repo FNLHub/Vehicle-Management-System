@@ -8,7 +8,7 @@ namespace Transportation.Controllers
 {
     public class TransportationController : Controller
     {
-        TransportationEntities transportationContext = new TransportationEntities();
+        FacilitiesDBEntities transportationContext = new FacilitiesDBEntities();
         
         
         [HttpGet] // GET: Transportation

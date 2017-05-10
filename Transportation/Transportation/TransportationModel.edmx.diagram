@@ -4,25 +4,26 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="929fccd808304438839a3860044324d4" Name="Diagram1" ZoomLevel="87">
-        <EntityTypeShape EntityType="TransportationModel.SignOut" Width="1.5" PointX="3.375" PointY="0.75" />
-        <EntityTypeShape EntityType="TransportationModel.Transportation_View" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="TransportationModel.Campus" Width="1.5" PointX="4.875" PointY="5" />
-        <EntityTypeShape EntityType="TransportationModel.Department" Width="1.5" PointX="0.625" PointY="11.125" />
-        <EntityTypeShape EntityType="TransportationModel.GasCard" Width="1.5" PointX="0.625" PointY="14" />
-        <EntityTypeShape EntityType="TransportationModel.GasCardStatus" Width="1.5" PointX="0.625" PointY="17.25" />
-        <EntityTypeShape EntityType="TransportationModel.Key" Width="1.5" PointX="0.625" PointY="5.5" />
-        <EntityTypeShape EntityType="TransportationModel.Vehicle" Width="1.5" PointX="7.125" PointY="0.75" />
-        <EntityTypeShape EntityType="TransportationModel.VehicleStatus" Width="1.5" PointX="5.25" PointY="0.875" />
-        <AssociationConnector Association="TransportationModel.FK_Vehicles_Campuses" />
-        <AssociationConnector Association="TransportationModel.FK_GasCards_GasCardStatuses" />
-        <AssociationConnector Association="TransportationModel.FK_SignOut_GasCards" />
-        <AssociationConnector Association="TransportationModel.FK_SignOut_Keys" />
-        <AssociationConnector Association="TransportationModel.FK_Vehicles_VehicleStatuses" />
-        <EntityTypeShape EntityType="TransportationModel.User" Width="1.5" PointX="2.875" PointY="11" />
-        <AssociationConnector Association="TransportationModel.FK_Users_Departments" />
-        <EntityTypeShape EntityType="TransportationModel.sysdiagram" Width="1.5" PointX="3.375" PointY="7.75" />
-        <AssociationConnector Association="TransportationModel.FK_SignOut_Users" />
+      <Diagram DiagramId="b57fa2dbc04549b9ad5ea10767255f5d" Name="Diagram1">
+        <EntityTypeShape EntityType="FacilitiesDBModel.Campus" Width="1.5" PointX="5.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.Department" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.GasCard" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.GasCardStatus" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.Key" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.SignOut" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.User" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.Vehicle" Width="1.5" PointX="8" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.VehicleStatus" Width="1.5" PointX="5.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.Transportation_View" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="FacilitiesDBModel.FK_Vehicles_Campuses" ManuallyRouted="false" />
+        <AssociationConnector Association="FacilitiesDBModel.FK_Users_Departments" ManuallyRouted="false" />
+        <AssociationConnector Association="FacilitiesDBModel.FK_GasCards_GasCardStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="FacilitiesDBModel.FK_SignOut_GasCards" ManuallyRouted="false" />
+        <AssociationConnector Association="FacilitiesDBModel.FK_SignOut_Keys" ManuallyRouted="false" />
+        <AssociationConnector Association="FacilitiesDBModel.FK_SignOut_SignOut" ManuallyRouted="false" />
+        <AssociationConnector Association="FacilitiesDBModel.FK_SignOut_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="FacilitiesDBModel.FK_Vehicles_VehicleStatuses" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

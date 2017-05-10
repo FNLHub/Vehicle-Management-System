@@ -13,10 +13,10 @@ namespace Transportation
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TransportationEntities : DbContext
+    public partial class FacilitiesDBEntities : DbContext
     {
-        public TransportationEntities()
-            : base("name=TransportationEntities")
+        public FacilitiesDBEntities()
+            : base("name=FacilitiesDBEntities")
         {
         }
     
@@ -25,16 +25,16 @@ namespace Transportation
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<SignOut> SignOuts { get; set; }
-        public virtual DbSet<Transportation_View> Transportation_View { get; set; }
         public virtual DbSet<Campus> Campuses { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<GasCard> GasCards { get; set; }
         public virtual DbSet<GasCardStatus> GasCardStatuses { get; set; }
         public virtual DbSet<Key> Keys { get; set; }
+        public virtual DbSet<SignOut> SignOuts { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Vehicle> Vehicles { get; set; }
         public virtual DbSet<VehicleStatus> VehicleStatuses { get; set; }
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Transportation_View> Transportation_View { get; set; }
     }
 }

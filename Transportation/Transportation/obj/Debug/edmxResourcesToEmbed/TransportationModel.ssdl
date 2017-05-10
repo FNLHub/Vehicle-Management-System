@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="TransportationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="FacilitiesDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Campuses">
     <Key>
       <PropertyRef Name="CampusId" />
@@ -49,11 +49,11 @@
     <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="Destination" Type="nchar" MaxLength="60" Nullable="false" />
     <Property Name="VehicleId" Type="int" Nullable="false" />
+    <Property Name="KeyId" Type="int" Nullable="false" />
     <Property Name="GasCardId" Type="int" Nullable="false" />
     <Property Name="CheckOutTime" Type="datetime" />
     <Property Name="CheckInTime" Type="datetime" />
     <Property Name="ActivityTime" Type="datetime" />
-    <Property Name="KeyId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -94,7 +94,7 @@
     <Property Name="StatusName" Type="nchar" MaxLength="20" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'Transportation.dbo.Transportation_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Transportation_View">
     <Key>
       <PropertyRef Name="VId" />
@@ -208,7 +208,7 @@ warning 6002: The table/view 'Transportation.dbo.Transportation_View' does not h
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="TransportationModelStoreContainer">
+  <EntityContainer Name="FacilitiesDBModelStoreContainer">
     <EntitySet Name="Campuses" EntityType="Self.Campuses" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GasCards" EntityType="Self.GasCards" Schema="dbo" store:Type="Tables" />

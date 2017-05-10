@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Sign Out", "SignOut")
+    <a class="btn btn-success" onclick="location.href='@Url.Action("SignOut", "Transportation")'">Sign Out</a>
 </p>
 <table class="table">
     <tr>
@@ -83,7 +83,6 @@
             @Html.DisplayFor(modelItem => item.ActivityTime)
         </td>
         <td>
-            @Html.ActionLink("Sign In","SignIn","Transportation")
             <a class="btn btn-success" onclick="location.href='@Url.Action("SignIn", "Transportation", new { id=item.VId })'">Sign In</a>
         </td>
     </tr>

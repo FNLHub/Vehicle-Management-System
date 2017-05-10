@@ -230,8 +230,8 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="TransportationModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TransportationModel.Context.cs</LastGenOutput>
       <DependentUpon>TransportationModel.edmx</DependentUpon>
+      <LastGenOutput>TransportationModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="TransportationModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -252,18 +252,10 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <EntityDeploy Include="TransportationModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TransportationModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="TransportationModel.edmx.diagram">
-      <DependentUpon>TransportationModel.edmx</DependentUpon>
-    </Content>
     <Content Include="Views\Transportation\Details.cshtml" />
     <Content Include="Views\Transportation\Delete.cshtml" />
     <Content Include="Views\Transportation\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\CreateUser.cshtml" />
     <Content Include="Views\Admin\CreateDepartment.cshtml" />
     <Content Include="Views\Admin\CreateVehicle.cshtml" />
     <Content Include="Views\Admin\CreateCampus.cshtml" />
@@ -273,6 +265,14 @@
     <Content Include="Views\Admin\CreateGasCardStatus.cshtml" />
     <Content Include="Views\Transportation\SignOut.cshtml" />
     <Content Include="Views\Transportation\SignIn.cshtml" />
+    <Content Include="Views\Admin\CreateUser.cshtml" />
+    <EntityDeploy Include="TransportationModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TransportationModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="TransportationModel.edmx.diagram">
+      <DependentUpon>TransportationModel.edmx</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

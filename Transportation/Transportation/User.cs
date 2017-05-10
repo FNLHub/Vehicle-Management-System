@@ -20,11 +20,11 @@ namespace Transportation
             this.SignOuts = new HashSet<SignOut>();
         }
     
+        public int UserId { get; set; }
         public string BannerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int DepartmentId { get; set; }
-        public int UserId { get; set; }
     
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
