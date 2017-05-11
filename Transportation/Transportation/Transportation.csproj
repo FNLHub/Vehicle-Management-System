@@ -267,7 +267,7 @@
     <Content Include="Views\Admin\CreateGasCard.cshtml" />
     <Content Include="Views\Admin\CreateGasCardStatus.cshtml" />
     <Content Include="Views\Transportation\SignOut.cshtml" />
-    <Content Include="Views\Transportation\SignIn.cshtml" />
+    <Content Include="Views\Transportation\ConfirmSignIn.cshtml" />
     <Content Include="Views\Admin\CreateUser.cshtml" />
     <EntityDeploy Include="TransportationModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -283,6 +283,7 @@
     <Content Include="Views\Reports\GetSignedOut.cshtml" />
     <Content Include="Views\Reports\GetSignOutLog.cshtml" />
     <Content Include="Views\Reports\GetVehicles.cshtml" />
+    <Content Include="Views\Transportation\SignIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

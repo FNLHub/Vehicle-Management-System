@@ -35,9 +35,14 @@ namespace Transportation.Controllers
             }
             return View();
         }
+        [HttpGet]
+        public ActionResult SignIn()
+        {
+            return View(transportationContext.Transportation_SignedOutView.ToList());
+        }
 
         [HttpGet]
-        public ActionResult SignIn(int? id)
+        public ActionResult ConfirmSignIn(int? id)
         {
             if (id == null)
             {
@@ -51,7 +56,7 @@ namespace Transportation.Controllers
             return View(trans);
         }
         [HttpPost]
-        public ActionResult SignIn(SignOut trans)
+        public ActionResult ConfirmSignIn(SignOut trans)
         {
             try
             {
