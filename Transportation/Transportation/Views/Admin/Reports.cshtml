@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Reports Page";
+}
+
+<!-- Custom CSS -->
+<link rel="stylesheet" type="text/css" href="../Content/MainStyles.css" />
+
+<h1>Reports Page</h1>
+<br />
+
+<div class="list-group">
+    <!--Items to point towards pages-->
+    <a onclick="location.href='@Url.Action("SignOut", "Reports")'" class="list-group-item">Sign In/Out History</a>
+    <a onclick="location.href='@Url.Action("SignOut", "Reports")'" class="list-group-item">Currently Signed Out</a>
+   <br />
+    <a onclick="location.href='@Url.Action("SignOut", "Reports")'" class="list-group-item">Users</a>
+    <a onclick="location.href='@Url.Action("SignOut", "Reports")'" class="list-group-item">Gas Cards</a>
+    <a onclick="location.href='@Url.Action("SignOut", "Reports")'" class="list-group-item">Vehicles</a>
+    <a onclick="location.href='@Url.Action("SignOut", "Reports")'" class="list-group-item">Keys</a>
+    
+</div>

@@ -1,0 +1,17 @@
+﻿.LargeIcon {
+    font-size: 20em;
+}
+
+.ButtonContainer {
+    margin-top: 5em;
+    text-align: center;
+    margin-bottom: 5em;
+}
+
+body, h1 {
+    font-family: 'Source Code Pro', sans-serif;
+}
+
+.GrayedOut{
+    background-color:darkgray;
+}

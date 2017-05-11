@@ -16,6 +16,12 @@ namespace Transportation.Controllers
             return View();
         }
 
+
+        [HttpGet]
+        public ActionResult Reports()
+        {
+            return View();
+        }
         // Create Statements for Users Table
         [HttpGet]
         public ActionResult CreateUser()
