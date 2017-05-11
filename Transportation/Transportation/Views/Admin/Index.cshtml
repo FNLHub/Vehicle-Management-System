@@ -3,13 +3,61 @@
     ViewBag.Title = "Admin Panel";
 }
 
-<h2>Admin Panel</h2>
-<p>This is where cory will add links to the create [x] pages.</p>
-<a class="btn btn-default" onclick="location.href='@Url.Action("CreateUser", "Admin")'">Create User</a>
-<a class="btn btn-default" onclick="location.href='@Url.Action("CreateDepartment", "Admin")'">Create Department</a>
-<a class="btn btn-default" onclick="location.href='@Url.Action("CreateVehicle", "Admin")'">Create Vehicle</a>
-<a class="btn btn-default" onclick="location.href='@Url.Action("CreateVehicleStatus", "Admin")'">Create Vehicle Status</a>
-<a class="btn btn-default" onclick="location.href='@Url.Action("CreateCampus", "Admin")'">Create Campus</a>
-<a class="btn btn-default" onclick="location.href='@Url.Action("CreateKey", "Admin")'">Create Key</a>
-<a class="btn btn-default" onclick="location.href='@Url.Action("CreateGasCard", "Admin")'">Create Gas Card</a>
-<a class="btn btn-default" onclick="location.href='@Url.Action("CreateGasCardStatus", "Admin")'">Create Gas Card Status</a>
+<!-- Custom CSS -->
+<link rel="stylesheet" type="text/css" href="../Content/MainStyles.css" />
+
+<h2 class="CenterElement">Admin Panel</h2>
+
+<!--Add Items-->
+<div class="list-group">
+        <!--Header Element-->
+        <a class="list-group-item listGroupHeader" data-toggle="collapse" data-target="#Add-collapse" ><span class="glyphicon glyphicon-list"></span> Add</a>
+        <!--Body Element-->
+        <div id="Add-collapse" class="collapse">
+            <a onclick="location.href='@Url.Action("CreateUser", "Admin")'" class="list-group-item">User</a>
+            <a onclick="location.href='@Url.Action("CreateDepartment", "Admin")'" class="list-group-item">Department</a>
+            <a onclick="location.href='@Url.Action("CreateVehicle", "Admin")'" class="list-group-item">Vehicle</a>
+            <a onclick="location.href='@Url.Action("CreateVehicleStatus", "Admin")'" class="list-group-item">Vehicle Status</a>
+            <a onclick="location.href='@Url.Action("CreateCampus", "Admin")'" class="list-group-item">Campus</a>
+            <a onclick="location.href='@Url.Action("CreateKey", "Admin")'" class="list-group-item">Key</a>
+            <a onclick="location.href='@Url.Action("CreateGasCard", "Admin")'" class="list-group-item">Gas Card</a>
+            <a onclick="location.href='@Url.Action("CreateGasCardStatus", "Admin")'" class="list-group-item">Gas Card Status</a>
+        </div>
+
+</div>
+
+<!--Delete Items-->
+<div class="list-group">
+    <!--Header Element-->
+    <a class="list-group-item listGroupHeader" data-toggle="collapse" data-target="#Delete-collapse"><span class="glyphicon glyphicon-list"></span> Delete</a>
+    <!--Body Element-->
+    <div id="Delete-collapse" class="collapse">
+        <a onclick="location.href='@Url.Action("CreateUser", "Admin")'" class="list-group-item">User</a>
+        <a onclick="location.href='@Url.Action("CreateDepartment", "Admin")'" class="list-group-item">Department</a>
+        <a onclick="location.href='@Url.Action("CreateVehicle", "Admin")'" class="list-group-item">Vehicle</a>
+        <a onclick="location.href='@Url.Action("CreateVehicleStatus", "Admin")'" class="list-group-item">Vehicle Status</a>
+        <a onclick="location.href='@Url.Action("CreateCampus", "Admin")'" class="list-group-item">Campus</a>
+        <a onclick="location.href='@Url.Action("CreateKey", "Admin")'" class="list-group-item">Key</a>
+        <a onclick="location.href='@Url.Action("CreateGasCard", "Admin")'" class="list-group-item">Gas Card</a>
+        <a onclick="location.href='@Url.Action("CreateGasCardStatus", "Admin")'" class="list-group-item">Gas Card Status</a>
+    </div>
+
+</div>
+
+<!--Edit Items-->
+<div class="list-group">
+    <!--Header Element-->
+    <a class="list-group-item listGroupHeader" data-toggle="collapse" data-target="#Edit-collapse"><span class="glyphicon glyphicon-list"></span> Edit</a>
+    <!--Body Element-->
+    <div id="Edit-collapse" class="collapse">
+        <a onclick="location.href='@Url.Action("CreateUser", "Admin")'" class="list-group-item">User</a>
+        <a onclick="location.href='@Url.Action("CreateDepartment", "Admin")'" class="list-group-item">Department</a>
+        <a onclick="location.href='@Url.Action("CreateVehicle", "Admin")'" class="list-group-item">Vehicle</a>
+        <a onclick="location.href='@Url.Action("CreateVehicleStatus", "Admin")'" class="list-group-item">Vehicle Status</a>
+        <a onclick="location.href='@Url.Action("CreateCampus", "Admin")'" class="list-group-item">Campus</a>
+        <a onclick="location.href='@Url.Action("CreateKey", "Admin")'" class="list-group-item">Key</a>
+        <a onclick="location.href='@Url.Action("CreateGasCard", "Admin")'" class="list-group-item">Gas Card</a>
+        <a onclick="location.href='@Url.Action("CreateGasCardStatus", "Admin")'" class="list-group-item">Gas Card Status</a>
+    </div>
+
+</div>
