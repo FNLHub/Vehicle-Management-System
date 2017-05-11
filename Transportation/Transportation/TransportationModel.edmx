@@ -192,18 +192,6 @@ warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_ViewAll' does not 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SignOut_SignOut">
-          <End Role="SignOut" Type="Self.SignOut" Multiplicity="1" />
-          <End Role="SignOut1" Type="Self.SignOut" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="SignOut">
-              <PropertyRef Name="SignOutId" />
-            </Principal>
-            <Dependent Role="SignOut1">
-              <PropertyRef Name="SignOutId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SignOut_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="SignOut" Type="Self.SignOut" Multiplicity="*" />
@@ -213,6 +201,18 @@ warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_ViewAll' does not 
             </Principal>
             <Dependent Role="SignOut">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SignOut_Vehicles">
+          <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="1" />
+          <End Role="SignOut" Type="Self.SignOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicles">
+              <PropertyRef Name="VehicleId" />
+            </Principal>
+            <Dependent Role="SignOut">
+              <PropertyRef Name="VehicleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -324,12 +324,12 @@ warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_ViewAll' does not 
             <End Role="Keys" EntitySet="Keys" />
             <End Role="SignOut" EntitySet="SignOut" />
           </AssociationSet>
-          <AssociationSet Name="FK_SignOut_SignOut" Association="Self.FK_SignOut_SignOut">
-            <End Role="SignOut" EntitySet="SignOut" />
-            <End Role="SignOut1" EntitySet="SignOut" />
-          </AssociationSet>
           <AssociationSet Name="FK_SignOut_Users" Association="Self.FK_SignOut_Users">
             <End Role="Users" EntitySet="Users" />
+            <End Role="SignOut" EntitySet="SignOut" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SignOut_Vehicles" Association="Self.FK_SignOut_Vehicles">
+            <End Role="Vehicles" EntitySet="Vehicles" />
             <End Role="SignOut" EntitySet="SignOut" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_Departments" Association="Self.FK_Users_Departments">
@@ -414,6 +414,7 @@ warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_ViewAll' does not 
           <NavigationProperty Name="SignOut1" Relationship="Self.FK_SignOut_SignOut" FromRole="SignOut" ToRole="SignOut1" />
           <NavigationProperty Name="SignOut2" Relationship="Self.FK_SignOut_SignOut" FromRole="SignOut1" ToRole="SignOut" />
           <NavigationProperty Name="User" Relationship="Self.FK_SignOut_Users" FromRole="SignOut" ToRole="Users" />
+          <NavigationProperty Name="Vehicle" Relationship="FacilitiesDBModel.FK_SignOut_Vehicles" FromRole="SignOut" ToRole="Vehicle" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -448,6 +449,7 @@ warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_ViewAll' does not 
           <Property Name="CampusId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Campus" Relationship="Self.FK_Vehicles_Campuses" FromRole="Vehicles" ToRole="Campuses" />
           <NavigationProperty Name="VehicleStatus" Relationship="Self.FK_Vehicles_VehicleStatuses" FromRole="Vehicles" ToRole="VehicleStatuses" />
+          <NavigationProperty Name="SignOuts" Relationship="FacilitiesDBModel.FK_SignOut_Vehicles" FromRole="Vehicle" ToRole="SignOut" />
         </EntityType>
         <EntityType Name="VehicleStatus">
           <Key>
@@ -617,6 +619,10 @@ warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_ViewAll' does not 
           </AssociationSet>
           <EntitySet Name="Transportation_SignedOutView" EntityType="FacilitiesDBModel.Transportation_SignedOutView" />
           <EntitySet Name="Transportation_ViewAll" EntityType="FacilitiesDBModel.Transportation_ViewAll" />
+          <AssociationSet Name="FK_SignOut_Vehicles" Association="FacilitiesDBModel.FK_SignOut_Vehicles">
+            <End Role="Vehicle" EntitySet="Vehicles" />
+            <End Role="SignOut" EntitySet="SignOuts" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Transportation_SignedOutView">
           <Key>
@@ -653,6 +659,18 @@ warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_ViewAll' does not 
           <Property Name="CheckInTime" Type="DateTime" Precision="3" />
           <Property Name="ActivityTime" Type="DateTime" Precision="3" />
         </EntityType>
+        <Association Name="FK_SignOut_Vehicles">
+          <End Type="FacilitiesDBModel.Vehicle" Role="Vehicle" Multiplicity="1" />
+          <End Type="FacilitiesDBModel.SignOut" Role="SignOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="VehicleId" />
+            </Principal>
+            <Dependent Role="SignOut">
+              <PropertyRef Name="VehicleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

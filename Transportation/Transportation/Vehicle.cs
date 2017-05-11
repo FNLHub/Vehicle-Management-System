@@ -14,6 +14,12 @@ namespace Transportation
     
     public partial class Vehicle
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Vehicle()
+        {
+            this.SignOuts = new HashSet<SignOut>();
+        }
+    
         public int VehicleId { get; set; }
         public string VehiclePlate { get; set; }
         public string VehicleName { get; set; }
@@ -22,5 +28,7 @@ namespace Transportation
     
         public virtual Campus Campus { get; set; }
         public virtual VehicleStatus VehicleStatus { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SignOut> SignOuts { get; set; }
     }
 }

@@ -26,6 +26,7 @@
         <AssociationConnector Association="FacilitiesDBModel.FK_Vehicles_VehicleStatuses" ManuallyRouted="false" />
         <EntityTypeShape EntityType="FacilitiesDBModel.Transportation_SignedOutView" Width="1.5" PointX="8.75" PointY="9.75" />
         <EntityTypeShape EntityType="FacilitiesDBModel.Transportation_ViewAll" Width="1.5" PointX="0.75" PointY="10.75" />
+        <AssociationConnector Association="FacilitiesDBModel.FK_SignOut_Vehicles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

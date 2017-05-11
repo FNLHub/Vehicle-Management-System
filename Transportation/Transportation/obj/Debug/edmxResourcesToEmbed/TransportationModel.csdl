@@ -65,6 +65,7 @@
     <NavigationProperty Name="SignOut1" Relationship="Self.FK_SignOut_SignOut" FromRole="SignOut" ToRole="SignOut1" />
     <NavigationProperty Name="SignOut2" Relationship="Self.FK_SignOut_SignOut" FromRole="SignOut1" ToRole="SignOut" />
     <NavigationProperty Name="User" Relationship="Self.FK_SignOut_Users" FromRole="SignOut" ToRole="Users" />
+    <NavigationProperty Name="Vehicle" Relationship="FacilitiesDBModel.FK_SignOut_Vehicles" FromRole="SignOut" ToRole="Vehicle" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
@@ -99,6 +100,7 @@
     <Property Name="CampusId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Campus" Relationship="Self.FK_Vehicles_Campuses" FromRole="Vehicles" ToRole="Campuses" />
     <NavigationProperty Name="VehicleStatus" Relationship="Self.FK_Vehicles_VehicleStatuses" FromRole="Vehicles" ToRole="VehicleStatuses" />
+    <NavigationProperty Name="SignOuts" Relationship="FacilitiesDBModel.FK_SignOut_Vehicles" FromRole="Vehicle" ToRole="SignOut" />
   </EntityType>
   <EntityType Name="VehicleStatus">
     <Key>
@@ -268,6 +270,10 @@
     </AssociationSet>
     <EntitySet Name="Transportation_SignedOutView" EntityType="FacilitiesDBModel.Transportation_SignedOutView" />
     <EntitySet Name="Transportation_ViewAll" EntityType="FacilitiesDBModel.Transportation_ViewAll" />
+    <AssociationSet Name="FK_SignOut_Vehicles" Association="FacilitiesDBModel.FK_SignOut_Vehicles">
+      <End Role="Vehicle" EntitySet="Vehicles" />
+      <End Role="SignOut" EntitySet="SignOuts" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Transportation_SignedOutView">
     <Key>
@@ -304,4 +310,16 @@
     <Property Name="CheckInTime" Type="DateTime" Precision="3" />
     <Property Name="ActivityTime" Type="DateTime" Precision="3" />
   </EntityType>
+  <Association Name="FK_SignOut_Vehicles">
+    <End Type="FacilitiesDBModel.Vehicle" Role="Vehicle" Multiplicity="1" />
+    <End Type="FacilitiesDBModel.SignOut" Role="SignOut" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehicle">
+        <PropertyRef Name="VehicleId" />
+      </Principal>
+      <Dependent Role="SignOut">
+        <PropertyRef Name="VehicleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

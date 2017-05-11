@@ -192,6 +192,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TransportationModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="TransportationModel1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TransportationModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Transportation_SignedOutView.cs">
       <DependentUpon>TransportationModel.tt</DependentUpon>
     </Compile>
@@ -243,6 +248,7 @@
     <Content Include="TransportationModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TransportationModel.edmx</DependentUpon>
+      <LastGenOutput>TransportationModel1.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
