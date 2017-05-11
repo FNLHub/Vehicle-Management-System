@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Transportation.GasCard>
+
+@{
+    ViewBag.Title = "GetGasCards";
+}
+
+<h2>GetGasCards</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GasCardName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GasCardNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GasCardPin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GasCardStatus.StatusCode)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.GasCardName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GasCardNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GasCardPin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GasCardStatus.StatusCode)
+        </td>
+    </tr>
+}
+
+</table>

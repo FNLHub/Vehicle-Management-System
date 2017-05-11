@@ -154,6 +154,7 @@
     </Compile>
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\TransportationController.cs" />
     <Compile Include="Department.cs">
       <DependentUpon>TransportationModel.tt</DependentUpon>
@@ -279,6 +280,12 @@
       <DependentUpon>TransportationModel.edmx</DependentUpon>
     </Content>
     <Content Include="Views\Transportation\Index.cshtml" />
+    <Content Include="Views\Reports\Reports.cshtml" />
+    <Content Include="Views\Reports\GetUsers.cshtml" />
+    <Content Include="Views\Reports\GetGasCards.cshtml" />
+    <Content Include="Views\Reports\GetSignedOut.cshtml" />
+    <Content Include="Views\Reports\GetSignOutLog.cshtml" />
+    <Content Include="Views\Reports\GetVehicles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
