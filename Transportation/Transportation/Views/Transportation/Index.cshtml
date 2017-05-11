@@ -1,85 +1,22 @@
-﻿@model IEnumerable<Transportation.Transportation_SignedOutView>
-
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Choose your poison</h2>
 
-<p>
-    <a class="btn btn-success" onclick="location.href='@Url.Action("SignOut", "Transportation")'">Sign Out</a>
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BannerId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DepartmentName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VehicleName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.KeyName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GasCardName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Destination)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CheckOutTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ActivityTime)
-        </th>
-        <th></th>
-    </tr>
+<!-- Custom CSS -->
+<link rel="stylesheet" type="text/css" href="../Content/MainStyles.css" />
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BannerId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DepartmentName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VehicleName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.KeyName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GasCardName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Destination)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CheckOutTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ActivityTime)
-        </td>
-        <td>
-            <a class="btn btn-success" onclick="location.href='@Url.Action("SignIn", "Transportation", new { id=item.SignOutId })'">Sign In</a>
-        </td>
-    </tr>
-}
+<div class="ButtonContainer row">
 
-</table>
+    <h1>Welcome!</h1>
+    <br />
+    <div class="col-md-6">
+        <a onclick="location.href='@Url.Action("SignOut", "Transportation")'"><span class="glyphicon glyphicon-chevron-up LargeIcon"></span></a>
+        <h1>Checkout</h1>
+    </div>
+    <div class="col-md-6">
+        <a onclick="location.href='@Url.Action("SignIn", "Transportation")'"><span class="glyphicon glyphicon-chevron-down LargeIcon"></span></a>
+        <h1>Return</h1>
+    </div>
+</div>
