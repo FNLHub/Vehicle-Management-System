@@ -153,7 +153,6 @@
       <DependentUpon>TransportationModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\TransportationController.cs" />
     <Compile Include="Department.cs">
@@ -255,9 +254,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Transportation\Details.cshtml" />
     <Content Include="Views\Transportation\Delete.cshtml" />
     <Content Include="Views\Transportation\IndexOLD.cshtml" />
