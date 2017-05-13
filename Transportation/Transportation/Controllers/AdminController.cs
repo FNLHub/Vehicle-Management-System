@@ -35,7 +35,7 @@ namespace Transportation.Controllers
                 }
                 catch
                 {
-                    return RedirectToAction("index");
+                    return new HttpStatusCodeResult(Response.StatusCode = 400);
                 }
             }
             return View();
@@ -52,9 +52,16 @@ namespace Transportation.Controllers
         {
             if (ModelState.IsValid)
             {
-                transportationContext.Departments.Add(department);
-                transportationContext.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    transportationContext.Departments.Add(department);
+                    transportationContext.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    return new HttpStatusCodeResult(Response.StatusCode = 400);
+                }
             }
             return View();
         }
@@ -70,9 +77,16 @@ namespace Transportation.Controllers
         {
             if (ModelState.IsValid)
             {
-                transportationContext.Vehicles.Add(vehicle);
-                transportationContext.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    transportationContext.Vehicles.Add(vehicle);
+                    transportationContext.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    return new HttpStatusCodeResult(Response.StatusCode = 400);
+                }
             }
             return View();
         }
@@ -88,9 +102,16 @@ namespace Transportation.Controllers
         {
             if (ModelState.IsValid)
             {
-                transportationContext.Campuses.Add(campus);
-                transportationContext.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    transportationContext.Campuses.Add(campus);
+                    transportationContext.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    return new HttpStatusCodeResult(Response.StatusCode = 400);
+                }
             }
             return View();
         }
@@ -106,9 +127,16 @@ namespace Transportation.Controllers
         {
             if (ModelState.IsValid)
             {
-                transportationContext.VehicleStatuses.Add(vehicleStatus);
-                transportationContext.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    transportationContext.VehicleStatuses.Add(vehicleStatus);
+                    transportationContext.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    return new HttpStatusCodeResult(Response.StatusCode = 400);
+                }
             }
             return View();
         }
@@ -124,9 +152,16 @@ namespace Transportation.Controllers
         {
             if (ModelState.IsValid)
             {
-                transportationContext.Keys.Add(key);
-                transportationContext.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    transportationContext.Keys.Add(key);
+                    transportationContext.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    return new HttpStatusCodeResult(Response.StatusCode = 400);
+                }
             }
             return View();
         }
@@ -142,9 +177,16 @@ namespace Transportation.Controllers
         {
             if (ModelState.IsValid)
             {
-                transportationContext.GasCards.Add(gasCard);
-                transportationContext.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    transportationContext.GasCards.Add(gasCard);
+                    transportationContext.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    return new HttpStatusCodeResult(Response.StatusCode = 400);
+                }
             }
             return View();
         }
@@ -160,9 +202,16 @@ namespace Transportation.Controllers
         {
             if (ModelState.IsValid)
             {
-                transportationContext.GasCardStatuses.Add(gasCardStatus);
-                transportationContext.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    transportationContext.GasCardStatuses.Add(gasCardStatus);
+                    transportationContext.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    return new HttpStatusCodeResult(Response.StatusCode = 400);
+                }
             }
             return View();
         }

@@ -153,6 +153,7 @@
       <DependentUpon>TransportationModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\EditController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\TransportationController.cs" />
     <Compile Include="Department.cs">
@@ -229,6 +230,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -290,6 +293,8 @@
     <Content Include="Views\Reports\GetSignOutLog.cshtml" />
     <Content Include="Views\Reports\GetVehicles.cshtml" />
     <Content Include="Views\Transportation\SignIn.cshtml" />
+    <Content Include="Views\Admin\GetUsers.cshtml" />
+    <Content Include="Views\Edit\GetUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

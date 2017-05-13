@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Transportation|SignIn/Out";
+}
+
+<!-- Custom CSS -->
+<link rel="stylesheet" type="text/css" href="../Content/MainStyles.css" />
+
+<div class="ButtonContainer row">
+
+    <h1>Welcome!</h1>
+    <br />
+    <div class="col-md-6">
+        <a onclick="location.href='@Url.Action("SignOut", "Transportation")'"><span class="glyphicon glyphicon-chevron-up LargeIcon"></span></a>
+        <h1>Checkout</h1>
+    </div>
+    <div class="col-md-6">
+        <a onclick="location.href='@Url.Action("SignIn", "Transportation")'"><span class="glyphicon glyphicon-chevron-down LargeIcon"></span></a>
+        <h1>Return</h1>
+    </div>
+</div>

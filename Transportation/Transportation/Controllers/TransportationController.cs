@@ -27,11 +27,18 @@ namespace Transportation.Controllers
         {
             if (ModelState.IsValid)
             {
-                trans.CheckOutTime = DateTime.Now;
-                trans.ActivityTime = DateTime.Now;
-                transportationContext.SignOuts.Add(trans);
-                transportationContext.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    trans.CheckOutTime = DateTime.Now;
+                    trans.ActivityTime = DateTime.Now;
+                    transportationContext.SignOuts.Add(trans);
+                    transportationContext.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    return new HttpStatusCodeResult(Response.StatusCode = 400);
+                }
             }
             return View();
         }

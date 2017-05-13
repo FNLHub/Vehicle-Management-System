@@ -1,0 +1,27 @@
+﻿.LargeIcon {
+    font-size: 20em;
+}
+
+.ButtonContainer {
+    margin-top: 5em;
+    text-align: center;
+    margin-bottom: 3em;
+}
+
+.CenterElement{
+    text-align:center;
+}
+
+body, h1 {
+    font: sans-serif;
+}
+
+.listGroupHeader {
+    background-color: #e6e6e6;
+}
+
+
+.disable {
+    pointer-events: none;
+    cursor: default;
+}

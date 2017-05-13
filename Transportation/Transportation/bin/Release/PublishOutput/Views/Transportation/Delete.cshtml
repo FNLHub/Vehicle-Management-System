@@ -1,0 +1,120 @@
+﻿@model Transportation.Transportation_View
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Transportation_View</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SignOutId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SignOutId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BannerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BannerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartmentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DepartmentName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VehicleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehicleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KeyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KeyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GasCardName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GasCardName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Destination)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Destination)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckOutTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckOutTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckInTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckInTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivityTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivityTime)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

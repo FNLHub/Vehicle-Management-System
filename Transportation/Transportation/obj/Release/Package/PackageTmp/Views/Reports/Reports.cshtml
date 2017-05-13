@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Reports";
+}
+
+<!-- Custom CSS -->
+<link rel="stylesheet" type="text/css" href="../Content/MainStyles.css" />
+
+<h2 class="CenterElement">Reports</h2>
+
+<div class="list-group">
+    <a href="#" class="list-group-item disable listGroupHeader">Logs</a>
+    <a onclick="location.href='@Url.Action("GetSignedOut", "Reports")'" class="list-group-item">Currently Signed Out</a>
+    <a onclick="location.href='@Url.Action("GetSignOutLog", "Reports")'" class="list-group-item">History</a>
+    <br />
+    <a href="#" class="list-group-item disable listGroupHeader">View All</a>
+    <a onclick="location.href='@Url.Action("GetUsers", "Reports")'" class="list-group-item">Users</a>
+    <a onclick="location.href='@Url.Action("GetVehicles", "Reports")'" class="list-group-item">Vehicles</a>
+    <a onclick="location.href='@Url.Action("GetGasCards", "Reports")'" class="list-group-item">Gas Cards</a>
+</div>
+
