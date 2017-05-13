@@ -153,6 +153,7 @@
       <DependentUpon>TransportationModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\DeleteController.cs" />
     <Compile Include="Controllers\EditController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\TransportationController.cs" />
@@ -208,6 +209,9 @@
       <DependentUpon>TransportationModel.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
+      <DependentUpon>TransportationModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User_Transportation_Log.cs">
       <DependentUpon>TransportationModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Vehicle.cs">
@@ -266,7 +270,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Transportation\Details.cshtml" />
     <Content Include="Views\Transportation\Delete.cshtml" />
-    <Content Include="Views\Transportation\IndexOLD.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\CreateDepartment.cshtml" />
     <Content Include="Views\Admin\CreateVehicle.cshtml" />
@@ -275,7 +278,6 @@
     <Content Include="Views\Admin\CreateKey.cshtml" />
     <Content Include="Views\Admin\CreateGasCard.cshtml" />
     <Content Include="Views\Admin\CreateGasCardStatus.cshtml" />
-    <Content Include="Views\Transportation\SignOut.cshtml" />
     <Content Include="Views\Transportation\ConfirmSignIn.cshtml" />
     <Content Include="Views\Admin\CreateUser.cshtml" />
     <EntityDeploy Include="TransportationModel.edmx">
@@ -293,12 +295,21 @@
     <Content Include="Views\Reports\GetSignOutLog.cshtml" />
     <Content Include="Views\Reports\GetVehicles.cshtml" />
     <Content Include="Views\Transportation\SignIn.cshtml" />
+    <Content Include="Views\Transportation\CheckOut.cshtml" />
+    <Content Include="Views\Admin\GetVehicles.cshtml" />
+    <Content Include="Views\Admin\GetGasCards.cshtml" />
+    <Content Include="Views\Admin\GetDepartments.cshtml" />
+    <Content Include="Views\Admin\getVehicleStatuses.cshtml" />
+    <Content Include="Views\Admin\getCampus.cshtml" />
+    <Content Include="Views\Admin\getKeys.cshtml" />
+    <Content Include="Views\Admin\GetGasCardStatuses.cshtml" />
     <Content Include="Views\Admin\GetUsers.cshtml" />
-    <Content Include="Views\Edit\GetUsers.cshtml" />
+    <Content Include="Views\Edit\EditUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Delete\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -4,8 +4,6 @@
     ViewBag.Title = "GetUsers";
 }
 
-<h2>GetUsers</h2>
-
 
 <table class="table">
     <tr>
@@ -19,7 +17,7 @@
             @Html.DisplayNameFor(model => model.LastName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Department.DepartmentCode)
+            @Html.DisplayNameFor(model => model.Department.DepartmentName)
         </th>
         <th></th>
     </tr>
@@ -36,11 +34,11 @@
             @Html.DisplayFor(modelItem => item.LastName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Department.DepartmentCode)
+            @Html.DisplayFor(modelItem => item.Department.DepartmentName)
         </td>
         <td>
-            <a class="btn btn-info" onclick="location.href='@Url.Action("EditUser","Admin", new { id=item.UserId })'">Edit</a>
-            <a class="btn btn-danger" onclick="location.href='@Url.Action("EditUser","Admin", new { id=item.UserId })'">Delete</a>
+            <a class="btn btn-primary" onclick="location.href='@Url.Action("EditUser", "Edit", new { id = item.UserId })'">Edit</a>
+            <a class="btn btn-danger" onclick="location.href='@Url.Action("DeleteUser", "Delete", new { id = item.UserId })'">Delete</a>
         </td>
     </tr>
 }

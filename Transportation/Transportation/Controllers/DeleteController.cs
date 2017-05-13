@@ -6,12 +6,12 @@ using System.Web.Mvc;
 
 namespace Transportation.Controllers
 {
-    public class EditController : Controller
+    public class DeleteController : Controller
     {
         FacilitiesDBEntities transportationContext = new FacilitiesDBEntities();
 
         [HttpGet]
-        public ActionResult EditUser(int? id)
+        public ActionResult DeleteUser(int? id)
         {
             if (id == null)
             {
@@ -25,17 +25,27 @@ namespace Transportation.Controllers
             return View(user);
         }
         [HttpPost]
-        public ActionResult EditUser(User user)
+        public ActionResult DeleteUser(int? id, Transportation_View transport)
         {
             try
             {
+                Transportation_View trans = new Transportation_View();
                 if (ModelState.IsValid)
                 {
-                    transportationContext.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(Response.StatusCode = 400);
+                    }
+                    trans = transportationContext.Transportation_View.Find(id);
+                    if (trans == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    transportationContext.Transportation_View.Remove(trans);
                     transportationContext.SaveChanges();
                     return RedirectToAction("Index");
                 }
-                return View(user);
+                return View(trans);
             }
             catch
             {

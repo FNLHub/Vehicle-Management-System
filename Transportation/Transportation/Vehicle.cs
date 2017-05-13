@@ -27,8 +27,8 @@ namespace Transportation
         public int CampusId { get; set; }
     
         public virtual Campus Campus { get; set; }
-        public virtual VehicleStatus VehicleStatus { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SignOut> SignOuts { get; set; }
+        public virtual VehicleStatus VehicleStatus { get; set; }
     }
 }

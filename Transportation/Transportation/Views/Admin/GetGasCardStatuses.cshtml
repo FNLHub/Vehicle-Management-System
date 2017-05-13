@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Transportation.GasCardStatus>
+
+@{
+    ViewBag.Title = "GetGasCardStatuses";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusName)
+        </td>
+        <td>
+            <a class="btn btn-primary" onclick="location.href='@Url.Action("EditGasCardStatus", "Edit", new { id = item.StatusId })'">Edit</a>
+            <a class="btn btn-danger" onclick="location.href='@Url.Action("DeleteGasCardStatus", "Delete", new { id = item.StatusId })'">Delete</a>
+        </td>
+    </tr>
+}
+
+</table>

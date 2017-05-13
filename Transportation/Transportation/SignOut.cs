@@ -26,8 +26,6 @@ namespace Transportation
     
         public virtual GasCard GasCard { get; set; }
         public virtual Key Key { get; set; }
-        public virtual SignOut SignOut1 { get; set; }
-        public virtual SignOut SignOut2 { get; set; }
         public virtual User User { get; set; }
         public virtual Vehicle Vehicle { get; set; }
     }

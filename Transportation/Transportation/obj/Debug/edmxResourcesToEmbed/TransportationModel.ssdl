@@ -151,6 +151,22 @@ warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_ViewAll' does not 
     <Property Name="CheckInTime" Type="datetime" />
     <Property Name="ActivityTime" Type="datetime" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="User_Transportation_Log">
+    <Key>
+      <PropertyRef Name="BannerId" />
+      <PropertyRef Name="Destination" />
+      <PropertyRef Name="VehicleName" />
+      <PropertyRef Name="GasCardName" />
+      <PropertyRef Name="KeyName" />
+    </Key>
+    <Property Name="BannerId" Type="nchar" MaxLength="8" Nullable="false" />
+    <Property Name="Destination" Type="nchar" MaxLength="60" Nullable="false" />
+    <Property Name="VehicleName" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="GasCardName" Type="nchar" MaxLength="60" Nullable="false" />
+    <Property Name="KeyName" Type="nchar" MaxLength="5" Nullable="false" />
+  </EntityType>
   <Association Name="FK_GasCards_GasCardStatuses">
     <End Role="GasCardStatuses" Type="Self.GasCardStatuses" Multiplicity="1" />
     <End Role="GasCards" Type="Self.GasCards" Multiplicity="*" />
@@ -306,6 +322,15 @@ warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_ViewAll' does not 
     [Transportation_ViewAll].[CheckInTime] AS [CheckInTime], 
     [Transportation_ViewAll].[ActivityTime] AS [ActivityTime]
     FROM [dbo].[Transportation_ViewAll] AS [Transportation_ViewAll]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="User_Transportation_Log" EntityType="Self.User_Transportation_Log" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [User_Transportation_Log].[BannerId] AS [BannerId], 
+    [User_Transportation_Log].[Destination] AS [Destination], 
+    [User_Transportation_Log].[VehicleName] AS [VehicleName], 
+    [User_Transportation_Log].[GasCardName] AS [GasCardName], 
+    [User_Transportation_Log].[KeyName] AS [KeyName]
+    FROM [dbo].[User_Transportation_Log] AS [User_Transportation_Log]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK_GasCards_GasCardStatuses" Association="Self.FK_GasCards_GasCardStatuses">
       <End Role="GasCardStatuses" EntitySet="GasCardStatuses" />

@@ -215,5 +215,54 @@ namespace Transportation.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public ActionResult GetUsers()
+        {
+            return View(transportationContext.Users.ToList());
+        }
+
+        [HttpGet]
+        public ActionResult GetDepartments()
+        {
+            return View(transportationContext.Departments.ToList());
+        }
+
+        [HttpGet]
+        public ActionResult GetVehicles()
+        {
+            return View(transportationContext.Vehicles.ToList());
+        }
+
+        [HttpGet]
+        public ActionResult getVehicleStatuses()
+        {
+            return View(transportationContext.VehicleStatuses.ToList());
+        }
+
+        [HttpGet]
+        public ActionResult getCampus()
+        {
+            return View(transportationContext.Campuses.ToList());
+        }
+
+        [HttpGet]
+        public ActionResult getKeys()
+        {
+            return View(transportationContext.Keys.ToList());
+        }
+
+        [HttpGet]
+        public ActionResult GetGasCards()
+        {
+            return View(transportationContext.GasCards.ToList());
+        }
+
+        [HttpGet]
+        public ActionResult GetGasCardStatuses()
+        {
+            return View(transportationContext.GasCardStatuses.ToList());
+        }
+        
     }
 }

@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Transportation.Key>
+
+@{
+    ViewBag.Title = "getKeys";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.KeyName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.KeyName)
+        </td>
+        <td>
+            <a class="btn btn-primary" onclick="location.href='@Url.Action("EditKeys", "Edit", new { id = item.KeyId })'">Edit</a>
+            <a class="btn btn-danger" onclick="location.href='@Url.Action("DeleteKeys", "Delete", new { id = item.KeyId })'">Delete</a>
+        </td>
+    </tr>
+}
+
+</table>

@@ -9,8 +9,8 @@ namespace Transportation.Controllers
     public class TransportationController : Controller
     {
         FacilitiesDBEntities transportationContext = new FacilitiesDBEntities();
-        
-        
+
+
         [HttpGet] // GET: Transportation
         public ActionResult Index()
         {
@@ -18,20 +18,31 @@ namespace Transportation.Controllers
         }
 
         [HttpGet]
-        public ActionResult SignOut()
+        public ActionResult CheckOut()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult SignOut(SignOut trans)
+        public ActionResult CheckOut(User_Transportation_Log trans)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    trans.CheckOutTime = DateTime.Now;
-                    trans.ActivityTime = DateTime.Now;
-                    transportationContext.SignOuts.Add(trans);
+                    var userId = transportationContext.Users.Where(u => u.BannerId == trans.BannerId).Select(i => i.UserId).FirstOrDefault();
+                    var vehicleId = transportationContext.Vehicles.Where(v => v.VehicleName == trans.VehicleName).Select(i => i.VehicleId).FirstOrDefault();
+                    var keyId = transportationContext.Keys.Where(k => k.KeyName == trans.KeyName).Select(i => i.KeyId).FirstOrDefault();
+                    var gasCardId = transportationContext.GasCards.Where(g => g.GasCardName == trans.GasCardName).Select(i => i.GasCardId).FirstOrDefault();
+
+                    SignOut signLog = new SignOut();
+                    signLog.UserId = userId;
+                    signLog.VehicleId = vehicleId;
+                    signLog.KeyId = keyId;
+                    signLog.Destination = trans.Destination;
+                    signLog.GasCardId = gasCardId;
+                    signLog.CheckOutTime = DateTime.Now;
+                    signLog.ActivityTime = DateTime.Now;
+                    transportationContext.SignOuts.Add(signLog);
                     transportationContext.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -42,6 +53,7 @@ namespace Transportation.Controllers
             }
             return View();
         }
+        
         [HttpGet]
         public ActionResult SignIn()
         {
@@ -98,7 +110,7 @@ namespace Transportation.Controllers
             return View(trans);
         }
 
-        
+
 
         [HttpGet]
         public ActionResult Delete(int? id)
@@ -142,6 +154,6 @@ namespace Transportation.Controllers
                 return View();
             }
         }
-        
+
     }
 }
