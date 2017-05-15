@@ -14,7 +14,7 @@ namespace Transportation.Controllers
         [HttpGet] // GET: Transportation
         public ActionResult Index()
         {
-            return View(transportationContext.Transportation_SignedOutView.ToList());
+            return View();
         }
 
         [HttpGet]
@@ -34,16 +34,19 @@ namespace Transportation.Controllers
                     var keyId = transportationContext.Keys.Where(k => k.KeyName == trans.KeyName).Select(i => i.KeyId).FirstOrDefault();
                     var gasCardId = transportationContext.GasCards.Where(g => g.GasCardName == trans.GasCardName).Select(i => i.GasCardId).FirstOrDefault();
 
-                    SignOut signLog = new SignOut();
-                    signLog.UserId = userId;
-                    signLog.VehicleId = vehicleId;
-                    signLog.KeyId = keyId;
-                    signLog.Destination = trans.Destination;
-                    signLog.GasCardId = gasCardId;
-                    signLog.CheckOutTime = DateTime.Now;
-                    signLog.ActivityTime = DateTime.Now;
-                    transportationContext.SignOuts.Add(signLog);
-                    transportationContext.SaveChanges();
+                    if (userId != 0 && vehicleId != 0 && keyId != 0 && gasCardId != 0)
+                    {
+                        SignOut signLog = new SignOut();
+                        signLog.UserId = userId;
+                        signLog.VehicleId = vehicleId;
+                        signLog.KeyId = keyId;
+                        signLog.Destination = trans.Destination;
+                        signLog.GasCardId = gasCardId;
+                        signLog.CheckOutTime = DateTime.Now;
+                        signLog.ActivityTime = DateTime.Now;
+                        transportationContext.SignOuts.Add(signLog);
+                        transportationContext.SaveChanges();
+                    }
                     return RedirectToAction("Index");
                 }
                 catch
