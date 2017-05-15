@@ -99,6 +99,48 @@
           <Property Name="StatusName" Type="nchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'FacilitiesDB.dbo.Admin_Create_GasCard' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Admin_Create_GasCard">
+          <Key>
+            <PropertyRef Name="GasCardName" />
+            <PropertyRef Name="GasCardNum" />
+            <PropertyRef Name="GasCardPin" />
+            <PropertyRef Name="StatusName" />
+          </Key>
+          <Property Name="GasCardName" Type="nchar" MaxLength="60" Nullable="false" />
+          <Property Name="GasCardNum" Type="nchar" MaxLength="16" Nullable="false" />
+          <Property Name="GasCardPin" Type="nchar" MaxLength="4" Nullable="false" />
+          <Property Name="StatusName" Type="nchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FacilitiesDB.dbo.Admin_Create_User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Admin_Create_User">
+          <Key>
+            <PropertyRef Name="BannerId" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="DepartmentName" />
+          </Key>
+          <Property Name="BannerId" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="FirstName" Type="nchar" MaxLength="60" Nullable="false" />
+          <Property Name="LastName" Type="nchar" MaxLength="60" Nullable="false" />
+          <Property Name="DepartmentName" Type="nchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FacilitiesDB.dbo.Admin_Create_Vehicle' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Admin_Create_Vehicle">
+          <Key>
+            <PropertyRef Name="VehiclePlate" />
+            <PropertyRef Name="VehicleName" />
+            <PropertyRef Name="StatusName" />
+            <PropertyRef Name="CampusCode" />
+          </Key>
+          <Property Name="VehiclePlate" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="VehicleName" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="StatusName" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="CampusCode" Type="nchar" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_SignedOutView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Transportation_SignedOutView">
           <Key>
@@ -279,6 +321,30 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vehicles" EntityType="Self.Vehicles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VehicleStatuses" EntityType="Self.VehicleStatuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Admin_Create_GasCard" EntityType="Self.Admin_Create_GasCard" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Admin_Create_GasCard].[GasCardName] AS [GasCardName], 
+    [Admin_Create_GasCard].[GasCardNum] AS [GasCardNum], 
+    [Admin_Create_GasCard].[GasCardPin] AS [GasCardPin], 
+    [Admin_Create_GasCard].[StatusName] AS [StatusName]
+    FROM [dbo].[Admin_Create_GasCard] AS [Admin_Create_GasCard]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Admin_Create_User" EntityType="Self.Admin_Create_User" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Admin_Create_User].[BannerId] AS [BannerId], 
+    [Admin_Create_User].[FirstName] AS [FirstName], 
+    [Admin_Create_User].[LastName] AS [LastName], 
+    [Admin_Create_User].[DepartmentName] AS [DepartmentName]
+    FROM [dbo].[Admin_Create_User] AS [Admin_Create_User]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Admin_Create_Vehicle" EntityType="Self.Admin_Create_Vehicle" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Admin_Create_Vehicle].[VehiclePlate] AS [VehiclePlate], 
+    [Admin_Create_Vehicle].[VehicleName] AS [VehicleName], 
+    [Admin_Create_Vehicle].[StatusName] AS [StatusName], 
+    [Admin_Create_Vehicle].[CampusCode] AS [CampusCode]
+    FROM [dbo].[Admin_Create_Vehicle] AS [Admin_Create_Vehicle]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="Transportation_SignedOutView" EntityType="Self.Transportation_SignedOutView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Transportation_SignedOutView].[VId] AS [VId], 
@@ -421,6 +487,9 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
             <End Role="VehicleStatus" EntitySet="VehicleStatuses" />
             <End Role="Vehicle" EntitySet="Vehicles" />
           </AssociationSet>
+          <EntitySet Name="Admin_Create_User" EntityType="FacilitiesDBModel.Admin_Create_User" />
+          <EntitySet Name="Admin_Create_Vehicle" EntityType="FacilitiesDBModel.Admin_Create_Vehicle" />
+          <EntitySet Name="Admin_Create_GasCard" EntityType="FacilitiesDBModel.Admin_Create_GasCard" />
         </EntityContainer>
         <EntityType Name="Campus">
           <Key>
@@ -693,6 +762,42 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Admin_Create_User">
+          <Key>
+            <PropertyRef Name="BannerId" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="DepartmentName" />
+          </Key>
+          <Property Name="BannerId" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
+          <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Admin_Create_Vehicle">
+          <Key>
+            <PropertyRef Name="VehiclePlate" />
+            <PropertyRef Name="VehicleName" />
+            <PropertyRef Name="StatusName" />
+            <PropertyRef Name="CampusCode" />
+          </Key>
+          <Property Name="VehiclePlate" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="VehicleName" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="StatusName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="CampusCode" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Admin_Create_GasCard">
+          <Key>
+            <PropertyRef Name="GasCardName" />
+            <PropertyRef Name="GasCardNum" />
+            <PropertyRef Name="GasCardPin" />
+            <PropertyRef Name="StatusName" />
+          </Key>
+          <Property Name="GasCardName" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
+          <Property Name="GasCardNum" Type="String" Nullable="false" MaxLength="16" FixedLength="true" Unicode="true" />
+          <Property Name="GasCardPin" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="true" />
+          <Property Name="StatusName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -865,6 +970,36 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
                 <ScalarProperty Name="VehicleName" ColumnName="VehicleName" />
                 <ScalarProperty Name="Destination" ColumnName="Destination" />
                 <ScalarProperty Name="BannerId" ColumnName="BannerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Admin_Create_User">
+            <EntityTypeMapping TypeName="FacilitiesDBModel.Admin_Create_User">
+              <MappingFragment StoreEntitySet="Admin_Create_User">
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="BannerId" ColumnName="BannerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Admin_Create_Vehicle">
+            <EntityTypeMapping TypeName="FacilitiesDBModel.Admin_Create_Vehicle">
+              <MappingFragment StoreEntitySet="Admin_Create_Vehicle">
+                <ScalarProperty Name="CampusCode" ColumnName="CampusCode" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="VehicleName" ColumnName="VehicleName" />
+                <ScalarProperty Name="VehiclePlate" ColumnName="VehiclePlate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Admin_Create_GasCard">
+            <EntityTypeMapping TypeName="FacilitiesDBModel.Admin_Create_GasCard">
+              <MappingFragment StoreEntitySet="Admin_Create_GasCard">
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="GasCardPin" ColumnName="GasCardPin" />
+                <ScalarProperty Name="GasCardNum" ColumnName="GasCardNum" />
+                <ScalarProperty Name="GasCardName" ColumnName="GasCardName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

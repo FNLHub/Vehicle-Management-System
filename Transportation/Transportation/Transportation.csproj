@@ -146,6 +146,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin_Create_GasCard.cs">
+      <DependentUpon>TransportationModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Admin_Create_User.cs">
+      <DependentUpon>TransportationModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Admin_Create_Vehicle.cs">
+      <DependentUpon>TransportationModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -272,14 +281,11 @@
     <Content Include="Views\Transportation\Delete.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\CreateDepartment.cshtml" />
-    <Content Include="Views\Admin\CreateVehicle.cshtml" />
     <Content Include="Views\Admin\CreateCampus.cshtml" />
     <Content Include="Views\Admin\CreateVehicleStatus.cshtml" />
     <Content Include="Views\Admin\CreateKey.cshtml" />
-    <Content Include="Views\Admin\CreateGasCard.cshtml" />
     <Content Include="Views\Admin\CreateGasCardStatus.cshtml" />
     <Content Include="Views\Transportation\ConfirmSignIn.cshtml" />
-    <Content Include="Views\Admin\CreateUser.cshtml" />
     <EntityDeploy Include="TransportationModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TransportationModel.Designer.cs</LastGenOutput>
@@ -305,6 +311,9 @@
     <Content Include="Views\Admin\GetGasCardStatuses.cshtml" />
     <Content Include="Views\Admin\GetUsers.cshtml" />
     <Content Include="Views\Edit\EditUser.cshtml" />
+    <Content Include="Views\Admin\CreateUser.cshtml" />
+    <Content Include="Views\Admin\CreateVehicle.cshtml" />
+    <Content Include="Views\Admin\CreateGasCard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

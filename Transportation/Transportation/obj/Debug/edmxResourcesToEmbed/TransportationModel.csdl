@@ -47,6 +47,9 @@
       <End Role="VehicleStatus" EntitySet="VehicleStatuses" />
       <End Role="Vehicle" EntitySet="Vehicles" />
     </AssociationSet>
+    <EntitySet Name="Admin_Create_User" EntityType="FacilitiesDBModel.Admin_Create_User" />
+    <EntitySet Name="Admin_Create_Vehicle" EntityType="FacilitiesDBModel.Admin_Create_Vehicle" />
+    <EntitySet Name="Admin_Create_GasCard" EntityType="FacilitiesDBModel.Admin_Create_GasCard" />
   </EntityContainer>
   <EntityType Name="Campus">
     <Key>
@@ -319,4 +322,40 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Admin_Create_User">
+    <Key>
+      <PropertyRef Name="BannerId" />
+      <PropertyRef Name="FirstName" />
+      <PropertyRef Name="LastName" />
+      <PropertyRef Name="DepartmentName" />
+    </Key>
+    <Property Name="BannerId" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Admin_Create_Vehicle">
+    <Key>
+      <PropertyRef Name="VehiclePlate" />
+      <PropertyRef Name="VehicleName" />
+      <PropertyRef Name="StatusName" />
+      <PropertyRef Name="CampusCode" />
+    </Key>
+    <Property Name="VehiclePlate" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="VehicleName" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="StatusName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="CampusCode" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Admin_Create_GasCard">
+    <Key>
+      <PropertyRef Name="GasCardName" />
+      <PropertyRef Name="GasCardNum" />
+      <PropertyRef Name="GasCardPin" />
+      <PropertyRef Name="StatusName" />
+    </Key>
+    <Property Name="GasCardName" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="GasCardNum" Type="String" Nullable="false" MaxLength="16" FixedLength="true" Unicode="true" />
+    <Property Name="GasCardPin" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="true" />
+    <Property Name="StatusName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+  </EntityType>
 </Schema>

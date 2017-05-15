@@ -23,15 +23,28 @@ namespace Transportation.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult CreateUser(User user)
+        public ActionResult CreateUser(Admin_Create_User CUser)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    transportationContext.Users.Add(user);
-                    transportationContext.SaveChanges();
-                    return RedirectToAction("index");
+                    var departmentId = transportationContext.Departments.Where(d => d.DepartmentName == CUser.DepartmentName).Select(i => i.DepartmentId).FirstOrDefault();
+                    if (departmentId != 0)
+                    {
+                        User user = new User();
+                        user.BannerId = CUser.BannerId;
+                        user.FirstName = CUser.FirstName;
+                        user.LastName = CUser.LastName;
+                        user.DepartmentId = departmentId;
+                        transportationContext.Users.Add(user);
+                        transportationContext.SaveChanges();
+
+                        return RedirectToAction("index");
+                    }
+
+                    return new HttpStatusCodeResult(Response.StatusCode = 400);
+
                 }
                 catch
                 {
@@ -73,15 +86,33 @@ namespace Transportation.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult CreateVehicle(Vehicle vehicle)
+        public ActionResult CreateVehicle(Admin_Create_Vehicle CVehicle)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    transportationContext.Vehicles.Add(vehicle);
-                    transportationContext.SaveChanges();
-                    return RedirectToAction("Index");
+                    var statusId = transportationContext.VehicleStatuses.Where(Vs => Vs.StatusName == CVehicle.StatusName).Select(i => i.StatusId).FirstOrDefault();
+                    var campusId = transportationContext.Campuses.Where(C => C.CampusCode == CVehicle.CampusCode).Select(i => i.CampusId).FirstOrDefault();
+                    if (statusId != 0 && campusId != 0)
+                    {
+                        //create vehicle table object
+                        Vehicle vehicle = new Vehicle();
+                        //set input from form
+                        vehicle.VehiclePlate = CVehicle.VehiclePlate;
+                        vehicle.VehicleName = CVehicle.VehicleName;
+                        //set validated input from form
+                        vehicle.StatusId = statusId;
+                        vehicle.CampusId = campusId;
+                        //add this information into the Admin Create Vehicle
+                        transportationContext.Vehicles.Add(vehicle);
+                        //Save your changes
+                        transportationContext.SaveChanges();
+                        //retur page
+                        return RedirectToAction("Index");
+                    }
+                    //error if bad input
+                    return new HttpStatusCodeResult(Response.StatusCode = 400);
                 }
                 catch
                 {
@@ -173,15 +204,29 @@ namespace Transportation.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult CreateGasCard(GasCard gasCard)
+        public ActionResult CreateGasCard(Admin_Create_GasCard CGasCard)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    transportationContext.GasCards.Add(gasCard);
-                    transportationContext.SaveChanges();
-                    return RedirectToAction("Index");
+                    var statusId = transportationContext.GasCardStatuses.Where(Gs => Gs.StatusName == CGasCard.StatusName).Select(i => i.StatusId).FirstOrDefault();
+                    if (statusId != 0)
+                    {
+                        //instantiate object
+                        GasCard gasCard = new GasCard();
+                        //set
+                        gasCard.GasCardName = CGasCard.GasCardName;
+                        gasCard.GasCardNum = CGasCard.GasCardNum;
+                        gasCard.GasCardPin = CGasCard.GasCardPin;
+                        gasCard.StatusId = statusId;
+                        //add
+                        transportationContext.GasCards.Add(gasCard);
+                        //save
+                        transportationContext.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    return new HttpStatusCodeResult(Response.StatusCode = 400);
                 }
                 catch
                 {
@@ -235,19 +280,19 @@ namespace Transportation.Controllers
         }
 
         [HttpGet]
-        public ActionResult getVehicleStatuses()
+        public ActionResult GetVehicleStatuses()
         {
             return View(transportationContext.VehicleStatuses.ToList());
         }
 
         [HttpGet]
-        public ActionResult getCampus()
+        public ActionResult GetCampus()
         {
             return View(transportationContext.Campuses.ToList());
         }
 
         [HttpGet]
-        public ActionResult getKeys()
+        public ActionResult GetKeys()
         {
             return View(transportationContext.Keys.ToList());
         }
