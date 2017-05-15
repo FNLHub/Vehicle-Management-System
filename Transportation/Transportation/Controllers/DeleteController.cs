@@ -11,6 +11,12 @@ namespace Transportation.Controllers
         FacilitiesDBEntities transportationContext = new FacilitiesDBEntities();
 
         [HttpGet]
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult DeleteUser(int? id)
         {
             if (id == null)
@@ -25,27 +31,26 @@ namespace Transportation.Controllers
             return View(user);
         }
         [HttpPost]
-        public ActionResult DeleteUser(int? id, Transportation_View transport)
+        public ActionResult DeleteUser(int? id, User Trash)
         {
             try
             {
-                Transportation_View trans = new Transportation_View();
+                User user = new User();
                 if (ModelState.IsValid)
                 {
                     if (id == null)
                     {
                         return new HttpStatusCodeResult(Response.StatusCode = 400);
                     }
-                    trans = transportationContext.Transportation_View.Find(id);
-                    if (trans == null)
+                    user = transportationContext.Users.Find(id);
+                    if (user == null)
                     {
                         return HttpNotFound();
                     }
-                    transportationContext.Transportation_View.Remove(trans);
+                    transportationContext.Users.Remove(user);
                     transportationContext.SaveChanges();
-                    return RedirectToAction("Index");
                 }
-                return View(trans);
+                return View(user);
             }
             catch
             {
