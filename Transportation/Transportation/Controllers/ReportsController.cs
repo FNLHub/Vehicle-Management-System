@@ -40,10 +40,20 @@ namespace Transportation.Controllers
             return View(transportationContext.Transportation_SignedOutView.ToList());
         }
 
+        //[HttpGet]
+        //public ActionResult GetSignOutLog()
+        //{
+        //    return View(transportationContext.Transportation_ViewAll.ToList());
+        //}
         [HttpGet]
-        public ActionResult GetSignOutLog()
+        public ActionResult GetSignOutLog(string D_start, string D_end)
         {
+
+
             return View(transportationContext.Transportation_ViewAll.ToList());
+
+            //This View Returns first name in descending order of top 10
+            //return View(transportationContext.Transportation_ViewAll.OrderByDescending(L => L.FirstName).Take(10).ToList());
         }
     }
 }
