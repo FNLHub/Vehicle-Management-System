@@ -316,6 +316,7 @@
     <Content Include="Views\Admin\CreateGasCard.cshtml" />
     <Content Include="Views\Delete\DeleteUser.cshtml" />
     <Content Include="Views\Delete\Index.cshtml" />
+    <Content Include="Views\Reports\GetByDate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
