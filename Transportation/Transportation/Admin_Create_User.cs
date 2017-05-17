@@ -14,6 +14,7 @@ namespace Transportation
     
     public partial class Admin_Create_User
     {
+
         public string BannerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

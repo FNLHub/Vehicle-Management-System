@@ -48,15 +48,16 @@ namespace Transportation.Controllers
 
         [HttpGet]
         public ActionResult GetSignOutLog(Transportation_ViewAll log)
-        {
-            if (log == null)
+        {   
+            if (log.CheckOutTime != null)
             {
-                return View(transportationContext.Transportation_ViewAll.ToList());
+                if (log.CheckInTime == DateTime.Today + new TimeSpan(23, 59, 59))
+                {
+                    return View(transportationContext.Transportation_ViewAll.Where(m => m.CheckOutTime >= log.CheckOutTime && m.CheckInTime <= log.CheckInTime || m.CheckInTime == null).ToList());
+                }
+                return View(transportationContext.Transportation_ViewAll.Where(m => m.CheckOutTime >= log.CheckOutTime && m.CheckInTime <= log.CheckInTime).ToList());
             }
-            return View(transportationContext.Transportation_ViewAll.Where(m => m.CheckOutTime >= log.CheckOutTime).Where(m => m.CheckInTime <= log.CheckInTime).ToList());
-
-            //This View Returns first name in descending order of top 10
-            //return View(transportationContext.Transportation_ViewAll.OrderByDescending(L => L.FirstName).Take(10).ToList());
+            return View(transportationContext.Transportation_ViewAll.ToList());
         }
 
         [HttpGet]
