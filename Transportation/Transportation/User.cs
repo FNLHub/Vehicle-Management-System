@@ -25,9 +25,11 @@ namespace Transportation
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int DepartmentId { get; set; }
+        public int StatusId { get; set; }
     
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SignOut> SignOuts { get; set; }
+        public virtual UserStatus UserStatus { get; set; }
     }
 }

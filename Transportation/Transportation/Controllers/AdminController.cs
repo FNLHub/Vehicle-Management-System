@@ -30,13 +30,15 @@ namespace Transportation.Controllers
                 try
                 {
                     var departmentId = transportationContext.Departments.Where(d => d.DepartmentName == CUser.DepartmentName).Select(i => i.DepartmentId).FirstOrDefault();
-                    if (departmentId != 0)
+                    var statusId = transportationContext.UserStatuses.Where(s => s.StatusName == CUser.StatusName).Select(i => i.StatusId).FirstOrDefault();
+                    if (departmentId != 0 && statusId != 0)
                     {
                         User user = new User();
                         user.BannerId = CUser.BannerId;
                         user.FirstName = CUser.FirstName;
                         user.LastName = CUser.LastName;
                         user.DepartmentId = departmentId;
+                        user.StatusId = statusId;
                         transportationContext.Users.Add(user);
                         transportationContext.SaveChanges();
 

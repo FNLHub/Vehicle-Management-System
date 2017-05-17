@@ -12,12 +12,19 @@ namespace Transportation
     using System;
     using System.Collections.Generic;
     
-    public partial class Admin_Create_User
+    public partial class UserStatus
     {
-        public string BannerId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string DepartmentName { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public UserStatus()
+        {
+            this.Users = new HashSet<User>();
+        }
+    
+        public int StatusId { get; set; }
+        public string StatusCode { get; set; }
         public string StatusName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> Users { get; set; }
     }
 }

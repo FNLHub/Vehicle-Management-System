@@ -39,8 +39,9 @@ namespace Transportation
         public virtual DbSet<Transportation_View> Transportation_View { get; set; }
         public virtual DbSet<Transportation_ViewAll> Transportation_ViewAll { get; set; }
         public virtual DbSet<User_Transportation_Log> User_Transportation_Log { get; set; }
-        public virtual DbSet<Admin_Create_User> Admin_Create_User { get; set; }
         public virtual DbSet<Admin_Create_Vehicle> Admin_Create_Vehicle { get; set; }
         public virtual DbSet<Admin_Create_GasCard> Admin_Create_GasCard { get; set; }
+        public virtual DbSet<UserStatus> UserStatuses { get; set; }
+        public virtual DbSet<Admin_Create_User> Admin_Create_User { get; set; }
     }
 }

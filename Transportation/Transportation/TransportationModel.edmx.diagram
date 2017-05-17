@@ -27,9 +27,11 @@
         <AssociationConnector Association="FacilitiesDBModel.FK_SignOut_Users" />
         <AssociationConnector Association="FacilitiesDBModel.FK_SignOut_Vehicles" />
         <AssociationConnector Association="FacilitiesDBModel.FK_Vehicles_VehicleStatuses" />
-        <EntityTypeShape EntityType="FacilitiesDBModel.Admin_Create_User" Width="1.5" PointX="5.375" PointY="10.75" />
         <EntityTypeShape EntityType="FacilitiesDBModel.Admin_Create_Vehicle" Width="1.5" PointX="7.375" PointY="10.75" />
         <EntityTypeShape EntityType="FacilitiesDBModel.Admin_Create_GasCard" Width="1.5" PointX="10.375" PointY="8.75" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.UserStatus" Width="1.5" PointX="9.375" PointY="11.875" />
+        <AssociationConnector Association="FacilitiesDBModel.FK_Users_UserStatuses" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.Admin_Create_User" Width="1.5" PointX="11.375" PointY="11.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
