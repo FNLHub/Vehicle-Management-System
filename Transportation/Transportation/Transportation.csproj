@@ -313,13 +313,13 @@
     <Content Include="Views\Admin\getKeys.cshtml" />
     <Content Include="Views\Admin\GetGasCardStatuses.cshtml" />
     <Content Include="Views\Admin\GetUsers.cshtml" />
-    <Content Include="Views\Edit\EditUser.cshtml" />
     <Content Include="Views\Admin\CreateVehicle.cshtml" />
     <Content Include="Views\Admin\CreateGasCard.cshtml" />
     <Content Include="Views\Delete\DeleteUser.cshtml" />
     <Content Include="Views\Delete\Index.cshtml" />
     <Content Include="Views\Reports\GetByDate.cshtml" />
     <Content Include="Views\Admin\CreateUser.cshtml" />
+    <Content Include="Views\Edit\EditUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

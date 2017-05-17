@@ -1,4 +1,5 @@
-﻿@model Transportation.Admin_Create_User
+﻿@using System.Data.Entity.ModelConfiguration.Configuration
+@model Transportation.Admin_Create_User
 
 @{
     ViewBag.Title = "CreateUser";
@@ -17,7 +18,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.BannerId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.BannerId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.BannerId, new { htmlAttributes = new { @class = "form-control", @maxlength = 8 } })
                 @Html.ValidationMessageFor(model => model.BannerId, "", new { @class = "text-danger" })
             </div>
         </div>

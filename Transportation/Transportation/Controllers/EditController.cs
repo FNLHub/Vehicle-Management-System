@@ -17,7 +17,7 @@ namespace Transportation.Controllers
             {
                 return new HttpStatusCodeResult(Response.StatusCode = 400);
             }
-            User user = transportationContext.Users.Find(id);
+            var user = transportationContext.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -31,9 +31,16 @@ namespace Transportation.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    transportationContext.Entry(user).State = System.Data.Entity.EntityState.Modified;
-                    transportationContext.SaveChanges();
-                    return RedirectToAction("Index");
+                    var departmentId = transportationContext.Departments.Where(d => d.DepartmentName == user.Department.DepartmentName).Select(i => i.DepartmentId).FirstOrDefault();
+                    if (departmentId != 0)
+                    {
+                        user.DepartmentId = departmentId;
+                        user.Department.DepartmentId = departmentId;
+                        transportationContext.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                        transportationContext.SaveChanges();
+                    }
+                
+                    return RedirectToAction("Index", "Admin");
                 }
                 return View(user);
             }

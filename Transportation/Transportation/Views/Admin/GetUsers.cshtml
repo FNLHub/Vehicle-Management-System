@@ -19,6 +19,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Department.DepartmentName)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserStatus.StatusName)
+        </th>
         <th></th>
     </tr>
 
@@ -37,8 +40,10 @@
             @Html.DisplayFor(modelItem => item.Department.DepartmentName)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.UserStatus.StatusName)
+        </td>
+        <td>
             <a class="btn btn-primary" onclick="location.href='@Url.Action("EditUser", "Edit", new { id = item.UserId })'">Edit</a>
-            <a class="btn btn-danger" onclick="location.href='@Url.Action("DeleteUser", "Delete", new { id = item.UserId })'">Delete</a>
         </td>
     </tr>
 }
