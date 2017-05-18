@@ -5,16 +5,21 @@
 <!-- Custom CSS -->
 <link rel="stylesheet" type="text/css" href="~/Content/MainStyles.css" />
 
+<!-- Effects CSS-->
+<link rel="stylesheet" type="text/css" href="~/Content/EffectsStyles.css" />
+
+
 <div class="ButtonContainer row">
 
     <h1>Welcome!</h1>
+
     <br />
     <div class="col-md-6">
-        <a onclick="location.href='@Url.Action("CheckOut", "Transportation")'"><span class="glyphicon glyphicon-chevron-up LargeIcon"></span></a>
+            <a onclick="location.href='@Url.Action("CheckOut", "Transportation")'"><span class="glyphicon glyphicon-chevron-up LargeIcon rotateRightSlow"></span></a>
         <h1>Checkout</h1>
     </div>
     <div class="col-md-6">
-        <a onclick="location.href='@Url.Action("SignIn", "Transportation")'"><span class="glyphicon glyphicon-chevron-down LargeIcon"></span></a>
+        <a onclick="location.href='@Url.Action("SignIn", "Transportation")'"><span class="glyphicon glyphicon-chevron-down LargeIcon rotateLeftSlow"></span></a>
         <h1>Return</h1>
     </div>
 </div>

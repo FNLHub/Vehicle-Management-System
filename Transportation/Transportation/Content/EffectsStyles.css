@@ -1,0 +1,19 @@
+﻿.rotateRightSlow {
+    -webkit-transition: all 0.7s ease;
+}
+
+    .rotateRightSlow:hover {
+        -webkit-transform: rotateZ(90deg);
+        -ms-transform: rotateZ(90deg);
+        transform: rotateZ(90deg);
+    }
+
+.rotateLeftSlow {
+    -webkit-transition: all 0.7s ease;
+}
+
+    .rotateLeftSlow:hover {
+        -webkit-transform: rotateZ(90deg);
+        -ms-transform: rotateZ(90deg);
+        transform: rotateZ(90deg);
+    }

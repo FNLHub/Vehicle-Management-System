@@ -16,8 +16,8 @@ body, h1 {
     font: sans-serif;
 }
 
-.listGroupHeader {
-    background-color: #e6e6e6;
+a:link{
+    text-decoration: none;
 }
 
 
