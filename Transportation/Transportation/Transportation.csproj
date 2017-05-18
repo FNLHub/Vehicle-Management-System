@@ -320,6 +320,8 @@
     <Content Include="Views\Reports\GetByDate.cshtml" />
     <Content Include="Views\Admin\CreateUser.cshtml" />
     <Content Include="Views\Edit\EditUser.cshtml" />
+    <Content Include="Views\Edit\EditGasCard.cshtml" />
+    <Content Include="Views\Edit\EditVehicle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
