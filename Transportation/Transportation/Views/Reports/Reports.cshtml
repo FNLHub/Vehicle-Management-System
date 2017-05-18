@@ -8,15 +8,50 @@
 
 <h2 class="CenterElement">Reports</h2>
 
-<div class="list-group">
-    <a href="#" class="list-group-item disable listGroupHeader">Logs</a>
-    <a onclick="location.href='@Url.Action("GetSignedOut", "Reports")'" class="list-group-item">Currently Signed Out</a>
-    <a onclick="location.href='@Url.Action("GetSignOutLog", "Reports")'" class="list-group-item">History</a>
-    <a onclick="location.href='@Url.Action("GetByDate", "Reports")'" class="list-group-item">Search History By Date</a>
-    <br />
-    <a href="#" class="list-group-item disable listGroupHeader">View All</a>
-    <a onclick="location.href='@Url.Action("GetUsers", "Reports")'" class="list-group-item">Users</a>
-    <a onclick="location.href='@Url.Action("GetVehicles", "Reports")'" class="list-group-item">Vehicles</a>
-    <a onclick="location.href='@Url.Action("GetGasCards", "Reports")'" class="list-group-item">Gas Cards</a>
+<div class="container">
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseLogs"><span class="glyphicon glyphicon-list"></span> Logs</a>
+                </h4>
+            </div>
+            <div id="collapseLogs" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <a onclick="location.href='@Url.Action("GetSignedOut", "Reports")'" class="list-group-item">Currently Signed Out</a>
+                    <a onclick="location.href='@Url.Action("GetSignOutLog", "Reports")'" class="list-group-item">History</a>
+                    <a onclick="location.href='@Url.Action("GetByDate", "Reports")'" class="list-group-item">Search History By Date</a>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseViewAll"><span class="glyphicon glyphicon-list"></span> View All</a>
+                </h4>
+            </div>
+            <div id="collapseViewAll" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <a onclick="location.href='@Url.Action("GetUsers", "Reports")'" class="list-group-item">Users</a>
+                    <a onclick="location.href='@Url.Action("GetVehicles", "Reports")'" class="list-group-item">Vehicles</a>
+                    <a onclick="location.href='@Url.Action("GetGasCards", "Reports")'" class="list-group-item">Gas Cards</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
+@*<div class="list-group">
+        <a href="#" class="list-group-item disable listGroupHeader">Logs</a>
+        <a onclick="location.href='@Url.Action("GetSignedOut", "Reports")'" class="list-group-item">Currently Signed Out</a>
+        <a onclick="location.href='@Url.Action("GetSignOutLog", "Reports")'" class="list-group-item">History</a>
+        <a onclick="location.href='@Url.Action("GetByDate", "Reports")'" class="list-group-item">Search History By Date</a>
+        <br />
+        <a href="#" class="list-group-item disable listGroupHeader">View All</a>
+        <a onclick="location.href='@Url.Action("GetUsers", "Reports")'" class="list-group-item">Users</a>
+        <a onclick="location.href='@Url.Action("GetVehicles", "Reports")'" class="list-group-item">Vehicles</a>
+        <a onclick="location.href='@Url.Action("GetGasCards", "Reports")'" class="list-group-item">Gas Cards</a>
+    </div>*@
 
