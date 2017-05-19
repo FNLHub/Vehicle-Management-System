@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Transportation.Campus>
+
+@{
+    ViewBag.Title = "getCampus";
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CampusCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CampusAddress)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CampusCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CampusAddress)
+        </td>
+        <td>
+            <a class="btn btn-primary" onclick="location.href='@Url.Action("EditCampus", "Edit", new { id = item.CampusId })'">Edit</a>
+        </td>
+    </tr>
+}
+
+</table>

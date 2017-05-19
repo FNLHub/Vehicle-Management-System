@@ -53,7 +53,7 @@ namespace Transportation.Controllers
 
         //=========================================    Edit Gas Card    ===================================================
         [HttpGet]
-        public ActionResult EditGasCard(int ? id)
+        public ActionResult EditGasCard(int? id)
         {
             if (id == null)
             {
@@ -73,17 +73,9 @@ namespace Transportation.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    //Select the gas card id which matches GasCardName with the selected gas card
-                    var gasCardId = transportationContext.GasCards.Where(G => G.GasCardName == gasCard.GasCardName).Select(i => i.GasCardId).FirstOrDefault();
-                   
-                    if (gasCardId != 0)
-                    {
-                        //Possible logic error on the two lines below
-                        gasCard.StatusId = gasCardId;
-                        gasCard.GasCardStatus.StatusId = gasCardId;
-                        transportationContext.Entry(gasCard).State = System.Data.Entity.EntityState.Modified;
-                        transportationContext.SaveChanges();
-                    }
+                    transportationContext.Entry(gasCard).State = System.Data.Entity.EntityState.Modified;
+                    transportationContext.SaveChanges();
+                    
 
                     return RedirectToAction("Index", "Admin");
                 }
@@ -117,20 +109,8 @@ namespace Transportation.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    //Select the vehicle id where the names match
-                    var vehicleId = transportationContext.Vehicles.Where( v => v.VehicleName == vehicle.VehicleName).Select(i => i.VehicleId).FirstOrDefault();
-                 
-                    if (vehicleId != 0)
-                    {
-
-                        //possible logic error on the 2 lines below
-                        vehicle.VehicleId = vehicleId;
-                        vehicle.VehicleStatus.StatusId = vehicleId;
-                    
-                        //Saving modified entity
                         transportationContext.Entry(vehicle).State = System.Data.Entity.EntityState.Modified;
                         transportationContext.SaveChanges();
-                    }
 
                     return RedirectToAction("Index", "Admin");
                 }

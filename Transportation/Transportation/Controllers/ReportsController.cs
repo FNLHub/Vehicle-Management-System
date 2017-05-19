@@ -51,7 +51,7 @@ namespace Transportation.Controllers
         {   
             if (log.CheckOutTime != null)
             {
-                if (log.CheckInTime == DateTime.Today + new TimeSpan(23, 59, 59))
+                if (log.CheckInTime >= DateTime.Today + new TimeSpan(23, 59, 59))
                 {
                     return View(transportationContext.Transportation_ViewAll.Where(m => m.CheckOutTime >= log.CheckOutTime && m.CheckInTime <= log.CheckInTime || m.CheckInTime == null).ToList());
                 }

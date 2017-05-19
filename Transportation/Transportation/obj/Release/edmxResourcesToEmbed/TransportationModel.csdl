@@ -47,6 +47,14 @@
       <End Role="VehicleStatus" EntitySet="VehicleStatuses" />
       <End Role="Vehicle" EntitySet="Vehicles" />
     </AssociationSet>
+    <EntitySet Name="Admin_Create_Vehicle" EntityType="FacilitiesDBModel.Admin_Create_Vehicle" />
+    <EntitySet Name="Admin_Create_GasCard" EntityType="FacilitiesDBModel.Admin_Create_GasCard" />
+    <EntitySet Name="UserStatuses" EntityType="FacilitiesDBModel.UserStatus" />
+    <AssociationSet Name="FK_Users_UserStatuses" Association="FacilitiesDBModel.FK_Users_UserStatuses">
+      <End Role="UserStatus" EntitySet="UserStatuses" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="Admin_Create_User" EntityType="FacilitiesDBModel.Admin_Create_User" />
   </EntityContainer>
   <EntityType Name="Campus">
     <Key>
@@ -134,6 +142,8 @@
     <Property Name="DepartmentId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Department" Relationship="FacilitiesDBModel.FK_Users_Departments" FromRole="User" ToRole="Department" />
     <NavigationProperty Name="SignOuts" Relationship="FacilitiesDBModel.FK_SignOut_Users" FromRole="User" ToRole="SignOut" />
+    <Property Name="StatusId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="UserStatus" Relationship="FacilitiesDBModel.FK_Users_UserStatuses" FromRole="User" ToRole="UserStatus" />
   </EntityType>
   <EntityType Name="Vehicle">
     <Key>
@@ -319,4 +329,63 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Admin_Create_Vehicle">
+    <Key>
+      <PropertyRef Name="VehiclePlate" />
+      <PropertyRef Name="VehicleName" />
+      <PropertyRef Name="StatusName" />
+      <PropertyRef Name="CampusCode" />
+    </Key>
+    <Property Name="VehiclePlate" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="VehicleName" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="StatusName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="CampusCode" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Admin_Create_GasCard">
+    <Key>
+      <PropertyRef Name="GasCardName" />
+      <PropertyRef Name="GasCardNum" />
+      <PropertyRef Name="GasCardPin" />
+      <PropertyRef Name="StatusName" />
+    </Key>
+    <Property Name="GasCardName" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="GasCardNum" Type="String" Nullable="false" MaxLength="16" FixedLength="true" Unicode="true" />
+    <Property Name="GasCardPin" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="true" />
+    <Property Name="StatusName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="UserStatus">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StatusCode" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="true" />
+    <Property Name="StatusName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="FacilitiesDBModel.FK_Users_UserStatuses" FromRole="UserStatus" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Users_UserStatuses">
+    <End Type="FacilitiesDBModel.UserStatus" Role="UserStatus" Multiplicity="1" />
+    <End Type="FacilitiesDBModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserStatus">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Admin_Create_User">
+    <Key>
+      <PropertyRef Name="BannerId" />
+      <PropertyRef Name="FirstName" />
+      <PropertyRef Name="LastName" />
+      <PropertyRef Name="DepartmentName" />
+      <PropertyRef Name="StatusName" />
+    </Key>
+    <Property Name="BannerId" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="StatusName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+  </EntityType>
 </Schema>

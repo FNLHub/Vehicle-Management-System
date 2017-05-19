@@ -51,6 +51,7 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -310,8 +311,8 @@
     <Content Include="Views\Admin\GetGasCards.cshtml" />
     <Content Include="Views\Admin\GetDepartments.cshtml" />
     <Content Include="Views\Admin\getVehicleStatuses.cshtml" />
-    <Content Include="Views\Admin\getCampus.cshtml" />
-    <Content Include="Views\Admin\getKeys.cshtml" />
+    <Content Include="Views\Admin\GetCampus.cshtml" />
+    <Content Include="Views\Admin\GetKeys.cshtml" />
     <Content Include="Views\Admin\GetGasCardStatuses.cshtml" />
     <Content Include="Views\Admin\GetUsers.cshtml" />
     <Content Include="Views\Admin\CreateVehicle.cshtml" />

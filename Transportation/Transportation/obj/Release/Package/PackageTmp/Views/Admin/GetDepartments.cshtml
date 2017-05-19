@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Transportation.Department>
+
+@{
+    ViewBag.Title = "GetDepartments";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DepartmentCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DepartmentName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DepartmentCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DepartmentName)
+        </td>
+        <td>
+            <a class="btn btn-primary" onclick="location.href='@Url.Action("EditDepartment", "Edit", new { id = item.DepartmentId })'">Edit</a>
+        </td>
+    </tr>
+}
+
+</table>

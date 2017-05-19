@@ -76,6 +76,7 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="FacilitiesDBModel.User">
         <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
           <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -166,6 +167,46 @@
           <ScalarProperty Name="GasCardName" ColumnName="GasCardName" />
           <ScalarProperty Name="VehicleName" ColumnName="VehicleName" />
           <ScalarProperty Name="Destination" ColumnName="Destination" />
+          <ScalarProperty Name="BannerId" ColumnName="BannerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Admin_Create_Vehicle">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.Admin_Create_Vehicle">
+        <MappingFragment StoreEntitySet="Admin_Create_Vehicle">
+          <ScalarProperty Name="CampusCode" ColumnName="CampusCode" />
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+          <ScalarProperty Name="VehicleName" ColumnName="VehicleName" />
+          <ScalarProperty Name="VehiclePlate" ColumnName="VehiclePlate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Admin_Create_GasCard">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.Admin_Create_GasCard">
+        <MappingFragment StoreEntitySet="Admin_Create_GasCard">
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+          <ScalarProperty Name="GasCardPin" ColumnName="GasCardPin" />
+          <ScalarProperty Name="GasCardNum" ColumnName="GasCardNum" />
+          <ScalarProperty Name="GasCardName" ColumnName="GasCardName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserStatuses">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.UserStatus">
+        <MappingFragment StoreEntitySet="UserStatuses">
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+          <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Admin_Create_User">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.Admin_Create_User">
+        <MappingFragment StoreEntitySet="Admin_Create_User">
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="BannerId" ColumnName="BannerId" />
         </MappingFragment>
       </EntityTypeMapping>
