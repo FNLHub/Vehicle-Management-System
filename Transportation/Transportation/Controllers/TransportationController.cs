@@ -18,6 +18,28 @@ namespace Transportation.Controllers
         }
 
         [HttpGet]
+        public ActionResult TransporationRequest()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult TransporationRequest(TransporationRequest transRequest)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+
+                }
+                catch
+                {
+                    return new HttpStatusCodeResult(Response.StatusCode = 400);
+                }
+            }
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult CheckOut()
         {
             return View();
@@ -56,6 +78,8 @@ namespace Transportation.Controllers
             }
             return View();
         }
+
+
         
         [HttpGet]
         public ActionResult SignIn()

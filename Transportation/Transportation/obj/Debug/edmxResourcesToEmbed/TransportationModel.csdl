@@ -55,6 +55,15 @@
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
     <EntitySet Name="Admin_Create_User" EntityType="FacilitiesDBModel.Admin_Create_User" />
+    <EntitySet Name="TransporationRequests" EntityType="FacilitiesDBModel.TransporationRequest" />
+    <AssociationSet Name="FK_TransporationRequests_Users" Association="FacilitiesDBModel.FK_TransporationRequests_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="TransporationRequest" EntitySet="TransporationRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransporationRequests_VehicleId" Association="FacilitiesDBModel.FK_TransporationRequests_VehicleId">
+      <End Role="Vehicle" EntitySet="Vehicles" />
+      <End Role="TransporationRequest" EntitySet="TransporationRequests" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Campus">
     <Key>
@@ -144,6 +153,11 @@
     <NavigationProperty Name="SignOuts" Relationship="FacilitiesDBModel.FK_SignOut_Users" FromRole="User" ToRole="SignOut" />
     <Property Name="StatusId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="UserStatus" Relationship="FacilitiesDBModel.FK_Users_UserStatuses" FromRole="User" ToRole="UserStatus" />
+    <Property Name="OfficeAreaCode" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="OfficePhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="CellAreaCode" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="CellPhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TransporationRequests" Relationship="FacilitiesDBModel.FK_TransporationRequests_Users" FromRole="User" ToRole="TransporationRequest" />
   </EntityType>
   <EntityType Name="Vehicle">
     <Key>
@@ -157,6 +171,7 @@
     <NavigationProperty Name="Campus" Relationship="FacilitiesDBModel.FK_Vehicles_Campuses" FromRole="Vehicle" ToRole="Campus" />
     <NavigationProperty Name="SignOuts" Relationship="FacilitiesDBModel.FK_SignOut_Vehicles" FromRole="Vehicle" ToRole="SignOut" />
     <NavigationProperty Name="VehicleStatus" Relationship="FacilitiesDBModel.FK_Vehicles_VehicleStatuses" FromRole="Vehicle" ToRole="VehicleStatus" />
+    <NavigationProperty Name="TransporationRequests" Relationship="FacilitiesDBModel.FK_TransporationRequests_VehicleId" FromRole="Vehicle" ToRole="TransporationRequest" />
   </EntityType>
   <EntityType Name="VehicleStatus">
     <Key>
@@ -388,4 +403,50 @@
     <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
     <Property Name="StatusName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
   </EntityType>
+  <EntityType Name="TransporationRequest">
+    <Key>
+      <PropertyRef Name="TransReqID" />
+    </Key>
+    <Property Name="TransReqID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="OfficeNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="CellPhoneNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="VehicleId" Type="Int32" Nullable="false" />
+    <Property Name="VehicleAddonId" Type="Int32" Nullable="false" />
+    <Property Name="LeaveDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="LeaveTime" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="ReturnDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ReturnTime" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="TripPurpose" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NumOfStudents" Type="Int32" Nullable="false" />
+    <Property Name="PassengerGroupId" Type="Int32" />
+    <Property Name="Approved" Type="Boolean" Nullable="false" />
+    <Property Name="ProcessedUserId" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="FacilitiesDBModel.FK_TransporationRequests_Users" FromRole="TransporationRequest" ToRole="User" />
+    <NavigationProperty Name="Vehicle" Relationship="FacilitiesDBModel.FK_TransporationRequests_VehicleId" FromRole="TransporationRequest" ToRole="Vehicle" />
+  </EntityType>
+  <Association Name="FK_TransporationRequests_Users">
+    <End Type="FacilitiesDBModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="FacilitiesDBModel.TransporationRequest" Role="TransporationRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="TransporationRequest">
+        <PropertyRef Name="ProcessedUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransporationRequests_VehicleId">
+    <End Type="FacilitiesDBModel.Vehicle" Role="Vehicle" Multiplicity="1" />
+    <End Type="FacilitiesDBModel.TransporationRequest" Role="TransporationRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehicle">
+        <PropertyRef Name="VehicleId" />
+      </Principal>
+      <Dependent Role="TransporationRequest">
+        <PropertyRef Name="VehicleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

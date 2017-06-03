@@ -65,6 +65,26 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
+  <EntityType Name="TransporationRequests">
+    <Key>
+      <PropertyRef Name="TransReqID" />
+    </Key>
+    <Property Name="TransReqID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="OfficeNumber" Type="nchar" MaxLength="10" />
+    <Property Name="CellPhoneNumber" Type="nchar" MaxLength="10" />
+    <Property Name="VehicleId" Type="int" Nullable="false" />
+    <Property Name="VehicleAddonId" Type="int" Nullable="false" />
+    <Property Name="LeaveDate" Type="date" Nullable="false" />
+    <Property Name="LeaveTime" Type="time" Precision="7" Nullable="false" />
+    <Property Name="ReturnDate" Type="date" Nullable="false" />
+    <Property Name="ReturnTime" Type="time" Precision="7" Nullable="false" />
+    <Property Name="TripPurpose" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="NumOfStudents" Type="int" Nullable="false" />
+    <Property Name="PassengerGroupId" Type="int" />
+    <Property Name="Approved" Type="bit" Nullable="false" />
+    <Property Name="ProcessedUserId" Type="int" />
+  </EntityType>
   <EntityType Name="Users">
     <Key>
       <PropertyRef Name="UserId" />
@@ -75,6 +95,10 @@
     <Property Name="LastName" Type="nchar" MaxLength="60" Nullable="false" />
     <Property Name="DepartmentId" Type="int" Nullable="false" />
     <Property Name="StatusId" Type="int" Nullable="false" />
+    <Property Name="OfficeAreaCode" Type="nvarchar" MaxLength="6" />
+    <Property Name="OfficePhoneNumber" Type="nvarchar" MaxLength="12" />
+    <Property Name="CellAreaCode" Type="nvarchar" MaxLength="6" />
+    <Property Name="CellPhoneNumber" Type="nvarchar" MaxLength="12" />
   </EntityType>
   <EntityType Name="UserStatuses">
     <Key>
@@ -280,6 +304,30 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_TransporationRequests_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="TransporationRequests" Type="Self.TransporationRequests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="TransporationRequests">
+        <PropertyRef Name="ProcessedUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransporationRequests_VehicleId">
+    <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="1" />
+    <End Role="TransporationRequests" Type="Self.TransporationRequests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehicles">
+        <PropertyRef Name="VehicleId" />
+      </Principal>
+      <Dependent Role="TransporationRequests">
+        <PropertyRef Name="VehicleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Users_Departments">
     <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
     <End Role="Users" Type="Self.Users" Multiplicity="*" />
@@ -336,6 +384,7 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
     <EntitySet Name="Keys" EntityType="Self.Keys" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SignOut" EntityType="Self.SignOut" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransporationRequests" EntityType="Self.TransporationRequests" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserStatuses" EntityType="Self.UserStatuses" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Vehicles" EntityType="Self.Vehicles" Schema="dbo" store:Type="Tables" />
@@ -442,6 +491,14 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
     <AssociationSet Name="FK_SignOut_Vehicles" Association="Self.FK_SignOut_Vehicles">
       <End Role="Vehicles" EntitySet="Vehicles" />
       <End Role="SignOut" EntitySet="SignOut" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransporationRequests_Users" Association="Self.FK_TransporationRequests_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="TransporationRequests" EntitySet="TransporationRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransporationRequests_VehicleId" Association="Self.FK_TransporationRequests_VehicleId">
+      <End Role="Vehicles" EntitySet="Vehicles" />
+      <End Role="TransporationRequests" EntitySet="TransporationRequests" />
     </AssociationSet>
     <AssociationSet Name="FK_Users_Departments" Association="Self.FK_Users_Departments">
       <End Role="Departments" EntitySet="Departments" />

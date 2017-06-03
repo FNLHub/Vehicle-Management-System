@@ -43,5 +43,6 @@ namespace Transportation
         public virtual DbSet<Admin_Create_GasCard> Admin_Create_GasCard { get; set; }
         public virtual DbSet<UserStatus> UserStatuses { get; set; }
         public virtual DbSet<Admin_Create_User> Admin_Create_User { get; set; }
+        public virtual DbSet<TransporationRequest> TransporationRequests { get; set; }
     }
 }

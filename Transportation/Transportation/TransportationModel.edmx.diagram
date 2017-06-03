@@ -32,6 +32,9 @@
         <EntityTypeShape EntityType="FacilitiesDBModel.UserStatus" Width="1.5" PointX="9.375" PointY="11.875" />
         <AssociationConnector Association="FacilitiesDBModel.FK_Users_UserStatuses" />
         <EntityTypeShape EntityType="FacilitiesDBModel.Admin_Create_User" Width="1.5" PointX="11.375" PointY="11.75" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.TransporationRequest" Width="1.5" PointX="12.25" PointY="3" />
+        <AssociationConnector Association="FacilitiesDBModel.FK_TransporationRequests_Users" />
+        <AssociationConnector Association="FacilitiesDBModel.FK_TransporationRequests_VehicleId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

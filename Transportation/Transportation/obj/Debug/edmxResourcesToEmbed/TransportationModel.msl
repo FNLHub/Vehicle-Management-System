@@ -76,6 +76,10 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="FacilitiesDBModel.User">
         <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="CellPhoneNumber" ColumnName="CellPhoneNumber" />
+          <ScalarProperty Name="CellAreaCode" ColumnName="CellAreaCode" />
+          <ScalarProperty Name="OfficePhoneNumber" ColumnName="OfficePhoneNumber" />
+          <ScalarProperty Name="OfficeAreaCode" ColumnName="OfficeAreaCode" />
           <ScalarProperty Name="StatusId" ColumnName="StatusId" />
           <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -208,6 +212,27 @@
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="BannerId" ColumnName="BannerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransporationRequests">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.TransporationRequest">
+        <MappingFragment StoreEntitySet="TransporationRequests">
+          <ScalarProperty Name="ProcessedUserId" ColumnName="ProcessedUserId" />
+          <ScalarProperty Name="Approved" ColumnName="Approved" />
+          <ScalarProperty Name="PassengerGroupId" ColumnName="PassengerGroupId" />
+          <ScalarProperty Name="NumOfStudents" ColumnName="NumOfStudents" />
+          <ScalarProperty Name="TripPurpose" ColumnName="TripPurpose" />
+          <ScalarProperty Name="ReturnTime" ColumnName="ReturnTime" />
+          <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+          <ScalarProperty Name="LeaveTime" ColumnName="LeaveTime" />
+          <ScalarProperty Name="LeaveDate" ColumnName="LeaveDate" />
+          <ScalarProperty Name="VehicleAddonId" ColumnName="VehicleAddonId" />
+          <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+          <ScalarProperty Name="CellPhoneNumber" ColumnName="CellPhoneNumber" />
+          <ScalarProperty Name="OfficeNumber" ColumnName="OfficeNumber" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="TransReqID" ColumnName="TransReqID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

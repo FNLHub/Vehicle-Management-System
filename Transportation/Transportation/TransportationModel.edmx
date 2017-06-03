@@ -70,6 +70,26 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="TransporationRequests">
+          <Key>
+            <PropertyRef Name="TransReqID" />
+          </Key>
+          <Property Name="TransReqID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="OfficeNumber" Type="nchar" MaxLength="10" />
+          <Property Name="CellPhoneNumber" Type="nchar" MaxLength="10" />
+          <Property Name="VehicleId" Type="int" Nullable="false" />
+          <Property Name="VehicleAddonId" Type="int" Nullable="false" />
+          <Property Name="LeaveDate" Type="date" Nullable="false" />
+          <Property Name="LeaveTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="ReturnDate" Type="date" Nullable="false" />
+          <Property Name="ReturnTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="TripPurpose" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="NumOfStudents" Type="int" Nullable="false" />
+          <Property Name="PassengerGroupId" Type="int" />
+          <Property Name="Approved" Type="bit" Nullable="false" />
+          <Property Name="ProcessedUserId" Type="int" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="UserId" />
@@ -80,6 +100,10 @@
           <Property Name="LastName" Type="nchar" MaxLength="60" Nullable="false" />
           <Property Name="DepartmentId" Type="int" Nullable="false" />
           <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="OfficeAreaCode" Type="nvarchar" MaxLength="6" />
+          <Property Name="OfficePhoneNumber" Type="nvarchar" MaxLength="12" />
+          <Property Name="CellAreaCode" Type="nvarchar" MaxLength="6" />
+          <Property Name="CellPhoneNumber" Type="nvarchar" MaxLength="12" />
         </EntityType>
         <EntityType Name="UserStatuses">
           <Key>
@@ -285,6 +309,30 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TransporationRequests_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="TransporationRequests" Type="Self.TransporationRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="TransporationRequests">
+              <PropertyRef Name="ProcessedUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransporationRequests_VehicleId">
+          <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="1" />
+          <End Role="TransporationRequests" Type="Self.TransporationRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicles">
+              <PropertyRef Name="VehicleId" />
+            </Principal>
+            <Dependent Role="TransporationRequests">
+              <PropertyRef Name="VehicleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Users_Departments">
           <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
@@ -341,6 +389,7 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
           <EntitySet Name="Keys" EntityType="Self.Keys" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SignOut" EntityType="Self.SignOut" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransporationRequests" EntityType="Self.TransporationRequests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserStatuses" EntityType="Self.UserStatuses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vehicles" EntityType="Self.Vehicles" Schema="dbo" store:Type="Tables" />
@@ -448,6 +497,14 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
             <End Role="Vehicles" EntitySet="Vehicles" />
             <End Role="SignOut" EntitySet="SignOut" />
           </AssociationSet>
+          <AssociationSet Name="FK_TransporationRequests_Users" Association="Self.FK_TransporationRequests_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="TransporationRequests" EntitySet="TransporationRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransporationRequests_VehicleId" Association="Self.FK_TransporationRequests_VehicleId">
+            <End Role="Vehicles" EntitySet="Vehicles" />
+            <End Role="TransporationRequests" EntitySet="TransporationRequests" />
+          </AssociationSet>
           <AssociationSet Name="FK_Users_Departments" Association="Self.FK_Users_Departments">
             <End Role="Departments" EntitySet="Departments" />
             <End Role="Users" EntitySet="Users" />
@@ -524,6 +581,15 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <EntitySet Name="Admin_Create_User" EntityType="FacilitiesDBModel.Admin_Create_User" />
+          <EntitySet Name="TransporationRequests" EntityType="FacilitiesDBModel.TransporationRequest" />
+          <AssociationSet Name="FK_TransporationRequests_Users" Association="FacilitiesDBModel.FK_TransporationRequests_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="TransporationRequest" EntitySet="TransporationRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransporationRequests_VehicleId" Association="FacilitiesDBModel.FK_TransporationRequests_VehicleId">
+            <End Role="Vehicle" EntitySet="Vehicles" />
+            <End Role="TransporationRequest" EntitySet="TransporationRequests" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Campus">
           <Key>
@@ -613,6 +679,11 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
           <NavigationProperty Name="SignOuts" Relationship="FacilitiesDBModel.FK_SignOut_Users" FromRole="User" ToRole="SignOut" />
           <Property Name="StatusId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="UserStatus" Relationship="FacilitiesDBModel.FK_Users_UserStatuses" FromRole="User" ToRole="UserStatus" />
+          <Property Name="OfficeAreaCode" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="OfficePhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="CellAreaCode" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="CellPhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TransporationRequests" Relationship="FacilitiesDBModel.FK_TransporationRequests_Users" FromRole="User" ToRole="TransporationRequest" />
         </EntityType>
         <EntityType Name="Vehicle">
           <Key>
@@ -626,6 +697,7 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
           <NavigationProperty Name="Campus" Relationship="FacilitiesDBModel.FK_Vehicles_Campuses" FromRole="Vehicle" ToRole="Campus" />
           <NavigationProperty Name="SignOuts" Relationship="FacilitiesDBModel.FK_SignOut_Vehicles" FromRole="Vehicle" ToRole="SignOut" />
           <NavigationProperty Name="VehicleStatus" Relationship="FacilitiesDBModel.FK_Vehicles_VehicleStatuses" FromRole="Vehicle" ToRole="VehicleStatus" />
+          <NavigationProperty Name="TransporationRequests" Relationship="FacilitiesDBModel.FK_TransporationRequests_VehicleId" FromRole="Vehicle" ToRole="TransporationRequest" />
         </EntityType>
         <EntityType Name="VehicleStatus">
           <Key>
@@ -857,6 +929,52 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
           <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="StatusName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
         </EntityType>
+        <EntityType Name="TransporationRequest">
+          <Key>
+            <PropertyRef Name="TransReqID" />
+          </Key>
+          <Property Name="TransReqID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="OfficeNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="CellPhoneNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="VehicleId" Type="Int32" Nullable="false" />
+          <Property Name="VehicleAddonId" Type="Int32" Nullable="false" />
+          <Property Name="LeaveDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LeaveTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="ReturnDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ReturnTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="TripPurpose" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NumOfStudents" Type="Int32" Nullable="false" />
+          <Property Name="PassengerGroupId" Type="Int32" />
+          <Property Name="Approved" Type="Boolean" Nullable="false" />
+          <Property Name="ProcessedUserId" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="FacilitiesDBModel.FK_TransporationRequests_Users" FromRole="TransporationRequest" ToRole="User" />
+          <NavigationProperty Name="Vehicle" Relationship="FacilitiesDBModel.FK_TransporationRequests_VehicleId" FromRole="TransporationRequest" ToRole="Vehicle" />
+        </EntityType>
+        <Association Name="FK_TransporationRequests_Users">
+          <End Type="FacilitiesDBModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="FacilitiesDBModel.TransporationRequest" Role="TransporationRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="TransporationRequest">
+              <PropertyRef Name="ProcessedUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransporationRequests_VehicleId">
+          <End Type="FacilitiesDBModel.Vehicle" Role="Vehicle" Multiplicity="1" />
+          <End Type="FacilitiesDBModel.TransporationRequest" Role="TransporationRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="VehicleId" />
+            </Principal>
+            <Dependent Role="TransporationRequest">
+              <PropertyRef Name="VehicleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -938,6 +1056,10 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="FacilitiesDBModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="CellPhoneNumber" ColumnName="CellPhoneNumber" />
+                <ScalarProperty Name="CellAreaCode" ColumnName="CellAreaCode" />
+                <ScalarProperty Name="OfficePhoneNumber" ColumnName="OfficePhoneNumber" />
+                <ScalarProperty Name="OfficeAreaCode" ColumnName="OfficeAreaCode" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
                 <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -1070,6 +1192,27 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="BannerId" ColumnName="BannerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransporationRequests">
+            <EntityTypeMapping TypeName="FacilitiesDBModel.TransporationRequest">
+              <MappingFragment StoreEntitySet="TransporationRequests">
+                <ScalarProperty Name="ProcessedUserId" ColumnName="ProcessedUserId" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="PassengerGroupId" ColumnName="PassengerGroupId" />
+                <ScalarProperty Name="NumOfStudents" ColumnName="NumOfStudents" />
+                <ScalarProperty Name="TripPurpose" ColumnName="TripPurpose" />
+                <ScalarProperty Name="ReturnTime" ColumnName="ReturnTime" />
+                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+                <ScalarProperty Name="LeaveTime" ColumnName="LeaveTime" />
+                <ScalarProperty Name="LeaveDate" ColumnName="LeaveDate" />
+                <ScalarProperty Name="VehicleAddonId" ColumnName="VehicleAddonId" />
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="CellPhoneNumber" ColumnName="CellPhoneNumber" />
+                <ScalarProperty Name="OfficeNumber" ColumnName="OfficeNumber" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="TransReqID" ColumnName="TransReqID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

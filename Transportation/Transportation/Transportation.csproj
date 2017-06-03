@@ -189,6 +189,9 @@
     <Compile Include="sysdiagram.cs">
       <DependentUpon>TransportationModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TransporationRequest.cs">
+      <DependentUpon>TransportationModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="TransportationModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2690,6 +2693,7 @@
     <Content Include="Scripts\kendo\2017.2.504\cultures\kendo.culture.am-ET.min.js.map" />
     <Content Include="Scripts\kendo\2017.2.504\cultures\kendo.culture.af.min.js.map" />
     <Content Include="Scripts\kendo\2017.2.504\cultures\kendo.culture.af-ZA.min.js.map" />
+    <Content Include="Views\Transportation\TransporationRequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

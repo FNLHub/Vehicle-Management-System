@@ -7,9 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-
-using System.ComponentModel.DataAnnotations;
-
 namespace Transportation
 {
     using System;
@@ -17,10 +14,6 @@ namespace Transportation
     
     public partial class Admin_Create_User
     {
-        [Required]
-        [MinLength(8)]
-        [MaxLength(8)]
-        [RegularExpression("^[0-9]+$", ErrorMessage = "Please enter your 8 digit BannerId")]
         public string BannerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
