@@ -162,11 +162,11 @@
     <Compile Include="Campus.cs">
       <DependentUpon>TransportationModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\DeleteController.cs" />
-    <Compile Include="Controllers\EditController.cs" />
-    <Compile Include="Controllers\ReportsController.cs" />
-    <Compile Include="Controllers\TransportationController.cs" />
+    <Compile Include="fonts\Controllers\AdminController.cs" />
+    <Compile Include="fonts\Controllers\DeleteController.cs" />
+    <Compile Include="fonts\Controllers\EditController.cs" />
+    <Compile Include="fonts\Controllers\ReportsController.cs" />
+    <Compile Include="fonts\Controllers\TransportationController.cs" />
     <Compile Include="Department.cs">
       <DependentUpon>TransportationModel.tt</DependentUpon>
     </Compile>
