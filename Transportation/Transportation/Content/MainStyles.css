@@ -20,9 +20,6 @@ a:hover{
     text-decoration: none;
 }
 
-
-
-
 .disable {
     pointer-events: none;
     cursor: default;
@@ -32,3 +29,16 @@ a:hover{
     width: 100%;
     height: 16px;
 }
+
+.step {
+
+font-size:1em;
+color:red;
+
+}
+
+/*.glowing-border:focus {
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
+}*/
