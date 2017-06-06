@@ -21,15 +21,15 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4">
                     First Name:<br />
-                    <input type="text" disabled="disabled" placeholder="John" class="form-control" />
+                    @Html.TextBoxFor(m=> m.User.FirstName, new { @class= "form-control", @disabled = "disabled", @placeholder="John"  })
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4">
                     Last Name:<br />
-                    <input type="text" disabled="disabled" placeholder="Doe" class="form-control"/>
+                    @Html.TextBoxFor(m=> m.User.LastName, new { @class="form-control", @disabled="disabled", @placeholder="Doe" })
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4">
                     Date:<br />
-                    <input type="text" disabled="disabled" placeholder="@DateTime.Now" class="form-control" />
+                    <input type="text" disabled="disabled" placeholder="@DateTime.Now.ToShortDateString()" class="form-control" />
                 </div>
             </div>
             <br />
@@ -37,15 +37,16 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4">
                     Email:<br />
+                    <!-- Waiting for that email stuff to come in -->
                     <input type="text" disabled="disabled" placeholder="example@cos.edu" class="form-control" />
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4">
                     Phone:<br />
-                    <input type="text" disabled="disabled" placeholder="555 555 5555" class="form-control"/>
+                    @Html.TextBoxFor(m=> m.User.OfficePhoneNumber, new { @class="form-control", @disabled="disabled", @placeholder="555 555 5555"})
                 </div>
             <div class="col-lg-4 col-md-4 col-sm-4">
                     Mobile Phone:<br />
-                    <input type="text" disabled="disabled" placeholder="555 555 5555" class="form-control"/>
+                    @Html.TextBoxFor(m=> m.User.CellPhoneNumber, new { @class="form-control", @disabled="disabled", @placeholder="555 555 5555"})
                 </div>
             </div>
         </div>
@@ -112,7 +113,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4">
                     Leave Time:<br />
-                    @Html.TextBoxFor(m=> m.LeaveTime, new { @class = "form-control", @type = "time" })
+                    @Html.TextBoxFor(m=> m.LeaveTime, new { @class = "form-control", @type = "time", @placeholder="6:00am" })
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4">
                     Return Time:<br />
@@ -133,6 +134,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-4">
                     Purpose of the trip:<br/>
                     @Html.TextBoxFor(m=> m.TripPurpose, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m=> m.TripPurpose, "WHAT IS THIS?", new { @class="text-danger" })
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-8">
                     How many students are going on the trip?<br/>
