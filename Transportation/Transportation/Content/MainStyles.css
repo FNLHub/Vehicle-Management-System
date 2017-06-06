@@ -54,6 +54,10 @@ color:red;
     background: lightskyblue;
 }
 
+.input-group {
+    font-size: 13px;
+}
+
 .checkbox-label {
     width: 100%;
     text-align: center;
