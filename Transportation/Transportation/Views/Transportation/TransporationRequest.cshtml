@@ -7,10 +7,10 @@
 
 <h2>TransporationRequest</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-segment">
 
         <!--Step 1-->
@@ -51,16 +51,52 @@
         </div>
         <!--End Step 1-->
 
-        <!--Step 2-->
+        <!-- Step 2 -->
         <div class="jumbotron">
             <p class="step"><span class="glyphicon glyphicon-star-empty"></span>Step #2</p>
+            
+            <!--
+            <div class="panel panel-default">
+                <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseViewAll">
+                    <h4 class="panel-title">
+                        <a><span class="glyphicon glyphicon-unchecked"></span> Choose Car</a>
+                    </h4>
+                </div>
+                <div id="collapseViewAll" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <a onclick="location.href='@Url.Action("GetUsers", "Reports")'" class="list-group-item">Users</a>
+                        <a onclick="location.href='@Url.Action("GetVehicles", "Reports")'" class="list-group-item">Vehicles</a>
+                        <a onclick="location.href='@Url.Action("GetGasCards", "Reports")'" class="list-group-item">Gas Cards</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseViewAll">
+                    <h4 class="panel-title">
+                        <a><span class="glyphicon"></span> Gas Card</a>
+                    </h4>
+                </div>
+                <div id="collapseViewAll" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <a onclick="location.href='@Url.Action("GetUsers", "Reports")'" class="list-group-item">Users</a>
+                        <a onclick="location.href='@Url.Action("GetVehicles", "Reports")'" class="list-group-item">Vehicles</a>
+                        <a onclick="location.href='@Url.Action("GetGasCards", "Reports")'" class="list-group-item">Gas Cards</a>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+
+        <!--Step 3-->
+        <div class="jumbotron">
+            <p class="step"><span class="glyphicon glyphicon-star-empty"></span>Step #3</p>
 
             <!--Row-->
             <div class="row">
 
                 <div class="col-lg-4 col-md-4 col-sm-4">
                     Leave Date:<br />
-                    <input type="date" class="form-control" />
+                    @Html.TextBoxFor(m => m.LeaveDate, new { @class = "form-control", @type="date"})
                 </div>
 
                 <div class="col-lg-4 col-md-4 col-sm-4">

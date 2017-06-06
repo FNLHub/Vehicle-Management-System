@@ -37,6 +37,29 @@ color:red;
 
 }
 
+.derp, .herp {
+    height: 64px;
+}
+
+.derp:hover, .herp:hover {
+    filter: brightness(85%);
+    cursor: pointer;
+}
+
+.derp {
+    background: pink;
+}
+
+.herp {
+    background: lightskyblue;
+}
+
+.checkbox-label {
+    width: 100%;
+    text-align: center;
+    line-height: 32px;
+}
+
 /*.glowing-border:focus {
     outline: none;
     border-color: #9ecaed;
