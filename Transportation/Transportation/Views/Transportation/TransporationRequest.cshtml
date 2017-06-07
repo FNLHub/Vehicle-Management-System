@@ -49,57 +49,106 @@
                     @Html.TextBoxFor(m=> m.User.CellPhoneNumber, new { @class="form-control", @disabled="disabled", @placeholder="555 555 5555"})
                 </div>
             </div>
+            <div style="clear: both;"></div>
         </div>
+        
         <!--End Step 1-->
 
         <!-- Step 2 -->
         <div class="jumbotron">
-                <p class="step"><span class="glyphicon glyphicon-star-empty"></span>Step #2</p>
-                
-                <!--Choose Vehicle Type, Radio Buttons-->
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                <h3><span class="glyphicon glyphicon-road"></span> Select a Vehicle</h3>
-                        <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-danger active">
-                                <input type="radio" id="V_RadNone" name="veh" value="1" />
-                                @Html.RadioButtonFor(m=> m.Vehicle, 1, new { @checked= true, @id= "V_RadNone", @name= "veh" })
-                                None
-                            </label>
-                            <label class="btn btn-default">
-                                @Html.RadioButtonFor(m => m.Vehicle, 2, new { @id = "V_RadCar", @name = "veh" })
-                                Car
-                            </label>
-                            <label class="btn btn-default">
-                                @Html.RadioButtonFor(m => m.Vehicle, 3, new { @id = "V_Rad8", @name = "veh" })
-                                8 Pass Van
-                            </label>
-                            <label class="btn btn-default">
-                                @Html.RadioButtonFor(m => m.Vehicle, 4, new { @id = "V_Rad12", @name = "veh" })
-                                12 Pass Van
-                            </label>
-                        </div>
-                </div>
-                <!-- Would you like a Gas Card, Radio Buttons-->
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <h3><span class="glyphicon glyphicon-credit-card"></span> Gas Card</h3>
-                    <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-danger active">
-                            @Html.RadioButtonFor(g => g.NeedGasCard, 0, new { @checked= true, @id = "G_RadNo", @name = "gc" })
-                            No
-                        </label>
-                        <label class="btn btn-success">
-                            @Html.RadioButtonFor(g => g.NeedGasCard, 1, new { @id = "G_RadYes", @name = "gc" })
-                            Yes
-                        </label>
-                    </div>
+            <p class="step"><span class="glyphicon glyphicon-star-empty"></span>Step #2</p>
 
-                </div>
-                <div style="clear:both;"></div>
-            </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Banner ID</th>
+                            <th>First Name:</th>
+                            <th>Last Name:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>1</th>
+                            <th>@Html.EditorFor(b => b.User.BannerId)</th>
+                            <th>@Html.EditorFor(u => u.User.FirstName)</th>
+                            <th>@Html.EditorFor(u => u.User.LastName)</th>
+                        </tr>
+                    </tbody>
+                </table>
+            <div style="clear: both;"></div>
+        </div>
 
-        <!--Step 3-->
+        <!-- Step 3 -->
         <div class="jumbotron">
             <p class="step"><span class="glyphicon glyphicon-star-empty"></span>Step #3</p>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name:</th>
+                            <th>Select Vehicle:</th>
+                            <th><span class="glyphicon glyphicon-credit-card"></span> Gas Card</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>1</th>
+                            <th>
+                                @Html.DropDownListFor(u => u.UserID, new SelectList(
+                                new List<Object>
+                                {
+                                    new { value = "1", text = "Bob"},
+                                    new {value = "2", text = "Jim"}
+                                },
+                                "value",
+                                "text"))
+                        </th>
+                        <th>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-danger active">
+                                    <input type="radio" id="V_RadNone" name="veh" value="1" />
+                                    @Html.RadioButtonFor(m => m.Vehicle, 1, new { @checked = true, @id = "V_RadNone", @name = "veh" })
+                                    None
+                                </label>
+                                <label class="btn btn-default">
+                                    @Html.RadioButtonFor(m => m.Vehicle, 2, new { @id = "V_RadCar", @name = "veh" })
+                                    Car
+                                </label>
+                                <label class="btn btn-default">
+                                    @Html.RadioButtonFor(m => m.Vehicle, 3, new { @id = "V_Rad8", @name = "veh" })
+                                    8 Pass Van
+                                </label>
+                                <label class="btn btn-default">
+                                    @Html.RadioButtonFor(m => m.Vehicle, 4, new { @id = "V_Rad12", @name = "veh" })
+                                    12 Pass Van
+                                </label>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-danger active">
+                                        @Html.RadioButtonFor(g => g.NeedGasCard, 0, new { @checked = true, @id = "G_RadNo", @name = "gc" })
+                                        No
+                                    </label>
+                                    <label class="btn btn-success">
+                                        @Html.RadioButtonFor(g => g.NeedGasCard, 1, new { @id = "G_RadYes", @name = "gc" })
+                                        Yes
+                                    </label>
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        <div style="clear: both;"></div>
+    </div>
+
+        <!--Step 4-->
+        <div class="jumbotron">
+            <p class="step"><span class="glyphicon glyphicon-star-empty"></span>Step #4</p>
 
             <!--Row-->
             <div class="row">
@@ -128,16 +177,16 @@
                     Return Time:<br />
                     @Html.TextBoxFor(m=> m.ReturnTime, new { @class = "form-control", @type = "time" })
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    
+                <div class="col-lg-4 col-md-4 col-sm-4">   
                 </div>
             </div>
+            <div style="clear: both;"></div>
         </div>
-        <!--End Step 3-->
+        <!--End Step 4-->
 
-        <!-- Step 4 -->
+        <!-- Step 5 -->
         <div class="jumbotron">
-            <p class="step"><span class="glyphicon glyphicon-star-empty"></span> Step #4</p>
+            <p class="step"><span class="glyphicon glyphicon-star-empty"></span> Step #5</p>
             
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4">
@@ -147,123 +196,18 @@
                 <div class="col-lg-8 col-md-8 col-sm-8">
                     How many students are going on the trip?<br/>
                     @*@Html.TextBoxFor(m=> m.NumOfStudents, new { @class = "form-control" })*@
+                    @*@Html.TextBoxFor(m => m.NumOfStudents, new { @type = "number", @min = "0" })*@
                     @Html.DropDownListFor(m => m.NumOfStudents, Enumerable.Range(1, 100).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }))
                 </div>
             </div>
+            <div style="clear: both;"></div>
         </div>
 
-
-
-        <div style="height:1024px"></div>
-        <div class="form-horizontal">
-            <h4>TransporationRequest</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.UserID, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.UserID, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.OfficeNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.OfficeNumber, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.OfficeNumber, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.CellPhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CellPhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CellPhoneNumber, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.VehicleId, "VehicleId", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @*@Html.DropDownList("VehicleId", null, htmlAttributes: new { @class = "form-control" })*@
-                    @Html.ValidationMessageFor(model => model.VehicleId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.VehicleAddonId, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.VehicleAddonId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.VehicleAddonId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.LeaveDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.LeaveDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.LeaveDate, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.LeaveTime, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.LeaveTime, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.LeaveTime, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ReturnDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ReturnDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ReturnDate, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ReturnTime, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ReturnTime, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ReturnTime, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.TripPurpose, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TripPurpose, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TripPurpose, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.NumOfStudents, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.NumOfStudents, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.NumOfStudents, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PassengerGroupId, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PassengerGroupId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PassengerGroupId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-            </div>
+        <div class="submit-container">
+            <span class="btn btn-success">Submit</span>
+            <span class="btn btn-danger">Cancel</span>
         </div>
-
-        </div>
-        
+     </div>
 }
 
 <div>
