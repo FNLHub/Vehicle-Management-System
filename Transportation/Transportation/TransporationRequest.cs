@@ -20,6 +20,7 @@ namespace Transportation
         public string CellPhoneNumber { get; set; }
         public int VehicleId { get; set; }
         public int VehicleAddonId { get; set; }
+        public bool NeedGasCard { get; set; }
         public System.DateTime LeaveDate { get; set; }
         public System.TimeSpan LeaveTime { get; set; }
         public System.DateTime ReturnDate { get; set; }
@@ -31,6 +32,7 @@ namespace Transportation
         public Nullable<int> ProcessedUserId { get; set; }
     
         public virtual User User { get; set; }
+        public virtual VehicleAddon VehicleAddon { get; set; }
         public virtual Vehicle Vehicle { get; set; }
     }
 }

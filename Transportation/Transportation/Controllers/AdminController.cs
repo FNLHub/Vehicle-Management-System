@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Transportation.Controllers
 {
+    //[Authorize(Roles ="Facilities, Admin")]
     public class AdminController : Controller
     {
         FacilitiesDBEntities transportationContext = new FacilitiesDBEntities();

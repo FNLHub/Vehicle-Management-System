@@ -41,6 +41,11 @@
     <Property Name="KeyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="KeyName" Type="nchar" MaxLength="5" Nullable="false" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'FacilitiesDB.dbo.PassengerGroup' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="PassengerGroup">
+          <Property Name="PassengerGroupId" Type="int" />
+        </EntityType>-->
   <EntityType Name="SignOut">
     <Key>
       <PropertyRef Name="SignOutId" />
@@ -75,6 +80,7 @@
     <Property Name="CellPhoneNumber" Type="nchar" MaxLength="10" />
     <Property Name="VehicleId" Type="int" Nullable="false" />
     <Property Name="VehicleAddonId" Type="int" Nullable="false" />
+    <Property Name="NeedGasCard" Type="bit" Nullable="false" />
     <Property Name="LeaveDate" Type="date" Nullable="false" />
     <Property Name="LeaveTime" Type="time" Precision="7" Nullable="false" />
     <Property Name="ReturnDate" Type="date" Nullable="false" />
@@ -99,6 +105,7 @@
     <Property Name="OfficePhoneNumber" Type="nvarchar" MaxLength="12" />
     <Property Name="CellAreaCode" Type="nvarchar" MaxLength="6" />
     <Property Name="CellPhoneNumber" Type="nvarchar" MaxLength="12" />
+    <Property Name="ApprovedDmv" Type="bit" />
   </EntityType>
   <EntityType Name="UserStatuses">
     <Key>
@@ -107,6 +114,14 @@
     <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="StatusCode" Type="nchar" MaxLength="4" Nullable="false" />
     <Property Name="StatusName" Type="nchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VehicleAddons">
+    <Key>
+      <PropertyRef Name="VehicleAddonId" />
+    </Key>
+    <Property Name="VehicleAddonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AddonName" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="AddonDescription" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Vehicles">
     <Key>
@@ -117,6 +132,8 @@
     <Property Name="VehicleName" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="StatusId" Type="int" Nullable="false" />
     <Property Name="CampusId" Type="int" Nullable="false" />
+    <Property Name="VehicleTypeId" Type="int" />
+    <Property Name="VehicleAddonId" Type="int" />
   </EntityType>
   <EntityType Name="VehicleStatuses">
     <Key>
@@ -125,6 +142,13 @@
     <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="StatusCode" Type="nchar" MaxLength="4" Nullable="false" />
     <Property Name="StatusName" Type="nchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VehicleTypes">
+    <Key>
+      <PropertyRef Name="VehicleTypeId" />
+    </Key>
+    <Property Name="VehicleTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'FacilitiesDB.dbo.Admin_Create_GasCard' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -169,6 +193,27 @@ warning 6002: The table/view 'FacilitiesDB.dbo.Admin_Create_Vehicle' does not ha
     <Property Name="VehicleName" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="StatusName" Type="nchar" MaxLength="20" Nullable="false" />
     <Property Name="CampusCode" Type="nchar" MaxLength="3" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FacilitiesDB.dbo.Admin_Transportation_Approval' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Admin_Transportation_Approval">
+    <Key>
+      <PropertyRef Name="VId" />
+    </Key>
+    <Property Name="VId" Type="bigint" Nullable="false" />
+    <Property Name="SignOutId" Type="int" />
+    <Property Name="FirstName" Type="nchar" MaxLength="60" />
+    <Property Name="LastName" Type="nchar" MaxLength="60" />
+    <Property Name="BannerId" Type="nchar" MaxLength="8" />
+    <Property Name="ApprovedDmv" Type="bit" />
+    <Property Name="DepartmentName" Type="nchar" MaxLength="20" />
+    <Property Name="VehicleName" Type="nchar" MaxLength="10" />
+    <Property Name="KeyName" Type="nchar" MaxLength="5" />
+    <Property Name="GasCardName" Type="nchar" MaxLength="60" />
+    <Property Name="Destination" Type="nchar" MaxLength="60" />
+    <Property Name="CheckOutTime" Type="datetime" />
+    <Property Name="CheckInTime" Type="datetime" />
+    <Property Name="ActivityTime" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_SignedOutView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -316,6 +361,18 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_TransporationRequests_VehicleAddons">
+    <End Role="VehicleAddons" Type="Self.VehicleAddons" Multiplicity="1" />
+    <End Role="TransporationRequests" Type="Self.TransporationRequests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleAddons">
+        <PropertyRef Name="VehicleAddonId" />
+      </Principal>
+      <Dependent Role="TransporationRequests">
+        <PropertyRef Name="VehicleAddonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_TransporationRequests_VehicleId">
     <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="1" />
     <End Role="TransporationRequests" Type="Self.TransporationRequests" Multiplicity="*" />
@@ -364,6 +421,18 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Vehicles_VehicleAddons">
+    <End Role="VehicleAddons" Type="Self.VehicleAddons" Multiplicity="0..1" />
+    <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleAddons">
+        <PropertyRef Name="VehicleAddonId" />
+      </Principal>
+      <Dependent Role="Vehicles">
+        <PropertyRef Name="VehicleAddonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Vehicles_VehicleStatuses">
     <End Role="VehicleStatuses" Type="Self.VehicleStatuses" Multiplicity="1" />
     <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="*" />
@@ -373,6 +442,18 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
       </Principal>
       <Dependent Role="Vehicles">
         <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vehicles_VehicleTypes">
+    <End Role="VehicleTypes" Type="Self.VehicleTypes" Multiplicity="0..1" />
+    <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleTypes">
+        <PropertyRef Name="VehicleTypeId" />
+      </Principal>
+      <Dependent Role="Vehicles">
+        <PropertyRef Name="VehicleTypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -387,8 +468,10 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
     <EntitySet Name="TransporationRequests" EntityType="Self.TransporationRequests" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserStatuses" EntityType="Self.UserStatuses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VehicleAddons" EntityType="Self.VehicleAddons" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Vehicles" EntityType="Self.Vehicles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VehicleStatuses" EntityType="Self.VehicleStatuses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VehicleTypes" EntityType="Self.VehicleTypes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Admin_Create_GasCard" EntityType="Self.Admin_Create_GasCard" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [Admin_Create_GasCard].[GasCardName] AS [GasCardName], 
@@ -413,6 +496,24 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
     [Admin_Create_Vehicle].[StatusName] AS [StatusName], 
     [Admin_Create_Vehicle].[CampusCode] AS [CampusCode]
     FROM [dbo].[Admin_Create_Vehicle] AS [Admin_Create_Vehicle]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Admin_Transportation_Approval" EntityType="Self.Admin_Transportation_Approval" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Admin_Transportation_Approval].[VId] AS [VId], 
+    [Admin_Transportation_Approval].[SignOutId] AS [SignOutId], 
+    [Admin_Transportation_Approval].[FirstName] AS [FirstName], 
+    [Admin_Transportation_Approval].[LastName] AS [LastName], 
+    [Admin_Transportation_Approval].[BannerId] AS [BannerId], 
+    [Admin_Transportation_Approval].[ApprovedDmv] AS [ApprovedDmv], 
+    [Admin_Transportation_Approval].[DepartmentName] AS [DepartmentName], 
+    [Admin_Transportation_Approval].[VehicleName] AS [VehicleName], 
+    [Admin_Transportation_Approval].[KeyName] AS [KeyName], 
+    [Admin_Transportation_Approval].[GasCardName] AS [GasCardName], 
+    [Admin_Transportation_Approval].[Destination] AS [Destination], 
+    [Admin_Transportation_Approval].[CheckOutTime] AS [CheckOutTime], 
+    [Admin_Transportation_Approval].[CheckInTime] AS [CheckInTime], 
+    [Admin_Transportation_Approval].[ActivityTime] AS [ActivityTime]
+    FROM [dbo].[Admin_Transportation_Approval] AS [Admin_Transportation_Approval]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="Transportation_SignedOutView" EntityType="Self.Transportation_SignedOutView" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
@@ -496,6 +597,10 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
       <End Role="Users" EntitySet="Users" />
       <End Role="TransporationRequests" EntitySet="TransporationRequests" />
     </AssociationSet>
+    <AssociationSet Name="FK_TransporationRequests_VehicleAddons" Association="Self.FK_TransporationRequests_VehicleAddons">
+      <End Role="VehicleAddons" EntitySet="VehicleAddons" />
+      <End Role="TransporationRequests" EntitySet="TransporationRequests" />
+    </AssociationSet>
     <AssociationSet Name="FK_TransporationRequests_VehicleId" Association="Self.FK_TransporationRequests_VehicleId">
       <End Role="Vehicles" EntitySet="Vehicles" />
       <End Role="TransporationRequests" EntitySet="TransporationRequests" />
@@ -512,8 +617,16 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
       <End Role="Campuses" EntitySet="Campuses" />
       <End Role="Vehicles" EntitySet="Vehicles" />
     </AssociationSet>
+    <AssociationSet Name="FK_Vehicles_VehicleAddons" Association="Self.FK_Vehicles_VehicleAddons">
+      <End Role="VehicleAddons" EntitySet="VehicleAddons" />
+      <End Role="Vehicles" EntitySet="Vehicles" />
+    </AssociationSet>
     <AssociationSet Name="FK_Vehicles_VehicleStatuses" Association="Self.FK_Vehicles_VehicleStatuses">
       <End Role="VehicleStatuses" EntitySet="VehicleStatuses" />
+      <End Role="Vehicles" EntitySet="Vehicles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vehicles_VehicleTypes" Association="Self.FK_Vehicles_VehicleTypes">
+      <End Role="VehicleTypes" EntitySet="VehicleTypes" />
       <End Role="Vehicles" EntitySet="Vehicles" />
     </AssociationSet>
   </EntityContainer>

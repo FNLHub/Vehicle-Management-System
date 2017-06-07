@@ -156,6 +156,9 @@
     <Compile Include="Admin_Create_Vehicle.cs">
       <DependentUpon>TransportationModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Admin_Transportation_Approval.cs">
+      <DependentUpon>TransportationModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -233,7 +236,13 @@
     <Compile Include="Vehicle.cs">
       <DependentUpon>TransportationModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="VehicleAddon.cs">
+      <DependentUpon>TransportationModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="VehicleStatus.cs">
+      <DependentUpon>TransportationModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VehicleType.cs">
       <DependentUpon>TransportationModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

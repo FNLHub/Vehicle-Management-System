@@ -54,78 +54,47 @@
 
         <!-- Step 2 -->
         <div class="jumbotron">
-            <p class="step"><span class="glyphicon glyphicon-star-empty"></span>Step #2</p>
-            
-            <div class="col-lg-6 col-md-6 col-sm-6">
-            <h3><span class="glyphicon glyphicon-road"></span> Select a Vehicle</h3>
+                <p class="step"><span class="glyphicon glyphicon-star-empty"></span>Step #2</p>
+                
+                <!--Choose Vehicle Type, Radio Buttons-->
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                <h3><span class="glyphicon glyphicon-road"></span> Select a Vehicle</h3>
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-danger active">
+                                <input type="radio" id="V_RadNone" name="veh" value="1" />
+                                @Html.RadioButtonFor(m=> m.Vehicle, 1, new { @checked= true, @id= "V_RadNone", @name= "veh" })
+                                None
+                            </label>
+                            <label class="btn btn-default">
+                                @Html.RadioButtonFor(m => m.Vehicle, 2, new { @id = "V_RadCar", @name = "veh" })
+                                Car
+                            </label>
+                            <label class="btn btn-default">
+                                @Html.RadioButtonFor(m => m.Vehicle, 3, new { @id = "V_Rad8", @name = "veh" })
+                                8 Pass Van
+                            </label>
+                            <label class="btn btn-default">
+                                @Html.RadioButtonFor(m => m.Vehicle, 4, new { @id = "V_Rad12", @name = "veh" })
+                                12 Pass Van
+                            </label>
+                        </div>
+                </div>
+                <!-- Would you like a Gas Card, Radio Buttons-->
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <h3><span class="glyphicon glyphicon-credit-card"></span> Gas Card</h3>
                     <div class="btn-group" data-toggle="buttons">
                         <label class="btn btn-danger active">
-                            <input type="radio" id="V_RadNone" name="veh" value="1" />
-                            @Html.RadioButtonFor(m=> m.Vehicle, 1, new { @checked= true, @id= "V_RadNone", @name= "veh" })
-                            None
+                            @Html.RadioButtonFor(g => g.NeedGasCard, 0, new { @checked= true, @id = "G_RadNo", @name = "gc" })
+                            No
                         </label>
-                        <label class="btn btn-default">
-                            @Html.RadioButtonFor(m => m.Vehicle, 2, new { @id = "V_RadCar", @name = "veh" })
-                            Car
-                        </label>
-                        <label class="btn btn-default">
-                            @Html.RadioButtonFor(m => m.Vehicle, 3, new { @id = "V_Rad8", @name = "veh" })
-                            8 Pass Van
-                        </label>
-                        <label class="btn btn-default">
-                            @Html.RadioButtonFor(m => m.Vehicle, 4, new { @id = "V_Rad12", @name = "veh" })
-                            12 Pass Van
+                        <label class="btn btn-success">
+                            @Html.RadioButtonFor(g => g.NeedGasCard, 1, new { @id = "G_RadYes", @name = "gc" })
+                            Yes
                         </label>
                     </div>
-            </div>
 
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                <h3><span class="glyphicon glyphicon-credit-card"></span> Gas Card</h3>
-                <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-danger active">
-                        @Html.RadioButtonFor(m => m.Vehicle, 1, new { @checked= true, @id = "G_RadNo", @name = "gc" })
-                        No
-                    </label>
-                    <label class="btn btn-success">
-                        @Html.RadioButtonFor(m => m.Vehicle, 2, new { @id = "G_RadYes", @name = "gc" })
-                        Yes
-                    </label>
                 </div>
-
-            </div>
-
-                <!--
-        <div class="panel panel-default">
-            <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseViewAll">
-                <h4 class="panel-title">
-                    <a><span class="glyphicon glyphicon-unchecked"></span> Choose Car</a>
-                </h4>
-            </div>
-            <div id="collapseViewAll" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <a onclick="location.href='@Url.Action("GetUsers", "Reports")'" class="list-group-item">Users</a>
-                    <a onclick="location.href='@Url.Action("GetVehicles", "Reports")'" class="list-group-item">Vehicles</a>
-                    <a onclick="location.href='@Url.Action("GetGasCards", "Reports")'" class="list-group-item">Gas Cards</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseViewAll">
-                <h4 class="panel-title">
-                    <a><span class="glyphicon"></span> Gas Card</a>
-                </h4>
-            </div>
-            <div id="collapseViewAll" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <a onclick="location.href='@Url.Action("GetUsers", "Reports")'" class="list-group-item">Users</a>
-                    <a onclick="location.href='@Url.Action("GetVehicles", "Reports")'" class="list-group-item">Vehicles</a>
-                    <a onclick="location.href='@Url.Action("GetGasCards", "Reports")'" class="list-group-item">Gas Cards</a>
-                </div>
-            </div>
-        </div>-->
-            <div style="clear:both;"></div>
-
+                <div style="clear:both;"></div>
             </div>
 
         <!--Step 3-->
@@ -173,12 +142,12 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4">
                     Purpose of the trip:<br/>
-                    @Html.TextBoxFor(m=> m.TripPurpose, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m=> m.TripPurpose, "WHAT IS THIS?", new { @class="text-danger" })
+                    @Html.TextBoxFor(m=> m.TripPurpose, new { @class = "form-control", @maxlength = "254" })
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-8">
                     How many students are going on the trip?<br/>
-                    @Html.TextBoxFor(m=> m.NumOfStudents, new { @class = "form-control" })
+                    @*@Html.TextBoxFor(m=> m.NumOfStudents, new { @class = "form-control" })*@
+                    @Html.DropDownListFor(m => m.NumOfStudents, Enumerable.Range(1, 100).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }))
                 </div>
             </div>
         </div>

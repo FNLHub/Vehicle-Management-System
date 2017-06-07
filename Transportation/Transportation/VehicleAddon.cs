@@ -12,30 +12,22 @@ namespace Transportation
     using System;
     using System.Collections.Generic;
     
-    public partial class Vehicle
+    public partial class VehicleAddon
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Vehicle()
+        public VehicleAddon()
         {
-            this.SignOuts = new HashSet<SignOut>();
             this.TransporationRequests = new HashSet<TransporationRequest>();
+            this.Vehicles = new HashSet<Vehicle>();
         }
     
-        public int VehicleId { get; set; }
-        public string VehiclePlate { get; set; }
-        public string VehicleName { get; set; }
-        public int StatusId { get; set; }
-        public int CampusId { get; set; }
-        public Nullable<int> VehicleTypeId { get; set; }
-        public Nullable<int> VehicleAddonId { get; set; }
+        public int VehicleAddonId { get; set; }
+        public string AddonName { get; set; }
+        public string AddonDescription { get; set; }
     
-        public virtual Campus Campus { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SignOut> SignOuts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransporationRequest> TransporationRequests { get; set; }
-        public virtual VehicleAddon VehicleAddon { get; set; }
-        public virtual VehicleStatus VehicleStatus { get; set; }
-        public virtual VehicleType VehicleType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Vehicle> Vehicles { get; set; }
     }
 }

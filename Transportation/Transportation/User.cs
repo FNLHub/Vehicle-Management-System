@@ -31,12 +31,13 @@ namespace Transportation
         public string OfficePhoneNumber { get; set; }
         public string CellAreaCode { get; set; }
         public string CellPhoneNumber { get; set; }
+        public Nullable<bool> ApprovedDmv { get; set; }
     
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SignOut> SignOuts { get; set; }
-        public virtual UserStatus UserStatus { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransporationRequest> TransporationRequests { get; set; }
+        public virtual UserStatus UserStatus { get; set; }
     }
 }
