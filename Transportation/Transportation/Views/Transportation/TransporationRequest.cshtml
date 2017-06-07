@@ -60,36 +60,38 @@
             <h3><span class="glyphicon glyphicon-road"></span> Select a Vehicle</h3>
                     <div class="btn-group" data-toggle="buttons">
                         <label class="btn btn-danger active">
-                            <input type="radio" id="V_RadNone" name="veh" value="1" /> None
+                            <input type="radio" id="V_RadNone" name="veh" value="1" />
+                            @Html.RadioButtonFor(m=> m.Vehicle, 1, new { @checked= true, @id= "V_RadNone", @name= "veh" })
+                            None
                         </label>
                         <label class="btn btn-default">
-                            <input type="radio" id="V_RadCar" name="veh" value="2" /> Car
+                            @Html.RadioButtonFor(m => m.Vehicle, 2, new { @id = "V_RadCar", @name = "veh" })
+                            Car
                         </label>
                         <label class="btn btn-default">
-                            <input type="radio" id="V_RadVan" name="veh" value="3" /> Van
+                            @Html.RadioButtonFor(m => m.Vehicle, 3, new { @id = "V_RadVan", @name = "veh" })
+                            Van
+                        </label>
+                        <label class="btn btn-default">
+                            @Html.RadioButtonFor(m => m.Vehicle, 4, new { @id = "V_Rad12", @name = "veh" })
+                            12 Pass
                         </label>
                     </div>
-
-                    <!-- Not Styling Properly (Starting to hate Razer)-->
-                    @*@Html.Label("None ", new { @for = "Rad1" }) @Html.RadioButtonFor(r => r.Vehicle, 0, new { @checked = true, @id = "Rad1", @name = "RadVehGroup" })
-                    @Html.Label("| Car ", new { @for = "Rad2" })  @Html.RadioButtonFor(r => r.Vehicle, 1, new { @id = "Rad2", @name = "RadVehGroup" })
-                    @Html.Label("| Van ", new { @for = "Rad3" })  @Html.RadioButtonFor(r => r.Vehicle, 2, new { @id = "Rad3", @name = "RadVehGroup" })*@
-                    </div>
+            </div>
 
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <h3><span class="glyphicon glyphicon-credit-card"></span> Gas Card</h3>
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-danger active">
-                        <input type="radio" id="G_RadNo" name="gc" value="1" /> No
+                        @Html.RadioButtonFor(m => m.Vehicle, 1, new { @checked= true, @id = "G_RadNo", @name = "gc" })
+                        No
                     </label>
                     <label class="btn btn-success">
-                        <input type="radio" id="G_RadYes" name="gc" value="2" /> Yes
+                        @Html.RadioButtonFor(m => m.Vehicle, 2, new { @id = "G_RadYes", @name = "gc" })
+                        Yes
                     </label>
                 </div>
 
-                    @*@Html.Label("No ", new { @for = "RadN" }) @Html.RadioButtonFor(r => r.Vehicle, 0, new { @checked = true, @id = "RadN" , @name = "RadGasGroup" })
-                    @Html.Label("| Yes ", new { @for = "RadY" })  @Html.RadioButtonFor(r => r.Vehicle, 1, new { @id = "RadY", @name = "RadGasGroup" })*@
- 
             </div>
 
                 <!--
