@@ -37,23 +37,6 @@ color:red;
 
 }
 
-.derp, .herp {
-    height: 64px;
-}
-
-.derp:hover, .herp:hover {
-    filter: brightness(85%);
-    cursor: pointer;
-}
-
-.derp {
-    background: pink;
-}
-
-.herp {
-    background: lightskyblue;
-}
-
 .input-group {
     font-size: 13px;
 }
