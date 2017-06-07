@@ -56,37 +56,75 @@
         <div class="jumbotron">
             <p class="step"><span class="glyphicon glyphicon-star-empty"></span>Step #2</p>
             
-            <!--
-            <div class="panel panel-default">
-                <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseViewAll">
-                    <h4 class="panel-title">
-                        <a><span class="glyphicon glyphicon-unchecked"></span> Choose Car</a>
-                    </h4>
-                </div>
-                <div id="collapseViewAll" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        <a onclick="location.href='@Url.Action("GetUsers", "Reports")'" class="list-group-item">Users</a>
-                        <a onclick="location.href='@Url.Action("GetVehicles", "Reports")'" class="list-group-item">Vehicles</a>
-                        <a onclick="location.href='@Url.Action("GetGasCards", "Reports")'" class="list-group-item">Gas Cards</a>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+            <h3><span class="glyphicon glyphicon-road"></span> Select a Vehicle</h3>
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-danger active">
+                            <input type="radio" id="V_RadNone" name="veh" value="1" /> None
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="radio" id="V_RadCar" name="veh" value="2" /> Car
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="radio" id="V_RadVan" name="veh" value="3" /> Van
+                        </label>
                     </div>
+
+                    <!-- Not Styling Properly (Starting to hate Razer)-->
+                    @*@Html.Label("None ", new { @for = "Rad1" }) @Html.RadioButtonFor(r => r.Vehicle, 0, new { @checked = true, @id = "Rad1", @name = "RadVehGroup" })
+                    @Html.Label("| Car ", new { @for = "Rad2" })  @Html.RadioButtonFor(r => r.Vehicle, 1, new { @id = "Rad2", @name = "RadVehGroup" })
+                    @Html.Label("| Van ", new { @for = "Rad3" })  @Html.RadioButtonFor(r => r.Vehicle, 2, new { @id = "Rad3", @name = "RadVehGroup" })*@
+                    </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <h3><span class="glyphicon glyphicon-credit-card"></span> Gas Card</h3>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-danger active">
+                        <input type="radio" id="G_RadNo" name="gc" value="1" /> No
+                    </label>
+                    <label class="btn btn-success">
+                        <input type="radio" id="G_RadYes" name="gc" value="2" /> Yes
+                    </label>
                 </div>
+
+                    @*@Html.Label("No ", new { @for = "RadN" }) @Html.RadioButtonFor(r => r.Vehicle, 0, new { @checked = true, @id = "RadN" , @name = "RadGasGroup" })
+                    @Html.Label("| Yes ", new { @for = "RadY" })  @Html.RadioButtonFor(r => r.Vehicle, 1, new { @id = "RadY", @name = "RadGasGroup" })*@
+ 
             </div>
 
-            <div class="panel panel-default">
-                <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseViewAll">
-                    <h4 class="panel-title">
-                        <a><span class="glyphicon"></span> Gas Card</a>
-                    </h4>
+                <!--
+        <div class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseViewAll">
+                <h4 class="panel-title">
+                    <a><span class="glyphicon glyphicon-unchecked"></span> Choose Car</a>
+                </h4>
+            </div>
+            <div id="collapseViewAll" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <a onclick="location.href='@Url.Action("GetUsers", "Reports")'" class="list-group-item">Users</a>
+                    <a onclick="location.href='@Url.Action("GetVehicles", "Reports")'" class="list-group-item">Vehicles</a>
+                    <a onclick="location.href='@Url.Action("GetGasCards", "Reports")'" class="list-group-item">Gas Cards</a>
                 </div>
-                <div id="collapseViewAll" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        <a onclick="location.href='@Url.Action("GetUsers", "Reports")'" class="list-group-item">Users</a>
-                        <a onclick="location.href='@Url.Action("GetVehicles", "Reports")'" class="list-group-item">Vehicles</a>
-                        <a onclick="location.href='@Url.Action("GetGasCards", "Reports")'" class="list-group-item">Gas Cards</a>
-                    </div>
-                </div>
-            </div>-->
+            </div>
         </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseViewAll">
+                <h4 class="panel-title">
+                    <a><span class="glyphicon"></span> Gas Card</a>
+                </h4>
+            </div>
+            <div id="collapseViewAll" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <a onclick="location.href='@Url.Action("GetUsers", "Reports")'" class="list-group-item">Users</a>
+                    <a onclick="location.href='@Url.Action("GetVehicles", "Reports")'" class="list-group-item">Vehicles</a>
+                    <a onclick="location.href='@Url.Action("GetGasCards", "Reports")'" class="list-group-item">Gas Cards</a>
+                </div>
+            </div>
+        </div>-->
+            <div style="clear:both;"></div>
+
+            </div>
 
         <!--Step 3-->
         <div class="jumbotron">
