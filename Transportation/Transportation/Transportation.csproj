@@ -2033,6 +2033,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\TransportationRequest.js" />
     <Content Include="TransportationModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TransportationModel.edmx</DependentUpon>
@@ -2703,6 +2704,7 @@
     <Content Include="Scripts\kendo\2017.2.504\cultures\kendo.culture.af.min.js.map" />
     <Content Include="Scripts\kendo\2017.2.504\cultures\kendo.culture.af-ZA.min.js.map" />
     <Content Include="Views\Transportation\TransporationRequest.cshtml" />
+    <Content Include="Views\Injections\AppendingToTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,6 +10,10 @@ namespace Transportation.Controllers
     {
         FacilitiesDBEntities transportationContext = new FacilitiesDBEntities();
 
+        public ActionResult CreateDriver()
+        {
+            return PartialView("~/Views/Injections/AppendingToTable.cshtml");
+        }
 
         [HttpGet] // GET: Transportation
         public ActionResult Index()
@@ -20,7 +24,7 @@ namespace Transportation.Controllers
         [HttpGet]
         public ActionResult TransporationRequest()
         {
-           
+            ViewBag.addedDrivers = 0;
             return View();
         }
         [HttpPost]
