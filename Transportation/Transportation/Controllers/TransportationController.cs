@@ -9,11 +9,9 @@ namespace Transportation.Controllers
     public class TransportationController : Controller
     {
         FacilitiesDBEntities transportationContext = new FacilitiesDBEntities();
-        static int count = 0;
 
         public ActionResult CreateDriver()
         {
-            ViewBag.driverCount = (++count);
             return PartialView("~/Views/Injections/AppendingToTable.cshtml");
         }
 
@@ -26,7 +24,6 @@ namespace Transportation.Controllers
         [HttpGet]
         public ActionResult TransporationRequest()
         {
-            ViewBag.addedDrivers = 0;
             return View();
         }
         [HttpPost]
