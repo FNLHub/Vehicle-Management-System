@@ -13,7 +13,7 @@ namespace Transportation.Controllers
         public ActionResult CreateDriver()
         {
             ViewBag.count = (count++);
-            return PartialView("~/Views/Injections/AppendingToTable.cshtml");
+            return PartialView("~/Views/Injections/AppendingToDriverTable.cshtml");
         }
 
         [HttpGet] // GET: Transportation

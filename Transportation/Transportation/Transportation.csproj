@@ -2706,7 +2706,7 @@
     <Content Include="Scripts\kendo\2017.2.504\cultures\kendo.culture.af.min.js.map" />
     <Content Include="Scripts\kendo\2017.2.504\cultures\kendo.culture.af-ZA.min.js.map" />
     <Content Include="Views\Transportation\TransporationRequest.cshtml" />
-    <Content Include="Views\Injections\AppendingToTable.cshtml" />
+    <Content Include="Views\Injections\AppendingToDriverTable.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
