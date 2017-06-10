@@ -67,17 +67,33 @@
                         <th>Banner ID</th>
                         <th>First Name:</th>
                         <th>Last Name:</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody id="add-driver">
                     <tr>
-                        <th>000001</th>
-                        <th>Lord</th>
-                        <th>Voldemort</th>
+                        <th>
+                            @Html.TextBoxFor(m => m.User.BannerId, new { @class = "form-control" })
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(m => m.User.FirstName, new { @class = "form-control" })
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(m => m.User.LastName, new { @class = "form-control" })
+                        </th>
+                        <th>
+                            <kbd>Main Driver</kbd>
+                        </th>
                     </tr>
                 </tbody>
             </table>
             <script type="text/javascript">
+                //Deleting a row
+                function deleteRow(num) {
+                    console.log(num);
+                    $("#row-" + num).remove();
+                };
+
                 $("#create-drivers").on("click", function () {
                     $.ajax({
                         async: false,
@@ -122,7 +138,6 @@
                 });
 
             </script>
-
             
             <div style="clear: both;"></div>
         </div>
@@ -134,7 +149,6 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>#</th>
                             <th>Name:</th>
                             <th>Select Vehicle:</th>
                             <th><span class="glyphicon glyphicon-credit-card"></span> Gas Card</th>
@@ -142,7 +156,6 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th>1</th>
                             <th>
                                 @Html.DropDownListFor(u => u.UserID, new SelectList(
                                 new List<Object>

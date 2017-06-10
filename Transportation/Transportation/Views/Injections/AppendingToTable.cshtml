@@ -1,7 +1,6 @@
 ﻿@model TransporationRequest
 
-<tr>
-    <th>1</th>
+<tr id="row-@ViewBag.count">
     <th>
         @Html.TextBoxFor(m=> m.User.BannerId, new { @class="form-control" })
     </th>
@@ -10,5 +9,8 @@
     </th>
     <th>
         @Html.TextBoxFor(m => m.User.LastName, new { @class = "form-control" })
+    </th>
+    <th>
+        <button class="btn btn-danger" onclick="deleteRow(@ViewBag.count)">Delete</button>
     </th>
 </tr>

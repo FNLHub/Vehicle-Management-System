@@ -9,9 +9,10 @@ namespace Transportation.Controllers
     public class TransportationController : Controller
     {
         FacilitiesDBEntities transportationContext = new FacilitiesDBEntities();
-
+        static int count = 0;
         public ActionResult CreateDriver()
         {
+            ViewBag.count = (count++);
             return PartialView("~/Views/Injections/AppendingToTable.cshtml");
         }
 
