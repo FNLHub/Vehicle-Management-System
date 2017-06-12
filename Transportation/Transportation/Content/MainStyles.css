@@ -16,6 +16,14 @@ body, h1 {
     font: sans-serif;
 }
 
+.align-right {
+    float: right;
+}
+
+#Step2, #Step3, #Step4, #Step5 {
+    display: none;
+}
+
 a:hover{
     text-decoration: none;
 }
@@ -33,10 +41,10 @@ a:hover{
 .step {
 
 font-size:1em;
-color:red;
+color:blue;
 
 }
-
+/*
 .input-group {
     font-size: 13px;
 }
@@ -47,7 +55,7 @@ color:red;
     line-height: 32px;
 }
 
-/*.glowing-border:focus {
+.glowing-border:focus {
     outline: none;
     border-color: #9ecaed;
     box-shadow: 0 0 10px #9ecaed;

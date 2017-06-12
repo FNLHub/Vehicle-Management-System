@@ -6,6 +6,17 @@
 }
 <h2>TransporationRequest</h2>
 
+<script>
+    function ShowHide(stepId) {
+        var x = document.getElementById(stepId);
+        if (x.style.display === 'none') {
+            x.style.display = 'show';
+        } else {
+            x.style.display = 'none';
+        }
+    }
+</script>
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -43,18 +54,28 @@
                     Phone:<br />
                     @Html.TextBoxFor(m => m.User.OfficePhoneNumber, new { @class = "form-control", @disabled = "disabled", @placeholder = "555 555 5555" })
                 </div>
-            <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="col-lg-4 col-md-4 col-sm-4">
                     Mobile Phone:<br />
                     @Html.TextBoxFor(m => m.User.CellPhoneNumber, new { @class = "form-control", @disabled = "disabled", @placeholder = "555 555 5555" })
                 </div>
             </div>
+
+            <!--next step button-->
+            <div class="align-right">
+                <button class="btn btn-default" id="next-step" onclick="ShowHide('Step2')">
+                    <span class="glyphicon glyphicon-chevron-right"></span> 
+                    Next Step
+                </button>
+            </div>
+            
             <div style="clear: both;"></div>
+
         </div>
         
         <!--End Step 1-->
 
         <!-- Step 2 -->
-        <div class="jumbotron">
+        <div class="jumbotron" id="Step2">
             <p class="step"><span class="glyphicon glyphicon-star-empty"></span>Step #2</p>
            
             <span class="btn btn-default" id="create-drivers">
@@ -143,7 +164,7 @@
         </div>
 
         <!-- Step 3 -->
-        <div class="jumbotron">
+        <div class="jumbotron" id="Step3">
             <p class="step"><span class="glyphicon glyphicon-star-empty"></span>Step #3</p>
 
                 <table class="table">
@@ -208,7 +229,7 @@
     </div>
 
         <!--Step 4-->
-        <div class="jumbotron">
+        <div class="jumbotron" id="Step4">
             <p class="step"><span class="glyphicon glyphicon-star-empty"></span>Step #4</p>
 
             <!--Row-->
@@ -246,7 +267,7 @@
         <!--End Step 4-->
 
         <!-- Step 5 -->
-        <div class="jumbotron">
+        <div class="jumbotron" id="Step5">
             <p class="step"><span class="glyphicon glyphicon-star-empty"></span> Step #5</p>
             
             <div class="row">
