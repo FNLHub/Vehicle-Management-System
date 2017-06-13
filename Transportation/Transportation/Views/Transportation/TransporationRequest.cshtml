@@ -7,28 +7,35 @@
 <h2>TransporationRequest</h2>
 
 <script>
-    function ShowHide(stepId, PrevBtnId) {
-        var x = document.getElementById(stepId);
+    function ShowHide(NextStepId, PrevBtnId, CurrentStepId) {
+        //show next step
+        var x = document.getElementById(NextStepId);
         if (x.style.display === "") {
             x.style.display = 'block';
-
+        }
+        //hide previous button
         var whatever = document.getElementsByClassName(PrevBtnId);
         for (var i = 0; i < whatever.length; i++) {
             whatever[i].style.display = 'none';
-            }
         }
+        //disable elements in previous id
+        $('#' + CurrentStepId + " *").attr("disabled", "disabled");
         
     }
-    function GoBack(stepId, PrevBtnId) {
+
+    function GoBack(stepId, PrevBtnId, PrevStepId) {
+        //hide current step
         var x = document.getElementById(stepId);
         if (x.style.display === 'block') {
             x.style.display = "";
         }
-
+        //show previous button
         var whatever = document.getElementsByClassName(PrevBtnId);
         for (var i = 0; i < whatever.length; i++) {
             whatever[i].style.display = 'inline-block';
         }
+        //re-enable elements in previous id
+        $('#' + PrevStepId + " *").removeAttr("disabled");
     }
 </script>
 
@@ -39,7 +46,7 @@
     <div class="form-segment">
 
         <!--Step 1-->
-        <div class="jumbotron">
+        <div class="jumbotron" id="Step1">
             <p class="step"><span class="glyphicon glyphicon-star-empty"></span>Step #1</p>
 
             <!--Row Start-->
@@ -90,7 +97,7 @@
         <!--End Step 1-->
 
         <!-- Step 2 -->
-        <div class="jumbotron" id="Step2" onload="DisablePrevBtn('btnSet1')">
+        <div class="jumbotron" id="Step2">
             <p class="step"><span class="glyphicon glyphicon-star-empty"></span>Step #2</p>
            
             <span class="btn btn-default" id="create-drivers">
@@ -177,7 +184,7 @@
 
             <!--next step button-->
             <div class="align-right btnSet2">
-                <span class="btn btn-default" id="next-step" onclick="ShowHide('Step3', 'btnSet2')">
+                <span class="btn btn-default" id="next-step" onclick="ShowHide('Step3', 'btnSet2', 'Step2')">
                     <span class="glyphicon glyphicon-chevron-right"></span>
                     Next Step
                 </span>
@@ -259,7 +266,7 @@
 
             <!--next step button-->
             <div class="align-right btnSet3">
-                <span class="btn btn-default" id="next-step" onclick="ShowHide('Step4', 'btnSet3')">
+                <span class="btn btn-default" id="next-step" onclick="ShowHide('Step4', 'btnSet3', 'Step3')">
                     <span class="glyphicon glyphicon-chevron-right"></span>
                     Next Step
                 </span>
@@ -267,7 +274,7 @@
 
             <!--Go Back button-->
             <div class="align-right btnSet3">
-                <span class="btn btn-default" id="go-back" onclick="GoBack('Step3', 'btnSet2')">
+                <span class="btn btn-default" id="go-back" onclick="GoBack('Step3', 'btnSet2', 'Step2')">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                     Go Back
                 </span>
@@ -313,7 +320,7 @@
 
             <!--next step button-->
             <div class="align-right btnSet4">
-                <span class="btn btn-default" id="next-step" onclick="ShowHide('Step5', 'btnSet4')">
+                <span class="btn btn-default" id="next-step" onclick="ShowHide('Step5', 'btnSet4', 'Step4')">
                     <span class="glyphicon glyphicon-chevron-right"></span>
                     Next Step
                 </span>
@@ -321,7 +328,7 @@
 
             <!--Go Back button-->
             <div class="align-right btnSet4">
-                <span class="btn btn-default" id="go-back" onclick="GoBack('Step4', 'btnSet3')">
+                <span class="btn btn-default" id="go-back" onclick="GoBack('Step4', 'btnSet3', 'Step3')">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                     Go Back
                 </span>
@@ -350,7 +357,7 @@
 
             <!--Go Back button-->
             <div class="align-right btnSet5">
-                <span class="btn btn-default" id="go-back" onclick="GoBack('Step5', 'btnSet4')">
+                <span class="btn btn-default" id="go-back" onclick="GoBack('Step5', 'btnSet4', 'Step4')">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                     Go Back
                 </span>
