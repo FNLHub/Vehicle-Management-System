@@ -24,6 +24,26 @@ body, h1 {
     display: none;
 }
 
+.btnSet1{
+    display: block;
+}
+
+.btnSet2{
+    display: block;
+}
+
+.btnSet3{
+    display: block;
+}
+
+.btnSet4{
+    display: block;
+}
+
+.btnSet5{
+    display: block;
+}
+
 a:hover{
     text-decoration: none;
 }
