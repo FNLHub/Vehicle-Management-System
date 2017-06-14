@@ -45,6 +45,10 @@ body, h1 {
     display: block;
 }
 
+#btnSubmit {
+    display: none;
+}
+
 a:hover{
     text-decoration: none;
 }

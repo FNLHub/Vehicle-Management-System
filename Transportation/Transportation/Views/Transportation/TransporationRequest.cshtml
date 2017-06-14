@@ -37,6 +37,46 @@
         //re-enable elements in previous id
         $('#' + PrevStepId + " *").removeAttr("disabled");
     }
+
+    function EnableDisableSubmit(SubBtnId, Status) {
+        var s = document.getElementById(SubBtnId)
+        //make submit button visible
+        if (Status === "enabled") {
+            s.style.display = 'inline-block';
+        }
+        //make submit button invisible
+        else if (Satus === "disabled"){
+            s.style.display = 'none';
+        }
+    }
+
+    function EmptyChecker(CurrentStepId, NextStepId, PrevBtnId) {
+        //get all the data fields from the current step
+        var allFieldsDone = 0;
+        var Fields = $('#' + CurrentStepId + " input")
+
+        Fields.each(function (index, element) {
+            console.dir(element);
+            //do nothing if any data field is left blank
+            if (element.value === "") {
+                alert("Please Fill In the " + element.localName + " Form");
+            }
+            else {
+                if (){
+
+                    allFieldsDone++;
+                }
+                else {
+                    alert("Invalid Input");
+                }
+            }
+        })
+
+        //call the next step function
+        if (allFieldsDone === Fields.length) {
+            ShowHide(NextStepId, PrevBtnId, CurrentStepId);
+        }
+    }
 </script>
 
 @using (Html.BeginForm())
@@ -184,7 +224,7 @@
 
             <!--next step button-->
             <div class="align-right btnSet2">
-                <span class="btn btn-default" id="next-step" onclick="ShowHide('Step3', 'btnSet2', 'Step2')">
+                <span class="btn btn-default" id="next-step" onclick="ValidateInformation('Step2', 'Step3', 'btnSet2')">
                     <span class="glyphicon glyphicon-chevron-right"></span>
                     Next Step
                 </span>
@@ -320,7 +360,7 @@
 
             <!--next step button-->
             <div class="align-right btnSet4">
-                <span class="btn btn-default" id="next-step" onclick="ShowHide('Step5', 'btnSet4', 'Step4')">
+                <span class="btn btn-default" id="next-step" onclick="ShowHide('Step5', 'btnSet4', 'Step4');EnableDisableSubmit('btnSubmit', 'enabled')">
                     <span class="glyphicon glyphicon-chevron-right"></span>
                     Next Step
                 </span>
@@ -368,7 +408,7 @@
         <!--End Step 5-->
 
         <div class="submit-container">
-            <span class="btn btn-success">Submit</span>
+            <span class="btn btn-success" id="btnSubmit">Submit</span>
             <span class="btn btn-danger">Cancel</span>
         </div>
      </div>
