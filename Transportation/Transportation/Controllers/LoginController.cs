@@ -18,7 +18,7 @@ namespace Transportation.Controllers
         private Token GetToken(string userName, string password)
         {
             // Variables
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://reports.cos.edu/API/Authentication/token");
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://reports.cos.edu/API/Authentication/token");
 
             req.Method = "POST";
             req.ContentType = "application/x-www-form-urlencoded";
@@ -62,7 +62,7 @@ namespace Transportation.Controllers
         private string GetAuthorize(Token tk)
         {
             // Variables
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://reports.cos.edu/API/Authentication/api/data/authorize");
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://reports.cos.edu/API/Authentication/api/auth/authorize/");
 
             req.Method = "GET";
             req.ContentType = "application/x-www-form-urlencoded";
