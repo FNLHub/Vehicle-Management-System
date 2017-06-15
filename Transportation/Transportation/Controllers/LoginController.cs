@@ -14,6 +14,8 @@ namespace Transportation.Controllers
 {
     public class LoginController : Controller
     {
+        // Variables
+        internal static Token _token;
 
         private Token GetToken(string userName, string password)
         {
@@ -49,25 +51,27 @@ namespace Transportation.Controllers
                 System.Diagnostics.Debug.WriteLine(e);
             }
 
-            return new Token();
+            return null;
         }
 
-        private struct Token
+        internal class Token
         {
             public string access_token;
             public string token_type;
             public int expires_in;
         }
 
-        private string GetAuthorize(Token tk)
+        internal static string GetAuthorize()
         {
+            if (_token == null)
+                return "";
             // Variables
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://reports.cos.edu/API/Authentication/api/auth/authorize/");
 
             req.Method = "GET";
             req.ContentType = "application/x-www-form-urlencoded";
             req.Headers.Add("cache-control", "no-cache");
-            req.Headers.Add("authorization", tk.token_type + " " + tk.access_token);
+            req.Headers.Add("authorization", _token.token_type + " " + _token.access_token);
 
             try
             {
@@ -87,15 +91,9 @@ namespace Transportation.Controllers
             return "";
         }
 
-        // GET: Login
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult Login()
+        public ActionResult Index()
         {
             ViewBag.Title = "Login 2 Test";
             var loginViewModel = new LoginViewModel
@@ -108,13 +106,13 @@ namespace Transportation.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Login(LoginViewModel model)
+        public virtual ActionResult Index(LoginViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
-            ViewBag.code = GetAuthorize(GetToken(model.UserName, model.Password));
+            _token = GetToken(model.UserName, model.Password);
 
             // usually this will be injected via DI. but creating this manually now for brevity
             //if (authenticationResult.IsSuccess)
@@ -122,7 +120,7 @@ namespace Transportation.Controllers
             //}
 
             //ModelState.AddModelError("", authenticationResult.ErrorMessage);
-            return View(model);
+            return RedirectToAction("../Transportation/TransportationRequest");
         }
     }
 }

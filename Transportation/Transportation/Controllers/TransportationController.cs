@@ -28,12 +28,14 @@ namespace Transportation.Controllers
         }
 
         [HttpGet]
-        public ActionResult TransporationRequest()
+        public ActionResult TransportationRequest()
         {
+            System.Diagnostics.Debug.WriteLine("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            ViewBag.code = LoginController.GetAuthorize();
             return View();
         }
         [HttpPost]
-        public ActionResult TransporationRequest(TransporationRequest transRequest)
+        public ActionResult TransportationRequest(TransporationRequest transRequest)
         {
             if (ModelState.IsValid)
             {

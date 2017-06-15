@@ -50,7 +50,7 @@
         }
     }
 
-    function EmptyChecker(CurrentStepId, NextStepId, PrevBtnId) {
+    function ValidateInformation(CurrentStepId, NextStepId, PrevBtnId) {
         //get all the data fields from the current step
         var allFieldsDone = 0;
         var Fields = $('#' + CurrentStepId + " input")
@@ -62,7 +62,7 @@
                 alert("Please Fill In the " + element.localName + " Form");
             }
             else {
-                if (){
+                if (true){
 
                     allFieldsDone++;
                 }
@@ -186,38 +186,11 @@
                     });
                 });
                 // Reference for later, use this for a login page
-                var token = "";
-                var settings = {
-                    "async": true,
-                    "crossDomain": true,
-                    "url": "http://reports.cos.edu/API/Authentication/token",
-                    "method": "POST",
-                    "headers": {
-                        "cache-control": "no-cache",
-                        "content-type": "application/x-www-form-urlencoded"
-                    },
-                    "data": {
-                        "username": "admin",
-                        "password": "admin",
-                        "grant_type": "password"
-                    }
-                }
-                var settings2 = {
-                    "async": true,
-                    "crossDomain": true,
-                    "url": "http://reports.cos.edu/API/Authentication/api/data/authenticate",
-                    "method": "GET",
-                    "headers": {
-                        "cache-control": "no-cache"
-                    }
-                }
 
-                $.ajax(settings).done(function (response) {
-                    settings2.headers.authorization = "bearer " + response.access_token;
-                    token = response.access_token;
-                    $.ajax(settings2).done(function (response2) {
-                        console.log(response2);
-                    });
+
+                $(window).load(function () {
+                    var token = "@ViewBag.code";
+                    console.log(token.substring(1, token.length - 2));
                 });
 
             </script>
