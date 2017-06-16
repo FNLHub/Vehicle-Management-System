@@ -250,6 +250,9 @@
 
             <!--Button Div-->
             <div id="btnStepGroup5">
+                <!--Submit Button btnSubmit-->
+                <input type="submit" value="Submit Form" class="btn btn-success align-right" />
+                <a class="btn btn-success align-right" id="btnSubmit"><span class="glyphicon glyphicon-ok"></span> Submit</a>
                 <!--Previous button-->
                 <a class="btn btn-danger align-right" id="btnStep5Prev"><span class="glyphicon glyphicon-chevron-left"></span> Previous </a>
             </div>
@@ -258,13 +261,11 @@
         </div>
         <!--End Step 5-->
 
-        <div class="submit-container">
-            <span class="btn btn-success" id="btnSubmit">Submit</span>
-            <span class="btn btn-danger">Cancel</span>
+
+        <div class="btn btn-default disableHover">
+            @Html.ActionLink("Cancel", "Index")
         </div>
+            
      </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

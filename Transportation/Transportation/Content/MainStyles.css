@@ -27,11 +27,7 @@ body, h1 {
     display: none;
 }
 
-#btnSubmit {
-    display: none;
-}
-
-a:hover{
+a:hover, disableHover:hover{
     text-decoration: none;
 }
 

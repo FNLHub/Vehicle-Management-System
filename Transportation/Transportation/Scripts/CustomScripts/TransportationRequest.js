@@ -4,6 +4,10 @@ $(document).ready(function () {
     //Array of div id's
     let divStepId = [];
 
+    //Hide Submit Button
+    let submitButton = $("#btnSubmit");
+    submitButton.hide();
+
     for (let i = 0; i < 6; i++) {
 
         //Populate Array
@@ -40,6 +44,7 @@ $(document).ready(function () {
 
                 //hide current next step and prev step
                 $("#btnStepGroup" + (i + 1)).hide();
+
             });
         }  
     };
