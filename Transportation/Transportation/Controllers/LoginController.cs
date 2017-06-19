@@ -15,7 +15,6 @@ namespace Transportation.Controllers
     public class LoginController : Controller
     {
         // Variables
-        internal static Token _token;
 
         private Token GetToken(string userName, string password)
         {
@@ -61,34 +60,37 @@ namespace Transportation.Controllers
             public int expires_in;
         }
 
-        internal static string GetAuthorize()
+        internal static string GetAuthorize(HttpCookie token)
         {
-            if (_token == null)
-                return "";
-            // Variables
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://reports.cos.edu/API/Authentication/api/auth/authorize/");
-
-            req.Method = "GET";
-            req.ContentType = "application/x-www-form-urlencoded";
-            req.Headers.Add("cache-control", "no-cache");
-            req.Headers.Add("authorization", _token.token_type + " " + _token.access_token);
-
-            try
+            if (token.Values[0] != null)
             {
                 // Variables
-                WebResponse webRes = req.GetResponse();
-                Stream resStream = webRes.GetResponseStream();
-                StreamReader reader = new StreamReader(resStream);
-                string res = reader.ReadToEnd();
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://reports.cos.edu/API/Authentication/api/auth/authorize/");
 
-                return res;
-            }
-            catch (Exception e)
-            {
-                System.Diagnostics.Debug.WriteLine(e);
-            }
+                req.Method = "GET";
+                req.ContentType = "application/x-www-form-urlencoded";
+                req.Headers.Add("cache-control", "no-cache");
+                req.Headers.Add("authorization", token.Values[1] + " " + token.Values[0]);
 
-            return "";
+                try
+                {
+                    // Variables
+                    WebResponse webRes = req.GetResponse();
+                    Stream resStream = webRes.GetResponseStream();
+                    StreamReader reader = new StreamReader(resStream);
+                    string res = reader.ReadToEnd();
+
+                    return res;
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine(e);
+                }
+
+                return "";
+            }
+                return "";
+            
         }
 
         [HttpGet]
@@ -112,7 +114,16 @@ namespace Transportation.Controllers
             {
                 return View(model);
             }
-            _token = GetToken(model.UserName, model.Password);
+
+            // Create and save login token
+            Token token = GetToken(model.UserName, model.Password);
+            HttpCookie tokenCookie = new HttpCookie("user_Token");
+            tokenCookie.Values["access_token"] = token.access_token;
+            tokenCookie.Values["token_type"] = token.token_type;
+            tokenCookie.Values["expires_in"] = token.expires_in.ToString();
+            tokenCookie.HttpOnly = true;
+            tokenCookie.Expires.AddHours(2.0);
+            HttpContext.Response.SetCookie(tokenCookie);
 
             // usually this will be injected via DI. but creating this manually now for brevity
             //if (authenticationResult.IsSuccess)

@@ -31,7 +31,7 @@ namespace Transportation.Controllers
         public ActionResult TransportationRequest()
         {
             System.Diagnostics.Debug.WriteLine("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            ViewBag.code = LoginController.GetAuthorize();
+            ViewBag.code = LoginController.GetAuthorize(Request.Cookies["user_Token"]);
             return View();
         }
         [HttpPost]
