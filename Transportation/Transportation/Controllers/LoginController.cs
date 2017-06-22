@@ -15,6 +15,7 @@ namespace Transportation.Controllers
 {
     public class LoginController : Controller
     {
+        public static string userToken = "user_Token";
 
         private Token GetToken(string userName, string password)
         {
@@ -60,7 +61,7 @@ namespace Transportation.Controllers
             public int expires_in;
         }
 
-        internal class AuthorizeObject
+        public class AuthorizeObject
         {
             public AuthUserInfo userInfo;
 
@@ -79,7 +80,7 @@ namespace Transportation.Controllers
             if (token.Values["access_token"] != null)
             {
                 // Variables
-                HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://reports.cos.edu/API/Authentication/api/auth/authorize/");
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://reports.cos.edu/API/Authentication/api/auth/authorize/Json");
 
                 req.Method = "GET";
                 req.ContentType = "application/x-www-form-urlencoded";
@@ -94,7 +95,6 @@ namespace Transportation.Controllers
                     StreamReader reader = new StreamReader(resStream);
                     string res = reader.ReadToEnd();
                     AuthorizeObject Auth = JsonConvert.DeserializeObject<AuthorizeObject>(res);
-
                     return Auth;
                 }
                 catch (Exception e)
@@ -106,6 +106,16 @@ namespace Transportation.Controllers
             }
                 return null;
             
+        }
+
+        private void CreateUserCookie(Token token)
+        {
+            HttpCookie tokenCookie = new HttpCookie(userToken);
+            tokenCookie.Values["access_token"] = token.access_token;
+            tokenCookie.Values["token_type"] = token.token_type;
+            tokenCookie.Expires.AddMinutes(token.expires_in);
+            tokenCookie.HttpOnly = true;
+            HttpContext.Response.SetCookie(tokenCookie);
         }
 
         [HttpGet]
@@ -131,14 +141,8 @@ namespace Transportation.Controllers
             }
 
             // Create and save login token
-            Token token = GetToken(model.UserName, model.Password);
-            HttpCookie tokenCookie = new HttpCookie("user_Token");
-            tokenCookie.Values["access_token"] = token.access_token;
-            tokenCookie.Values["token_type"] = token.token_type;
-            tokenCookie.Values["expires_in"] = token.expires_in.ToString();
-            tokenCookie.HttpOnly = true;
-            tokenCookie.Expires.AddHours(2.0);
-            HttpContext.Response.SetCookie(tokenCookie);
+            CreateUserCookie(GetToken(model.UserName, model.Password));
+            
 
             // usually this will be injected via DI. but creating this manually now for brevity
             //if (authenticationResult.IsSuccess)

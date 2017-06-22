@@ -30,30 +30,31 @@
                 <div class="col-lg-4 col-md-4 col-sm-4">
                     Banner Id:<br />
                     @Html.TextBoxFor(m => m.User.BannerId, new { @class = "form-control", @disabled = "disabled", @id="bannerId"})
+                    @*@ViewBag.code.userInfo.EmployeeId*@
                 </div>
             </div>
             <br />
-            @*<script type="text/javascript">
+            @if (ViewBag.code != null)
+            {
+                <script type="text/javascript">
                 $(document).ready(function () {
 
                     let firstName = $("#firstName");
                     let lastName = $("#lastName");
                     let bannerId = $("#bannerId");
+                    alert("@ViewBag.code.ToString()");
 
-                    if (@ViewBag.code != null) {
-
-                        bannerId.val(@ViewBag.code.userInfo.EmployeeId);
-
-                    } else {
-
-                        alert("Json Failed to Load");
-                    }
-
+                        @*bannerId.val(@ViewBag.code.userInfo.EmployeeId);*@
 
 
                 })
 
-            </script>*@
+                </script>
+            }
+            else{
+               <p>Injecting User info Failed</p>
+            }
+
             <!--Row Start-->
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4">

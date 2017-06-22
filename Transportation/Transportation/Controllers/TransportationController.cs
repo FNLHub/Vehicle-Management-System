@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Text;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Transportation.Controllers
@@ -30,9 +24,11 @@ namespace Transportation.Controllers
         [HttpGet]
         public ActionResult TransportationRequest()
         {
-            System.Diagnostics.Debug.WriteLine("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            ViewBag.code = LoginController.GetAuthorize(Request.Cookies["user_Token"]);
-            return View();
+            TransporationRequest test = new TransporationRequest() { User = new Transportation.User() };
+            //test.User.BannerId = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]).userInfo.EmployeeId.Substring(1);
+            test.User.OfficePhoneNumber = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]).userInfo.OfficePhone;
+            test.User.BannerId = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]).userInfo.EmployeeId.Substring(1);
+            return View(test);
         }
         [HttpPost]
         public ActionResult TransportationRequest(TransporationRequest transRequest)
