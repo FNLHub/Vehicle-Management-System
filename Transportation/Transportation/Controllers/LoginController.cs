@@ -8,13 +8,13 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using Transportation.Models;
+using Newtonsoft.Json;
 
 
 namespace Transportation.Controllers
 {
     public class LoginController : Controller
     {
-        // Variables
 
         private Token GetToken(string userName, string password)
         {
@@ -60,9 +60,23 @@ namespace Transportation.Controllers
             public int expires_in;
         }
 
-        internal static string GetAuthorize(HttpCookie token)
+        internal class AuthorizeObject
         {
-            if (token.Values[0] != null)
+            public AuthUserInfo userInfo;
+
+            public class AuthUserInfo
+            {
+                public string DisplayName;
+                public string Email;
+                public string EmployeeId;
+                public string OfficePhone;
+                public string[][] AdGroups;
+            }
+        }
+
+        internal static AuthorizeObject GetAuthorize(HttpCookie token)
+        {
+            if (token.Values["access_token"] != null)
             {
                 // Variables
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://reports.cos.edu/API/Authentication/api/auth/authorize/");
@@ -70,7 +84,7 @@ namespace Transportation.Controllers
                 req.Method = "GET";
                 req.ContentType = "application/x-www-form-urlencoded";
                 req.Headers.Add("cache-control", "no-cache");
-                req.Headers.Add("authorization", token.Values[1] + " " + token.Values[0]);
+                req.Headers.Add("authorization", token.Values["token_type"] + " " + token.Values["access_token"]);
 
                 try
                 {
@@ -79,17 +93,18 @@ namespace Transportation.Controllers
                     Stream resStream = webRes.GetResponseStream();
                     StreamReader reader = new StreamReader(resStream);
                     string res = reader.ReadToEnd();
+                    AuthorizeObject Auth = JsonConvert.DeserializeObject<AuthorizeObject>(res);
 
-                    return res;
+                    return Auth;
                 }
                 catch (Exception e)
                 {
                     System.Diagnostics.Debug.WriteLine(e);
                 }
 
-                return "";
+                return null;
             }
-                return "";
+                return null;
             
         }
 

@@ -21,18 +21,39 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4">
                     First Name:<br />
-                    @Html.TextBoxFor(m => m.User.FirstName, new { @class = "form-control", @disabled = "disabled", @placeholder = "John" })
+                    @Html.TextBoxFor(m => m.User.FirstName, new { @class = "form-control", @disabled = "disabled",@id="firstName" })
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4">
                     Last Name:<br />
-                    @Html.TextBoxFor(m => m.User.LastName, new { @class = "form-control", @disabled = "disabled", @placeholder = "Doe" })
+                    @Html.TextBoxFor(m => m.User.LastName, new { @class = "form-control", @disabled = "disabled", @id="lastName"})
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4">
-                    Date:<br />
-                    <input type="text" disabled="disabled" placeholder="@DateTime.Now.ToShortDateString()" class="form-control" />
+                    Banner Id:<br />
+                    @Html.TextBoxFor(m => m.User.BannerId, new { @class = "form-control", @disabled = "disabled", @id="bannerId"})
                 </div>
             </div>
             <br />
+            @*<script type="text/javascript">
+                $(document).ready(function () {
+
+                    let firstName = $("#firstName");
+                    let lastName = $("#lastName");
+                    let bannerId = $("#bannerId");
+
+                    if (@ViewBag.code != null) {
+
+                        bannerId.val(@ViewBag.code.userInfo.EmployeeId);
+
+                    } else {
+
+                        alert("Json Failed to Load");
+                    }
+
+
+
+                })
+
+            </script>*@
             <!--Row Start-->
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4">
