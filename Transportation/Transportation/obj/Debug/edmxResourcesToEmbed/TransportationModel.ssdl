@@ -106,6 +106,7 @@ warning 6013: The table/view 'FacilitiesDB.dbo.PassengerGroup' does not have a p
     <Property Name="CellAreaCode" Type="nvarchar" MaxLength="6" />
     <Property Name="CellPhoneNumber" Type="nvarchar" MaxLength="12" />
     <Property Name="ApprovedDmv" Type="bit" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="UserStatuses">
     <Key>

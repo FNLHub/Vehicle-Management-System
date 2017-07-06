@@ -198,6 +198,7 @@
     <NavigationProperty Name="SignOuts" Relationship="FacilitiesDBModel.FK_SignOut_Users" FromRole="User" ToRole="SignOut" />
     <NavigationProperty Name="TransporationRequests" Relationship="FacilitiesDBModel.FK_TransporationRequests_Users" FromRole="User" ToRole="TransporationRequest" />
     <NavigationProperty Name="UserStatus" Relationship="FacilitiesDBModel.FK_Users_UserStatuses" FromRole="User" ToRole="UserStatus" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="UserStatus">
     <Key>

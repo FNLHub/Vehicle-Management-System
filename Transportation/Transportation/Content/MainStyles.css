@@ -23,10 +23,6 @@ body, h1 {
     margin-right: 0.5em;
 }
 
-#step2, #step3, #step4, #step5 {
-    display: none;
-}
-
 a:hover, disableHover:hover{
     text-decoration: none;
 }
@@ -47,19 +43,3 @@ font-size:1em;
 color:blue;
 
 }
-/*
-.input-group {
-    font-size: 13px;
-}
-
-.checkbox-label {
-    width: 100%;
-    text-align: center;
-    line-height: 32px;
-}
-
-.glowing-border:focus {
-    outline: none;
-    border-color: #9ecaed;
-    box-shadow: 0 0 10px #9ecaed;
-}*/

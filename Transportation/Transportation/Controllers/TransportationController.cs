@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+
+//populate dropdown test
+using Transportation.Models;
 
 namespace Transportation.Controllers
 {
@@ -8,13 +12,13 @@ namespace Transportation.Controllers
     {
         FacilitiesDBEntities transportationContext = new FacilitiesDBEntities();
         static int count = 0;
+
         public ActionResult CreateDriver()
         {
-            ViewBag.count = (count++);
+            ViewBag.count = count++;
             return PartialView("~/Views/Injections/AppendingToDriverTable.cshtml");
         }
 
-        
         [HttpGet] // GET: Transportation
         public ActionResult Index()
         {
@@ -24,15 +28,22 @@ namespace Transportation.Controllers
         [HttpGet]
         public ActionResult TransportationRequest()
         {
-            TransporationRequest test = new TransporationRequest() { User = new Transportation.User() };
-            //test.User.BannerId = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]).userInfo.EmployeeId.Substring(1);
-            test.User.OfficePhoneNumber = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]).userInfo.OfficePhone;
-            test.User.BannerId = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]).userInfo.EmployeeId.Substring(1);
-            return View(test);
+            //Empty User
+            TransporationRequest userFill = new TransporationRequest() { User = new Transportation.User() };
+            
+            //Fill Empty User from db
+            userFill.User.FirstName = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]).userInfo.FirstName;
+            userFill.User.LastName = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]).userInfo.LastName;
+            userFill.User.BannerId = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]).userInfo.EmployeeId.Substring(1);
+            userFill.User.OfficePhoneNumber = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]).userInfo.OfficePhone;
+            userFill.User.Email = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]).userInfo.Email;
+            return View(userFill);
         }
+
         [HttpPost]
         public ActionResult TransportationRequest(TransporationRequest transRequest)
         {
+
             if (ModelState.IsValid)
             {
                 try
@@ -47,9 +58,34 @@ namespace Transportation.Controllers
             return View();
         }
 
+        //SelectList populateDropDown(System.Data.Entity.DbSet transContext)
+        //{
+        //    List<SelectListItem> listItem = new List<SelectListItem>();
+            
+        //    for (int i = 1; i <= transContext.Count(); i++)
+        //    {
+        //        listItem.Add(new SelectListItem() { Value = transContext.Where(v => v.VehicleId == i).Select(v => v.VehicleName).FirstOrDefault(), Text = transportationContext.Vehicles.Where(v => v.VehicleId == i).Select(v => v.VehicleId).FirstOrDefault().ToString() });
+        //    }
+
+        //    SelectList dropDown = new SelectList(listItem, "Text", "Value");
+        //    return dropDown;
+        //}
+
+
         [HttpGet]
         public ActionResult CheckOut()
         {
+            List<SelectListItem> listItem = new List<SelectListItem>();
+
+            for (int i = 1; i <= transportationContext.Vehicles.Count(); i++ )
+            {
+                listItem.Add(new SelectListItem() { Value = transportationContext.Vehicles.Where(v => v.VehicleId == i).Select(v => v.VehicleName).FirstOrDefault(), Text = transportationContext.Vehicles.Where(v => v.VehicleId == i).Select(v => v.VehicleId).FirstOrDefault().ToString() });
+            }
+
+            //ViewData["VehicleDropDown"] = populateDropDown(transportationContext.Vehicles);
+            //ViewData["KeyDropDown"] = populateDropDown(transportationContext.Keys);
+            ViewData["VehicleDropdown"] = new SelectList(listItem, "Text", "Value");
+
             return View();
         }
         [HttpPost]
@@ -86,8 +122,6 @@ namespace Transportation.Controllers
             }
             return View();
         }
-
-
         
         [HttpGet]
         public ActionResult SignIn()
@@ -144,7 +178,6 @@ namespace Transportation.Controllers
             }
             return View(trans);
         }
-
 
 
         [HttpGet]

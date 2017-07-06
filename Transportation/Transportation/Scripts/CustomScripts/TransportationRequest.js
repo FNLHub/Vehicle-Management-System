@@ -85,40 +85,40 @@ function GoBack(stepId, PrevBtnId, PrevStepId) {
 }
 */
 
-function EnableDisableSubmit(SubBtnId, Status) {
-    let s = document.getElementById(SubBtnId)
-    //make submit button visible
-    if (Status === "enabled") {
-        s.style.display = 'inline-block';
-    }
-    //make submit button invisible
-    else if (Satus === "disabled") {
-        s.style.display = 'none';
-    }
-}
+//function EnableDisableSubmit(SubBtnId, Status) {
+//    let s = document.getElementById(SubBtnId)
+//    //make submit button visible
+//    if (Status === "enabled") {
+//        s.style.display = 'inline-block';
+//    }
+//    //make submit button invisible
+//    else if (Satus === "disabled") {
+//        s.style.display = 'none';
+//    }
+//}
 
-function ValidateInformation(CurrentStepId, NextStepId, PrevBtnId) {
-    //get all the data fields from the current step
-    let allFieldsDone = 0;
-    let Fields = $('#' + CurrentStepId + " input");
+//function ValidateInformation(CurrentStepId, NextStepId, PrevBtnId) {
+//    //get all the data fields from the current step
+//    let allFieldsDone = 0;
+//    let Fields = $('#' + CurrentStepId + " input");
 
-    Fields.each(function (index, element) {
-        console.dir(element);
-        //do nothing if any data field is left blank
-        if (element.value === "") {
-            alert("Please Fill In the " + element.localName + " Form");
-        }
-        else {
-            if (true) {
+//    Fields.each(function (index, element) {
+//        console.dir(element);
+//        //do nothing if any data field is left blank
+//        if (element.value === "") {
+//            alert("Please Fill In the " + element.localName + " Form");
+//        }
+//        else {
+//            if (true) {
 
-                allFieldsDone++;
-            }
-            else {
-                alert("Invalid Input");
-            }
-        }
-    });
-}
+//                allFieldsDone++;
+//            }
+//            else {
+//                alert("Invalid Input");
+//            }
+//        }
+//    });
+//}
 
 
 

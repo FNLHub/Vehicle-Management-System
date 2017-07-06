@@ -111,6 +111,7 @@ warning 6013: The table/view 'FacilitiesDB.dbo.PassengerGroup' does not have a p
           <Property Name="CellAreaCode" Type="nvarchar" MaxLength="6" />
           <Property Name="CellPhoneNumber" Type="nvarchar" MaxLength="12" />
           <Property Name="ApprovedDmv" Type="bit" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="UserStatuses">
           <Key>
@@ -837,6 +838,7 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
           <NavigationProperty Name="SignOuts" Relationship="FacilitiesDBModel.FK_SignOut_Users" FromRole="User" ToRole="SignOut" />
           <NavigationProperty Name="TransporationRequests" Relationship="FacilitiesDBModel.FK_TransporationRequests_Users" FromRole="User" ToRole="TransporationRequest" />
           <NavigationProperty Name="UserStatus" Relationship="FacilitiesDBModel.FK_Users_UserStatuses" FromRole="User" ToRole="UserStatus" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="UserStatus">
           <Key>
@@ -1286,6 +1288,7 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="FacilitiesDBModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="ApprovedDmv" ColumnName="ApprovedDmv" />
                 <ScalarProperty Name="CellPhoneNumber" ColumnName="CellPhoneNumber" />
                 <ScalarProperty Name="CellAreaCode" ColumnName="CellAreaCode" />

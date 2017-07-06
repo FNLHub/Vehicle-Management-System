@@ -98,6 +98,7 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="FacilitiesDBModel.User">
         <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="ApprovedDmv" ColumnName="ApprovedDmv" />
           <ScalarProperty Name="CellPhoneNumber" ColumnName="CellPhoneNumber" />
           <ScalarProperty Name="CellAreaCode" ColumnName="CellAreaCode" />
