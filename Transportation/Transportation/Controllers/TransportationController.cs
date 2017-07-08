@@ -12,7 +12,7 @@ namespace Transportation.Controllers
     {
         FacilitiesDBEntities transportationContext = new FacilitiesDBEntities();
         static int count = 0;
-
+        
         public ActionResult CreateDriver()
         {
             ViewBag.count = count++;
@@ -70,24 +70,71 @@ namespace Transportation.Controllers
         //    SelectList dropDown = new SelectList(listItem, "Text", "Value");
         //    return dropDown;
         //}
-
-
+           
         [HttpGet]
         public ActionResult CheckOut()
         {
-            List<SelectListItem> listItem = new List<SelectListItem>();
+            //List<SelectListItem> listItem = new List<SelectListItem>();
 
-            for (int i = 1; i <= transportationContext.Vehicles.Count(); i++ )
-            {
-                listItem.Add(new SelectListItem() { Value = transportationContext.Vehicles.Where(v => v.VehicleId == i).Select(v => v.VehicleName).FirstOrDefault(), Text = transportationContext.Vehicles.Where(v => v.VehicleId == i).Select(v => v.VehicleId).FirstOrDefault().ToString() });
-            }
+            //for (int i = 1; i <= transportationContext.Vehicles.Count(); i++ )
+            //{
+            //    listItem.Add(new SelectListItem() { Value = transportationContext.Vehicles.Where(v => v.VehicleId == i).Select(v => v.VehicleName).FirstOrDefault(), Text = transportationContext.Vehicles.Where(v => v.VehicleId == i).Select(v => v.VehicleId).FirstOrDefault().ToString() });
+            //}
 
-            //ViewData["VehicleDropDown"] = populateDropDown(transportationContext.Vehicles);
-            //ViewData["KeyDropDown"] = populateDropDown(transportationContext.Keys);
-            ViewData["VehicleDropdown"] = new SelectList(listItem, "Text", "Value");
+            ////ViewData["VehicleDropDown"] = populateDropDown(transportationContext.Vehicles);
+            ////ViewData["KeyDropDown"] = populateDropDown(transportationContext.Keys);
+            //ViewData["VehicleDropdown"] = new SelectList(listItem, "Text", "Value");
+
+            //Dropdown Test
+            
+            //----- Dropdown Test
 
             return View();
         }
+
+        //Dropdown Test
+
+        //private List<vehicleDropdown> _vehicleDropdown;
+        //public IEnumerable<SelectListItem> vehicleItems
+        //{
+        //    get
+        //    {
+        //        IEnumerable<SelectListItem> selectVehicle = new List<SelectListItem>();
+        //        selectVehicle = _vehicleDropdown.Select(x => new SelectListItem
+        //        {
+        //            Value = x.vehicleId.ToString(),
+        //            Text = x.vehicleName
+        //        });
+        //        return DefaultItem.Concat(selectVehicle);
+        //    }
+        //}
+
+        //public IEnumerable<SelectListItem> DefaultItem
+        //{
+        //    get
+        //    {
+        //        return Enumerable.Repeat(new SelectListItem
+        //        {
+        //            Value = "",
+        //            Text = "- SELECT -"
+        //        }, count: 1);
+        //    }
+        //}
+
+        //public class GenericViewModel
+        //{
+        //    [Display(Name = "Vehicle")]
+        //    public Guid SelectedCountryId { get; set; }
+        //    public List<SelectListItem> vehicleItems { get; set; }
+
+        //    public GenericViewModel()
+        //    {
+        //        var ddlHelper = new DropDownListHelper();
+        //        this.vehicleItems = ddlHelper.CountryItems.ToList();
+        //    }
+        //}
+
+        //------Dropdown Test End
         [HttpPost]
         public ActionResult CheckOut(User_Transportation_Log trans)
         {

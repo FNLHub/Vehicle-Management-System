@@ -183,11 +183,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\DropDownListHelper.cs" />
     <Compile Include="Key.cs">
       <DependentUpon>TransportationModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DropDownListModel.cs" />
+    <Compile Include="Models\GenericViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
-    <Compile Include="Models\vehicleDropdown.cs" />
+    <Compile Include="Models\VehicleDropdown.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignOut.cs">
       <DependentUpon>TransportationModel.tt</DependentUpon>

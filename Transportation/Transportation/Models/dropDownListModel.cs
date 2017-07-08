@@ -5,11 +5,9 @@ using System.Web;
 
 namespace Transportation.Models
 {
-    public partial class VehicleDropdown
+    public class DropDownListModel
     {
-
-        public int vehicleId { get; set; }
-        public string vehicleName { get; set; }
-
+        public int ItemId { get; set; }
+        public string ItemName { get; set; }
     }
 }
