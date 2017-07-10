@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Voyager2.0", "Voyager2.0\Voyager2.0.csproj", "{FA6CFC71-EB7D-415D-B078-E57D4F7532F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransportationDB", "TransportationDB\TransportationDB.csproj", "{C5ECC435-01D3-4706-A0AE-13B3E582E3BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA6CFC71-EB7D-415D-B078-E57D4F7532F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA6CFC71-EB7D-415D-B078-E57D4F7532F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA6CFC71-EB7D-415D-B078-E57D4F7532F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA6CFC71-EB7D-415D-B078-E57D4F7532F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5ECC435-01D3-4706-A0AE-13B3E582E3BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5ECC435-01D3-4706-A0AE-13B3E582E3BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5ECC435-01D3-4706-A0AE-13B3E582E3BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5ECC435-01D3-4706-A0AE-13B3E582E3BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

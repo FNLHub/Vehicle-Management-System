@@ -1,0 +1,659 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FacilitiesDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Campuses">
+    <Key>
+      <PropertyRef Name="CampusId" />
+    </Key>
+    <Property Name="CampusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CampusCode" Type="nchar" MaxLength="3" Nullable="false" />
+    <Property Name="CampusAddress" Type="nchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Departments">
+    <Key>
+      <PropertyRef Name="DepartmentId" />
+    </Key>
+    <Property Name="DepartmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmentCode" Type="nchar" MaxLength="4" Nullable="false" />
+    <Property Name="DepartmentName" Type="nchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GasCards">
+    <Key>
+      <PropertyRef Name="GasCardId" />
+    </Key>
+    <Property Name="GasCardId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GasCardName" Type="nchar" MaxLength="60" Nullable="false" />
+    <Property Name="GasCardNum" Type="nchar" MaxLength="16" Nullable="false" />
+    <Property Name="GasCardPin" Type="nchar" MaxLength="4" Nullable="false" />
+    <Property Name="StatusId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GasCardStatuses">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatusCode" Type="nchar" MaxLength="4" Nullable="false" />
+    <Property Name="StatusName" Type="nchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Keys">
+    <Key>
+      <PropertyRef Name="KeyId" />
+    </Key>
+    <Property Name="KeyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KeyName" Type="nchar" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SignOut">
+    <Key>
+      <PropertyRef Name="SignOutId" />
+    </Key>
+    <Property Name="SignOutId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Destination" Type="nchar" MaxLength="60" Nullable="false" />
+    <Property Name="VehicleId" Type="int" Nullable="false" />
+    <Property Name="KeyId" Type="int" Nullable="false" />
+    <Property Name="GasCardId" Type="int" Nullable="false" />
+    <Property Name="CheckOutTime" Type="datetime" />
+    <Property Name="CheckInTime" Type="datetime" />
+    <Property Name="ActivityTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TransporationRequests">
+    <Key>
+      <PropertyRef Name="TransReqId" />
+    </Key>
+    <Property Name="TransReqId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="VehicleId" Type="int" Nullable="false" />
+    <Property Name="VehicleAddonId" Type="int" Nullable="false" />
+    <Property Name="NeedGasCard" Type="bit" Nullable="false" />
+    <Property Name="LeaveDate" Type="date" Nullable="false" />
+    <Property Name="LeaveTime" Type="time" Precision="7" Nullable="false" />
+    <Property Name="ReturnDate" Type="date" Nullable="false" />
+    <Property Name="ReturnTime" Type="time" Precision="7" Nullable="false" />
+    <Property Name="TripPurpose" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="NumOfStudents" Type="int" Nullable="false" />
+    <Property Name="PassengerGroupId" Type="int" />
+    <Property Name="Approved" Type="bit" Nullable="false" />
+    <Property Name="ProcessedUserId" Type="int" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BannerId" Type="nchar" MaxLength="8" Nullable="false" />
+    <Property Name="FirstName" Type="nchar" MaxLength="60" Nullable="false" />
+    <Property Name="LastName" Type="nchar" MaxLength="60" Nullable="false" />
+    <Property Name="DepartmentId" Type="int" Nullable="false" />
+    <Property Name="StatusId" Type="int" Nullable="false" />
+    <Property Name="OfficeAreaCode" Type="nvarchar" MaxLength="6" />
+    <Property Name="OfficePhoneNumber" Type="nvarchar" MaxLength="12" />
+    <Property Name="CellAreaCode" Type="nvarchar" MaxLength="6" />
+    <Property Name="CellPhoneNumber" Type="nvarchar" MaxLength="12" />
+    <Property Name="ApprovedDmv" Type="bit" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="SupervisorEmail" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="UserStatuses">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatusCode" Type="nchar" MaxLength="4" Nullable="false" />
+    <Property Name="StatusName" Type="nchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VehicleAddons">
+    <Key>
+      <PropertyRef Name="VehicleAddonId" />
+    </Key>
+    <Property Name="VehicleAddonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AddonName" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="AddonDescription" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Vehicles">
+    <Key>
+      <PropertyRef Name="VehicleId" />
+    </Key>
+    <Property Name="VehicleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VehiclePlate" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="VehicleName" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="StatusId" Type="int" Nullable="false" />
+    <Property Name="CampusId" Type="int" Nullable="false" />
+    <Property Name="VehicleTypeId" Type="int" />
+    <Property Name="VehicleAddonId" Type="int" />
+  </EntityType>
+  <EntityType Name="VehicleStatuses">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatusCode" Type="nchar" MaxLength="4" Nullable="false" />
+    <Property Name="StatusName" Type="nchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VehicleTypes">
+    <Key>
+      <PropertyRef Name="VehicleTypeId" />
+    </Key>
+    <Property Name="VehicleTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FacilitiesDB.dbo.Admin_Create_GasCard' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Admin_Create_GasCard">
+    <Key>
+      <PropertyRef Name="GasCardName" />
+      <PropertyRef Name="GasCardNum" />
+      <PropertyRef Name="GasCardPin" />
+      <PropertyRef Name="StatusName" />
+    </Key>
+    <Property Name="GasCardName" Type="nchar" MaxLength="60" Nullable="false" />
+    <Property Name="GasCardNum" Type="nchar" MaxLength="16" Nullable="false" />
+    <Property Name="GasCardPin" Type="nchar" MaxLength="4" Nullable="false" />
+    <Property Name="StatusName" Type="nchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FacilitiesDB.dbo.Admin_Create_User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Admin_Create_User">
+    <Key>
+      <PropertyRef Name="BannerId" />
+      <PropertyRef Name="FirstName" />
+      <PropertyRef Name="LastName" />
+      <PropertyRef Name="DepartmentName" />
+      <PropertyRef Name="StatusName" />
+    </Key>
+    <Property Name="BannerId" Type="nchar" MaxLength="8" Nullable="false" />
+    <Property Name="FirstName" Type="nchar" MaxLength="60" Nullable="false" />
+    <Property Name="LastName" Type="nchar" MaxLength="60" Nullable="false" />
+    <Property Name="DepartmentName" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="StatusName" Type="nchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FacilitiesDB.dbo.Admin_Create_Vehicle' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Admin_Create_Vehicle">
+    <Key>
+      <PropertyRef Name="VehiclePlate" />
+      <PropertyRef Name="VehicleName" />
+      <PropertyRef Name="StatusName" />
+      <PropertyRef Name="CampusCode" />
+    </Key>
+    <Property Name="VehiclePlate" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="VehicleName" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="StatusName" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="CampusCode" Type="nchar" MaxLength="3" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FacilitiesDB.dbo.Admin_Transportation_Approval' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Admin_Transportation_Approval">
+    <Key>
+      <PropertyRef Name="VId" />
+    </Key>
+    <Property Name="VId" Type="bigint" Nullable="false" />
+    <Property Name="SignOutId" Type="int" />
+    <Property Name="FirstName" Type="nchar" MaxLength="60" />
+    <Property Name="LastName" Type="nchar" MaxLength="60" />
+    <Property Name="BannerId" Type="nchar" MaxLength="8" />
+    <Property Name="ApprovedDmv" Type="bit" />
+    <Property Name="DepartmentName" Type="nchar" MaxLength="20" />
+    <Property Name="VehicleName" Type="nchar" MaxLength="10" />
+    <Property Name="KeyName" Type="nchar" MaxLength="5" />
+    <Property Name="GasCardName" Type="nchar" MaxLength="60" />
+    <Property Name="Destination" Type="nchar" MaxLength="60" />
+    <Property Name="CheckOutTime" Type="datetime" />
+    <Property Name="CheckInTime" Type="datetime" />
+    <Property Name="ActivityTime" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_SignedOutView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Transportation_SignedOutView">
+    <Key>
+      <PropertyRef Name="VId" />
+    </Key>
+    <Property Name="VId" Type="bigint" Nullable="false" />
+    <Property Name="SignOutId" Type="int" />
+    <Property Name="FirstName" Type="nchar" MaxLength="60" />
+    <Property Name="LastName" Type="nchar" MaxLength="60" />
+    <Property Name="BannerId" Type="nchar" MaxLength="8" />
+    <Property Name="DepartmentName" Type="nchar" MaxLength="20" />
+    <Property Name="VehicleName" Type="nchar" MaxLength="10" />
+    <Property Name="KeyName" Type="nchar" MaxLength="5" />
+    <Property Name="GasCardName" Type="nchar" MaxLength="60" />
+    <Property Name="Destination" Type="nchar" MaxLength="60" />
+    <Property Name="CheckOutTime" Type="datetime" />
+    <Property Name="CheckInTime" Type="datetime" />
+    <Property Name="ActivityTime" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Transportation_View">
+    <Key>
+      <PropertyRef Name="VId" />
+    </Key>
+    <Property Name="VId" Type="bigint" Nullable="false" />
+    <Property Name="FirstName" Type="nchar" MaxLength="60" />
+    <Property Name="LastName" Type="nchar" MaxLength="60" />
+    <Property Name="BannerId" Type="nchar" MaxLength="8" />
+    <Property Name="DepartmentName" Type="nchar" MaxLength="20" />
+    <Property Name="VehicleName" Type="nchar" MaxLength="10" />
+    <Property Name="KeyName" Type="nchar" MaxLength="5" />
+    <Property Name="GasCardName" Type="nchar" MaxLength="60" />
+    <Property Name="Destination" Type="nchar" MaxLength="60" />
+    <Property Name="CheckOutTime" Type="datetime" />
+    <Property Name="CheckInTime" Type="datetime" />
+    <Property Name="ActivityTime" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_ViewAll' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Transportation_ViewAll">
+    <Key>
+      <PropertyRef Name="VId" />
+    </Key>
+    <Property Name="VId" Type="bigint" Nullable="false" />
+    <Property Name="FirstName" Type="nchar" MaxLength="60" />
+    <Property Name="LastName" Type="nchar" MaxLength="60" />
+    <Property Name="BannerId" Type="nchar" MaxLength="8" />
+    <Property Name="DepartmentName" Type="nchar" MaxLength="20" />
+    <Property Name="VehicleName" Type="nchar" MaxLength="10" />
+    <Property Name="KeyName" Type="nchar" MaxLength="5" />
+    <Property Name="GasCardName" Type="nchar" MaxLength="60" />
+    <Property Name="Destination" Type="nchar" MaxLength="60" />
+    <Property Name="CheckOutTime" Type="datetime" />
+    <Property Name="CheckInTime" Type="datetime" />
+    <Property Name="ActivityTime" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="User_Transportation_Log">
+    <Key>
+      <PropertyRef Name="BannerId" />
+      <PropertyRef Name="Destination" />
+      <PropertyRef Name="VehicleName" />
+      <PropertyRef Name="GasCardName" />
+      <PropertyRef Name="KeyName" />
+    </Key>
+    <Property Name="BannerId" Type="nchar" MaxLength="8" Nullable="false" />
+    <Property Name="Destination" Type="nchar" MaxLength="60" Nullable="false" />
+    <Property Name="VehicleName" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="GasCardName" Type="nchar" MaxLength="60" Nullable="false" />
+    <Property Name="KeyName" Type="nchar" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_GasCards_GasCardStatuses">
+    <End Role="GasCardStatuses" Type="Self.GasCardStatuses" Multiplicity="1" />
+    <End Role="GasCards" Type="Self.GasCards" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GasCardStatuses">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="GasCards">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SignOut_GasCards">
+    <End Role="GasCards" Type="Self.GasCards" Multiplicity="1" />
+    <End Role="SignOut" Type="Self.SignOut" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GasCards">
+        <PropertyRef Name="GasCardId" />
+      </Principal>
+      <Dependent Role="SignOut">
+        <PropertyRef Name="GasCardId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SignOut_Keys">
+    <End Role="Keys" Type="Self.Keys" Multiplicity="1" />
+    <End Role="SignOut" Type="Self.SignOut" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Keys">
+        <PropertyRef Name="KeyId" />
+      </Principal>
+      <Dependent Role="SignOut">
+        <PropertyRef Name="KeyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SignOut_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="SignOut" Type="Self.SignOut" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="SignOut">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SignOut_Vehicles">
+    <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="1" />
+    <End Role="SignOut" Type="Self.SignOut" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehicles">
+        <PropertyRef Name="VehicleId" />
+      </Principal>
+      <Dependent Role="SignOut">
+        <PropertyRef Name="VehicleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransporationRequests_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="TransporationRequests" Type="Self.TransporationRequests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="TransporationRequests">
+        <PropertyRef Name="ProcessedUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransporationRequests_VehicleAddons">
+    <End Role="VehicleAddons" Type="Self.VehicleAddons" Multiplicity="1" />
+    <End Role="TransporationRequests" Type="Self.TransporationRequests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleAddons">
+        <PropertyRef Name="VehicleAddonId" />
+      </Principal>
+      <Dependent Role="TransporationRequests">
+        <PropertyRef Name="VehicleAddonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransporationRequests_VehicleId">
+    <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="1" />
+    <End Role="TransporationRequests" Type="Self.TransporationRequests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehicles">
+        <PropertyRef Name="VehicleId" />
+      </Principal>
+      <Dependent Role="TransporationRequests">
+        <PropertyRef Name="VehicleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Departments">
+    <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="DepartmentId" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_UserStatuses">
+    <End Role="UserStatuses" Type="Self.UserStatuses" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserStatuses">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vehicles_Campuses">
+    <End Role="Campuses" Type="Self.Campuses" Multiplicity="1" />
+    <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Campuses">
+        <PropertyRef Name="CampusId" />
+      </Principal>
+      <Dependent Role="Vehicles">
+        <PropertyRef Name="CampusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vehicles_VehicleAddons">
+    <End Role="VehicleAddons" Type="Self.VehicleAddons" Multiplicity="0..1" />
+    <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleAddons">
+        <PropertyRef Name="VehicleAddonId" />
+      </Principal>
+      <Dependent Role="Vehicles">
+        <PropertyRef Name="VehicleAddonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vehicles_VehicleStatuses">
+    <End Role="VehicleStatuses" Type="Self.VehicleStatuses" Multiplicity="1" />
+    <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleStatuses">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="Vehicles">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vehicles_VehicleTypes">
+    <End Role="VehicleTypes" Type="Self.VehicleTypes" Multiplicity="0..1" />
+    <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleTypes">
+        <PropertyRef Name="VehicleTypeId" />
+      </Principal>
+      <Dependent Role="Vehicles">
+        <PropertyRef Name="VehicleTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="FacilitiesDBModelStoreContainer">
+    <EntitySet Name="Campuses" EntityType="Self.Campuses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GasCards" EntityType="Self.GasCards" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GasCardStatuses" EntityType="Self.GasCardStatuses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Keys" EntityType="Self.Keys" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SignOut" EntityType="Self.SignOut" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransporationRequests" EntityType="Self.TransporationRequests" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserStatuses" EntityType="Self.UserStatuses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VehicleAddons" EntityType="Self.VehicleAddons" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vehicles" EntityType="Self.Vehicles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VehicleStatuses" EntityType="Self.VehicleStatuses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VehicleTypes" EntityType="Self.VehicleTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Admin_Create_GasCard" EntityType="Self.Admin_Create_GasCard" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Admin_Create_GasCard].[GasCardName] AS [GasCardName], 
+    [Admin_Create_GasCard].[GasCardNum] AS [GasCardNum], 
+    [Admin_Create_GasCard].[GasCardPin] AS [GasCardPin], 
+    [Admin_Create_GasCard].[StatusName] AS [StatusName]
+    FROM [dbo].[Admin_Create_GasCard] AS [Admin_Create_GasCard]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Admin_Create_User" EntityType="Self.Admin_Create_User" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Admin_Create_User].[BannerId] AS [BannerId], 
+    [Admin_Create_User].[FirstName] AS [FirstName], 
+    [Admin_Create_User].[LastName] AS [LastName], 
+    [Admin_Create_User].[DepartmentName] AS [DepartmentName], 
+    [Admin_Create_User].[StatusName] AS [StatusName]
+    FROM [dbo].[Admin_Create_User] AS [Admin_Create_User]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Admin_Create_Vehicle" EntityType="Self.Admin_Create_Vehicle" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Admin_Create_Vehicle].[VehiclePlate] AS [VehiclePlate], 
+    [Admin_Create_Vehicle].[VehicleName] AS [VehicleName], 
+    [Admin_Create_Vehicle].[StatusName] AS [StatusName], 
+    [Admin_Create_Vehicle].[CampusCode] AS [CampusCode]
+    FROM [dbo].[Admin_Create_Vehicle] AS [Admin_Create_Vehicle]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Admin_Transportation_Approval" EntityType="Self.Admin_Transportation_Approval" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Admin_Transportation_Approval].[VId] AS [VId], 
+    [Admin_Transportation_Approval].[SignOutId] AS [SignOutId], 
+    [Admin_Transportation_Approval].[FirstName] AS [FirstName], 
+    [Admin_Transportation_Approval].[LastName] AS [LastName], 
+    [Admin_Transportation_Approval].[BannerId] AS [BannerId], 
+    [Admin_Transportation_Approval].[ApprovedDmv] AS [ApprovedDmv], 
+    [Admin_Transportation_Approval].[DepartmentName] AS [DepartmentName], 
+    [Admin_Transportation_Approval].[VehicleName] AS [VehicleName], 
+    [Admin_Transportation_Approval].[KeyName] AS [KeyName], 
+    [Admin_Transportation_Approval].[GasCardName] AS [GasCardName], 
+    [Admin_Transportation_Approval].[Destination] AS [Destination], 
+    [Admin_Transportation_Approval].[CheckOutTime] AS [CheckOutTime], 
+    [Admin_Transportation_Approval].[CheckInTime] AS [CheckInTime], 
+    [Admin_Transportation_Approval].[ActivityTime] AS [ActivityTime]
+    FROM [dbo].[Admin_Transportation_Approval] AS [Admin_Transportation_Approval]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Transportation_SignedOutView" EntityType="Self.Transportation_SignedOutView" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Transportation_SignedOutView].[VId] AS [VId], 
+    [Transportation_SignedOutView].[SignOutId] AS [SignOutId], 
+    [Transportation_SignedOutView].[FirstName] AS [FirstName], 
+    [Transportation_SignedOutView].[LastName] AS [LastName], 
+    [Transportation_SignedOutView].[BannerId] AS [BannerId], 
+    [Transportation_SignedOutView].[DepartmentName] AS [DepartmentName], 
+    [Transportation_SignedOutView].[VehicleName] AS [VehicleName], 
+    [Transportation_SignedOutView].[KeyName] AS [KeyName], 
+    [Transportation_SignedOutView].[GasCardName] AS [GasCardName], 
+    [Transportation_SignedOutView].[Destination] AS [Destination], 
+    [Transportation_SignedOutView].[CheckOutTime] AS [CheckOutTime], 
+    [Transportation_SignedOutView].[CheckInTime] AS [CheckInTime], 
+    [Transportation_SignedOutView].[ActivityTime] AS [ActivityTime]
+    FROM [dbo].[Transportation_SignedOutView] AS [Transportation_SignedOutView]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Transportation_View" EntityType="Self.Transportation_View" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Transportation_View].[VId] AS [VId], 
+    [Transportation_View].[FirstName] AS [FirstName], 
+    [Transportation_View].[LastName] AS [LastName], 
+    [Transportation_View].[BannerId] AS [BannerId], 
+    [Transportation_View].[DepartmentName] AS [DepartmentName], 
+    [Transportation_View].[VehicleName] AS [VehicleName], 
+    [Transportation_View].[KeyName] AS [KeyName], 
+    [Transportation_View].[GasCardName] AS [GasCardName], 
+    [Transportation_View].[Destination] AS [Destination], 
+    [Transportation_View].[CheckOutTime] AS [CheckOutTime], 
+    [Transportation_View].[CheckInTime] AS [CheckInTime], 
+    [Transportation_View].[ActivityTime] AS [ActivityTime]
+    FROM [dbo].[Transportation_View] AS [Transportation_View]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Transportation_ViewAll" EntityType="Self.Transportation_ViewAll" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Transportation_ViewAll].[VId] AS [VId], 
+    [Transportation_ViewAll].[FirstName] AS [FirstName], 
+    [Transportation_ViewAll].[LastName] AS [LastName], 
+    [Transportation_ViewAll].[BannerId] AS [BannerId], 
+    [Transportation_ViewAll].[DepartmentName] AS [DepartmentName], 
+    [Transportation_ViewAll].[VehicleName] AS [VehicleName], 
+    [Transportation_ViewAll].[KeyName] AS [KeyName], 
+    [Transportation_ViewAll].[GasCardName] AS [GasCardName], 
+    [Transportation_ViewAll].[Destination] AS [Destination], 
+    [Transportation_ViewAll].[CheckOutTime] AS [CheckOutTime], 
+    [Transportation_ViewAll].[CheckInTime] AS [CheckInTime], 
+    [Transportation_ViewAll].[ActivityTime] AS [ActivityTime]
+    FROM [dbo].[Transportation_ViewAll] AS [Transportation_ViewAll]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="User_Transportation_Log" EntityType="Self.User_Transportation_Log" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [User_Transportation_Log].[BannerId] AS [BannerId], 
+    [User_Transportation_Log].[Destination] AS [Destination], 
+    [User_Transportation_Log].[VehicleName] AS [VehicleName], 
+    [User_Transportation_Log].[GasCardName] AS [GasCardName], 
+    [User_Transportation_Log].[KeyName] AS [KeyName]
+    FROM [dbo].[User_Transportation_Log] AS [User_Transportation_Log]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_GasCards_GasCardStatuses" Association="Self.FK_GasCards_GasCardStatuses">
+      <End Role="GasCardStatuses" EntitySet="GasCardStatuses" />
+      <End Role="GasCards" EntitySet="GasCards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SignOut_GasCards" Association="Self.FK_SignOut_GasCards">
+      <End Role="GasCards" EntitySet="GasCards" />
+      <End Role="SignOut" EntitySet="SignOut" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SignOut_Keys" Association="Self.FK_SignOut_Keys">
+      <End Role="Keys" EntitySet="Keys" />
+      <End Role="SignOut" EntitySet="SignOut" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SignOut_Users" Association="Self.FK_SignOut_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="SignOut" EntitySet="SignOut" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SignOut_Vehicles" Association="Self.FK_SignOut_Vehicles">
+      <End Role="Vehicles" EntitySet="Vehicles" />
+      <End Role="SignOut" EntitySet="SignOut" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransporationRequests_Users" Association="Self.FK_TransporationRequests_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="TransporationRequests" EntitySet="TransporationRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransporationRequests_VehicleAddons" Association="Self.FK_TransporationRequests_VehicleAddons">
+      <End Role="VehicleAddons" EntitySet="VehicleAddons" />
+      <End Role="TransporationRequests" EntitySet="TransporationRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransporationRequests_VehicleId" Association="Self.FK_TransporationRequests_VehicleId">
+      <End Role="Vehicles" EntitySet="Vehicles" />
+      <End Role="TransporationRequests" EntitySet="TransporationRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Departments" Association="Self.FK_Users_Departments">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_UserStatuses" Association="Self.FK_Users_UserStatuses">
+      <End Role="UserStatuses" EntitySet="UserStatuses" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vehicles_Campuses" Association="Self.FK_Vehicles_Campuses">
+      <End Role="Campuses" EntitySet="Campuses" />
+      <End Role="Vehicles" EntitySet="Vehicles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vehicles_VehicleAddons" Association="Self.FK_Vehicles_VehicleAddons">
+      <End Role="VehicleAddons" EntitySet="VehicleAddons" />
+      <End Role="Vehicles" EntitySet="Vehicles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vehicles_VehicleStatuses" Association="Self.FK_Vehicles_VehicleStatuses">
+      <End Role="VehicleStatuses" EntitySet="VehicleStatuses" />
+      <End Role="Vehicles" EntitySet="Vehicles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vehicles_VehicleTypes" Association="Self.FK_Vehicles_VehicleTypes">
+      <End Role="VehicleTypes" EntitySet="VehicleTypes" />
+      <End Role="Vehicles" EntitySet="Vehicles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

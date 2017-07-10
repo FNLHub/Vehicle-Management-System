@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="242a9fd26ffd4a14a4466c2e34ed2866" Name="Diagram1">
+        <EntityTypeShape EntityType="FacilitiesDBModel.Campus" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.Department" Width="1.5" PointX="1.5" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.GasCard" Width="1.5" PointX="6" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.GasCardStatus" Width="1.5" PointX="3.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.Key" Width="1.5" PointX="6" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.SignOut" Width="1.5" PointX="8.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.sysdiagram" Width="1.5" PointX="5.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.TransporationRequest" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.User" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.UserStatus" Width="1.5" PointX="1.5" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.VehicleAddon" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.Vehicle" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.VehicleStatus" Width="1.5" PointX="3.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.VehicleType" Width="1.5" PointX="3.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.Admin_Create_GasCard" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.Admin_Create_User" Width="1.5" PointX="7.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.Admin_Create_Vehicle" Width="1.5" PointX="8.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.Admin_Transportation_Approval" Width="1.5" PointX="10.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.Transportation_SignedOutView" Width="1.5" PointX="10.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.Transportation_View" Width="1.5" PointX="10.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.Transportation_ViewAll" Width="1.5" PointX="12.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.User_Transportation_Log" Width="1.5" PointX="5.75" PointY="11.25" IsExpanded="true" />
+        <AssociationConnector Association="FacilitiesDBModel.FK_Vehicles_Campuses" ManuallyRouted="false" />
+        <AssociationConnector Association="FacilitiesDBModel.FK_Users_Departments" ManuallyRouted="false" />
+        <AssociationConnector Association="FacilitiesDBModel.FK_GasCards_GasCardStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="FacilitiesDBModel.FK_SignOut_GasCards" ManuallyRouted="false" />
+        <AssociationConnector Association="FacilitiesDBModel.FK_SignOut_Keys" ManuallyRouted="false" />
+        <AssociationConnector Association="FacilitiesDBModel.FK_SignOut_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="FacilitiesDBModel.FK_SignOut_Vehicles" ManuallyRouted="false" />
+        <AssociationConnector Association="FacilitiesDBModel.FK_TransporationRequests_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="FacilitiesDBModel.FK_TransporationRequests_VehicleAddons" ManuallyRouted="false" />
+        <AssociationConnector Association="FacilitiesDBModel.FK_TransporationRequests_VehicleId" ManuallyRouted="false" />
+        <AssociationConnector Association="FacilitiesDBModel.FK_Users_UserStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="FacilitiesDBModel.FK_Vehicles_VehicleAddons" ManuallyRouted="false" />
+        <AssociationConnector Association="FacilitiesDBModel.FK_Vehicles_VehicleStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="FacilitiesDBModel.FK_Vehicles_VehicleTypes" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
