@@ -10,7 +10,7 @@
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_ViewDialogWidth>600</WebStackScaffolding_ViewDialogWidth>
     <WebStackScaffolding_DbContextTypeFullName>TransportationDB.FacilitiesDBEntities</WebStackScaffolding_DbContextTypeFullName>
-    <NameOfLastUsedPublishProfile>Localhost</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>PROD - VISFAC1</NameOfLastUsedPublishProfile>
     <IISExpressSSLPort>44331</IISExpressSSLPort>
   </PropertyGroup>
   <ProjectExtensions>
