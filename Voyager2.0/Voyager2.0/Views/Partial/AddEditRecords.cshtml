@@ -1,0 +1,39 @@
+﻿
+<div class="container">
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseAdd">
+                <h4 class="panel-title">
+                    <a><span class="glyphicon glyphicon-list"></span> Add</a>
+                </h4>
+            </div>
+            <!--class ="panel-collapse collapse in" This will default accordion open-->
+            <div id="collapseAdd" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <a onclick="location.href='@Url.Action("CreateUser", "Admin")'" class="list-group-item">User</a>
+                    <a onclick="location.href='@Url.Action("CreateDepartment", "Admin")'" class="list-group-item">Department</a>
+                    <a onclick="location.href='@Url.Action("CreateVehicle", "Admin")'" class="list-group-item">Vehicle</a>
+                    <a onclick="location.href='@Url.Action("CreateVehicleStatus", "Admin")'" class="list-group-item">Vehicle Status</a>
+                    <a onclick="location.href='@Url.Action("CreateCampus", "Admin")'" class="list-group-item">Campus</a>
+                    <a onclick="location.href='@Url.Action("CreateKey", "Admin")'" class="list-group-item">Key</a>
+                    <a onclick="location.href='@Url.Action("CreateGasCard", "Admin")'" class="list-group-item">Gas Card</a>
+                    <a onclick="location.href='@Url.Action("CreateGasCardStatus", "Admin")'" class="list-group-item">Gas Card Status</a>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseEditDelete">
+                <h4 class="panel-title">
+                    <a><span class="glyphicon glyphicon-list"></span> Edit/Delete</a>
+                </h4>
+            </div>
+            <div id="collapseEditDelete" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <a onclick="location.href='@Url.Action("GetUsers", "Admin")'" class="list-group-item">User</a>
+                    <a onclick="location.href='@Url.Action("GetVehicles", "Admin")'" class="list-group-item">Vehicle</a>
+                    <a onclick="location.href='@Url.Action("GetGasCards", "Admin")'" class="list-group-item">Gas Card</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
