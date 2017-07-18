@@ -5,6 +5,17 @@
 
 <h2 class="CenterElement">Admin Panel</h2>
 
-@Html.Partial("~/Views/Partial/AddEditRecords.cshtml")
-@Html.Partial("~/Views/Partial/Reports.cshtml")
+<!-- Adding Partial Views-->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+           @Html.Partial("~/Views/Partial/AddEditRecords.cshtml")
+        </div>
+        <div class="col-lg-6">
+           @Html.Partial("~/Views/Partial/Reports.cshtml")
+        </div>
+    </div>
+</div>
+
+
 
