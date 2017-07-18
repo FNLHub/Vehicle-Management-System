@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FacilitiesDBModelStoreContainer" CdmEntityContainer="FacilitiesDBEntities">
+    <EntitySetMapping Name="Campuses">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.Campus">
+        <MappingFragment StoreEntitySet="Campuses">
+          <ScalarProperty Name="CampusId" ColumnName="CampusId" />
+          <ScalarProperty Name="CampusCode" ColumnName="CampusCode" />
+          <ScalarProperty Name="CampusAddress" ColumnName="CampusAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.Department">
+        <MappingFragment StoreEntitySet="Departments">
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DriverGroups">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.DriverGroup">
+        <MappingFragment StoreEntitySet="DriverGroups">
+          <ScalarProperty Name="DriverGroupId" ColumnName="DriverGroupId" />
+          <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+          <ScalarProperty Name="VehicleAddOnId" ColumnName="VehicleAddOnId" />
+          <ScalarProperty Name="NeedGasCard" ColumnName="NeedGasCard" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GasCards">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.GasCard">
+        <MappingFragment StoreEntitySet="GasCards">
+          <ScalarProperty Name="GasCardId" ColumnName="GasCardId" />
+          <ScalarProperty Name="GasCardName" ColumnName="GasCardName" />
+          <ScalarProperty Name="GasCardNum" ColumnName="GasCardNum" />
+          <ScalarProperty Name="GasCardPin" ColumnName="GasCardPin" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GasCardStatuses">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.GasCardStatus">
+        <MappingFragment StoreEntitySet="GasCardStatuses">
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Keys">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.Key">
+        <MappingFragment StoreEntitySet="Keys">
+          <ScalarProperty Name="KeyId" ColumnName="KeyId" />
+          <ScalarProperty Name="KeyName" ColumnName="KeyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SignOuts">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.SignOut">
+        <MappingFragment StoreEntitySet="SignOut">
+          <ScalarProperty Name="SignOutId" ColumnName="SignOutId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Destination" ColumnName="Destination" />
+          <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+          <ScalarProperty Name="KeyId" ColumnName="KeyId" />
+          <ScalarProperty Name="GasCardId" ColumnName="GasCardId" />
+          <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
+          <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
+          <ScalarProperty Name="ActivityTime" ColumnName="ActivityTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransporationRequests">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.TransporationRequest">
+        <MappingFragment StoreEntitySet="TransporationRequests">
+          <ScalarProperty Name="TransReqId" ColumnName="TransReqId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+          <ScalarProperty Name="VehicleAddonId" ColumnName="VehicleAddonId" />
+          <ScalarProperty Name="NeedGasCard" ColumnName="NeedGasCard" />
+          <ScalarProperty Name="LeaveDate" ColumnName="LeaveDate" />
+          <ScalarProperty Name="LeaveTime" ColumnName="LeaveTime" />
+          <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+          <ScalarProperty Name="ReturnTime" ColumnName="ReturnTime" />
+          <ScalarProperty Name="TripPurpose" ColumnName="TripPurpose" />
+          <ScalarProperty Name="NumOfStudents" ColumnName="NumOfStudents" />
+          <ScalarProperty Name="PassengerGroupId" ColumnName="PassengerGroupId" />
+          <ScalarProperty Name="Approved" ColumnName="Approved" />
+          <ScalarProperty Name="ProcessedUserId" ColumnName="ProcessedUserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="BannerId" ColumnName="BannerId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="OfficeAreaCode" ColumnName="OfficeAreaCode" />
+          <ScalarProperty Name="OfficePhoneNumber" ColumnName="OfficePhoneNumber" />
+          <ScalarProperty Name="CellAreaCode" ColumnName="CellAreaCode" />
+          <ScalarProperty Name="CellPhoneNumber" ColumnName="CellPhoneNumber" />
+          <ScalarProperty Name="ApprovedDmv" ColumnName="ApprovedDmv" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="SupervisorEmail" ColumnName="SupervisorEmail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserStatuses">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.UserStatus">
+        <MappingFragment StoreEntitySet="UserStatuses">
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VehicleAddons">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.VehicleAddon">
+        <MappingFragment StoreEntitySet="VehicleAddons">
+          <ScalarProperty Name="VehicleAddonId" ColumnName="VehicleAddonId" />
+          <ScalarProperty Name="AddonName" ColumnName="AddonName" />
+          <ScalarProperty Name="AddonDescription" ColumnName="AddonDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vehicles">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.Vehicle">
+        <MappingFragment StoreEntitySet="Vehicles">
+          <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+          <ScalarProperty Name="VehiclePlate" ColumnName="VehiclePlate" />
+          <ScalarProperty Name="VehicleName" ColumnName="VehicleName" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="CampusId" ColumnName="CampusId" />
+          <ScalarProperty Name="VehicleTypeId" ColumnName="VehicleTypeId" />
+          <ScalarProperty Name="VehicleAddonId" ColumnName="VehicleAddonId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VehicleStatuses">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.VehicleStatus">
+        <MappingFragment StoreEntitySet="VehicleStatuses">
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VehicleTypes">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.VehicleType">
+        <MappingFragment StoreEntitySet="VehicleTypes">
+          <ScalarProperty Name="VehicleTypeId" ColumnName="VehicleTypeId" />
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Admin_Create_GasCard">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.Admin_Create_GasCard">
+        <MappingFragment StoreEntitySet="Admin_Create_GasCard">
+          <ScalarProperty Name="GasCardName" ColumnName="GasCardName" />
+          <ScalarProperty Name="GasCardNum" ColumnName="GasCardNum" />
+          <ScalarProperty Name="GasCardPin" ColumnName="GasCardPin" />
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Admin_Create_User">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.Admin_Create_User">
+        <MappingFragment StoreEntitySet="Admin_Create_User">
+          <ScalarProperty Name="BannerId" ColumnName="BannerId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Admin_Create_Vehicle">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.Admin_Create_Vehicle">
+        <MappingFragment StoreEntitySet="Admin_Create_Vehicle">
+          <ScalarProperty Name="VehiclePlate" ColumnName="VehiclePlate" />
+          <ScalarProperty Name="VehicleName" ColumnName="VehicleName" />
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+          <ScalarProperty Name="CampusCode" ColumnName="CampusCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Admin_Transportation_Approval">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.Admin_Transportation_Approval">
+        <MappingFragment StoreEntitySet="Admin_Transportation_Approval">
+          <ScalarProperty Name="VId" ColumnName="VId" />
+          <ScalarProperty Name="SignOutId" ColumnName="SignOutId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="BannerId" ColumnName="BannerId" />
+          <ScalarProperty Name="ApprovedDmv" ColumnName="ApprovedDmv" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="VehicleName" ColumnName="VehicleName" />
+          <ScalarProperty Name="KeyName" ColumnName="KeyName" />
+          <ScalarProperty Name="GasCardName" ColumnName="GasCardName" />
+          <ScalarProperty Name="Destination" ColumnName="Destination" />
+          <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
+          <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
+          <ScalarProperty Name="ActivityTime" ColumnName="ActivityTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transportation_SignedOutView">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.Transportation_SignedOutView">
+        <MappingFragment StoreEntitySet="Transportation_SignedOutView">
+          <ScalarProperty Name="VId" ColumnName="VId" />
+          <ScalarProperty Name="SignOutId" ColumnName="SignOutId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="BannerId" ColumnName="BannerId" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="VehicleName" ColumnName="VehicleName" />
+          <ScalarProperty Name="KeyName" ColumnName="KeyName" />
+          <ScalarProperty Name="GasCardName" ColumnName="GasCardName" />
+          <ScalarProperty Name="Destination" ColumnName="Destination" />
+          <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
+          <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
+          <ScalarProperty Name="ActivityTime" ColumnName="ActivityTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transportation_View">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.Transportation_View">
+        <MappingFragment StoreEntitySet="Transportation_View">
+          <ScalarProperty Name="VId" ColumnName="VId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="BannerId" ColumnName="BannerId" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="VehicleName" ColumnName="VehicleName" />
+          <ScalarProperty Name="KeyName" ColumnName="KeyName" />
+          <ScalarProperty Name="GasCardName" ColumnName="GasCardName" />
+          <ScalarProperty Name="Destination" ColumnName="Destination" />
+          <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
+          <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
+          <ScalarProperty Name="ActivityTime" ColumnName="ActivityTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transportation_ViewAll">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.Transportation_ViewAll">
+        <MappingFragment StoreEntitySet="Transportation_ViewAll">
+          <ScalarProperty Name="VId" ColumnName="VId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="BannerId" ColumnName="BannerId" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="VehicleName" ColumnName="VehicleName" />
+          <ScalarProperty Name="KeyName" ColumnName="KeyName" />
+          <ScalarProperty Name="GasCardName" ColumnName="GasCardName" />
+          <ScalarProperty Name="Destination" ColumnName="Destination" />
+          <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
+          <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
+          <ScalarProperty Name="ActivityTime" ColumnName="ActivityTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_Transportation_Log">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.User_Transportation_Log">
+        <MappingFragment StoreEntitySet="User_Transportation_Log">
+          <ScalarProperty Name="BannerId" ColumnName="BannerId" />
+          <ScalarProperty Name="Destination" ColumnName="Destination" />
+          <ScalarProperty Name="VehicleName" ColumnName="VehicleName" />
+          <ScalarProperty Name="GasCardName" ColumnName="GasCardName" />
+          <ScalarProperty Name="KeyName" ColumnName="KeyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="FacilitiesDBModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="FacilitiesDBModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="FacilitiesDBModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="FacilitiesDBModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FacilitiesDBModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="FacilitiesDBModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FacilitiesDBModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="FacilitiesDBModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="FacilitiesDBModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>
