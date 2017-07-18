@@ -1,24 +1,22 @@
 ﻿
-<h3 class="CenterElement">Reports</h3>
-
 <div class="container">
-    <div class="panel-group" id="accordion">
+    <div class="panel-group" id="accordionReports">
         <div class="panel panel-default">
-            <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseLogs">
+            <div class="panel-heading" data-toggle="collapse" data-parent="#accordionReports" href="#collapseLogs">
                 <h4 class="panel-title">
                     <a><span class="glyphicon glyphicon-list"></span> Logs</a>
                 </h4>
             </div>
-            <div id="collapseLogs" class="panel-collapse collapse">
+            <div id="collapseLogs" class="panel-collapse collapse in">
                 <div class="panel-body">
                     <a onclick="location.href='@Url.Action("GetSignedOut", "Reports")'" class="list-group-item">Currently Signed Out</a>
-                    <a onclick="location.href='@Url.Action("GetSignOutLog", "Reports")'" class="list-group-item">History</a>
-                    <a onclick="location.href='@Url.Action("GetByDate", "Reports")'" class="list-group-item">Search History By Date</a>
+                    <a onclick="location.href='@Url.Action("GetSignOutHistory", "Reports")'" class="list-group-item">History</a>
+                    <a onclick="location.href='@Url.Action("GetSignOutHistoryByDate", "Reports")'" class="list-group-item">Search History By Date</a>
                 </div>
             </div>
         </div>
         <div class="panel panel-default">
-            <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseViewAll">
+            <div class="panel-heading" data-toggle="collapse" data-parent="#accordionReports" href="#collapseViewAll">
                 <h4 class="panel-title">
                     <a><span class="glyphicon glyphicon-list"></span> View All</a>
                 </h4>

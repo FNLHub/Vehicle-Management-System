@@ -1,0 +1,178 @@
+﻿@model IEnumerable<TransportationDB.User>
+
+@{
+    ViewBag.Title = "GetUsers";
+}
+
+<h2>Get Users</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BannerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OfficePhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CellAreaCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CellPhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApprovedDmv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department.DepartmentCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserStatus.StatusCode)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BannerId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OfficePhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CellAreaCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CellPhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApprovedDmv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department.DepartmentCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserStatus.StatusCode)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.UserId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UserId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UserId })
+        </td>
+    </tr>
+}
+
+</table>
+
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BannerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OfficeAreaCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OfficePhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CellAreaCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CellPhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApprovedDmv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SupervisorEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department.DepartmentCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserStatus.StatusCode)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BannerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfficeAreaCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfficePhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CellAreaCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CellPhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApprovedDmv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupervisorEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.DepartmentCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserStatus.StatusCode)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.UserId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+            </td>
+        </tr>
+    }
+
+</table>*@

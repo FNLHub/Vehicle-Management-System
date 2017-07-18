@@ -150,6 +150,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\SupervisorController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -164,6 +165,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\NewRequest.css" />
+    <Content Include="Content\Reports.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -204,6 +207,13 @@
     <Content Include="Views\Partial\Reports.cshtml" />
     <Content Include="Views\Home\NewRequest.cshtml" />
     <Content Include="Views\Admin\CreateGasCard.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\Reports\GetVehicles.cshtml" />
+    <Content Include="Views\Reports\GetUsers.cshtml" />
+    <Content Include="Views\Reports\GetGasCards.cshtml" />
+    <Content Include="Views\Reports\GetSignedOut.cshtml" />
+    <Content Include="Views\Reports\GetSignOutHistory.cshtml" />
+    <Content Include="Views\Reports\GetSignOutHistoryByDate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

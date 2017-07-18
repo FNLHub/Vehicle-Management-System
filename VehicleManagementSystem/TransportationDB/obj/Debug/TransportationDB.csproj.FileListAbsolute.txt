@@ -71,6 +71,6 @@ C:\Users\Cory\Documents\GitHub\FacilitiesCheckout\VehicleManagementSystem\Transp
 C:\Users\Cory\Documents\GitHub\FacilitiesCheckout\VehicleManagementSystem\TransportationDB\bin\EntityFramework.xml
 C:\Users\Cory\Documents\GitHub\FacilitiesCheckout\VehicleManagementSystem\TransportationDB\bin\EntityFramework.SqlServer.xml
 C:\Users\Cory\Documents\GitHub\FacilitiesCheckout\VehicleManagementSystem\TransportationDB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Cory\Documents\GitHub\FacilitiesCheckout\VehicleManagementSystem\TransportationDB\obj\Debug\TransportationDB.csprojResolveAssemblyReference.cache
 C:\Users\Cory\Documents\GitHub\FacilitiesCheckout\VehicleManagementSystem\TransportationDB\obj\Debug\TransportationDB.dll
 C:\Users\Cory\Documents\GitHub\FacilitiesCheckout\VehicleManagementSystem\TransportationDB\obj\Debug\TransportationDB.pdb
+C:\Users\Cory\Documents\GitHub\FacilitiesCheckout\VehicleManagementSystem\TransportationDB\obj\Debug\TransportationDB.csprojResolveAssemblyReference.cache

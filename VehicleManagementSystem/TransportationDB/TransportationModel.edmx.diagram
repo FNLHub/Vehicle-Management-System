@@ -26,7 +26,7 @@
         <EntityTypeShape EntityType="FacilitiesDBModel.Admin_Transportation_Approval" Width="1.5" PointX="10.75" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="FacilitiesDBModel.Transportation_SignedOutView" Width="1.5" PointX="10.75" PointY="9.25" IsExpanded="true" />
         <EntityTypeShape EntityType="FacilitiesDBModel.Transportation_View" Width="1.5" PointX="12.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="FacilitiesDBModel.Transportation_ViewAll" Width="1.5" PointX="12.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacilitiesDBModel.Transportation_ViewAll" Width="1.5" PointX="13.125" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="FacilitiesDBModel.User_Transportation_Log" Width="1.5" PointX="5.75" PointY="11.25" IsExpanded="true" />
         <AssociationConnector Association="FacilitiesDBModel.FK_Vehicles_Campuses" ManuallyRouted="false" />
         <AssociationConnector Association="FacilitiesDBModel.FK_Users_Departments" ManuallyRouted="false" />

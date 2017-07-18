@@ -58,16 +58,6 @@ a:hover, disableHover:hover {
     cursor: default;
 }
 
-.form-segment .row > input {
-    width: 100%;
-    height: 16px;
-}
-
-.step {
-    font-size: 1em;
-    color: blue;
-}
-
 .container {
     padding-bottom: 5px;
 }
