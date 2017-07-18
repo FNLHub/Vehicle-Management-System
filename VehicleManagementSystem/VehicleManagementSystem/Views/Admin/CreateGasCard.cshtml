@@ -1,10 +1,10 @@
 ﻿@model TransportationDB.Admin_Create_GasCard
 
 @{
-    ViewBag.Title = "AddGasCard";
+    ViewBag.Title = "CreateGasCard";
 }
 
-<h2>Add Gas Card</h2>
+<h2>Create Gas Card</h2>
 
 @using (Html.BeginForm())
 {
@@ -21,13 +21,13 @@
             @*@Html.LabelFor(model => model.GasCardName, htmlAttributes: new { @class = "control-label col-md-2" })*@
             @Html.Label("Gas Card Name: ", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.GasCardName, new { htmlAttributes = new { @maxlength="60", @class = "form-control" } })
+                @Html.EditorFor(model => model.GasCardName, new { htmlAttributes = new { @maxlength = "60", @class = "form-control"} })
                 @Html.ValidationMessageFor(model => model.GasCardName, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             @*@Html.LabelFor(model => model.GasCardNum, htmlAttributes: new { @class = "control-label col-md-2" })*@
-            @Html.Label("16-Digit Num: ", htmlAttributes: new { @class = "control-label col-md-2"})
+            @Html.Label("16-Digit Num: ", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.GasCardNum, new { htmlAttributes = new { @maxlength = "16", @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.GasCardNum, "", new { @class = "text-danger" })
@@ -51,16 +51,14 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-success" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @*@Html.ActionLink(" Back", "Index","Admin", new {@class = "btn btn-default" })*@
-
-    <a href="@Url.Action("Index", "Admin")" class="btn btn-warning">
+    <a href="@Url.Action("Index", "Admin")" class="btn btn-danger">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back
     </a>
 </div>
