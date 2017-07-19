@@ -70,7 +70,7 @@ namespace VehicleManagementSystem.Controllers
             return View();
         }
 
-        public static List<SelectListItem> PopulateUsers()
+        public static List<SelectListItem> PopulateUsers(int TableId)
         {
             FacilitiesDBEntities transcontext = new FacilitiesDBEntities();
 
@@ -84,6 +84,57 @@ namespace VehicleManagementSystem.Controllers
                 drop.Value = transcontext.Users.Where(v => v.UserId == i).Select(v => v.FirstName + " " + v.LastName).FirstOrDefault();
 
                 listItem.Add(new SelectListItem() { Value = drop.Value, Text = drop.Id.ToString() });
+            }
+
+            switch (TableId)
+            {
+                // Users
+                case 1:
+                    for (int i = 1; i <= transcontext.Users.Count(); i++)
+                    {
+
+                        drop.Id = transcontext.Users.Where(v => v.UserId == i).Select(v => v.UserId).FirstOrDefault();
+                        drop.Value = transcontext.Users.Where(v => v.UserId == i).Select(v => v.BannerId + " | " + v.FirstName + " | " + v.LastName).FirstOrDefault();
+
+                        listItem.Add(new SelectListItem() { Value = drop.Value, Text = drop.Id.ToString() });
+                    }
+                    break;
+                // Vehicles
+                case 2:
+                    for (int i = 1; i <= transcontext.Vehicles.Count(); i++)
+                    {
+
+                        drop.Id = transcontext.Vehicles.Where(v => v.VehicleId == i).Select(v => v.VehicleId).FirstOrDefault();
+                        drop.Value = transcontext.Vehicles.Where(v => v.VehicleId == i).Select(v => v.VehicleName).FirstOrDefault();
+
+                        listItem.Add(new SelectListItem() { Value = drop.Value, Text = drop.Id.ToString() });
+                    }
+                    break;
+                // VehicleAddons
+                case 3:
+                    for (int i = 1; i <= transcontext.VehicleAddons.Count(); i++)
+                    {
+
+                        drop.Id = transcontext.VehicleAddons.Where(v => v.VehicleAddonId == i).Select(v => v.VehicleAddonId).FirstOrDefault();
+                        drop.Value = transcontext.VehicleAddons.Where(v => v.VehicleAddonId == i).Select(v => v.AddonName).FirstOrDefault();
+
+                        listItem.Add(new SelectListItem() { Value = drop.Value, Text = drop.Id.ToString() });
+                    }
+                    break;
+                // Gas Cards
+                case 4:
+                    for (int i = 1; i <= transcontext.GasCards.Count(); i++)
+                    {
+
+                        drop.Id = transcontext.GasCards.Where(v => v.GasCardId == i).Select(v => v.GasCardId).FirstOrDefault();
+                        drop.Value = transcontext.GasCards.Where(v => v.GasCardId == i).Select(v => v.GasCardName).FirstOrDefault();
+
+                        listItem.Add(new SelectListItem() { Value = drop.Value, Text = drop.Id.ToString() });
+                    }
+                    break;
+
+
+
             }
             return listItem;
         }
