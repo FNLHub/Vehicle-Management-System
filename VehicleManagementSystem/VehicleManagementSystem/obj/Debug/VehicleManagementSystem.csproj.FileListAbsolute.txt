@@ -72,6 +72,7 @@ C:\Users\Gerald\Documents\Visual Studio 2017\Projects\VehicleManagementSystem\Ve
 C:\Users\Gerald\Documents\Visual Studio 2017\Projects\VehicleManagementSystem\VehicleManagementSystem\obj\Debug\VehicleManagementSystem.pdb
 C:\Users\Gerald\Documents\Visual Studio 2017\Projects\VehicleManagementSystem\VehicleManagementSystem\bin\EntityFramework.SqlServer.dll
 C:\Users\Gerald\Documents\Visual Studio 2017\Projects\VehicleManagementSystem\VehicleManagementSystem\bin\EntityFramework.SqlServer.xml
+C:\Users\Cory\Documents\GitHub\FacilitiesCheckout\VehicleManagementSystem\VehicleManagementSystem\obj\Debug\VehicleManagementSystem.csprojResolveAssemblyReference.cache
 C:\Users\Cory\Documents\GitHub\FacilitiesCheckout\VehicleManagementSystem\VehicleManagementSystem\bin\ApplicationInsights.config
 C:\Users\Cory\Documents\GitHub\FacilitiesCheckout\VehicleManagementSystem\VehicleManagementSystem\bin\roslyn\csc.exe
 C:\Users\Cory\Documents\GitHub\FacilitiesCheckout\VehicleManagementSystem\VehicleManagementSystem\bin\roslyn\csc.exe.config
@@ -143,6 +144,5 @@ C:\Users\Cory\Documents\GitHub\FacilitiesCheckout\VehicleManagementSystem\Vehicl
 C:\Users\Cory\Documents\GitHub\FacilitiesCheckout\VehicleManagementSystem\VehicleManagementSystem\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\Cory\Documents\GitHub\FacilitiesCheckout\VehicleManagementSystem\VehicleManagementSystem\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Cory\Documents\GitHub\FacilitiesCheckout\VehicleManagementSystem\VehicleManagementSystem\bin\Microsoft.AI.Web.xml
-C:\Users\Cory\Documents\GitHub\FacilitiesCheckout\VehicleManagementSystem\VehicleManagementSystem\obj\Debug\VehicleManagementSystem.csprojResolveAssemblyReference.cache
 C:\Users\Cory\Documents\GitHub\FacilitiesCheckout\VehicleManagementSystem\VehicleManagementSystem\obj\Debug\VehicleManagementSystem.dll
 C:\Users\Cory\Documents\GitHub\FacilitiesCheckout\VehicleManagementSystem\VehicleManagementSystem\obj\Debug\VehicleManagementSystem.pdb

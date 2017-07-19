@@ -123,14 +123,7 @@
                 <tbody>
                     <tr>
                         <th>
-                            @Html.DropDownListFor(u => u.UserId, new SelectList(
-                                new List<Object>
-                                {
-                                    new { value = "1", text = "Mark"},
-                                    new {value = "2", text = "Tom"}
-                                },
-                                "value",
-                                "text"), new { @class = "form-control" })
+                            @Html.DropDownListFor(v=>v.UserId, (SelectList)ViewData["UserDropdown"], new { @class = "form-control" })
                         </th>
                         <th>
                             <div class="btn-group" data-toggle="buttons">
@@ -274,13 +267,11 @@
         </div>
         <!--End Step 5-->
 
-        <div class="btn btn-default disableHover">
-            @Html.ActionLink("Cancel", "Index")
-        </div>
-
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <a href="@Url.Action("Index", "Home")" class="btn btn-danger">
+        Cancel
+    </a>
 </div>
