@@ -36,18 +36,7 @@ namespace VehicleManagementSystem.Controllers
             //userFill.User.Email = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]).userInfo.Email;
             //return View(userFill);
 
-            DropDownModel drop = new DropDownModel();
-            List<SelectListItem> listItem = new List<SelectListItem>();
-
-            for (int i = 1; i <= transportationContext.Users.Count(); i++)
-            {
-
-                drop.Id = transportationContext.Users.Where(v => v.UserId == i).Select(v => v.UserId).FirstOrDefault();
-                drop.Value = transportationContext.Users.Where(v => v.UserId == i).Select(v => v.FirstName + " " + v.LastName).FirstOrDefault();
-
-                listItem.Add(new SelectListItem() { Value = drop.Value, Text = drop.Id.ToString() });
-            }
-            ViewData["UserDropdown"] = new SelectList(listItem, "Text", "Value");
+            ViewData["UserDropdown"] = new SelectList(PopulateUsers(), "Text", "Value");
 
             //List<SelectListItem> listItem = new List<SelectListItem>();
 
@@ -80,5 +69,24 @@ namespace VehicleManagementSystem.Controllers
             }
             return View();
         }
+
+        public static List<SelectListItem> PopulateUsers()
+        {
+            FacilitiesDBEntities transcontext = new FacilitiesDBEntities();
+
+            DropDownModel drop = new DropDownModel();
+            List<SelectListItem> listItem = new List<SelectListItem>();
+
+            for (int i = 1; i <= transcontext.Users.Count(); i++)
+            {
+
+                drop.Id = transcontext.Users.Where(v => v.UserId == i).Select(v => v.UserId).FirstOrDefault();
+                drop.Value = transcontext.Users.Where(v => v.UserId == i).Select(v => v.FirstName + " " + v.LastName).FirstOrDefault();
+
+                listItem.Add(new SelectListItem() { Value = drop.Value, Text = drop.Id.ToString() });
+            }
+            return listItem;
+        }
+
     }
 }
