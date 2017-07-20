@@ -161,6 +161,7 @@
     <Compile Include="Models\CASTicketClass.cs" />
     <Compile Include="Models\CasTicketData.cs" />
     <Compile Include="Models\DropDownModel.cs" />
+    <Compile Include="Models\UniversalDropDownClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

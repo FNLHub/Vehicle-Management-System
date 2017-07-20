@@ -36,8 +36,14 @@ namespace VehicleManagementSystem.Controllers
             //userFill.User.Email = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]).userInfo.Email;
             //return View(userFill);
 
-            ViewData["UserDropdown"] = new SelectList(PopulateUsers(), "Text", "Value");
-
+            //Old Way
+            //ViewData["UserDropdown"] = new SelectList(PopulateUsers(1), "Text", "Value");
+            //New Way
+            UniversalDropDownClass _drop = new UniversalDropDownClass();
+            ViewData["UserDropdown"] = new SelectList(_drop.PopulateUsers(), "Text", "Value");
+            ViewData["VehicleAddonsDropdown"] = new SelectList(_drop.PopulateVehiclesAddons(), "Text", "Value");
+            ViewData["VehicleTypesDropdown"] = new SelectList(_drop.PopulateVehicles(), "Text", "Value");
+            ViewData["GasCardsDropdown"] = new SelectList(_drop.PopulateGasCards(), "Text", "Value");
             //List<SelectListItem> listItem = new List<SelectListItem>();
 
             //for (int i = 1; i <= transportationContext.Users.Count(); i++)
@@ -51,15 +57,35 @@ namespace VehicleManagementSystem.Controllers
 
             return View();
         }
-
         [HttpPost]
-        public ActionResult NewRequest(TransporationRequest transRequest)
+        public ActionResult NewRequest(TransportaionRequest transRequest)
         {
 
             if (ModelState.IsValid)
             {
                 try
                 {
+                    // Grabs current logged on user ID as they will be the requester
+                    var RequesterId = transportationContext.Users.Where(u => u.UserId == transRequest.UserId).Select(i => i.UserId).FirstOrDefault();
+                    
+                    // Will require a foreach loop to grab all drivers listed on request
+                    var DriverId = transportationContext.Users.Where(u => u.UserId == transRequest.UserId).Select(i => i.UserId).FirstOrDefault();
+
+                    // Will require a foreach loop to grab all passangers listed on the request
+                    var PassangerId = transportationContext.Users.Where(u => u.UserId == transRequest.UserId).Select(i => i.UserId).FirstOrDefault();
+
+                    // Add all drivers to DriverGroup Table
+                    //foreach ( /* Driver listed on form (may need to make an array) */)
+                    //{
+                    //    DriverGroup Driver = new DriverGroup();
+                    //    Driver.RequestId = 0/*Transportation Request primary key*/;
+                    //    Driver.UserId = transportationContext.Users.Where(u => u.UserId == 0/*Current Driver Id*/).Select(i => i.UserId).FirstOrDefault();
+                    //    if (true /*Driver requires a vehicle*/)
+                    //    {
+                    //        //Driver.VehicleType
+                    //    }
+                    //    transportationContext.DriverGroups.Add(Driver);
+                    //}
 
                 }
                 catch
@@ -70,74 +96,74 @@ namespace VehicleManagementSystem.Controllers
             return View();
         }
 
-        public static List<SelectListItem> PopulateUsers(int TableId)
-        {
-            FacilitiesDBEntities transcontext = new FacilitiesDBEntities();
+        //public static List<SelectListItem> PopulateUsers(int TableId)
+        //{
+        //    FacilitiesDBEntities transcontext = new FacilitiesDBEntities();
 
-            DropDownModel drop = new DropDownModel();
-            List<SelectListItem> listItem = new List<SelectListItem>();
+        //    DropDownModel drop = new DropDownModel();
+        //    List<SelectListItem> listItem = new List<SelectListItem>();
 
-            for (int i = 1; i <= transcontext.Users.Count(); i++)
-            {
+        //    for (int i = 1; i <= transcontext.Users.Count(); i++)
+        //    {
 
-                drop.Id = transcontext.Users.Where(v => v.UserId == i).Select(v => v.UserId).FirstOrDefault();
-                drop.Value = transcontext.Users.Where(v => v.UserId == i).Select(v => v.FirstName + " " + v.LastName).FirstOrDefault();
+        //        drop.Id = transcontext.Users.Where(v => v.UserId == i).Select(v => v.UserId).FirstOrDefault();
+        //        drop.Value = transcontext.Users.Where(v => v.UserId == i).Select(v => v.FirstName + " " + v.LastName).FirstOrDefault();
 
-                listItem.Add(new SelectListItem() { Value = drop.Value, Text = drop.Id.ToString() });
-            }
+        //        listItem.Add(new SelectListItem() { Value = drop.Value, Text = drop.Id.ToString() });
+        //    }
 
-            switch (TableId)
-            {
-                // Users
-                case 1:
-                    for (int i = 1; i <= transcontext.Users.Count(); i++)
-                    {
+        //    switch (TableId)
+        //    {
+        //        // Users
+        //        case 1:
+        //            for (int i = 1; i <= transcontext.Users.Count(); i++)
+        //            {
 
-                        drop.Id = transcontext.Users.Where(v => v.UserId == i).Select(v => v.UserId).FirstOrDefault();
-                        drop.Value = transcontext.Users.Where(v => v.UserId == i).Select(v => v.BannerId + " | " + v.FirstName + " | " + v.LastName).FirstOrDefault();
+        //                drop.Id = transcontext.Users.Where(v => v.UserId == i).Select(v => v.UserId).FirstOrDefault();
+        //                drop.Value = transcontext.Users.Where(v => v.UserId == i).Select(v => v.BannerId + " | " + v.FirstName + " | " + v.LastName).FirstOrDefault();
 
-                        listItem.Add(new SelectListItem() { Value = drop.Value, Text = drop.Id.ToString() });
-                    }
-                    break;
-                // Vehicles
-                case 2:
-                    for (int i = 1; i <= transcontext.Vehicles.Count(); i++)
-                    {
+        //                listItem.Add(new SelectListItem() { Value = drop.Value, Text = drop.Id.ToString() });
+        //            }
+        //            break;
+        //        // Vehicles
+        //        case 2:
+        //            for (int i = 1; i <= transcontext.Vehicles.Count(); i++)
+        //            {
 
-                        drop.Id = transcontext.Vehicles.Where(v => v.VehicleId == i).Select(v => v.VehicleId).FirstOrDefault();
-                        drop.Value = transcontext.Vehicles.Where(v => v.VehicleId == i).Select(v => v.VehicleName).FirstOrDefault();
+        //                drop.Id = transcontext.Vehicles.Where(v => v.VehicleId == i).Select(v => v.VehicleId).FirstOrDefault();
+        //                drop.Value = transcontext.Vehicles.Where(v => v.VehicleId == i).Select(v => v.VehicleName).FirstOrDefault();
 
-                        listItem.Add(new SelectListItem() { Value = drop.Value, Text = drop.Id.ToString() });
-                    }
-                    break;
-                // VehicleAddons
-                case 3:
-                    for (int i = 1; i <= transcontext.VehicleAddons.Count(); i++)
-                    {
+        //                listItem.Add(new SelectListItem() { Value = drop.Value, Text = drop.Id.ToString() });
+        //            }
+        //            break;
+        //        // VehicleAddons
+        //        case 3:
+        //            for (int i = 1; i <= transcontext.VehicleAddons.Count(); i++)
+        //            {
 
-                        drop.Id = transcontext.VehicleAddons.Where(v => v.VehicleAddonId == i).Select(v => v.VehicleAddonId).FirstOrDefault();
-                        drop.Value = transcontext.VehicleAddons.Where(v => v.VehicleAddonId == i).Select(v => v.AddonName).FirstOrDefault();
+        //                drop.Id = transcontext.VehicleAddons.Where(v => v.VehicleAddonId == i).Select(v => v.VehicleAddonId).FirstOrDefault();
+        //                drop.Value = transcontext.VehicleAddons.Where(v => v.VehicleAddonId == i).Select(v => v.AddonName).FirstOrDefault();
 
-                        listItem.Add(new SelectListItem() { Value = drop.Value, Text = drop.Id.ToString() });
-                    }
-                    break;
-                // Gas Cards
-                case 4:
-                    for (int i = 1; i <= transcontext.GasCards.Count(); i++)
-                    {
+        //                listItem.Add(new SelectListItem() { Value = drop.Value, Text = drop.Id.ToString() });
+        //            }
+        //            break;
+        //        // Gas Cards
+        //        case 4:
+        //            for (int i = 1; i <= transcontext.GasCards.Count(); i++)
+        //            {
 
-                        drop.Id = transcontext.GasCards.Where(v => v.GasCardId == i).Select(v => v.GasCardId).FirstOrDefault();
-                        drop.Value = transcontext.GasCards.Where(v => v.GasCardId == i).Select(v => v.GasCardName).FirstOrDefault();
+        //                drop.Id = transcontext.GasCards.Where(v => v.GasCardId == i).Select(v => v.GasCardId).FirstOrDefault();
+        //                drop.Value = transcontext.GasCards.Where(v => v.GasCardId == i).Select(v => v.GasCardName).FirstOrDefault();
 
-                        listItem.Add(new SelectListItem() { Value = drop.Value, Text = drop.Id.ToString() });
-                    }
-                    break;
+        //                listItem.Add(new SelectListItem() { Value = drop.Value, Text = drop.Id.ToString() });
+        //            }
+        //            break;
 
 
 
-            }
-            return listItem;
-        }
+        //    }
+        //    return listItem;
+        //}
 
     }
 }
