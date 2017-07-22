@@ -58,7 +58,7 @@ namespace VehicleManagementSystem.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult NewRequest(TransportaionRequest transRequest)
+        public ActionResult NewRequest(TransportationRequest_View transRequest)
         {
 
             if (ModelState.IsValid)
@@ -66,13 +66,30 @@ namespace VehicleManagementSystem.Controllers
                 try
                 {
                     // Grabs current logged on user ID as they will be the requester
-                    var RequesterId = transportationContext.Users.Where(u => u.UserId == transRequest.UserId).Select(i => i.UserId).FirstOrDefault();
-                    
+                    var RequesterId = transportationContext.Users.Where(u => u.BannerId == transRequest.BannerId).Select(i => i.UserId).FirstOrDefault();
+
+                    if (RequesterId != null)
+                    {
+                        TransportationRequest newRequest = new TransportationRequest();
+                        newRequest.RequesterUserId = RequesterId;
+                        newRequest.LeaveDate = DateTime.Now;
+                        newRequest.LeaveTime = new TimeSpan(1, 1, 1);
+                        newRequest.ReturnDate = DateTime.Now + new TimeSpan(23, 59, 59);
+                        newRequest.ReturnTime = new TimeSpan(23, 59, 59);
+                        newRequest.Destination = "Exeter";
+                        newRequest.TripPurpose = transRequest.TripPurpose;
+                        newRequest.NumOfStudents = 5;
+
+                        transportationContext.TransportationRequests.Add(newRequest);
+                        transportationContext.SaveChanges();
+
+                    }
+
                     // Will require a foreach loop to grab all drivers listed on request
-                    var DriverId = transportationContext.Users.Where(u => u.UserId == transRequest.UserId).Select(i => i.UserId).FirstOrDefault();
+                    //var DriverId = transportationContext.Users.Where(u => u.UserId == transRequest.UserId).Select(i => i.UserId).FirstOrDefault();
 
                     // Will require a foreach loop to grab all passangers listed on the request
-                    var PassangerId = transportationContext.Users.Where(u => u.UserId == transRequest.UserId).Select(i => i.UserId).FirstOrDefault();
+                    //var PassangerId = transportationContext.Users.Where(u => u.UserId == transRequest.UserId).Select(i => i.UserId).FirstOrDefault();
 
                     // Add all drivers to DriverGroup Table
                     //foreach ( /* Driver listed on form (may need to make an array) */)

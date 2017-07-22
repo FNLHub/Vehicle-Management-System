@@ -1,4 +1,4 @@
-﻿@model TransportationDB.TransportaionRequest
+﻿@model TransportationDB.TransportationRequest_View
 
 @{
     ViewBag.Title = "NewRequest";
@@ -21,15 +21,15 @@
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4">
                 First Name:<br />
-                @Html.TextBoxFor(m => m.User.FirstName, new { @class = "form-control", @disabled = "disabled", @id = "firstName" })
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @id = "Gerald" })
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4">
                 Last Name:<br />
-                @Html.TextBoxFor(m => m.User.LastName, new { @class = "form-control", @disabled = "disabled", @id = "lastName" })
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @id = "Jumper" })
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4">
                 Banner Id:<br />
-                @Html.TextBoxFor(m => m.User.BannerId, new { @class = "form-control", @disabled = "disabled", @id = "bannerId" })
+                @Html.TextBoxFor(m => m.BannerId, new { @class = "form-control", @id = "00316951" })
             </div>
         </div>
         <br />
@@ -38,15 +38,15 @@
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4">
                 Email:<br />
-                @Html.TextBoxFor(m => m.User.Email, new { @class = "form-control", @disabled = "disabled", @placeholder = "john.doe@giant.cos.edu" })
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "geraldj@cos.edu" })
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4">
                 Office Phone:<br />
-                @Html.TextBoxFor(m => m.User.OfficePhoneNumber, new { @class = "form-control", @disabled = "disabled", @placeholder = "No Office Phone" })
+                @Html.TextBoxFor(m => m.OfficePhoneNumber, new { @class = "form-control", @placeholder = "7376246" })
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4">
                 Mobile Phone:<br />
-                @Html.TextBoxFor(m => m.User.CellPhoneNumber, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.CellPhoneNumber, new { @class = "form-control" })
             </div>
         </div>
 
@@ -80,13 +80,13 @@
             <tbody id="add-driver">
             <tr>
                 <th>
-                    @Html.TextBoxFor(m => m.User.BannerId, new { @class = "form-control", @disabled = "disabled" })
+                    @*@Html.TextBoxFor(m => m.User.BannerId, new { @class = "form-control", @disabled = "disabled" })*@
                 </th>
                 <th>
-                    @Html.TextBoxFor(m => m.User.FirstName, new { @class = "form-control", @disabled = "disabled" })
+                    @*@Html.TextBoxFor(m => m.User.FirstName, new { @class = "form-control", @disabled = "disabled" })*@
                 </th>
                 <th>
-                    @Html.TextBoxFor(m => m.User.LastName, new { @class = "form-control", @disabled = "disabled" })
+                    @*@Html.TextBoxFor(m => m.User.LastName, new { @class = "form-control", @disabled = "disabled" })*@
                 </th>
                 <th>
                     <kbd>Main Driver</kbd>
@@ -123,24 +123,24 @@
             <tbody>
             <tr>
                 <th>
-                    @Html.DropDownListFor(v=>v., (SelectList)ViewData["UserDropdown"], new { @class = "form-control" })
+                    @*@Html.DropDownListFor(v=>v.user, (SelectList)ViewData["UserDropdown"], new { @class = "form-control" })*@
                 </th>
                 <th>
                     <div class="btn-group" data-toggle="buttons">
                         <label class="btn btn-danger active">
-                            @Html.RadioButtonFor(m => m.VehicleId, 1, new { @checked = true, @id = "V_RadNone", @name = "veh" })
+                            @*@Html.RadioButtonFor(m => m.VehicleId, 1, new { @checked = true, @id = "V_RadNone", @name = "veh" })*@
                             None
                         </label>
                         <label class="btn btn-default">
-                            @Html.RadioButtonFor(m => m.VehicleId, 2, new { @id = "V_RadCar", @name = "veh" })
+                            @*@Html.RadioButtonFor(m => m.VehicleId, 2, new { @id = "V_RadCar", @name = "veh" })*@
                             Car
                         </label>
                         <label class="btn btn-default">
-                            @Html.RadioButtonFor(m => m.VehicleId, 3, new { @id = "V_Rad8", @name = "veh" })
+                            @*@Html.RadioButtonFor(m => m.VehicleId, 3, new { @id = "V_Rad8", @name = "veh" })*@
                             8 Pass Van
                         </label>
                         <label class="btn btn-default">
-                            @Html.RadioButtonFor(m => m.VehicleId, 4, new { @id = "V_Rad12", @name = "veh" })
+                            @*@Html.RadioButtonFor(m => m.VehicleId, 4, new { @id = "V_Rad12", @name = "veh" })*@
                             12 Pass Van
                         </label>
                     </div>
@@ -148,17 +148,17 @@
                 <th>
                     <div class="btn-group" data-toggle="buttons">
                         <label class="btn btn-default active">
-                            @Html.RadioButtonFor(g => g.NeedGasCard, 0, new { @checked = true, @id = "G_RadNo", @name = "gc" })
+                            @*@Html.RadioButtonFor(g => g.NeedGasCard, 0, new { @checked = true, @id = "G_RadNo", @name = "gc" })*@
                             No
                         </label>
                         <label class="btn btn-default">
-                            @Html.RadioButtonFor(g => g.NeedGasCard, 1, new { @id = "G_RadYes", @name = "gc" })
+                            @*@Html.RadioButtonFor(g => g.NeedGasCard, 1, new { @id = "G_RadYes", @name = "gc" })*@
                             Yes
                         </label>
                     </div>
                 </th>
                 <th>
-                    @Html.DropDownListFor(v => v.VehicleAddonId, (SelectList)ViewData["VehicleAddonsDropdown"], new { @class = "form-control" })
+                    @*@Html.DropDownListFor(v => v.VehicleAddonId, (SelectList)ViewData["VehicleAddonsDropdown"], new { @class = "form-control" })*@
                     @*@Html.DropDownListFor(t => t.VehicleAddonId, new SelectList(
                                 new List<Object>
                                 {
@@ -171,15 +171,15 @@
                 <th>
                     <div class="btn-group" data-toggle="buttons">
                         <label class="btn btn-danger active">
-                            @Html.RadioButtonFor(m => m.VehicleId, 1, new { @checked = true })
+                            @*@Html.RadioButtonFor(m => m.VehicleId, 1, new { @checked = true })*@
                             Visalia
                         </label>
                         <label class="btn btn-default">
-                            @Html.RadioButtonFor(m => m.VehicleId, 2)
+                            @*@Html.RadioButtonFor(m => m.VehicleId, 2)*@
                             Tulare
                         </label>
                         <label class="btn btn-default">
-                            @Html.RadioButtonFor(m => m.VehicleId, 3)
+                            @*@Html.RadioButtonFor(m => m.VehicleId, 3)*@
                             Hanford
                         </label>
                     </div>

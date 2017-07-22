@@ -81,19 +81,18 @@ warning 6013: The table/view 'FacilitiesDB.dbo.PassengerGroup' does not have a p
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
-  <EntityType Name="TransporationRequests">
+  <EntityType Name="TransportationRequests">
     <Key>
       <PropertyRef Name="TransReqId" />
     </Key>
-    <Property Name="TransReqId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="VehicleId" Type="int" Nullable="false" />
-    <Property Name="VehicleAddonId" Type="int" Nullable="false" />
-    <Property Name="NeedGasCard" Type="bit" Nullable="false" />
+    <Property Name="TransReqId" Type="int" Nullable="false" />
+    <Property Name="RequesterUserId" Type="int" Nullable="false" />
+    <Property Name="DriverGroupId" Type="int" />
     <Property Name="LeaveDate" Type="date" Nullable="false" />
     <Property Name="LeaveTime" Type="time" Precision="7" Nullable="false" />
     <Property Name="ReturnDate" Type="date" Nullable="false" />
     <Property Name="ReturnTime" Type="time" Precision="7" Nullable="false" />
+    <Property Name="Destination" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="TripPurpose" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="NumOfStudents" Type="int" Nullable="false" />
     <Property Name="PassengerGroupId" Type="int" />
@@ -285,6 +284,29 @@ warning 6002: The table/view 'FacilitiesDB.dbo.Transportation_ViewAll' does not 
     <Property Name="ActivityTime" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'FacilitiesDB.dbo.TransportationRequest_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="TransportationRequest_View">
+    <Key>
+      <PropertyRef Name="RId" />
+      <PropertyRef Name="DepartmentName" />
+    </Key>
+    <Property Name="RId" Type="bigint" Nullable="false" />
+    <Property Name="FirstName" Type="nchar" MaxLength="60" />
+    <Property Name="LastName" Type="nchar" MaxLength="60" />
+    <Property Name="BannerId" Type="nchar" MaxLength="8" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="OfficePhoneNumber" Type="nvarchar" MaxLength="12" />
+    <Property Name="CellPhoneNumber" Type="nvarchar" MaxLength="12" />
+    <Property Name="DepartmentName" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Destination" Type="nvarchar" MaxLength="255" />
+    <Property Name="LeaveDate" Type="date" />
+    <Property Name="LeaveTime" Type="time" Precision="7" />
+    <Property Name="ReturnDate" Type="date" />
+    <Property Name="ReturnTime" Type="time" Precision="7" />
+    <Property Name="TripPurpose" Type="nvarchar" MaxLength="255" />
+    <Property Name="NumOfStudents" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="User_Transportation_Log">
     <Key>
@@ -360,39 +382,39 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_TransporationRequests_TransporationRequests">
+    <End Role="TransportationRequests" Type="Self.TransportationRequests" Multiplicity="1" />
+    <End Role="TransportationRequests1" Type="Self.TransportationRequests" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TransportationRequests">
+        <PropertyRef Name="TransReqId" />
+      </Principal>
+      <Dependent Role="TransportationRequests1">
+        <PropertyRef Name="TransReqId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_TransporationRequests_Users">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-    <End Role="TransporationRequests" Type="Self.TransporationRequests" Multiplicity="*" />
+    <End Role="TransportationRequests" Type="Self.TransportationRequests" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Users">
         <PropertyRef Name="UserId" />
       </Principal>
-      <Dependent Role="TransporationRequests">
+      <Dependent Role="TransportationRequests">
         <PropertyRef Name="ProcessedUserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_TransporationRequests_VehicleAddons">
-    <End Role="VehicleAddons" Type="Self.VehicleAddons" Multiplicity="1" />
-    <End Role="TransporationRequests" Type="Self.TransporationRequests" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="VehicleAddons">
-        <PropertyRef Name="VehicleAddonId" />
-      </Principal>
-      <Dependent Role="TransporationRequests">
-        <PropertyRef Name="VehicleAddonId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_TransporationRequests_VehicleId">
-    <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="1" />
-    <End Role="TransporationRequests" Type="Self.TransporationRequests" Multiplicity="*" />
+    <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="0..1" />
+    <End Role="TransportationRequests" Type="Self.TransportationRequests" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Vehicles">
         <PropertyRef Name="VehicleId" />
       </Principal>
-      <Dependent Role="TransporationRequests">
-        <PropertyRef Name="VehicleId" />
+      <Dependent Role="TransportationRequests">
+        <PropertyRef Name="DriverGroupId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -508,7 +530,7 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
     <EntitySet Name="Keys" EntityType="Self.Keys" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SignOut" EntityType="Self.SignOut" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TransporationRequests" EntityType="Self.TransporationRequests" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransportationRequests" EntityType="Self.TransportationRequests" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserStatuses" EntityType="Self.UserStatuses" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VehicleAddons" EntityType="Self.VehicleAddons" Schema="dbo" store:Type="Tables" />
@@ -607,6 +629,25 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
     [Transportation_ViewAll].[ActivityTime] AS [ActivityTime]
     FROM [dbo].[Transportation_ViewAll] AS [Transportation_ViewAll]</DefiningQuery>
     </EntitySet>
+    <EntitySet Name="TransportationRequest_View" EntityType="Self.TransportationRequest_View" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [TransportationRequest_View].[RId] AS [RId], 
+    [TransportationRequest_View].[FirstName] AS [FirstName], 
+    [TransportationRequest_View].[LastName] AS [LastName], 
+    [TransportationRequest_View].[BannerId] AS [BannerId], 
+    [TransportationRequest_View].[Email] AS [Email], 
+    [TransportationRequest_View].[OfficePhoneNumber] AS [OfficePhoneNumber], 
+    [TransportationRequest_View].[CellPhoneNumber] AS [CellPhoneNumber], 
+    [TransportationRequest_View].[DepartmentName] AS [DepartmentName], 
+    [TransportationRequest_View].[Destination] AS [Destination], 
+    [TransportationRequest_View].[LeaveDate] AS [LeaveDate], 
+    [TransportationRequest_View].[LeaveTime] AS [LeaveTime], 
+    [TransportationRequest_View].[ReturnDate] AS [ReturnDate], 
+    [TransportationRequest_View].[ReturnTime] AS [ReturnTime], 
+    [TransportationRequest_View].[TripPurpose] AS [TripPurpose], 
+    [TransportationRequest_View].[NumOfStudents] AS [NumOfStudents]
+    FROM [dbo].[TransportationRequest_View] AS [TransportationRequest_View]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="User_Transportation_Log" EntityType="Self.User_Transportation_Log" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [User_Transportation_Log].[BannerId] AS [BannerId], 
@@ -636,17 +677,17 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
       <End Role="Vehicles" EntitySet="Vehicles" />
       <End Role="SignOut" EntitySet="SignOut" />
     </AssociationSet>
+    <AssociationSet Name="FK_TransporationRequests_TransporationRequests" Association="Self.FK_TransporationRequests_TransporationRequests">
+      <End Role="TransportationRequests" EntitySet="TransportationRequests" />
+      <End Role="TransportationRequests1" EntitySet="TransportationRequests" />
+    </AssociationSet>
     <AssociationSet Name="FK_TransporationRequests_Users" Association="Self.FK_TransporationRequests_Users">
       <End Role="Users" EntitySet="Users" />
-      <End Role="TransporationRequests" EntitySet="TransporationRequests" />
-    </AssociationSet>
-    <AssociationSet Name="FK_TransporationRequests_VehicleAddons" Association="Self.FK_TransporationRequests_VehicleAddons">
-      <End Role="VehicleAddons" EntitySet="VehicleAddons" />
-      <End Role="TransporationRequests" EntitySet="TransporationRequests" />
+      <End Role="TransportationRequests" EntitySet="TransportationRequests" />
     </AssociationSet>
     <AssociationSet Name="FK_TransporationRequests_VehicleId" Association="Self.FK_TransporationRequests_VehicleId">
       <End Role="Vehicles" EntitySet="Vehicles" />
-      <End Role="TransporationRequests" EntitySet="TransporationRequests" />
+      <End Role="TransportationRequests" EntitySet="TransportationRequests" />
     </AssociationSet>
     <AssociationSet Name="FK_Users_Departments" Association="Self.FK_Users_Departments">
       <End Role="Departments" EntitySet="Departments" />
