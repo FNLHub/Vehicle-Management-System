@@ -18,7 +18,6 @@ namespace TransportationDB
         public Vehicle()
         {
             this.SignOuts = new HashSet<SignOut>();
-            this.TransportationRequests = new HashSet<TransportationRequest>();
         }
     
         public int VehicleId { get; set; }
@@ -32,8 +31,6 @@ namespace TransportationDB
         public virtual Campus Campus { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SignOut> SignOuts { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TransportationRequest> TransportationRequests { get; set; }
         public virtual VehicleAddon VehicleAddon { get; set; }
         public virtual VehicleStatus VehicleStatus { get; set; }
         public virtual VehicleType VehicleType { get; set; }

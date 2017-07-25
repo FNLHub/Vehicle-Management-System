@@ -101,5 +101,23 @@ namespace VehicleManagementSystem.Models
 
             return _ListItem;
         }
+
+        //Populate Approved Drivers
+        public List<SelectListItem> PopulateApprovedDrivers()
+        {
+            //Reset Variables on call
+            Reset();
+
+            for (int i = 1; i <= _Transcontext.Users.Count(); i++)
+            {
+
+                _Drop.Id = _Transcontext.Users.Where(v => v.UserId == i).Select(v => v.UserId).FirstOrDefault();
+                _Drop.Value = _Transcontext.Users.Where(v => v.UserId == i).Select(v => v.BannerId + " " + v.FirstName + " " + v.LastName).FirstOrDefault();
+
+                _ListItem.Add(new SelectListItem() { Value = _Drop.Value, Text = _Drop.Id.ToString() });
+            }
+
+            return _ListItem;
+        }
     }
 }

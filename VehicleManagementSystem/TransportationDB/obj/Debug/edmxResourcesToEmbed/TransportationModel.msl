@@ -25,6 +25,7 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="FacilitiesDBModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="FacilitiesDBModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="p_TransReq_Add" FunctionName="FacilitiesDBModel.Store.p_TransReq_Add" />
     <EntitySetMapping Name="Campuses">
       <EntityTypeMapping TypeName="FacilitiesDBModel.Campus">
         <MappingFragment StoreEntitySet="Campuses">
@@ -48,9 +49,9 @@
         <MappingFragment StoreEntitySet="DriverGroups">
           <ScalarProperty Name="NeedGasCard" ColumnName="NeedGasCard" />
           <ScalarProperty Name="VehicleAddOnId" ColumnName="VehicleAddOnId" />
-          <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+          <ScalarProperty Name="VehicleTypeId" ColumnName="VehicleTypeId" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+          <ScalarProperty Name="TranRequestId" ColumnName="TranRequestId" />
           <ScalarProperty Name="DriverGroupId" ColumnName="DriverGroupId" />
         </MappingFragment>
       </EntityTypeMapping>

@@ -154,5 +154,42 @@ namespace TransportationDB
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
+    
+        public virtual int p_TransReq_Add(Nullable<int> requesterUserId, Nullable<System.DateTime> leaveDate, Nullable<System.TimeSpan> leaveTime, Nullable<System.DateTime> returnDate, Nullable<System.TimeSpan> returnTime, string destination, string tripPurpose, Nullable<int> numOfStudents, ObjectParameter tranReqId)
+        {
+            var requesterUserIdParameter = requesterUserId.HasValue ?
+                new ObjectParameter("RequesterUserId", requesterUserId) :
+                new ObjectParameter("RequesterUserId", typeof(int));
+    
+            var leaveDateParameter = leaveDate.HasValue ?
+                new ObjectParameter("LeaveDate", leaveDate) :
+                new ObjectParameter("LeaveDate", typeof(System.DateTime));
+    
+            var leaveTimeParameter = leaveTime.HasValue ?
+                new ObjectParameter("LeaveTime", leaveTime) :
+                new ObjectParameter("LeaveTime", typeof(System.TimeSpan));
+    
+            var returnDateParameter = returnDate.HasValue ?
+                new ObjectParameter("ReturnDate", returnDate) :
+                new ObjectParameter("ReturnDate", typeof(System.DateTime));
+    
+            var returnTimeParameter = returnTime.HasValue ?
+                new ObjectParameter("ReturnTime", returnTime) :
+                new ObjectParameter("ReturnTime", typeof(System.TimeSpan));
+    
+            var destinationParameter = destination != null ?
+                new ObjectParameter("Destination", destination) :
+                new ObjectParameter("Destination", typeof(string));
+    
+            var tripPurposeParameter = tripPurpose != null ?
+                new ObjectParameter("TripPurpose", tripPurpose) :
+                new ObjectParameter("TripPurpose", typeof(string));
+    
+            var numOfStudentsParameter = numOfStudents.HasValue ?
+                new ObjectParameter("NumOfStudents", numOfStudents) :
+                new ObjectParameter("NumOfStudents", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("p_TransReq_Add", requesterUserIdParameter, leaveDateParameter, leaveTimeParameter, returnDateParameter, returnTimeParameter, destinationParameter, tripPurposeParameter, numOfStudentsParameter, tranReqId);
+        }
     }
 }

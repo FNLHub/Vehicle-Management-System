@@ -15,10 +15,12 @@ namespace TransportationDB
     public partial class DriverGroup
     {
         public int DriverGroupId { get; set; }
-        public int RequestId { get; set; }
+        public int TranRequestId { get; set; }
         public int UserId { get; set; }
-        public Nullable<int> VehicleId { get; set; }
+        public int VehicleTypeId { get; set; }
         public Nullable<int> VehicleAddOnId { get; set; }
         public Nullable<bool> NeedGasCard { get; set; }
+    
+        public virtual User User { get; set; }
     }
 }

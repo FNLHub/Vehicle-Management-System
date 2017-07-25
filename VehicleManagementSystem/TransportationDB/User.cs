@@ -17,8 +17,10 @@ namespace TransportationDB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
+            this.DriverGroups = new HashSet<DriverGroup>();
             this.SignOuts = new HashSet<SignOut>();
             this.TransportationRequests = new HashSet<TransportationRequest>();
+            this.TransportationRequests1 = new HashSet<TransportationRequest>();
         }
     
         public int UserId { get; set; }
@@ -37,9 +39,13 @@ namespace TransportationDB
     
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DriverGroup> DriverGroups { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SignOut> SignOuts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransportationRequest> TransportationRequests { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TransportationRequest> TransportationRequests1 { get; set; }
         public virtual UserStatus UserStatus { get; set; }
     }
 }

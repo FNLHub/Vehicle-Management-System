@@ -26,9 +26,9 @@
             <PropertyRef Name="DriverGroupId" />
           </Key>
           <Property Name="DriverGroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RequestId" Type="int" Nullable="false" />
+          <Property Name="TranRequestId" Type="int" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="VehicleId" Type="int" />
+          <Property Name="VehicleTypeId" Type="int" Nullable="false" />
           <Property Name="VehicleAddOnId" Type="int" />
           <Property Name="NeedGasCard" Type="bit" />
         </EntityType>
@@ -90,7 +90,7 @@ warning 6013: The table/view 'FacilitiesDB.dbo.PassengerGroup' does not have a p
           <Key>
             <PropertyRef Name="TransReqId" />
           </Key>
-          <Property Name="TransReqId" Type="int" Nullable="false" />
+          <Property Name="TransReqId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RequesterUserId" Type="int" Nullable="false" />
           <Property Name="DriverGroupId" Type="int" />
           <Property Name="LeaveDate" Type="date" Nullable="false" />
@@ -101,7 +101,7 @@ warning 6013: The table/view 'FacilitiesDB.dbo.PassengerGroup' does not have a p
           <Property Name="TripPurpose" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="NumOfStudents" Type="int" Nullable="false" />
           <Property Name="PassengerGroupId" Type="int" />
-          <Property Name="Approved" Type="bit" Nullable="false" />
+          <Property Name="Approved" Type="bit" />
           <Property Name="ProcessedUserId" Type="int" />
         </EntityType>
         <EntityType Name="Users">
@@ -327,6 +327,18 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
           <Property Name="GasCardName" Type="nchar" MaxLength="60" Nullable="false" />
           <Property Name="KeyName" Type="nchar" MaxLength="5" Nullable="false" />
         </EntityType>
+        <Association Name="FK_DriverGroups_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="DriverGroups" Type="Self.DriverGroups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="DriverGroups">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_GasCards_GasCardStatuses">
           <End Role="GasCardStatuses" Type="Self.GasCardStatuses" Multiplicity="1" />
           <End Role="GasCards" Type="Self.GasCards" Multiplicity="*" />
@@ -387,7 +399,7 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TransporationRequests_TransporationRequests">
+        <Association Name="FK_TransportationRequests_DriverGroups">
           <End Role="TransportationRequests" Type="Self.TransportationRequests" Multiplicity="1" />
           <End Role="TransportationRequests1" Type="Self.TransportationRequests" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -399,7 +411,7 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TransporationRequests_Users">
+        <Association Name="FK_TransportationRequests_UsersProcId">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="TransportationRequests" Type="Self.TransportationRequests" Multiplicity="*" />
           <ReferentialConstraint>
@@ -411,15 +423,15 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TransporationRequests_VehicleId">
-          <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="0..1" />
+        <Association Name="FK_TransportationRequests_UsersReqId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="TransportationRequests" Type="Self.TransportationRequests" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Vehicles">
-              <PropertyRef Name="VehicleId" />
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="TransportationRequests">
-              <PropertyRef Name="DriverGroupId" />
+              <PropertyRef Name="RequesterUserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -496,6 +508,17 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
           </ReferentialConstraint>
         </Association>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="p_TransReq_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RequesterUserId" Type="int" Mode="In" />
+          <Parameter Name="LeaveDate" Type="date" Mode="In" />
+          <Parameter Name="LeaveTime" Type="time" Mode="In" />
+          <Parameter Name="ReturnDate" Type="date" Mode="In" />
+          <Parameter Name="ReturnTime" Type="time" Mode="In" />
+          <Parameter Name="Destination" Type="nvarchar" Mode="In" />
+          <Parameter Name="TripPurpose" Type="nvarchar" Mode="In" />
+          <Parameter Name="NumOfStudents" Type="int" Mode="In" />
+          <Parameter Name="TranReqId" Type="int" Mode="InOut" />
+        </Function>
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -662,6 +685,10 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
     [User_Transportation_Log].[KeyName] AS [KeyName]
     FROM [dbo].[User_Transportation_Log] AS [User_Transportation_Log]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_DriverGroups_Users" Association="Self.FK_DriverGroups_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="DriverGroups" EntitySet="DriverGroups" />
+          </AssociationSet>
           <AssociationSet Name="FK_GasCards_GasCardStatuses" Association="Self.FK_GasCards_GasCardStatuses">
             <End Role="GasCardStatuses" EntitySet="GasCardStatuses" />
             <End Role="GasCards" EntitySet="GasCards" />
@@ -682,16 +709,16 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
             <End Role="Vehicles" EntitySet="Vehicles" />
             <End Role="SignOut" EntitySet="SignOut" />
           </AssociationSet>
-          <AssociationSet Name="FK_TransporationRequests_TransporationRequests" Association="Self.FK_TransporationRequests_TransporationRequests">
+          <AssociationSet Name="FK_TransportationRequests_DriverGroups" Association="Self.FK_TransportationRequests_DriverGroups">
             <End Role="TransportationRequests" EntitySet="TransportationRequests" />
             <End Role="TransportationRequests1" EntitySet="TransportationRequests" />
           </AssociationSet>
-          <AssociationSet Name="FK_TransporationRequests_Users" Association="Self.FK_TransporationRequests_Users">
+          <AssociationSet Name="FK_TransportationRequests_UsersProcId" Association="Self.FK_TransportationRequests_UsersProcId">
             <End Role="Users" EntitySet="Users" />
             <End Role="TransportationRequests" EntitySet="TransportationRequests" />
           </AssociationSet>
-          <AssociationSet Name="FK_TransporationRequests_VehicleId" Association="Self.FK_TransporationRequests_VehicleId">
-            <End Role="Vehicles" EntitySet="Vehicles" />
+          <AssociationSet Name="FK_TransportationRequests_UsersReqId" Association="Self.FK_TransportationRequests_UsersReqId">
+            <End Role="Users" EntitySet="Users" />
             <End Role="TransportationRequests" EntitySet="TransportationRequests" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_Departments" Association="Self.FK_Users_Departments">
@@ -754,6 +781,17 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="p_TransReq_Add">
+            <Parameter Name="RequesterUserId" Mode="In" Type="Int32" />
+            <Parameter Name="LeaveDate" Mode="In" Type="DateTime" />
+            <Parameter Name="LeaveTime" Mode="In" Type="Time" />
+            <Parameter Name="ReturnDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ReturnTime" Mode="In" Type="Time" />
+            <Parameter Name="Destination" Mode="In" Type="String" />
+            <Parameter Name="TripPurpose" Mode="In" Type="String" />
+            <Parameter Name="NumOfStudents" Mode="In" Type="Int32" />
+            <Parameter Name="TranReqId" Mode="InOut" Type="Int32" />
+          </FunctionImport>
           <EntitySet Name="Campuses" EntityType="FacilitiesDBModel.Campus" />
           <EntitySet Name="Departments" EntityType="FacilitiesDBModel.Department" />
           <EntitySet Name="DriverGroups" EntityType="FacilitiesDBModel.DriverGroup" />
@@ -786,6 +824,10 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
             <End Role="Department" EntitySet="Departments" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+          <AssociationSet Name="FK_DriverGroups_Users" Association="FacilitiesDBModel.FK_DriverGroups_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="DriverGroup" EntitySet="DriverGroups" />
+          </AssociationSet>
           <AssociationSet Name="FK_GasCards_GasCardStatuses" Association="FacilitiesDBModel.FK_GasCards_GasCardStatuses">
             <End Role="GasCardStatus" EntitySet="GasCardStatuses" />
             <End Role="GasCard" EntitySet="GasCards" />
@@ -806,16 +848,16 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
             <End Role="Vehicle" EntitySet="Vehicles" />
             <End Role="SignOut" EntitySet="SignOuts" />
           </AssociationSet>
-          <AssociationSet Name="FK_TransporationRequests_TransporationRequests" Association="FacilitiesDBModel.FK_TransporationRequests_TransporationRequests">
+          <AssociationSet Name="FK_TransportationRequests_DriverGroups" Association="FacilitiesDBModel.FK_TransportationRequests_DriverGroups">
             <End Role="TransportationRequest" EntitySet="TransportationRequests" />
             <End Role="TransportationRequest1" EntitySet="TransportationRequests" />
           </AssociationSet>
-          <AssociationSet Name="FK_TransporationRequests_Users" Association="FacilitiesDBModel.FK_TransporationRequests_Users">
+          <AssociationSet Name="FK_TransportationRequests_UsersProcId" Association="FacilitiesDBModel.FK_TransportationRequests_UsersProcId">
             <End Role="User" EntitySet="Users" />
             <End Role="TransportationRequest" EntitySet="TransportationRequests" />
           </AssociationSet>
-          <AssociationSet Name="FK_TransporationRequests_VehicleId" Association="FacilitiesDBModel.FK_TransporationRequests_VehicleId">
-            <End Role="Vehicle" EntitySet="Vehicles" />
+          <AssociationSet Name="FK_TransportationRequests_UsersReqId" Association="FacilitiesDBModel.FK_TransportationRequests_UsersReqId">
+            <End Role="User" EntitySet="Users" />
             <End Role="TransportationRequest" EntitySet="TransportationRequests" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_UserStatuses" Association="FacilitiesDBModel.FK_Users_UserStatuses">
@@ -869,11 +911,12 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
             <PropertyRef Name="DriverGroupId" />
           </Key>
           <Property Name="DriverGroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RequestId" Type="Int32" Nullable="false" />
+          <Property Name="TranRequestId" Type="Int32" Nullable="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="VehicleId" Type="Int32" />
+          <Property Name="VehicleTypeId" Type="Int32" Nullable="false" />
           <Property Name="VehicleAddOnId" Type="Int32" />
           <Property Name="NeedGasCard" Type="Boolean" />
+          <NavigationProperty Name="User" Relationship="FacilitiesDBModel.FK_DriverGroups_Users" FromRole="DriverGroup" ToRole="User" />
         </EntityType>
         <EntityType Name="GasCard">
           <Key>
@@ -936,7 +979,7 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
           <Key>
             <PropertyRef Name="TransReqId" />
           </Key>
-          <Property Name="TransReqId" Type="Int32" Nullable="false" />
+          <Property Name="TransReqId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RequesterUserId" Type="Int32" Nullable="false" />
           <Property Name="DriverGroupId" Type="Int32" />
           <Property Name="LeaveDate" Type="DateTime" Nullable="false" Precision="0" />
@@ -947,12 +990,12 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
           <Property Name="TripPurpose" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="NumOfStudents" Type="Int32" Nullable="false" />
           <Property Name="PassengerGroupId" Type="Int32" />
-          <Property Name="Approved" Type="Boolean" Nullable="false" />
+          <Property Name="Approved" Type="Boolean" />
           <Property Name="ProcessedUserId" Type="Int32" />
-          <NavigationProperty Name="TransportationRequests1" Relationship="FacilitiesDBModel.FK_TransporationRequests_TransporationRequests" FromRole="TransportationRequest" ToRole="TransportationRequest1" />
-          <NavigationProperty Name="TransportationRequest1" Relationship="FacilitiesDBModel.FK_TransporationRequests_TransporationRequests" FromRole="TransportationRequest1" ToRole="TransportationRequest" />
-          <NavigationProperty Name="User" Relationship="FacilitiesDBModel.FK_TransporationRequests_Users" FromRole="TransportationRequest" ToRole="User" />
-          <NavigationProperty Name="Vehicle" Relationship="FacilitiesDBModel.FK_TransporationRequests_VehicleId" FromRole="TransportationRequest" ToRole="Vehicle" />
+          <NavigationProperty Name="TransportationRequests1" Relationship="FacilitiesDBModel.FK_TransportationRequests_DriverGroups" FromRole="TransportationRequest" ToRole="TransportationRequest1" />
+          <NavigationProperty Name="TransportationRequest1" Relationship="FacilitiesDBModel.FK_TransportationRequests_DriverGroups" FromRole="TransportationRequest1" ToRole="TransportationRequest" />
+          <NavigationProperty Name="User" Relationship="FacilitiesDBModel.FK_TransportationRequests_UsersProcId" FromRole="TransportationRequest" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="FacilitiesDBModel.FK_TransportationRequests_UsersReqId" FromRole="TransportationRequest" ToRole="User" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -972,8 +1015,10 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SupervisorEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Department" Relationship="FacilitiesDBModel.FK_Users_Departments" FromRole="User" ToRole="Department" />
+          <NavigationProperty Name="DriverGroups" Relationship="FacilitiesDBModel.FK_DriverGroups_Users" FromRole="User" ToRole="DriverGroup" />
           <NavigationProperty Name="SignOuts" Relationship="FacilitiesDBModel.FK_SignOut_Users" FromRole="User" ToRole="SignOut" />
-          <NavigationProperty Name="TransportationRequests" Relationship="FacilitiesDBModel.FK_TransporationRequests_Users" FromRole="User" ToRole="TransportationRequest" />
+          <NavigationProperty Name="TransportationRequests" Relationship="FacilitiesDBModel.FK_TransportationRequests_UsersProcId" FromRole="User" ToRole="TransportationRequest" />
+          <NavigationProperty Name="TransportationRequests1" Relationship="FacilitiesDBModel.FK_TransportationRequests_UsersReqId" FromRole="User" ToRole="TransportationRequest" />
           <NavigationProperty Name="UserStatus" Relationship="FacilitiesDBModel.FK_Users_UserStatuses" FromRole="User" ToRole="UserStatus" />
         </EntityType>
         <EntityType Name="UserStatus">
@@ -1007,7 +1052,6 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
           <Property Name="VehicleAddonId" Type="Int32" />
           <NavigationProperty Name="Campus" Relationship="FacilitiesDBModel.FK_Vehicles_Campuses" FromRole="Vehicle" ToRole="Campus" />
           <NavigationProperty Name="SignOuts" Relationship="FacilitiesDBModel.FK_SignOut_Vehicles" FromRole="Vehicle" ToRole="SignOut" />
-          <NavigationProperty Name="TransportationRequests" Relationship="FacilitiesDBModel.FK_TransporationRequests_VehicleId" FromRole="Vehicle" ToRole="TransportationRequest" />
           <NavigationProperty Name="VehicleAddon" Relationship="FacilitiesDBModel.FK_Vehicles_VehicleAddons" FromRole="Vehicle" ToRole="VehicleAddon" />
           <NavigationProperty Name="VehicleStatus" Relationship="FacilitiesDBModel.FK_Vehicles_VehicleStatuses" FromRole="Vehicle" ToRole="VehicleStatus" />
           <NavigationProperty Name="VehicleType" Relationship="FacilitiesDBModel.FK_Vehicles_VehicleTypes" FromRole="Vehicle" ToRole="VehicleType" />
@@ -1197,6 +1241,18 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DriverGroups_Users">
+          <End Type="FacilitiesDBModel.User" Role="User" Multiplicity="1" />
+          <End Type="FacilitiesDBModel.DriverGroup" Role="DriverGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="DriverGroup">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_GasCards_GasCardStatuses">
           <End Type="FacilitiesDBModel.GasCardStatus" Role="GasCardStatus" Multiplicity="1" />
           <End Type="FacilitiesDBModel.GasCard" Role="GasCard" Multiplicity="*" />
@@ -1257,7 +1313,7 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TransporationRequests_TransporationRequests">
+        <Association Name="FK_TransportationRequests_DriverGroups">
           <End Type="FacilitiesDBModel.TransportationRequest" Role="TransportationRequest" Multiplicity="1" />
           <End Type="FacilitiesDBModel.TransportationRequest" Role="TransportationRequest1" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -1269,7 +1325,7 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TransporationRequests_Users">
+        <Association Name="FK_TransportationRequests_UsersProcId">
           <End Type="FacilitiesDBModel.User" Role="User" Multiplicity="0..1" />
           <End Type="FacilitiesDBModel.TransportationRequest" Role="TransportationRequest" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1281,15 +1337,15 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TransporationRequests_VehicleId">
-          <End Type="FacilitiesDBModel.Vehicle" Role="Vehicle" Multiplicity="0..1" />
+        <Association Name="FK_TransportationRequests_UsersReqId">
+          <End Type="FacilitiesDBModel.User" Role="User" Multiplicity="1" />
           <End Type="FacilitiesDBModel.TransportationRequest" Role="TransportationRequest" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Vehicle">
-              <PropertyRef Name="VehicleId" />
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="TransportationRequest">
-              <PropertyRef Name="DriverGroupId" />
+              <PropertyRef Name="RequesterUserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1371,6 +1427,7 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="FacilitiesDBModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="FacilitiesDBModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="p_TransReq_Add" FunctionName="FacilitiesDBModel.Store.p_TransReq_Add" />
           <EntitySetMapping Name="Campuses">
             <EntityTypeMapping TypeName="FacilitiesDBModel.Campus">
               <MappingFragment StoreEntitySet="Campuses">
@@ -1394,9 +1451,9 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
               <MappingFragment StoreEntitySet="DriverGroups">
                 <ScalarProperty Name="NeedGasCard" ColumnName="NeedGasCard" />
                 <ScalarProperty Name="VehicleAddOnId" ColumnName="VehicleAddOnId" />
-                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="VehicleTypeId" ColumnName="VehicleTypeId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="TranRequestId" ColumnName="TranRequestId" />
                 <ScalarProperty Name="DriverGroupId" ColumnName="DriverGroupId" />
               </MappingFragment>
             </EntityTypeMapping>

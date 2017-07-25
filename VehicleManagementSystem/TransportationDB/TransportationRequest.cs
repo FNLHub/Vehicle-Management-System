@@ -25,12 +25,12 @@ namespace TransportationDB
         public string TripPurpose { get; set; }
         public int NumOfStudents { get; set; }
         public Nullable<int> PassengerGroupId { get; set; }
-        public bool Approved { get; set; }
+        public Nullable<bool> Approved { get; set; }
         public Nullable<int> ProcessedUserId { get; set; }
     
         public virtual TransportationRequest TransportationRequests1 { get; set; }
         public virtual TransportationRequest TransportationRequest1 { get; set; }
         public virtual User User { get; set; }
-        public virtual Vehicle Vehicle { get; set; }
+        public virtual User User1 { get; set; }
     }
 }

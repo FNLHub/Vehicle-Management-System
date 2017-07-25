@@ -44,6 +44,7 @@ namespace VehicleManagementSystem.Controllers
             ViewData["VehicleAddonsDropdown"] = new SelectList(_drop.PopulateVehiclesAddons(), "Text", "Value");
             ViewData["VehicleTypesDropdown"] = new SelectList(_drop.PopulateVehicles(), "Text", "Value");
             ViewData["GasCardsDropdown"] = new SelectList(_drop.PopulateGasCards(), "Text", "Value");
+            ViewData["ApprovedDriversDropdown"] = new SelectList(_drop.PopulateApprovedDrivers(), "Text", "Value");
             //List<SelectListItem> listItem = new List<SelectListItem>();
 
             //for (int i = 1; i <= transportationContext.Users.Count(); i++)
@@ -80,8 +81,10 @@ namespace VehicleManagementSystem.Controllers
                         newRequest.TripPurpose = transRequest.TripPurpose;
                         newRequest.NumOfStudents = 5;
 
-                        transportationContext.TransportationRequests.Add(newRequest);
-                        transportationContext.SaveChanges();
+
+                        int test = transportationContext.p_TransReq_Add(newRequest.RequesterUserId, newRequest.LeaveDate, newRequest.LeaveTime, newRequest.ReturnDate, newRequest.ReturnTime, newRequest.Destination, newRequest.TripPurpose, newRequest.NumOfStudents, null);
+                        //transportationContext.TransportationRequests.Add(newRequest);
+                        //transportationContext.SaveChanges();
 
                     }
 
