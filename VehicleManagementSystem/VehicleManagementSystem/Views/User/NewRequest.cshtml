@@ -80,63 +80,7 @@
             </tr>
             </thead>
             <tbody id="append-driver">
-            <tr>
-                <!-- Driver Select -->
-                <th>
-                    @* v=>v.NumOfStudents is incorrect for this dropdown. currently using this for testing FIX SOON!------------------------------------*@
-                    @Html.DropDownListFor(v=>v.NumOfStudents, (SelectList)ViewData["ApprovedDriversDropdown"], new { @class = "form-control" })
-                </th>
-                <!--Select Vehicle Type | Dropdown-->
-                <th>
-                    <!-- Fix Lambda Functions once model is implemented!!!!!-->
-                    @Html.DropDownListFor(t => t.BannerId, new SelectList(
-                        new List<Object>
-                        {
-                            new { value = "1", text = "None"},
-                            new {value = "2", text = "Car"},
-                            new {value = "3", text = "(8) Van"},
-                            new {value = "4", text = "(12) Van"},
-                        },
-                        "value",
-                        "text"), new { @class = "form-control" })                   
-                </th>
-                <!--Need Gas Card | Radio-->
-                <th>
-                    <!-- Fix Lambda Functions once model is implemented!!!!!-->
-                    <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-default active">
-                            @Html.RadioButtonFor(g => g.BannerId, 0, new { @checked = true, @id = "G_RadNo", @name = "gc" })
-                            No
-                        </label>
-                        <label class="btn btn-default">
-                            @Html.RadioButtonFor(g => g.BannerId, 1, new { @id = "G_RadYes", @name = "gc" })
-                            Yes
-                        </label>
-                    </div>
-                </th>
-                <!-- Vehicle Addon Id | Dropdown-->
-                <th>
-                    <!-- Fix Lambda Functions once model is implemented!!!!!-->
-                   @Html.DropDownListFor(v => v.BannerId, (SelectList)ViewData["VehicleAddonsDropdown"], new { @class = "form-control" })
-                </th>
-                <!-- Pickup Location | Radio-->  <!-- Fix Lambda Functions once model is implemented!!!!!-->
-                <th>
-                    <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-danger active">
-                            @Html.RadioButtonFor(m => m.BannerId, 1, new { @checked = true })
-                            Visalia
-                        </label>
-                        <label class="btn btn-default">
-                            @Html.RadioButtonFor(m => m.BannerId, 2)
-                            Tulare
-                        </label>
-                        <label class="btn btn-default">
-                            @Html.RadioButtonFor(m => m.BannerId, 3)
-                            Hanford
-                        </label>
-                    </div>
-                </th>
-            </tr>
+                @Html.Partial("~/Views/Partial/AppendDriver.cshtml")
             </tbody>
         </table>
 

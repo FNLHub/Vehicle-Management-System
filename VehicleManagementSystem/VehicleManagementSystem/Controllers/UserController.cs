@@ -39,6 +39,7 @@ namespace VehicleManagementSystem.Controllers
             return PartialView("~/Views/Partial/AppendDriver.cshtml", new Drivers());
         }
 
+
         [HttpGet]
         public ActionResult NewRequest()
         {
@@ -66,7 +67,7 @@ namespace VehicleManagementSystem.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult NewRequest(TransportationRequest_View transRequest)
+        public ActionResult NewRequest(TransportationRequest_View transRequest)//Drivers[] drivers
         {
 
             if (ModelState.IsValid)
@@ -103,12 +104,17 @@ namespace VehicleManagementSystem.Controllers
                         //Call Precedure and give transReqId a value
                         transportationContext.p_TransReq_Add(newRequest.RequesterUserId, newRequest.LeaveDate, newRequest.LeaveTime, newRequest.ReturnDate, newRequest.ReturnTime, newRequest.Destination, newRequest.TripPurpose, newRequest.NumOfStudents, transReqId);
 
-                        Drivers _Drivers = new Drivers();
-                        _Drivers.DriverUserId = 1;
-                        _Drivers.NeedGasCard = false;
-                        _Drivers.TransReqId = Convert.ToInt16(transReqId.Value);
-                        _Drivers.VehicleAddonId = 1;
-                        _Drivers.VehicleTypeId = 1;
+                        //Drivers _Drivers = new Drivers();
+                        //_Drivers.DriverUserId = 1;
+                        //_Drivers.NeedGasCard = false;
+                        //_Drivers.TransReqId = Convert.ToInt16(transReqId.Value);
+                        //_Drivers.VehicleAddonId = 1;
+                        //_Drivers.VehicleTypeId = 1;
+                        //for (int i = 0; i<drivers.Length; i++) {
+
+                        //    drivers[i].DriverUserId = 1;
+
+                        //}
 
 
                         if (transReqId != null)
