@@ -50,3 +50,19 @@ $(document).ready(function () {
         }
     };
 });
+
+//Adding a Driver to table
+$("#create-driver").on("click", function () {
+    $.ajax({
+        async: false,
+        url: "/User/AppendDriver"
+    }).success(function (pview) {
+        $("#append-driver").append(pview);
+    });
+});
+
+//Deleting a driver row
+function deleteRow(num) {
+    console.log(num);
+    $("#row-" + num).remove();
+};

@@ -12,5 +12,6 @@ namespace VehicleManagementSystem.Models
         public int VehicleTypeId { get; set; }
         public int VehicleAddonId { get; set; }
         public bool NeedGasCard { get; set; }
+        public string PickupLocation { get; set; }
     }
 }

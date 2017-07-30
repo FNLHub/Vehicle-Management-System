@@ -218,6 +218,7 @@
     <Content Include="Views\Reports\GetSignOutHistory.cshtml" />
     <Content Include="Views\Reports\GetSignOutHistoryByDate.cshtml" />
     <Content Include="Views\User\RequestConfirmation.cshtml" />
+    <Content Include="Views\Partial\AppendDriver.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

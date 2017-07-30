@@ -64,7 +64,7 @@
     <div class="jumbotron" id="step2">
         <p class="step"><span class="glyphicon glyphicon-star-empty"></span>Step #2</p>
 
-        <span class="btn btn-default" id="create-drivers">
+        <span class="btn btn-default" id="create-driver">
             <span class="glyphicon glyphicon-plus-sign"></span>
             Add Driver
         </span>
@@ -76,9 +76,10 @@
                 <th>Gas Card </th>
                 <th>Vehicle Add-on </th>
                 <th>Pickup From </th>
+                <th></th>
             </tr>
             </thead>
-            <tbody id="add-driver">
+            <tbody id="append-driver">
             <tr>
                 <!-- Driver Select -->
                 <th>
@@ -93,8 +94,8 @@
                         {
                             new { value = "1", text = "None"},
                             new {value = "2", text = "Car"},
-                            new {value = "2", text = "(8) Van"},
-                            new {value = "2", text = "(12) Van"},
+                            new {value = "3", text = "(8) Van"},
+                            new {value = "4", text = "(12) Van"},
                         },
                         "value",
                         "text"), new { @class = "form-control" })                   
