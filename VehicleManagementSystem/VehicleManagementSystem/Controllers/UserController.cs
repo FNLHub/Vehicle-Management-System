@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -35,26 +36,14 @@ namespace VehicleManagementSystem.Controllers
             //userFill.User.OfficePhoneNumber = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]).userInfo.OfficePhone;
             //userFill.User.Email = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]).userInfo.Email;
             //return View(userFill);
-
-            //Old Way
-            //ViewData["UserDropdown"] = new SelectList(PopulateUsers(1), "Text", "Value");
-            //New Way
+            
             UniversalDropDownClass _drop = new UniversalDropDownClass();
             ViewData["UserDropdown"] = new SelectList(_drop.PopulateUsers(), "Text", "Value");
             ViewData["VehicleAddonsDropdown"] = new SelectList(_drop.PopulateVehiclesAddons(), "Text", "Value");
             ViewData["VehicleTypesDropdown"] = new SelectList(_drop.PopulateVehicles(), "Text", "Value");
             ViewData["GasCardsDropdown"] = new SelectList(_drop.PopulateGasCards(), "Text", "Value");
             ViewData["ApprovedDriversDropdown"] = new SelectList(_drop.PopulateApprovedDrivers(), "Text", "Value");
-            //List<SelectListItem> listItem = new List<SelectListItem>();
-
-            //for (int i = 1; i <= transportationContext.Users.Count(); i++)
-            //{
-            //    listItem.Add(new SelectListItem() { Value = transportationContext.Users.Where(v => v.UserId == i).Select(v => v.FirstName +" " + v.LastName).FirstOrDefault(), Text = transportationContext.Users.Where(v => v.UserId == i).Select(v => v.UserId).FirstOrDefault().ToString() });
-            //}
-
-            ////ViewData["VehicleDropDown"] = populateDropDown(transportationContext.Vehicles);
-            ////ViewData["KeyDropDown"] = populateDropDown(transportationContext.Keys);
-            //ViewData["UserDropdown"] = new SelectList(listItem, "Text", "Value");
+           
 
             return View();
         }
@@ -73,20 +62,48 @@ namespace VehicleManagementSystem.Controllers
                     {
                         TransportationRequest newRequest = new TransportationRequest();
                         newRequest.RequesterUserId = RequesterId;
-                        newRequest.LeaveDate = DateTime.Now;
-                        newRequest.LeaveTime = new TimeSpan(1, 1, 1);
-                        newRequest.ReturnDate = DateTime.Now + new TimeSpan(23, 59, 59);
-                        newRequest.ReturnTime = new TimeSpan(23, 59, 59);
-                        newRequest.Destination = "Exeter";
+                        newRequest.LeaveDate = transRequest.LeaveDate.GetValueOrDefault();
+                        newRequest.LeaveTime = transRequest.LeaveTime.GetValueOrDefault();
+                        newRequest.ReturnDate = transRequest.ReturnDate.GetValueOrDefault();
+                        newRequest.ReturnTime = transRequest.ReturnTime.GetValueOrDefault();
+                        newRequest.Destination = transRequest.Destination;
                         newRequest.TripPurpose = transRequest.TripPurpose;
-                        newRequest.NumOfStudents = 5;
+                        newRequest.NumOfStudents = transRequest.NumOfStudents.GetValueOrDefault();
+
+                        /* Testing default values */
+                        newRequest.RequesterUserId = 1;
+                        newRequest.LeaveDate = DateTime.Parse("7/1/2017");
+                        newRequest.LeaveTime = TimeSpan.Parse("5:15");
+                        newRequest.ReturnDate = DateTime.Parse("7/5/2017");
+                        newRequest.ReturnTime = TimeSpan.Parse("18:35");
+                        newRequest.Destination = "LA";
+                        newRequest.TripPurpose = "Pancakes";
+                        newRequest.NumOfStudents = 4;
+
+                        //Create Empty Int Object
+                        var transReqId = new ObjectParameter("TranReqId", typeof(int));
+                        //Call Precedure and give transReqId a value
+                        transportationContext.p_TransReq_Add(newRequest.RequesterUserId, newRequest.LeaveDate, newRequest.LeaveTime, newRequest.ReturnDate, newRequest.ReturnTime, newRequest.Destination, newRequest.TripPurpose, newRequest.NumOfStudents, transReqId);
+
+                        Drivers _Drivers = new Drivers();
+                        _Drivers.DriverUserId = 1;
+                        _Drivers.NeedGasCard = false;
+                        _Drivers.TransReqId = Convert.ToInt16(transReqId.Value);
+                        _Drivers.VehicleAddonId = 1;
+                        _Drivers.VehicleTypeId = 1;
 
 
-                        int test = transportationContext.p_TransReq_Add(newRequest.RequesterUserId, newRequest.LeaveDate, newRequest.LeaveTime, newRequest.ReturnDate, newRequest.ReturnTime, newRequest.Destination, newRequest.TripPurpose, newRequest.NumOfStudents, null);
-                        //transportationContext.TransportationRequests.Add(newRequest);
-                        //transportationContext.SaveChanges();
+                        if (transReqId != null)
+                        {
+                            //foreach (driver in array)
+                            //{
+                            //    insert into db
+                            //}
+                        }
 
+                        return RedirectToAction("RequestConfirmation");
                     }
+
 
                     // Will require a foreach loop to grab all drivers listed on request
                     //var DriverId = transportationContext.Users.Where(u => u.UserId == transRequest.UserId).Select(i => i.UserId).FirstOrDefault();
@@ -114,6 +131,18 @@ namespace VehicleManagementSystem.Controllers
                 }
             }
             return View();
+        }
+
+
+        [HttpGet]
+        public ActionResult RequestConfirmation()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult RequestConfirmation(int? x)
+        {
+            return RedirectToAction("Index");
         }
 
         //public static List<SelectListItem> PopulateUsers(int TableId)

@@ -9,7 +9,7 @@ $(document).ready(function () {
     let submitButton = $("#btnSubmit");
     submitButton.hide();
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 5; i++) {
 
         //Populate Array
         divStepId[i] = $("#step" + (i + 1));
@@ -32,7 +32,7 @@ $(document).ready(function () {
                 $("#btnStepGroup" + (i)).show();
             });
         }
-        if (i < 5) {
+        if (i < 4) {
 
             //Next Button Pressed
             divStepId[i].find("#btnStep" + (i + 1) + "Next").click(function () {
