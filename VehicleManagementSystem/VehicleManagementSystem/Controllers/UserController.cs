@@ -16,6 +16,14 @@ namespace VehicleManagementSystem.Controllers
         FacilitiesDBEntities transportationContext = new FacilitiesDBEntities();
         static int count = 0;
 
+        //Global List Variables used to speedup partial view populate
+        static SelectList _Users;
+        static SelectList _VehicleAddons;
+        static SelectList _VehicleTypes;
+        static SelectList _GasCards;
+        static SelectList _ApprovedDrivers;
+
+
         // GET: User
         public ActionResult Index()
         {
@@ -29,12 +37,11 @@ namespace VehicleManagementSystem.Controllers
             ViewBag.count = count++;
 
             //Used for populating dropdowns
-            UniversalDropDownClass _drop = new UniversalDropDownClass();
-            ViewData["UserDropdown"] = new SelectList(_drop.PopulateUsers(), "Text", "Value");
-            ViewData["VehicleAddonsDropdown"] = new SelectList(_drop.PopulateVehiclesAddons(), "Text", "Value");
-            ViewData["VehicleTypesDropdown"] = new SelectList(_drop.PopulateVehicles(), "Text", "Value");
-            ViewData["GasCardsDropdown"] = new SelectList(_drop.PopulateGasCards(), "Text", "Value");
-            ViewData["ApprovedDriversDropdown"] = new SelectList(_drop.PopulateApprovedDrivers(), "Text", "Value");
+                ViewData["UserDropdown"] = _Users;
+                ViewData["VehicleAddonsDropdown"] = _VehicleAddons;
+                ViewData["VehicleTypesDropdown"] = _VehicleTypes;
+                ViewData["GasCardsDropdown"] = _GasCards;
+                ViewData["ApprovedDriversDropdown"] = _ApprovedDrivers;
 
             return PartialView("~/Views/Partial/AppendDriver.cshtml", new Drivers());
         }
@@ -55,14 +62,21 @@ namespace VehicleManagementSystem.Controllers
             //userFill.User.OfficePhoneNumber = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]).userInfo.OfficePhone;
             //userFill.User.Email = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]).userInfo.Email;
             //return View(userFill);
-            
+
             UniversalDropDownClass _drop = new UniversalDropDownClass();
-            ViewData["UserDropdown"] = new SelectList(_drop.PopulateUsers(), "Text", "Value");
-            ViewData["VehicleAddonsDropdown"] = new SelectList(_drop.PopulateVehiclesAddons(), "Text", "Value");
-            ViewData["VehicleTypesDropdown"] = new SelectList(_drop.PopulateVehicles(), "Text", "Value");
-            ViewData["GasCardsDropdown"] = new SelectList(_drop.PopulateGasCards(), "Text", "Value");
-            ViewData["ApprovedDriversDropdown"] = new SelectList(_drop.PopulateApprovedDrivers(), "Text", "Value");
-           
+            //Populate Global Variables
+            _Users = new SelectList(_drop.PopulateUsers(), "Text", "Value");
+            _VehicleAddons = new SelectList(_drop.PopulateVehiclesAddons(), "Text", "Value");
+            _VehicleTypes = new SelectList(_drop.PopulateVehicles(), "Text", "Value");
+            _GasCards = new SelectList(_drop.PopulateGasCards(), "Text", "Value"); ;
+            _ApprovedDrivers = new SelectList(_drop.PopulateApprovedDrivers(), "Text", "Value");
+            //Populate ViewData's
+            ViewData["UserDropdown"] = _Users;
+            ViewData["VehicleAddonsDropdown"] = _VehicleAddons;
+            ViewData["VehicleTypesDropdown"] = _VehicleTypes;
+            ViewData["GasCardsDropdown"] = _GasCards;
+            ViewData["ApprovedDriversDropdown"] = _ApprovedDrivers;
+
 
             return View();
         }
