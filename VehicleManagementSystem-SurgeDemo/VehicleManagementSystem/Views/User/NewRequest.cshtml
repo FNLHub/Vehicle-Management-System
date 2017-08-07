@@ -1,0 +1,220 @@
+﻿@model TransportationDB.TransportationRequest_View
+
+@{
+    ViewBag.Title = "NewRequest";
+    ViewBag.css = "../Content/NewRequest.css";
+    ViewBag.js = "../Scripts/CustomScripts/newRequest.js";
+}
+
+<h2>New Request</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-segment">
+
+        <!----------------------------------------------------------------- Step 1 ---------------------------------------------------------------->
+    <div class="jumbotron" id="step1">
+        <p class="step"><span class="glyphicon glyphicon-star-empty"></span>Step #1</p>
+        <!--Row Start-->
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                First Name:<br />
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                Last Name:<br />
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                Banner Id:<br />
+                @Html.TextBoxFor(m => m.BannerId, new { @class = "form-control", @placeholder = "Banner Id, without @" })
+            </div>
+        </div>
+        <br />
+
+        <!--Row Start-->
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                Email:<br />
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "...@cos.edu" })
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                Office Phone:<br />
+                @Html.TextBoxFor(m => m.OfficePhoneNumber, new { @class = "form-control", @placeholder = "5591112222" })
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                Mobile Phone:<br />
+                @Html.TextBoxFor(m => m.CellPhoneNumber, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <!--Btn Group-->
+        <div id="btnStepGroup1">
+            <!--Next-->
+            <a class="btn btn-success align-right" id="btnStep1Next"> Next Step <span class="glyphicon glyphicon-chevron-right"></span></a>
+        </div>
+
+        <div style="clear: both;"></div>
+
+    </div>
+
+    <!----------------------------------------------------------------- Step 2 ---------------------------------------------------------------->
+    <div class="jumbotron" id="step2">
+        <p class="step"><span class="glyphicon glyphicon-star-empty"></span>Step #2</p>
+
+        <span class="btn btn-default" id="create-driver">
+            <span class="glyphicon glyphicon-plus-sign"></span>
+            Add Driver
+        </span>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Driver</th>
+                <th>Select Vehicle </th>
+                <th>Gas Card </th>
+                <th>Vehicle Add-on </th>
+                <th>Pickup From </th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody id="append-driver">
+                @Html.Partial("~/Views/Partial/AppendDriver.cshtml")
+            </tbody>
+        </table>
+
+        <!--Btn Group-->
+        <div id="btnStepGroup2">
+            <!--Next-->
+            <a class="btn btn-success align-right" id="btnStep2Next"> Next Step <span class="glyphicon glyphicon-chevron-right"></span></a>
+            <!--Previous-->
+            <a class="btn btn-danger align-right" id="btnStep2Prev"><span class="glyphicon glyphicon-chevron-left"></span> Previous </a>
+        </div>
+
+        <div style="clear: both;"></div>
+    </div>
+
+        <!----------------------------------------------------------------- Step 3 ---------------------------------------------------------------->
+    <div class="jumbotron" id="step3">
+        <p class="step"><span class="glyphicon glyphicon-star-empty"></span>Step #3</p>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                Leave Date:<br />
+                @Html.TextBoxFor(m => m.LeaveDate, new { @class = "form-control", @type = "date" })
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                Return Date:<br />
+                @Html.TextBoxFor(m => m.ReturnDate, new { @class = "form-control", @type = "date" })
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4"><!--White space for grid--></div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                Leave Time:<br />
+                @Html.TextBoxFor(m => m.LeaveTime, new { @class = "form-control", @type = "time", @placeholder = "6:00am" })
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                Return Time:<br />
+                @Html.TextBoxFor(m => m.ReturnTime, new { @class = "form-control", @type = "time" })
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4"><!--White space for grid--></div>
+        </div>
+
+        <!--Btn Group-->
+        <div id="btnStepGroup3">
+            <!--Next-->
+            <a class="btn btn-success align-right" id="btnStep3Next"> Next Step <span class="glyphicon glyphicon-chevron-right"></span></a>
+            <!--Previous-->
+            <a class="btn btn-danger align-right" id="btnStep3Prev"><span class="glyphicon glyphicon-chevron-left"></span> Previous </a>
+        </div>
+
+        <div style="clear: both;"></div>
+    </div>
+
+        <!----------------------------------------------------------------- Step 4 ---------------------------------------------------------------->
+    <div class="jumbotron" id="step4">
+        <p class="step"><span class="glyphicon glyphicon-star-empty"></span>Step #4 (Final Step)</p>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Destination</th>
+                    <th>Purpose of Trip </th>
+                    <th>Amount of COS Students on Trip </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                   <th>
+                       @Html.TextBoxFor(m => m.Destination, new { @class = "form-control", @maxlength = "254" })
+                   </th>
+                    <th>
+                        @Html.TextBoxFor(m => m.TripPurpose, new { @class = "form-control", @maxlength = "254" })
+                    </th>
+                    <th>
+                        @Html.DropDownListFor(m => m.NumOfStudents, Enumerable.Range(0, 100).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), new { @class = "form-control" })
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+
+        <!--Btn Group-->
+        <div id="btnStepGroup4">
+            <!--Submit Button-->
+            <input type="submit" value="Submit Form" class="btn btn-success align-right" />
+            <a class="btn btn-success align-right" id="btnSubmit"><span class="glyphicon glyphicon-ok"></span> Submit Request</a>
+            <!--Previous--> 
+            <a class="btn btn-danger align-right" id="btnStep4Prev"><span class="glyphicon glyphicon-chevron-left"></span> Previous </a>
+        </div>
+
+        <div style="clear: both;"></div>
+    </div>
+
+</div>
+}
+
+<div>
+    <a href="@Url.Action("Index", "Home")" class="btn btn-danger">
+        Cancel
+    </a>
+</div>
+
+
+
+
+
+
+<!-- Code Graveyard (Delete Soon)-->
+
+@*@Html.DropDownListFor(t => t.VehicleAddonId, new SelectList(
+    new List<Object>
+    {
+        new { value = "1", text = "none"},
+        new {value = "2", text = "Trailer"}
+    },
+    "value",
+    "text"), new { @class = "form-control" })*@
+
+@*<div class="btn-group" data-toggle="buttons">
+    <label class="btn btn-danger active">
+        @Html.RadioButtonFor(m => m.vehicleId, 1, new { @checked = true, @id = "V_RadNone", @name = "veh" })
+        None
+        </label>
+        <label class="btn btn-default">
+           @Html.RadioButtonFor(m => m.VehicleId, 2, new { @id = "V_RadCar", @name = "veh" })
+            Car
+        </label>
+        <label class="btn btn-default">
+            @Html.RadioButtonFor(m => m.VehicleId, 3, new { @id = "V_Rad8", @name = "veh" })
+            8 Pass Van
+        </label>
+        <label class="btn btn-default">
+            @Html.RadioButtonFor(m => m.VehicleId, 4, new { @id = "V_Rad12", @name = "veh" })
+            12 Pass Van
+        </label>
+        </div>*@

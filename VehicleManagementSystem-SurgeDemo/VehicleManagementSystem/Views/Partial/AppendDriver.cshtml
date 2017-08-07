@@ -1,0 +1,60 @@
+﻿@model VehicleManagementSystem.Models.Drivers
+
+<tr id="row-@ViewBag.count">
+    <!-- Driver Select -->
+    <th>
+        @Html.DropDownListFor(v => v.DriverUserId, (SelectList)ViewData["ApprovedDriversDropdown"], new { @class = "form-control" })
+    </th>
+    <!--Select Vehicle Type | Dropdown-->
+    <th>
+        @Html.DropDownListFor(t => t.VehicleTypeId, new SelectList(
+                        new List<Object>
+                        {
+                            new { value = "1", text = "None"},
+                            new {value = "2", text = "Car"},
+                            new {value = "3", text = "(8) Van"},
+                            new {value = "4", text = "(12) Van"},
+                        },
+                        "value",
+                        "text"), new { @class = "form-control" })
+    </th>
+    <!--Need Gas Card | Radio-->
+    <th>
+        <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-default active">
+                @Html.RadioButtonFor(g => g.NeedGasCard, 1, new { @checked = true, @id = "G_RadNo", @name = "gc" })
+                No
+            </label>
+            <label class="btn btn-default">
+                @Html.RadioButtonFor(g => g.NeedGasCard, 2, new { @id = "G_RadYes", @name = "gc" })
+                Yes
+            </label>
+        </div>
+    </th>
+    <!-- Vehicle Addon Id | Dropdown-->
+    <th>
+        @Html.DropDownListFor(v => v.VehicleAddonId, (SelectList)ViewData["VehicleAddonsDropdown"], new { @class = "form-control" })
+    </th>
+    <th>
+        <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-danger active">
+                @Html.RadioButtonFor(m => m.PickupLocation, 1, new { @checked = true })
+                Visalia
+            </label>
+            <label class="btn btn-default">
+                @Html.RadioButtonFor(m => m.PickupLocation, 2)
+                Tulare
+            </label>
+            <label class="btn btn-default">
+                @Html.RadioButtonFor(m => m.PickupLocation, 3)
+                Hanford
+            </label>
+        </div>
+    </th>
+    <th>
+        @if (ViewBag.count >= 0)
+        {
+            <button class="btn btn-danger" onclick="deleteRow(@ViewBag.count);">Delete</button>
+        }
+    </th>
+</tr>

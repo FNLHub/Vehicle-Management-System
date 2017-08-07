@@ -1,0 +1,16 @@
+﻿.form-group {
+    padding-bottom: 2em;
+}
+
+.form-control{
+    position:absolute;
+
+}
+h2{
+    padding-top:2em;
+}
+.center, h2 {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}

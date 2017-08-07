@@ -1,0 +1,63 @@
+﻿@model IEnumerable<TransportationDB.Vehicle>
+
+@{
+    ViewBag.Title = "GetVehicles";
+}
+
+<h2>GetVehicles</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.VehiclePlate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VehicleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Campus.CampusCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VehicleAddon.AddonName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VehicleStatus.StatusCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VehicleType.TypeName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.VehiclePlate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VehicleName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Campus.CampusCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VehicleAddon.AddonName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VehicleStatus.StatusCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VehicleType.TypeName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.VehicleId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.VehicleId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.VehicleId })
+        </td>
+    </tr>
+}
+
+</table>
