@@ -39,7 +39,7 @@ namespace VehicleManagementSystem.Controllers
             //Used for deleting rows
             ViewBag.count = count++;
 
-            //Used for populating dropdowns
+            //Using Global Variables to set the ViewData Upon AppendDriver();
             ViewData["UserDropdown"] = _Users;
             ViewData["VehicleAddonsDropdown"] = _VehicleAddons;
             ViewData["VehicleTypesDropdown"] = _VehicleTypes;
@@ -50,11 +50,9 @@ namespace VehicleManagementSystem.Controllers
             return PartialView("~/Views/Partial/AppendDriver.cshtml", new Drivers());
         }
 
-
         [HttpGet]
         public ActionResult NewRequest()
         {
-
 
             //Empty User
             TransportationRequest_View_DemoForSymposium userFill = new TransportationRequest_View_DemoForSymposium();
@@ -175,21 +173,41 @@ namespace VehicleManagementSystem.Controllers
         [HttpGet]
         public ActionResult EditUserInfo()
         {
-            var userAuth = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]);
+            //Set User
+            _LoggedInUser = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]);
 
             User userFill = new TransportationDB.User();
 
-            userFill.FirstName = userAuth.userInfo.FirstName;
-            userFill.LastName = userAuth.userInfo.LastName;
-            userFill.BannerId = userAuth.userInfo.EmployeeId;
-            userFill.Email = userAuth.userInfo.Email;
-            userFill.OfficePhoneNumber = userAuth.userInfo.OfficePhone;
+            userFill.FirstName = _LoggedInUser.userInfo.FirstName;
+            userFill.LastName = _LoggedInUser.userInfo.LastName;
+            userFill.BannerId = _LoggedInUser.userInfo.EmployeeId;
+            userFill.Email = _LoggedInUser.userInfo.Email;
+            userFill.OfficePhoneNumber = _LoggedInUser.userInfo.OfficePhone;
 
             return View(userFill);
         }
         [HttpPost]
-        public ActionResult EditUserInfo(int? x)
+        public ActionResult EditUserInfo(User user)
         {
+            User _user = new TransportationDB.User();
+
+            _user.FirstName = _LoggedInUser.userInfo.FirstName;
+            _user.LastName = _LoggedInUser.userInfo.LastName;
+            _user.BannerId = _LoggedInUser.userInfo.EmployeeId.Substring(1);
+            _user.Email = _LoggedInUser.userInfo.Email;
+            _user.OfficeAreaCode = "559";
+            _user.OfficePhoneNumber = _LoggedInUser.userInfo.OfficePhone;
+            _user.CellAreaCode = user.CellAreaCode;
+            _user.CellPhoneNumber = user.CellPhoneNumber;
+            _user.ApprovedDmv = false;
+            _user.SupervisorEmail = null;
+            _user.StatusId = 1;
+
+            //Add new User to the User Table
+            transportationContext.Users.Add(_user);
+            //save user
+            transportationContext.SaveChanges();
+
             return RedirectToAction("NewRequest");
         }
 
