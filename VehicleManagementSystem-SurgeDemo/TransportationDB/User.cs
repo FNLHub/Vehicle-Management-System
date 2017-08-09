@@ -27,7 +27,7 @@ namespace TransportationDB
         public string BannerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int DepartmentId { get; set; }
+        public string Department { get; set; }
         public int StatusId { get; set; }
         public string OfficeAreaCode { get; set; }
         public string OfficePhoneNumber { get; set; }
@@ -37,7 +37,6 @@ namespace TransportationDB
         public string Email { get; set; }
         public string SupervisorEmail { get; set; }
     
-        public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DriverGroup> DriverGroups { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

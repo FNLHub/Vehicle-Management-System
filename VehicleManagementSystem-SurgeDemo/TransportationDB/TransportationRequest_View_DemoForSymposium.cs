@@ -12,7 +12,7 @@ namespace TransportationDB
     using System;
     using System.Collections.Generic;
     
-    public partial class TransportationRequest_View
+    public partial class TransportationRequest_View_DemoForSymposium
     {
         public long RId { get; set; }
         public string FirstName { get; set; }
@@ -21,7 +21,10 @@ namespace TransportationDB
         public string Email { get; set; }
         public string OfficePhoneNumber { get; set; }
         public string CellPhoneNumber { get; set; }
-        public string Department { get; set; }
+        public Nullable<bool> NeedGasCard { get; set; }
+        public int UserId { get; set; }
+        public int VehicleTypeId { get; set; }
+        public Nullable<int> VehicleAddOnId { get; set; }
         public string Destination { get; set; }
         public Nullable<System.DateTime> LeaveDate { get; set; }
         public Nullable<System.TimeSpan> LeaveTime { get; set; }

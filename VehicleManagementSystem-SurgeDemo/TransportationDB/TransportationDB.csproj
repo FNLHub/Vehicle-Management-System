@@ -166,6 +166,9 @@
     <Compile Include="TransportationRequest_View.cs">
       <DependentUpon>TransportationModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TransportationRequest_View_DemoForSymposium.cs">
+      <DependentUpon>TransportationModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Transportation_SignedOutView.cs">
       <DependentUpon>TransportationModel.tt</DependentUpon>
     </Compile>

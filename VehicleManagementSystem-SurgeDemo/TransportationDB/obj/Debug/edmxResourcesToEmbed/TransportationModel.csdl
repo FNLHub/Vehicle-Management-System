@@ -65,14 +65,11 @@
     <EntitySet Name="Transportation_View" EntityType="FacilitiesDBModel.Transportation_View" />
     <EntitySet Name="Transportation_ViewAll" EntityType="FacilitiesDBModel.Transportation_ViewAll" />
     <EntitySet Name="TransportationRequest_View" EntityType="FacilitiesDBModel.TransportationRequest_View" />
+    <EntitySet Name="TransportationRequest_View_DemoForSymposium" EntityType="FacilitiesDBModel.TransportationRequest_View_DemoForSymposium" />
     <EntitySet Name="User_Transportation_Log" EntityType="FacilitiesDBModel.User_Transportation_Log" />
     <AssociationSet Name="FK_Vehicles_Campuses" Association="FacilitiesDBModel.FK_Vehicles_Campuses">
       <End Role="Campus" EntitySet="Campuses" />
       <End Role="Vehicle" EntitySet="Vehicles" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Users_Departments" Association="FacilitiesDBModel.FK_Users_Departments">
-      <End Role="Department" EntitySet="Departments" />
-      <End Role="User" EntitySet="Users" />
     </AssociationSet>
     <AssociationSet Name="FK_DriverGroups_Users" Association="FacilitiesDBModel.FK_DriverGroups_Users">
       <End Role="User" EntitySet="Users" />
@@ -154,7 +151,6 @@
     <Property Name="DepartmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="DepartmentCode" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="true" />
     <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
-    <NavigationProperty Name="Users" Relationship="FacilitiesDBModel.FK_Users_Departments" FromRole="Department" ToRole="User" />
   </EntityType>
   <EntityType Name="DriverGroup">
     <Key>
@@ -255,7 +251,7 @@
     <Property Name="BannerId" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
     <Property Name="FirstName" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
     <Property Name="LastName" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
-    <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+    <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="StatusId" Type="Int32" Nullable="false" />
     <Property Name="OfficeAreaCode" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
     <Property Name="OfficePhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
@@ -264,7 +260,6 @@
     <Property Name="ApprovedDmv" Type="Boolean" />
     <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="SupervisorEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Department" Relationship="FacilitiesDBModel.FK_Users_Departments" FromRole="User" ToRole="Department" />
     <NavigationProperty Name="DriverGroups" Relationship="FacilitiesDBModel.FK_DriverGroups_Users" FromRole="User" ToRole="DriverGroup" />
     <NavigationProperty Name="SignOuts" Relationship="FacilitiesDBModel.FK_SignOut_Users" FromRole="User" ToRole="SignOut" />
     <NavigationProperty Name="TransportationRequests" Relationship="FacilitiesDBModel.FK_TransportationRequests_UsersProcId" FromRole="User" ToRole="TransportationRequest" />
@@ -435,7 +430,32 @@
   <EntityType Name="TransportationRequest_View">
     <Key>
       <PropertyRef Name="RId" />
-      <PropertyRef Name="DepartmentName" />
+      <PropertyRef Name="FirstName" />
+      <PropertyRef Name="LastName" />
+      <PropertyRef Name="BannerId" />
+      <PropertyRef Name="Department" />
+    </Key>
+    <Property Name="RId" Type="Int64" Nullable="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="BannerId" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OfficePhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="CellPhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="Department" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Destination" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="LeaveDate" Type="DateTime" Precision="0" />
+    <Property Name="LeaveTime" Type="Time" Precision="7" />
+    <Property Name="ReturnDate" Type="DateTime" Precision="0" />
+    <Property Name="ReturnTime" Type="Time" Precision="7" />
+    <Property Name="TripPurpose" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NumOfStudents" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TransportationRequest_View_DemoForSymposium">
+    <Key>
+      <PropertyRef Name="RId" />
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="VehicleTypeId" />
     </Key>
     <Property Name="RId" Type="Int64" Nullable="false" />
     <Property Name="FirstName" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
@@ -444,7 +464,10 @@
     <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="OfficePhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
     <Property Name="CellPhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
-    <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="NeedGasCard" Type="Boolean" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="VehicleTypeId" Type="Int32" Nullable="false" />
+    <Property Name="VehicleAddOnId" Type="Int32" />
     <Property Name="Destination" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="LeaveDate" Type="DateTime" Precision="0" />
     <Property Name="LeaveTime" Type="Time" Precision="7" />
@@ -476,18 +499,6 @@
       </Principal>
       <Dependent Role="Vehicle">
         <PropertyRef Name="CampusId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Users_Departments">
-    <End Type="FacilitiesDBModel.Department" Role="Department" Multiplicity="1" />
-    <End Type="FacilitiesDBModel.User" Role="User" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Department">
-        <PropertyRef Name="DepartmentId" />
-      </Principal>
-      <Dependent Role="User">
-        <PropertyRef Name="DepartmentId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

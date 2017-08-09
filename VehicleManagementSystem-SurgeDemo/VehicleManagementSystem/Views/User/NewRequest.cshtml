@@ -1,4 +1,4 @@
-﻿@model TransportationDB.TransportationRequest_View
+﻿@model TransportationDB.TransportationRequest_View_DemoForSymposium
 
 @{
     ViewBag.Title = "NewRequest";
@@ -14,7 +14,7 @@
 
     <div class="form-segment">
 
-        <!----------------------------------------------------------------- Step 1 ---------------------------------------------------------------->
+    <!----------------------------------------------------------------- Step 1 ---------------------------------------------------------------->
     <div class="jumbotron" id="step1">
         <p class="step"><span class="glyphicon glyphicon-star-empty"></span>Step #1</p>
         <!--Row Start-->
@@ -42,11 +42,11 @@
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4">
                 Office Phone:<br />
-                @Html.TextBoxFor(m => m.OfficePhoneNumber, new { @class = "form-control", @placeholder = "5591112222" })
+                @Html.TextBoxFor(m => m.OfficePhoneNumber, new { @class = "form-control", @placeholder = "No Office Number" })
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4">
                 Mobile Phone:<br />
-                @Html.TextBoxFor(m => m.CellPhoneNumber, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.CellPhoneNumber, new { @class = "form-control", @placeholder = "No Cell Number" })
             </div>
         </div>
 
@@ -64,10 +64,10 @@
     <div class="jumbotron" id="step2">
         <p class="step"><span class="glyphicon glyphicon-star-empty"></span>Step #2</p>
 
-        <span class="btn btn-default" id="create-driver">
+        @*<span class="btn btn-default" id="create-driver">
             <span class="glyphicon glyphicon-plus-sign"></span>
             Add Driver
-        </span>
+        </span>*@
         <table class="table">
             <thead>
             <tr>
@@ -75,12 +75,55 @@
                 <th>Select Vehicle </th>
                 <th>Gas Card </th>
                 <th>Vehicle Add-on </th>
-                <th>Pickup From </th>
                 <th></th>
             </tr>
             </thead>
             <tbody id="append-driver">
-                @Html.Partial("~/Views/Partial/AppendDriver.cshtml")
+
+            <tr id="row-@ViewBag.count">
+                <!-- Driver Select -->
+                <th>
+                    @Html.DropDownListFor(v => v.UserId, (SelectList)ViewData["ApprovedDriversDropdown"], new { @class = "form-control" })
+                </th>
+                <!--Select Vehicle Type | Dropdown-->
+                <th>
+                    @Html.DropDownListFor(v => v.VehicleTypeId, (SelectList)ViewData["VehicleTypesDropdown"], new { @class = "form-control" })
+                    @*@Html.DropDownListFor(t => t.VehicleTypeId, new SelectList(
+                        new List<Object>
+                        {
+                            new { value = "1", text = "None"},
+                            new {value = "2", text = "Car"},
+                            new {value = "3", text = "(8) Van"},
+                            new {value = "4", text = "(12) Van"},
+                        },
+                        "value",
+                        "text"), new { @class = "form-control" })*@
+                </th>
+                <!--Need Gas Card | Radio-->
+                <th>
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-default active">
+                            @Html.RadioButtonFor(g => g.NeedGasCard, false, new { @checked = true, @id = "G_RadNo", @name = "gc" })
+                            No
+                        </label>
+                        <label class="btn btn-default">
+                            @Html.RadioButtonFor(g => g.NeedGasCard, true, new { @id = "G_RadYes", @name = "gc" })
+                            Yes
+                        </label>
+                    </div>
+                </th>
+                <!-- Vehicle Addon Id | Dropdown-->
+                <th>
+                    @Html.DropDownListFor(v => v.VehicleAddOnId, (SelectList)ViewData["VehicleAddonsDropdown"], new { @class = "form-control" })
+                </th>
+                <th>
+                    @if (ViewBag.count >= 0)
+                    {
+                        <button class="btn btn-danger" onclick="deleteRow(@ViewBag.count);">Delete</button>
+                    }
+                </th>
+            </tr>
+
             </tbody>
         </table>
 
@@ -95,7 +138,7 @@
         <div style="clear: both;"></div>
     </div>
 
-        <!----------------------------------------------------------------- Step 3 ---------------------------------------------------------------->
+    <!----------------------------------------------------------------- Step 3 ---------------------------------------------------------------->
     <div class="jumbotron" id="step3">
         <p class="step"><span class="glyphicon glyphicon-star-empty"></span>Step #3</p>
 
@@ -136,30 +179,30 @@
         <div style="clear: both;"></div>
     </div>
 
-        <!----------------------------------------------------------------- Step 4 ---------------------------------------------------------------->
+    <!----------------------------------------------------------------- Step 4 ---------------------------------------------------------------->
     <div class="jumbotron" id="step4">
         <p class="step"><span class="glyphicon glyphicon-star-empty"></span>Step #4 (Final Step)</p>
 
         <table class="table">
             <thead>
-                <tr>
-                    <th>Destination</th>
-                    <th>Purpose of Trip </th>
-                    <th>Amount of COS Students on Trip </th>
-                </tr>
+            <tr>
+                <th>Destination</th>
+                <th>Purpose of Trip </th>
+                <th>Amount of COS Students on Trip </th>
+            </tr>
             </thead>
             <tbody>
-                <tr>
-                   <th>
-                       @Html.TextBoxFor(m => m.Destination, new { @class = "form-control", @maxlength = "254" })
-                   </th>
-                    <th>
-                        @Html.TextBoxFor(m => m.TripPurpose, new { @class = "form-control", @maxlength = "254" })
-                    </th>
-                    <th>
-                        @Html.DropDownListFor(m => m.NumOfStudents, Enumerable.Range(0, 100).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), new { @class = "form-control" })
-                    </th>
-                </tr>
+            <tr>
+                <th>
+                    @Html.TextBoxFor(m => m.Destination, new { @class = "form-control", @maxlength = "254" })
+                </th>
+                <th>
+                    @Html.TextBoxFor(m => m.TripPurpose, new { @class = "form-control", @maxlength = "254" })
+                </th>
+                <th>
+                    @Html.DropDownListFor(m => m.NumOfStudents, Enumerable.Range(0, 100).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), new { @class = "form-control" })
+                </th>
+            </tr>
             </tbody>
         </table>
 
@@ -175,7 +218,7 @@
         <div style="clear: both;"></div>
     </div>
 
-</div>
+    </div>
 }
 
 <div>

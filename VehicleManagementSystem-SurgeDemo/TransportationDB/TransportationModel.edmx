@@ -112,7 +112,7 @@ warning 6013: The table/view 'FacilitiesDB.dbo.PassengerGroup' does not have a p
           <Property Name="BannerId" Type="nchar" MaxLength="8" Nullable="false" />
           <Property Name="FirstName" Type="nchar" MaxLength="60" Nullable="false" />
           <Property Name="LastName" Type="nchar" MaxLength="60" Nullable="false" />
-          <Property Name="DepartmentId" Type="int" Nullable="false" />
+          <Property Name="Department" Type="nvarchar" MaxLength="50" />
           <Property Name="StatusId" Type="int" Nullable="false" />
           <Property Name="OfficeAreaCode" Type="nvarchar" MaxLength="6" />
           <Property Name="OfficePhoneNumber" Type="nvarchar" MaxLength="12" />
@@ -293,7 +293,34 @@ warning 6002: The table/view 'FacilitiesDB.dbo.TransportationRequest_View' does 
         <EntityType Name="TransportationRequest_View">
           <Key>
             <PropertyRef Name="RId" />
-            <PropertyRef Name="DepartmentName" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="BannerId" />
+            <PropertyRef Name="Department" />
+          </Key>
+          <Property Name="RId" Type="bigint" Nullable="false" />
+          <Property Name="FirstName" Type="nchar" MaxLength="60" Nullable="false" />
+          <Property Name="LastName" Type="nchar" MaxLength="60" Nullable="false" />
+          <Property Name="BannerId" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="OfficePhoneNumber" Type="nvarchar" MaxLength="12" />
+          <Property Name="CellPhoneNumber" Type="nvarchar" MaxLength="12" />
+          <Property Name="Department" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Destination" Type="nvarchar" MaxLength="255" />
+          <Property Name="LeaveDate" Type="date" />
+          <Property Name="LeaveTime" Type="time" Precision="7" />
+          <Property Name="ReturnDate" Type="date" />
+          <Property Name="ReturnTime" Type="time" Precision="7" />
+          <Property Name="TripPurpose" Type="nvarchar" MaxLength="255" />
+          <Property Name="NumOfStudents" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FacilitiesDB.dbo.TransportationRequest_View_DemoForSymposium' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TransportationRequest_View_DemoForSymposium">
+          <Key>
+            <PropertyRef Name="RId" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="VehicleTypeId" />
           </Key>
           <Property Name="RId" Type="bigint" Nullable="false" />
           <Property Name="FirstName" Type="nchar" MaxLength="60" />
@@ -302,7 +329,10 @@ warning 6002: The table/view 'FacilitiesDB.dbo.TransportationRequest_View' does 
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="OfficePhoneNumber" Type="nvarchar" MaxLength="12" />
           <Property Name="CellPhoneNumber" Type="nvarchar" MaxLength="12" />
-          <Property Name="DepartmentName" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="NeedGasCard" Type="bit" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="VehicleTypeId" Type="int" Nullable="false" />
+          <Property Name="VehicleAddOnId" Type="int" />
           <Property Name="Destination" Type="nvarchar" MaxLength="255" />
           <Property Name="LeaveDate" Type="date" />
           <Property Name="LeaveTime" Type="time" Precision="7" />
@@ -432,18 +462,6 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
             </Principal>
             <Dependent Role="TransportationRequests">
               <PropertyRef Name="RequesterUserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Users_Departments">
-          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
-          <End Role="Users" Type="Self.Users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Departments">
-              <PropertyRef Name="DepartmentId" />
-            </Principal>
-            <Dependent Role="Users">
-              <PropertyRef Name="DepartmentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -666,7 +684,7 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
     [TransportationRequest_View].[Email] AS [Email], 
     [TransportationRequest_View].[OfficePhoneNumber] AS [OfficePhoneNumber], 
     [TransportationRequest_View].[CellPhoneNumber] AS [CellPhoneNumber], 
-    [TransportationRequest_View].[DepartmentName] AS [DepartmentName], 
+    [TransportationRequest_View].[Department] AS [Department], 
     [TransportationRequest_View].[Destination] AS [Destination], 
     [TransportationRequest_View].[LeaveDate] AS [LeaveDate], 
     [TransportationRequest_View].[LeaveTime] AS [LeaveTime], 
@@ -675,6 +693,28 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
     [TransportationRequest_View].[TripPurpose] AS [TripPurpose], 
     [TransportationRequest_View].[NumOfStudents] AS [NumOfStudents]
     FROM [dbo].[TransportationRequest_View] AS [TransportationRequest_View]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TransportationRequest_View_DemoForSymposium" EntityType="Self.TransportationRequest_View_DemoForSymposium" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TransportationRequest_View_DemoForSymposium].[RId] AS [RId], 
+    [TransportationRequest_View_DemoForSymposium].[FirstName] AS [FirstName], 
+    [TransportationRequest_View_DemoForSymposium].[LastName] AS [LastName], 
+    [TransportationRequest_View_DemoForSymposium].[BannerId] AS [BannerId], 
+    [TransportationRequest_View_DemoForSymposium].[Email] AS [Email], 
+    [TransportationRequest_View_DemoForSymposium].[OfficePhoneNumber] AS [OfficePhoneNumber], 
+    [TransportationRequest_View_DemoForSymposium].[CellPhoneNumber] AS [CellPhoneNumber], 
+    [TransportationRequest_View_DemoForSymposium].[NeedGasCard] AS [NeedGasCard], 
+    [TransportationRequest_View_DemoForSymposium].[UserId] AS [UserId], 
+    [TransportationRequest_View_DemoForSymposium].[VehicleTypeId] AS [VehicleTypeId], 
+    [TransportationRequest_View_DemoForSymposium].[VehicleAddOnId] AS [VehicleAddOnId], 
+    [TransportationRequest_View_DemoForSymposium].[Destination] AS [Destination], 
+    [TransportationRequest_View_DemoForSymposium].[LeaveDate] AS [LeaveDate], 
+    [TransportationRequest_View_DemoForSymposium].[LeaveTime] AS [LeaveTime], 
+    [TransportationRequest_View_DemoForSymposium].[ReturnDate] AS [ReturnDate], 
+    [TransportationRequest_View_DemoForSymposium].[ReturnTime] AS [ReturnTime], 
+    [TransportationRequest_View_DemoForSymposium].[TripPurpose] AS [TripPurpose], 
+    [TransportationRequest_View_DemoForSymposium].[NumOfStudents] AS [NumOfStudents]
+    FROM [dbo].[TransportationRequest_View_DemoForSymposium] AS [TransportationRequest_View_DemoForSymposium]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="User_Transportation_Log" EntityType="Self.User_Transportation_Log" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -720,10 +760,6 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
           <AssociationSet Name="FK_TransportationRequests_UsersReqId" Association="Self.FK_TransportationRequests_UsersReqId">
             <End Role="Users" EntitySet="Users" />
             <End Role="TransportationRequests" EntitySet="TransportationRequests" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Users_Departments" Association="Self.FK_Users_Departments">
-            <End Role="Departments" EntitySet="Departments" />
-            <End Role="Users" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_UserStatuses" Association="Self.FK_Users_UserStatuses">
             <End Role="UserStatuses" EntitySet="UserStatuses" />
@@ -815,14 +851,11 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
           <EntitySet Name="Transportation_View" EntityType="FacilitiesDBModel.Transportation_View" />
           <EntitySet Name="Transportation_ViewAll" EntityType="FacilitiesDBModel.Transportation_ViewAll" />
           <EntitySet Name="TransportationRequest_View" EntityType="FacilitiesDBModel.TransportationRequest_View" />
+          <EntitySet Name="TransportationRequest_View_DemoForSymposium" EntityType="FacilitiesDBModel.TransportationRequest_View_DemoForSymposium" />
           <EntitySet Name="User_Transportation_Log" EntityType="FacilitiesDBModel.User_Transportation_Log" />
           <AssociationSet Name="FK_Vehicles_Campuses" Association="FacilitiesDBModel.FK_Vehicles_Campuses">
             <End Role="Campus" EntitySet="Campuses" />
             <End Role="Vehicle" EntitySet="Vehicles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Users_Departments" Association="FacilitiesDBModel.FK_Users_Departments">
-            <End Role="Department" EntitySet="Departments" />
-            <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="FK_DriverGroups_Users" Association="FacilitiesDBModel.FK_DriverGroups_Users">
             <End Role="User" EntitySet="Users" />
@@ -904,7 +937,6 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
           <Property Name="DepartmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DepartmentCode" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="true" />
           <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Users" Relationship="FacilitiesDBModel.FK_Users_Departments" FromRole="Department" ToRole="User" />
         </EntityType>
         <EntityType Name="DriverGroup">
           <Key>
@@ -1005,7 +1037,7 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
           <Property Name="BannerId" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
-          <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="StatusId" Type="Int32" Nullable="false" />
           <Property Name="OfficeAreaCode" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
           <Property Name="OfficePhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
@@ -1014,7 +1046,6 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
           <Property Name="ApprovedDmv" Type="Boolean" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SupervisorEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Department" Relationship="FacilitiesDBModel.FK_Users_Departments" FromRole="User" ToRole="Department" />
           <NavigationProperty Name="DriverGroups" Relationship="FacilitiesDBModel.FK_DriverGroups_Users" FromRole="User" ToRole="DriverGroup" />
           <NavigationProperty Name="SignOuts" Relationship="FacilitiesDBModel.FK_SignOut_Users" FromRole="User" ToRole="SignOut" />
           <NavigationProperty Name="TransportationRequests" Relationship="FacilitiesDBModel.FK_TransportationRequests_UsersProcId" FromRole="User" ToRole="TransportationRequest" />
@@ -1185,7 +1216,32 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
         <EntityType Name="TransportationRequest_View">
           <Key>
             <PropertyRef Name="RId" />
-            <PropertyRef Name="DepartmentName" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="BannerId" />
+            <PropertyRef Name="Department" />
+          </Key>
+          <Property Name="RId" Type="Int64" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="true" />
+          <Property Name="BannerId" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OfficePhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="CellPhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Destination" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LeaveDate" Type="DateTime" Precision="0" />
+          <Property Name="LeaveTime" Type="Time" Precision="7" />
+          <Property Name="ReturnDate" Type="DateTime" Precision="0" />
+          <Property Name="ReturnTime" Type="Time" Precision="7" />
+          <Property Name="TripPurpose" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NumOfStudents" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TransportationRequest_View_DemoForSymposium">
+          <Key>
+            <PropertyRef Name="RId" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="VehicleTypeId" />
           </Key>
           <Property Name="RId" Type="Int64" Nullable="false" />
           <Property Name="FirstName" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
@@ -1194,7 +1250,10 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="OfficePhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
           <Property Name="CellPhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
-          <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="NeedGasCard" Type="Boolean" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="VehicleTypeId" Type="Int32" Nullable="false" />
+          <Property Name="VehicleAddOnId" Type="Int32" />
           <Property Name="Destination" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="LeaveDate" Type="DateTime" Precision="0" />
           <Property Name="LeaveTime" Type="Time" Precision="7" />
@@ -1226,18 +1285,6 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
             </Principal>
             <Dependent Role="Vehicle">
               <PropertyRef Name="CampusId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Users_Departments">
-          <End Type="FacilitiesDBModel.Department" Role="Department" Multiplicity="1" />
-          <End Type="FacilitiesDBModel.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Department">
-              <PropertyRef Name="DepartmentId" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="DepartmentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1542,7 +1589,7 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
                 <ScalarProperty Name="OfficePhoneNumber" ColumnName="OfficePhoneNumber" />
                 <ScalarProperty Name="OfficeAreaCode" ColumnName="OfficeAreaCode" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
-                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="BannerId" ColumnName="BannerId" />
@@ -1714,7 +1761,31 @@ warning 6002: The table/view 'FacilitiesDB.dbo.User_Transportation_Log' does not
                 <ScalarProperty Name="LeaveTime" ColumnName="LeaveTime" />
                 <ScalarProperty Name="LeaveDate" ColumnName="LeaveDate" />
                 <ScalarProperty Name="Destination" ColumnName="Destination" />
-                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="CellPhoneNumber" ColumnName="CellPhoneNumber" />
+                <ScalarProperty Name="OfficePhoneNumber" ColumnName="OfficePhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="BannerId" ColumnName="BannerId" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="RId" ColumnName="RId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransportationRequest_View_DemoForSymposium">
+            <EntityTypeMapping TypeName="FacilitiesDBModel.TransportationRequest_View_DemoForSymposium">
+              <MappingFragment StoreEntitySet="TransportationRequest_View_DemoForSymposium">
+                <ScalarProperty Name="NumOfStudents" ColumnName="NumOfStudents" />
+                <ScalarProperty Name="TripPurpose" ColumnName="TripPurpose" />
+                <ScalarProperty Name="ReturnTime" ColumnName="ReturnTime" />
+                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+                <ScalarProperty Name="LeaveTime" ColumnName="LeaveTime" />
+                <ScalarProperty Name="LeaveDate" ColumnName="LeaveDate" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="VehicleAddOnId" ColumnName="VehicleAddOnId" />
+                <ScalarProperty Name="VehicleTypeId" ColumnName="VehicleTypeId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="NeedGasCard" ColumnName="NeedGasCard" />
                 <ScalarProperty Name="CellPhoneNumber" ColumnName="CellPhoneNumber" />
                 <ScalarProperty Name="OfficePhoneNumber" ColumnName="OfficePhoneNumber" />
                 <ScalarProperty Name="Email" ColumnName="Email" />

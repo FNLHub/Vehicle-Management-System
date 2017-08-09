@@ -84,6 +84,25 @@ namespace VehicleManagementSystem.Models
 
             return _ListItem;
         }
+
+        //Populate Vehicle Types
+        public List<SelectListItem> PopulateVehicleTypes()
+        {
+            //Reset Variables on call
+            Reset();
+
+            for (int i = 1; i <= _Transcontext.VehicleTypes.Count(); i++)
+            {
+
+                _Drop.Id = _Transcontext.VehicleTypes.Where(v => v.VehicleTypeId == i).Select(v => v.VehicleTypeId).FirstOrDefault();
+                _Drop.Value = _Transcontext.VehicleTypes.Where(v => v.VehicleTypeId == i).Select(v => v.TypeName).FirstOrDefault();
+
+                _ListItem.Add(new SelectListItem() { Value = _Drop.Value, Text = _Drop.Id.ToString() });
+            }
+
+            return _ListItem;
+        }
+
         //Populate Gas Cards
         public List<SelectListItem> PopulateGasCards()
         {

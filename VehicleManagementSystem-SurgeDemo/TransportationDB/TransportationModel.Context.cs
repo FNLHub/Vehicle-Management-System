@@ -50,6 +50,7 @@ namespace TransportationDB
         public virtual DbSet<Transportation_View> Transportation_View { get; set; }
         public virtual DbSet<Transportation_ViewAll> Transportation_ViewAll { get; set; }
         public virtual DbSet<TransportationRequest_View> TransportationRequest_View { get; set; }
+        public virtual DbSet<TransportationRequest_View_DemoForSymposium> TransportationRequest_View_DemoForSymposium { get; set; }
         public virtual DbSet<User_Transportation_Log> User_Transportation_Log { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)

@@ -20,6 +20,7 @@ namespace VehicleManagementSystem.Controllers
         static SelectList _Users;
         static SelectList _VehicleAddons;
         static SelectList _VehicleTypes;
+        static SelectList _Vehicles;
         static SelectList _GasCards;
         static SelectList _ApprovedDrivers;
 
@@ -37,11 +38,12 @@ namespace VehicleManagementSystem.Controllers
             ViewBag.count = count++;
 
             //Used for populating dropdowns
-                ViewData["UserDropdown"] = _Users;
-                ViewData["VehicleAddonsDropdown"] = _VehicleAddons;
-                ViewData["VehicleTypesDropdown"] = _VehicleTypes;
-                ViewData["GasCardsDropdown"] = _GasCards;
-                ViewData["ApprovedDriversDropdown"] = _ApprovedDrivers;
+            ViewData["UserDropdown"] = _Users;
+            ViewData["VehicleAddonsDropdown"] = _VehicleAddons;
+            ViewData["VehicleTypesDropdown"] = _VehicleTypes;
+            ViewData["GasCardsDropdown"] = _GasCards;
+            ViewData["Vehicles"] = _Vehicles;
+            ViewData["ApprovedDriversDropdown"] = _ApprovedDrivers;
 
             return PartialView("~/Views/Partial/AppendDriver.cshtml", new Drivers());
         }
@@ -50,14 +52,14 @@ namespace VehicleManagementSystem.Controllers
         [HttpGet]
         public ActionResult NewRequest()
         {
-            
+
 
             //Empty User
-            TransportationRequest_View userFill = new TransportationRequest_View();
+            TransportationRequest_View_DemoForSymposium userFill = new TransportationRequest_View_DemoForSymposium();
 
             var User = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]);
-            
-             
+
+
             userFill.BannerId = User.userInfo.EmployeeId.Substring(1);
             userFill.FirstName = User.userInfo.FirstName;
             userFill.LastName = User.userInfo.LastName;
@@ -68,22 +70,23 @@ namespace VehicleManagementSystem.Controllers
             //Populate Global Variables
             _Users = new SelectList(_drop.PopulateUsers(), "Text", "Value");
             _VehicleAddons = new SelectList(_drop.PopulateVehiclesAddons(), "Text", "Value");
-            _VehicleTypes = new SelectList(_drop.PopulateVehicles(), "Text", "Value");
+            _Vehicles = new SelectList(_drop.PopulateVehicles(), "Text", "Value");
             _GasCards = new SelectList(_drop.PopulateGasCards(), "Text", "Value"); ;
             _ApprovedDrivers = new SelectList(_drop.PopulateApprovedDrivers(), "Text", "Value");
+            _VehicleTypes = new SelectList(_drop.PopulateVehicleTypes(), "Text", "Value");
+
             //Populate ViewData's
             ViewData["UserDropdown"] = _Users;
             ViewData["VehicleAddonsDropdown"] = _VehicleAddons;
             ViewData["VehicleTypesDropdown"] = _VehicleTypes;
+            ViewData["VehiclesDropdown"] = _Vehicles;
             ViewData["GasCardsDropdown"] = _GasCards;
             ViewData["ApprovedDriversDropdown"] = _ApprovedDrivers;
-
-
 
             return View(userFill);
         }
         [HttpPost]
-        public ActionResult NewRequest(TransportationRequest_View transRequest)//Drivers[] drivers
+        public ActionResult NewRequest(TransportationRequest_View_DemoForSymposium transRequest)
         {
 
             if (ModelState.IsValid)
@@ -105,41 +108,23 @@ namespace VehicleManagementSystem.Controllers
                         newRequest.TripPurpose = transRequest.TripPurpose;
                         newRequest.NumOfStudents = transRequest.NumOfStudents.GetValueOrDefault();
 
-                        /* Testing default values */
-                        newRequest.RequesterUserId = 1;
-                        newRequest.LeaveDate = DateTime.Parse("7/1/2017");
-                        newRequest.LeaveTime = TimeSpan.Parse("5:15");
-                        newRequest.ReturnDate = DateTime.Parse("7/5/2017");
-                        newRequest.ReturnTime = TimeSpan.Parse("18:35");
-                        newRequest.Destination = "LA";
-                        newRequest.TripPurpose = "Pancakes";
-                        newRequest.NumOfStudents = 4;
-
                         //Create Empty Int Object
                         var transReqId = new ObjectParameter("TranReqId", typeof(int));
-                        //Call Precedure and give transReqId a value
+                        //Save Request and Get transportation request Id
                         transportationContext.p_TransReq_Add(newRequest.RequesterUserId, newRequest.LeaveDate, newRequest.LeaveTime, newRequest.ReturnDate, newRequest.ReturnTime, newRequest.Destination, newRequest.TripPurpose, newRequest.NumOfStudents, transReqId);
+                        
+                        //Save to Driver Group Table
+                        DriverGroup driverGroup = new DriverGroup();
+                        driverGroup.NeedGasCard = transRequest.NeedGasCard.GetValueOrDefault();
+                        driverGroup.TranRequestId = Convert.ToInt16(transReqId.Value);
+                        driverGroup.UserId = transRequest.UserId;
+                        driverGroup.VehicleAddOnId = transRequest.VehicleAddOnId;
+                        driverGroup.VehicleTypeId = transRequest.VehicleTypeId;
 
-                        //Drivers _Drivers = new Drivers();
-                        //_Drivers.DriverUserId = 1;
-                        //_Drivers.NeedGasCard = false;
-                        //_Drivers.TransReqId = Convert.ToInt16(transReqId.Value);
-                        //_Drivers.VehicleAddonId = 1;
-                        //_Drivers.VehicleTypeId = 1;
-                        //for (int i = 0; i<drivers.Length; i++) {
-
-                        //    drivers[i].DriverUserId = 1;
-
-                        //}
-
-
-                        if (transReqId != null)
-                        {
-                            //foreach (driver in array)
-                            //{
-                            //    insert into db
-                            //}
-                        }
+                        //Add new driver associated with request
+                        transportationContext.DriverGroups.Add(driverGroup);
+                        //save
+                        transportationContext.SaveChanges();
 
                         return RedirectToAction("RequestConfirmation");
                     }

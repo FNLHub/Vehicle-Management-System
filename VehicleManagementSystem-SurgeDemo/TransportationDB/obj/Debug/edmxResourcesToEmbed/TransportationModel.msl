@@ -140,7 +140,7 @@
           <ScalarProperty Name="OfficePhoneNumber" ColumnName="OfficePhoneNumber" />
           <ScalarProperty Name="OfficeAreaCode" ColumnName="OfficeAreaCode" />
           <ScalarProperty Name="StatusId" ColumnName="StatusId" />
-          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="BannerId" ColumnName="BannerId" />
@@ -312,7 +312,31 @@
           <ScalarProperty Name="LeaveTime" ColumnName="LeaveTime" />
           <ScalarProperty Name="LeaveDate" ColumnName="LeaveDate" />
           <ScalarProperty Name="Destination" ColumnName="Destination" />
-          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="CellPhoneNumber" ColumnName="CellPhoneNumber" />
+          <ScalarProperty Name="OfficePhoneNumber" ColumnName="OfficePhoneNumber" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="BannerId" ColumnName="BannerId" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="RId" ColumnName="RId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportationRequest_View_DemoForSymposium">
+      <EntityTypeMapping TypeName="FacilitiesDBModel.TransportationRequest_View_DemoForSymposium">
+        <MappingFragment StoreEntitySet="TransportationRequest_View_DemoForSymposium">
+          <ScalarProperty Name="NumOfStudents" ColumnName="NumOfStudents" />
+          <ScalarProperty Name="TripPurpose" ColumnName="TripPurpose" />
+          <ScalarProperty Name="ReturnTime" ColumnName="ReturnTime" />
+          <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+          <ScalarProperty Name="LeaveTime" ColumnName="LeaveTime" />
+          <ScalarProperty Name="LeaveDate" ColumnName="LeaveDate" />
+          <ScalarProperty Name="Destination" ColumnName="Destination" />
+          <ScalarProperty Name="VehicleAddOnId" ColumnName="VehicleAddOnId" />
+          <ScalarProperty Name="VehicleTypeId" ColumnName="VehicleTypeId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="NeedGasCard" ColumnName="NeedGasCard" />
           <ScalarProperty Name="CellPhoneNumber" ColumnName="CellPhoneNumber" />
           <ScalarProperty Name="OfficePhoneNumber" ColumnName="OfficePhoneNumber" />
           <ScalarProperty Name="Email" ColumnName="Email" />
