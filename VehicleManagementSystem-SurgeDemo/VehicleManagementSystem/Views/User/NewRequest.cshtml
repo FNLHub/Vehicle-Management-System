@@ -21,15 +21,15 @@
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4">
                 First Name:<br />
-                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "First Name", @disabled="disabled"})
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4">
                 Last Name:<br />
-                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Last Name", @disabled = "disabled" })
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4">
                 Banner Id:<br />
-                @Html.TextBoxFor(m => m.BannerId, new { @class = "form-control", @placeholder = "Banner Id, without @" })
+                @Html.TextBoxFor(m => m.BannerId, new { @class = "form-control", @placeholder = "Banner Id, without @", @disabled = "disabled" })
             </div>
         </div>
         <br />
@@ -38,11 +38,11 @@
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4">
                 Email:<br />
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "...@cos.edu" })
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "...@cos.edu", @disabled = "disabled" })
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4">
                 Office Phone:<br />
-                @Html.TextBoxFor(m => m.OfficePhoneNumber, new { @class = "form-control", @placeholder = "No Office Number" })
+                @Html.TextBoxFor(m => m.OfficePhoneNumber, new { @class = "form-control", @placeholder = "No Office Number", @disabled = "disabled" })
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4">
                 Mobile Phone:<br />

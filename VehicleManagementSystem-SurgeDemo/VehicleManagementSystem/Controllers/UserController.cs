@@ -23,6 +23,8 @@ namespace VehicleManagementSystem.Controllers
         static SelectList _Vehicles;
         static SelectList _GasCards;
         static SelectList _ApprovedDrivers;
+        //UserFill Information
+        private static LoginController.AuthorizeObject _LoggedInUser;
 
 
         // GET: User
@@ -57,14 +59,14 @@ namespace VehicleManagementSystem.Controllers
             //Empty User
             TransportationRequest_View_DemoForSymposium userFill = new TransportationRequest_View_DemoForSymposium();
 
-            var User = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]);
+            //var User = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]);
+            _LoggedInUser = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]);
 
-
-            userFill.BannerId = User.userInfo.EmployeeId.Substring(1);
-            userFill.FirstName = User.userInfo.FirstName;
-            userFill.LastName = User.userInfo.LastName;
-            userFill.OfficePhoneNumber = User.userInfo.OfficePhone;
-            userFill.Email = User.userInfo.Email;
+            userFill.BannerId = _LoggedInUser.userInfo.EmployeeId.Substring(1);
+            userFill.FirstName = _LoggedInUser.userInfo.FirstName;
+            userFill.LastName = _LoggedInUser.userInfo.LastName;
+            userFill.OfficePhoneNumber = _LoggedInUser.userInfo.OfficePhone;
+            userFill.Email = _LoggedInUser.userInfo.Email;
 
             UniversalDropDownClass _drop = new UniversalDropDownClass();
             //Populate Global Variables
@@ -94,7 +96,8 @@ namespace VehicleManagementSystem.Controllers
                 try
                 {
                     // Grabs current logged on user ID as they will be the requester
-                    var RequesterId = transportationContext.Users.Where(u => u.BannerId == transRequest.BannerId).Select(i => i.UserId).FirstOrDefault();
+                    //Note: This Lambda function is using the logged in user as the requester so if html is edited the validation is still correct
+                    var RequesterId = transportationContext.Users.Where(u => u.BannerId == _LoggedInUser.userInfo.EmployeeId.Substring(1)).Select(i => i.UserId).FirstOrDefault();
 
                     if (RequesterId != null)
                     {
