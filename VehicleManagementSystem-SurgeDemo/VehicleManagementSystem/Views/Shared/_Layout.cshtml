@@ -1,9 +1,23 @@
-﻿<!DOCTYPE html>
+﻿@using VehicleManagementSystem.Controllers
+@{
+    bool loggedIn = false;
+    // if logged out
+    if (Request.Cookies[LoginController.userToken] == null)
+    {
+        loggedIn = false;
+    }
+    //if logged in
+    else {
+        loggedIn = true;
+    }
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title | Vehicle Management System</title>
+    <title>VMS | @ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <!--Custom CSS -->
@@ -18,15 +32,33 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("VMS (Home)", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @if (loggedIn)
+                {
+                    <a class="navbar-brand" href="@Url.Action("Index", "Home")">VMS | Hello @LoginController.FirstName!</a>
+                }
+                else
+                {
+                    <a class="navbar-brand" href="@Url.Action("Index", "Home")"><kbd>VMS</kbd></a>
+                }
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
+                    <li>@Html.ActionLink("New Request", "NewRequest", "User")</li>
+                    <li>@Html.ActionLink("Request History", "ViewHistory", "User")</li>
                     <li>@Html.ActionLink("Admin Panel", "Index", "Admin")</li>
                     <li>@Html.ActionLink("Reports", "Index", "Reports")</li>
+                </ul>
+                <ul  class="nav navbar-nav" style="float:right;">
+                    @if (loggedIn)
+                    {
+                        <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
+
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Login", "Index", "Login")</li>
+                    }                 
                 </ul>
             </div>
         </div>
@@ -36,6 +68,7 @@
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Vehicle Management System</p>
+            @Html.ActionLink("Contact", "Contact", "Home")
         </footer>
     </div>
 

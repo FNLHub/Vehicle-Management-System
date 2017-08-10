@@ -37,12 +37,12 @@ namespace VehicleManagementSystem.Models
             //Reset Variables on call
             Reset();
 
-            for (int i = 1; i <= _Transcontext.Users.Count(); i++)
+            for (int i = 0; i <= _Transcontext.Users.Count(); i++)
             {
 
                 _Drop.Id = _Transcontext.Users.Where(v => v.UserId == i).Select(v => v.UserId).FirstOrDefault();
                 _Drop.Value = _Transcontext.Users.Where(v => v.UserId == i).Select(v => v.FirstName + " " + v.LastName).FirstOrDefault();
-
+                
                 _ListItem.Add(new SelectListItem() { Value = _Drop.Value, Text = _Drop.Id.ToString() });
             }
 
@@ -131,7 +131,7 @@ namespace VehicleManagementSystem.Models
             {
 
                 _Drop.Id = _Transcontext.Users.Where(v => v.UserId == i).Select(v => v.UserId).FirstOrDefault();
-                _Drop.Value = _Transcontext.Users.Where(v => v.UserId == i).Select(v => v.BannerId + " " + v.FirstName + " " + v.LastName).FirstOrDefault();
+                _Drop.Value = _Transcontext.Users.Where(v => v.UserId == i).Select(v => v.FirstName + " " + v.LastName).FirstOrDefault();//v.BannerId + " " + 
 
                 _ListItem.Add(new SelectListItem() { Value = _Drop.Value, Text = _Drop.Id.ToString() });
             }

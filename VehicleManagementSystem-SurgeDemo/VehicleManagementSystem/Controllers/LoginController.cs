@@ -18,6 +18,8 @@ namespace VehicleManagementSystem.Controllers
         public static string userToken = "user_Token";
         FacilitiesDBEntities transportationContext = new FacilitiesDBEntities();
 
+        public static string FirstName = null;
+
         private Token GetToken(string userName, string password)
         {
             // Variables
@@ -100,6 +102,10 @@ namespace VehicleManagementSystem.Controllers
                         StreamReader reader = new StreamReader(resStream);
                         string res = reader.ReadToEnd();
                         AuthorizeObject Auth = JsonConvert.DeserializeObject<AuthorizeObject>(res);
+
+                        //Set for View
+                        FirstName = Auth.userInfo.FirstName;
+
                         return Auth;
                     }
                     catch (Exception e)
@@ -166,7 +172,6 @@ namespace VehicleManagementSystem.Controllers
             // Checks to verify username and password are correct else throws error
             if (userAuth != null)
             {
-
                 // Checks to see if user is already in the user table, If not redirect to create account page, If True redirect to new Request Page
                 if (transportationContext.Users.Where(u => u.BannerId == userAuth.userInfo.EmployeeId.Substring(1)).Select(u => u.BannerId).FirstOrDefault() == null)
                 {
@@ -181,6 +186,14 @@ namespace VehicleManagementSystem.Controllers
                 return View();
 
             }
+        }
+
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            Response.Cookies[LoginController.userToken].Expires = DateTime.Now.AddDays(-1);
+            FirstName = null;
+            return RedirectToAction("Index","Home");
         }
     }
 }
