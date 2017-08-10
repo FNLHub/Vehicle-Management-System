@@ -166,21 +166,21 @@ namespace VehicleManagementSystem.Controllers
             // Checks to verify username and password are correct else throws error
             if (userAuth != null)
             {
-                
+
                 // Checks to see if user is already in the user table, If not redirect to create account page, If True redirect to new Request Page
                 if (transportationContext.Users.Where(u => u.BannerId == userAuth.userInfo.EmployeeId.Substring(1)).Select(u => u.BannerId).FirstOrDefault() == null)
                 {
                     return RedirectToAction("../User/EditUserInfo");
                 }
-
-
                 //return RedirectToAction("../User/EditUserInfo");
                 return RedirectToAction("../User/NewRequest");
             }
+            else {
+                //If incorreect password or username
+                ModelState.AddModelError("", "Incorrect Username/Password");
+                return View();
 
-
-            //ModelState.AddModelError("", authenticationResult.ErrorMessage);
-            return new HttpStatusCodeResult(Response.StatusCode = 400);
+            }
         }
     }
 }

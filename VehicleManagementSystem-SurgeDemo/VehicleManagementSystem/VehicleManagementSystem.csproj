@@ -222,6 +222,7 @@
     <Content Include="Views\Partial\AppendDriver.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\User\EditUserInfo.cshtml" />
+    <Content Include="Views\User\ViewHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

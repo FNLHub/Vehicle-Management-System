@@ -1,0 +1,117 @@
+﻿@model IEnumerable<TransportationDB.TransportationRequest_View_DemoForSymposium>
+
+@{
+    ViewBag.Title = "ViewHistory";
+}
+
+<h2>ViewHistory</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BannerId)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.OfficePhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CellPhoneNumber)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.NeedGasCard)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.VehicleAddOnId)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Destination)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LeaveDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LeaveTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReturnDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReturnTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TripPurpose)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumOfStudents)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BannerId)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.OfficePhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CellPhoneNumber)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.NeedGasCard)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.VehicleAddOnId)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Destination)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LeaveDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LeaveTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReturnDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReturnTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TripPurpose)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumOfStudents)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

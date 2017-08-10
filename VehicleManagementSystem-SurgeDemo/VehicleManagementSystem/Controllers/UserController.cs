@@ -54,11 +54,19 @@ namespace VehicleManagementSystem.Controllers
         public ActionResult NewRequest()
         {
 
-            //Empty User
-            TransportationRequest_View_DemoForSymposium userFill = new TransportationRequest_View_DemoForSymposium();
-
             //var User = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]);
             _LoggedInUser = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]);
+
+            //Check if logged in
+            if (_LoggedInUser == null)
+            {
+                //If no user is logged in then redirect to login page
+                return RedirectToAction("../Login/Index");
+
+            }
+
+            //Empty User
+            TransportationRequest_View_DemoForSymposium userFill = new TransportationRequest_View_DemoForSymposium();
 
             userFill.BannerId = _LoggedInUser.userInfo.EmployeeId.Substring(1);
             userFill.FirstName = _LoggedInUser.userInfo.FirstName;
@@ -113,7 +121,7 @@ namespace VehicleManagementSystem.Controllers
                         var transReqId = new ObjectParameter("TranReqId", typeof(int));
                         //Save Request and Get transportation request Id
                         transportationContext.p_TransReq_Add(newRequest.RequesterUserId, newRequest.LeaveDate, newRequest.LeaveTime, newRequest.ReturnDate, newRequest.ReturnTime, newRequest.Destination, newRequest.TripPurpose, newRequest.NumOfStudents, transReqId);
-                        
+
                         //Save to Driver Group Table
                         DriverGroup driverGroup = new DriverGroup();
                         driverGroup.NeedGasCard = transRequest.NeedGasCard.GetValueOrDefault();
@@ -129,7 +137,6 @@ namespace VehicleManagementSystem.Controllers
 
                         return RedirectToAction("RequestConfirmation");
                     }
-
 
                     // Will require a foreach loop to grab all drivers listed on request
                     //var DriverId = transportationContext.Users.Where(u => u.UserId == transRequest.UserId).Select(i => i.UserId).FirstOrDefault();
@@ -176,6 +183,14 @@ namespace VehicleManagementSystem.Controllers
             //Set User
             _LoggedInUser = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]);
 
+            //Check if logged in
+            if (_LoggedInUser == null)
+            {
+                //If no user is logged in then redirect to login page
+                return RedirectToAction("../Login/Index");
+
+            }
+
             User userFill = new TransportationDB.User();
 
             userFill.FirstName = _LoggedInUser.userInfo.FirstName;
@@ -209,6 +224,23 @@ namespace VehicleManagementSystem.Controllers
             transportationContext.SaveChanges();
 
             return RedirectToAction("NewRequest");
+        }
+
+        [HttpGet]
+        public ActionResult ViewHistory() {
+
+            //Set global user logged in
+            _LoggedInUser = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]);
+
+            //Check if logged in
+            if (_LoggedInUser == null) {
+                //If no user is logged in then redirect to login page
+                return RedirectToAction("../Login/Index");
+
+            }
+
+            return View(transportationContext.TransportationRequest_View_DemoForSymposium.Where(m => m.BannerId == _LoggedInUser.userInfo.EmployeeId.Substring(1)).ToList());
+
         }
 
     }
