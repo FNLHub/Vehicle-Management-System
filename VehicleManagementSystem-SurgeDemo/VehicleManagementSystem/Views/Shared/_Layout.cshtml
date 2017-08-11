@@ -32,13 +32,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+
                 @if (loggedIn)
                 {
                     <a class="navbar-brand" href="@Url.Action("Index", "Home")">VMS | Hello @LoginController.FirstName!</a>
                 }
                 else
                 {
-                    <a class="navbar-brand" href="@Url.Action("Index", "Home")"><kbd>VMS</kbd></a>
+                    <a class="navbar-brand" href="@Url.Action("Index", "Home")">VMS</a>
                 }
             </div>
             <div class="navbar-collapse collapse">
@@ -47,10 +48,11 @@
                     @if (loggedIn)
                     {
                     <li>@Html.ActionLink("New Request", "NewRequest", "User")</li>
-                    <li>@Html.ActionLink("Request History", "ViewHistory", "User")</li>
+                    <li>@Html.ActionLink("History", "ViewHistory", "User")</li>
                     @*<li>@Html.ActionLink("Admin Panel", "Index", "Admin")</li>*@
                     @*<li>@Html.ActionLink("Reports", "Index", "Reports")</li>*@
                     }
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
                 </ul>
                 <ul  class="nav navbar-nav" style="float:right;">
                     @if (loggedIn)

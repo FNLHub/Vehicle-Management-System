@@ -224,6 +224,7 @@
     <Content Include="Views\User\EditUserInfo.cshtml" />
     <Content Include="Views\User\ViewHistory.cshtml" />
     <Content Include="Views\Login\Logout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

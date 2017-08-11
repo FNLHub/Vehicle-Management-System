@@ -21,7 +21,12 @@ namespace VehicleManagementSystem.Controllers
             else
             {
                 var _LoggedInUser = LoginController.GetAuthorize(Request.Cookies[LoginController.userToken]);
-                return View(transportationContext.TransportationRequest_View_DemoForSymposium.Where(u => u.BannerId == _LoggedInUser.userInfo.EmployeeId.Substring(1)).ToList());
+
+                List<TransportationRequest_View_DemoForSymposium> RequestList = transportationContext.TransportationRequest_View_DemoForSymposium.Where(u => u.BannerId == _LoggedInUser.userInfo.EmployeeId.Substring(1)).ToList();
+
+                ViewBag.RequestCount = RequestList.Count();
+
+                return View(RequestList);
             }
         }
 
