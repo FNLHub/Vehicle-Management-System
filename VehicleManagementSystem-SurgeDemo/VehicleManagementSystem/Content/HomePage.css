@@ -1,0 +1,19 @@
+﻿.row {
+    padding: 30px;
+    margin-bottom: 30px;
+    font-weight: 200;
+    line-height: 2.1428571435;
+    color: inherit;
+    background-color: #eeeeee;
+}
+
+.table, thead {
+    border-bottom: solid;
+    border-bottom-color: #b3b3b3;
+}
+
+thead{
+
+    font:bold;
+
+}

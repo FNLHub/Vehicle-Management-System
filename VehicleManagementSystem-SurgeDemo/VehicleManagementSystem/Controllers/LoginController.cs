@@ -178,11 +178,11 @@ namespace VehicleManagementSystem.Controllers
                     return RedirectToAction("../User/EditUserInfo");
                 }
                 //return RedirectToAction("../User/EditUserInfo");
-                return RedirectToAction("../User/NewRequest");
+                return RedirectToAction("../Home/Index");
             }
             else {
                 //If incorreect password or username
-                ModelState.AddModelError("", "Incorrect Username/Password");
+                ModelState.AddModelError("", "Incorrect Username or Password");
                 return View();
 
             }

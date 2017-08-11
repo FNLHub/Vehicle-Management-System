@@ -42,12 +42,15 @@
                 }
             </div>
             <div class="navbar-collapse collapse">
+                <!--Don't populate if user isn't logged in-->
                 <ul class="nav navbar-nav">
-                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
+                    @if (loggedIn)
+                    {
                     <li>@Html.ActionLink("New Request", "NewRequest", "User")</li>
                     <li>@Html.ActionLink("Request History", "ViewHistory", "User")</li>
                     <li>@Html.ActionLink("Admin Panel", "Index", "Admin")</li>
                     <li>@Html.ActionLink("Reports", "Index", "Reports")</li>
+                    }
                 </ul>
                 <ul  class="nav navbar-nav" style="float:right;">
                     @if (loggedIn)
@@ -67,8 +70,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Vehicle Management System</p>
-            @Html.ActionLink("Contact", "Contact", "Home")
+            <p>&copy; @DateTime.Now.Year - Vehicle Management System @Html.ActionLink("Contact", "Contact", "Home", htmlAttributes: new {@class = "btn btn-default" })</p>
         </footer>
     </div>
 
