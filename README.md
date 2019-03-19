@@ -28,4 +28,4 @@
 * UnZip project and launch (VehicleManagementSystem.sln)
 * Make sure you are connected to the COS network to launch application. (Application testing is restricted to the COS network)
 
-
+> This ReadMe was updated on: 03/19/19
