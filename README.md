@@ -1,6 +1,7 @@
-# Facilities Checkout { School Project funded by California Edison Scholarship/Internship }
+# Facilities Checkout 
+#### { School Project funded by California Edison Scholarship/Internship }
 
-## Utility for Facilities at College of the Sequoias to streamline the Vehicle leasing process
+#### Utility for Facilities at College of the Sequoias to streamline the Vehicle leasing process
 
 ### Specifications
 
